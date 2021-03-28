@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:local="clr-namespace:Staketracker.Views.LoginPage"
+             x:Class="Staketracker.Views.LoginPage.Views.LoginView">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackLayout Margin="10,0">
+            <Label Text="Log Into Your Account"
+                   Style="{StaticResource TitleLabelStyle}" />
+
+            <telerikInput:RadEntry Text="{Binding Username, Mode=TwoWay}"
+                                   WatermarkText="Username"
+                                   Style="{StaticResource LoginEntryStyle}" />
+
+            <telerikInput:RadEntry Text="{Binding Password, Mode=TwoWay}"
+                                   IsPassword="True"
+                                   WatermarkText="Password"
+                                   Style="{StaticResource LoginEntryStyle}" />
+
+            <telerikInput:RadButton Text="LOGIN"
+                                    Command="{Binding LoginCommand}"
+                                    CommandParameter="{x:Static local:LoginType.Normal}"
+                                    Style="{StaticResource ActionButtonStyle}" />
+
+            <telerikInput:RadButton Text="Forgot Your Password?"
+                                    Command="{Binding GoToViewCommand}"
+                                    CommandParameter="{x:Static local:ViewType.PasswordResetView}"
+                                    Style="{StaticResource SecondaryActionButtonStyle}"
+                                    FontAttributes="None" />
+        </StackLayout>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Don't have an account?"
+                   Style="{StaticResource NormalLabelStyle}"/>
+
+            <telerikInput:RadButton Text="Create an account"
+                                    Command="{Binding GoToViewCommand}"
+                                    CommandParameter="{x:Static local:ViewType.SignUpView}"
+                                    Style="{StaticResource SecondaryActionButtonStyle}"
+                                    Grid.Column="1" />
+        </Grid>
+    </Grid>
+</ContentView>

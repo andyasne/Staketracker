@@ -4,6 +4,7 @@ using Xamarin.Forms.Xaml;
 using Staketracker.Services;
 using Staketracker.Views;
 using Xamarin.Essentials;
+using Staketracker.Views.LoginPage;
 
 namespace Staketracker
 {
@@ -24,7 +25,7 @@ namespace Staketracker
                 DependencyService.Register<MockDataStore>();
             else
                 DependencyService.Register<APIServices>();
-            MainPage = new MainPage();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()
