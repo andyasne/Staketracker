@@ -4,9 +4,10 @@
         <color android:color="@color/primaryColor" />
     </item>
     <item>
-        <bitmap android:src="@drawable/ic_mvvmcross_logo"
+        <bitmap android:src="@drawable/splash_logo"
                 android:tileMode="disabled"
-                android:gravity="center"
-                android:layout_gravity="center" />
+             
+                android:gravity="center_horizontal"
+                />
     </item>
 </layer-list>

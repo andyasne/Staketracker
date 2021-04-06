@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Staketracker.Core", "src\Staketracker.Core\Staketracker.Core.csproj", "{6C07E9D6-AD00-40BA-84CF-D6B7DAEB452E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Staketracker.Core", "src\Staketracker.Core\Staketracker.Core.csproj", "{6C07E9D6-AD00-40BA-84CF-D6B7DAEB452E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Staketracker.UI", "src\Staketracker.UI\Staketracker.UI.csproj", "{88CF3D09-9B0C-4C9B-AB4F-7D0121E66231}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Staketracker.UI", "src\Staketracker.UI\Staketracker.UI.csproj", "{88CF3D09-9B0C-4C9B-AB4F-7D0121E66231}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Staketracker.Droid", "src\Staketracker.Droid\Staketracker.Droid.csproj", "{9AA4A330-C8B3-4C04-8C33-150200F8D8C0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Staketracker.iOS", "src\Staketracker.iOS\Staketracker.iOS.csproj", "{6CE3F365-CC75-4FEA-B0B1-6D08900FBD75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Staketracker.Core.Test", "test\Staketracker.Core.Test\Staketracker.Core.Test.csproj", "{20F2B01F-3F2D-48AF-92DA-02B0F73A31D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Staketracker.Core.Test", "test\Staketracker.Core.Test\Staketracker.Core.Test.csproj", "{20F2B01F-3F2D-48AF-92DA-02B0F73A31D3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Android", "Android", "{C1A7C0FF-D017-463E-952A-5B5B75F61B40}"
 EndProject
