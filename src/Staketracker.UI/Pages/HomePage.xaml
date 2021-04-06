@@ -10,7 +10,7 @@
                       Title="Main page">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome!!&#10;App scaffolded with MvxScaffolding"
+            <Label Text="Stakeholder Dashboard"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>
