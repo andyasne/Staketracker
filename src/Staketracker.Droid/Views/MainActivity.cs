@@ -14,7 +14,8 @@ using Staketracker.Core.ViewModels.Main;
 
 namespace Staketracker.Droid
 {
-    [Activity]
+    [Activity(
+        Theme = "@style/AppTheme")]
     public class MainActivity : MvxFormsAppCompatActivity<MainViewModel>
     {
         protected override void OnCreate(Bundle bundle)

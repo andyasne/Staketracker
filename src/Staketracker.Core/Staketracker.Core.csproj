@@ -6,7 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Models\News.cs" />
+    <Compile Remove="Models\**" />
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Models\**" />
+    <None Remove="Services\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,10 +24,6 @@
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

@@ -14,7 +14,7 @@ namespace Staketracker.Core
             //    .AsInterfaces()
             //    .RegisterAsLazySingleton();
 
-            RegisterAppStart<HomeViewModel>();
+            RegisterAppStart<RootViewModel>();
         }
     }
 }

@@ -4,15 +4,16 @@
                     x:Class="Staketracker.UI.Resources.Colors"
                     xmlns:local="clr-namespace:Staketracker.UI.Resources">
 
-    <Color x:Key="PrimaryColor">#4c555a</Color>
-    <Color x:Key="PrimaryDarkColor">#242c31</Color>
-    <Color x:Key="PrimaryLightColor">#788187</Color>
+    <Color x:Key="PrimaryColor">#124B8F</Color>
+    <Color x:Key="PrimaryDarkColor">#052B59</Color>
+    <Color x:Key="PrimaryLightColor">#4B78AE</Color>
 
-    <Color x:Key="AccentColor">#24b780</Color>
-    <Color x:Key="AccentDarkColor">#008653</Color>
-    <Color x:Key="AccentLightColor">#64eab0</Color>
+    <Color x:Key="AccentColor">#DAAD0B</Color>
+    <Color x:Key="AccentDarkColor">#886A00</Color>
+    <Color x:Key="AccentLightColor">#FFDC60</Color>
 
-    <Color x:Key="PrimaryTextColor">#000000</Color>
+    <Color x:Key="PrimaryTextColor">#001023</Color>
     <Color x:Key="SecondaryTextColor">#ffffff</Color>
+ 
 
 </ResourceDictionary>
