@@ -1,19 +1,19 @@
-﻿using System;
+using System;
 using UIKit;
 
 namespace Staketracker.iOS.Styles
 {
     public static class ColorPalette
     {
-        public static UIColor Primary => FromHexString("#4c555a");
-        public static UIColor PrimaryDark => FromHexString("#242c31");
-        public static UIColor PrimaryLight => FromHexString("#788187");
+        public static UIColor Primary => FromHexString("#124B8F");
+        public static UIColor PrimaryDark => FromHexString("#052B59");
+        public static UIColor PrimaryLight => FromHexString("#4B78AE");
 
-        public static UIColor Accent => FromHexString("#24b780");
-        public static UIColor AccentDark => FromHexString("#008653");
-        public static UIColor AccentLight => FromHexString("#64eab0");
+        public static UIColor Accent => FromHexString("#DAAD0B");
+        public static UIColor AccentDark => FromHexString("#886A00");
+        public static UIColor AccentLight => FromHexString("#FFDC60");
 
-        public static UIColor PrimaryText => FromHexString("#000000");
+        public static UIColor PrimaryText => FromHexString("#001023");
         public static UIColor SecondaryText => FromHexString("#ffffff");
 
         private static UIColor FromHexString(string hexValue)
