@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,8 +14,7 @@ using Staketracker.Core.ViewModels.Main;
 
 namespace Staketracker.Droid
 {
-    [Activity(
-        Theme = "@style/AppTheme")]
+    [Activity]
     public class MainActivity : MvxFormsAppCompatActivity<MainViewModel>
     {
         protected override void OnCreate(Bundle bundle)

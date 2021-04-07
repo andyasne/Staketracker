@@ -1,4 +1,4 @@
-﻿using Android.App;
+using Android.App;
 using MvvmCross.Forms.Platforms.Android.Core;
 
 #if DEBUG
@@ -11,5 +11,6 @@ namespace Staketracker.Droid
 {
     public class Setup : MvxFormsAndroidSetup<Core.App, UI.App>
     {
+        
     }
 }
