@@ -13,11 +13,26 @@
   
   <ItemGroup>
     <ProjectReference Include="..\Staketracker.Core\Staketracker.Core.csproj" />
+    <Reference Include="Telerik.XamarinForms.Common">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for Xamarin R1 2021\Binaries\Portable\Telerik.XamarinForms.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Input">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for Xamarin R1 2021\Binaries\Portable\Telerik.XamarinForms.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Primitives">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for Xamarin R1 2021\Binaries\Portable\Telerik.XamarinForms.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.SkiaSharp">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for Xamarin R1 2021\Binaries\Portable\Telerik.XamarinForms.SkiaSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
     <Compile Update="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Pages\HomePage.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>

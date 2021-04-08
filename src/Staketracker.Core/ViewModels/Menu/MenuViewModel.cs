@@ -8,6 +8,7 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Staketracker.Core.ViewModels.Contacts;
 using Staketracker.Core.ViewModels.Home;
+using Staketracker.Core.ViewModels.Login;
 using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels.Menu
@@ -23,8 +24,7 @@ namespace Staketracker.Core.ViewModels.Menu
             _navigationService = navigationService;
             MenuItemList = new MvxObservableCollection<string>()
             {
-                "Home",
-                "Contacts"
+                "Login" 
             };
 
             ShowDetailPageAsyncCommand = new MvxAsyncCommand(ShowDetailPageAsync);
@@ -42,8 +42,8 @@ namespace Staketracker.Core.ViewModels.Menu
             // Implement your logic here.
             switch (SelectedMenuItem)
             {
-                case "Home":
-                    await _navigationService.Navigate<HomeViewModel>();
+                case "Login":
+                    await _navigationService.Navigate<LoginViewModel>();
                     break;
                 case "Contacts":
                     await _navigationService.Navigate<ContactsViewModel>();

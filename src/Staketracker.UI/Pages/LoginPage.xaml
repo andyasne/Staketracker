@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Staketracker.UI.Pages.LoginPage"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Login;assembly=Staketracker.Core"
+             x:TypeArguments="viewModels:LoginViewModel">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--<ResourceDictionary Source="Styles.xaml" />-->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackLayout Margin="10,0">
+            <Label Text="Log Into Your Account"
+                  />
+
+            <telerikInput:RadEntry 
+                                   WatermarkText="Username"  />
+
+            <telerikInput:RadEntry  
+                                   IsPassword="True"
+                                   WatermarkText="Password"
+                                  />
+
+            <telerikInput:RadButton Text="LOGIN" />
+
+            <telerikInput:RadButton Text="Forgot Your Password?" 
+                                    FontAttributes="None" />
+
+            <telerikInput:RadButton Text="Use PIN Instead" 
+                                    FontAttributes="None" />
+        </StackLayout>
+
+        <!-- Optional Features -->
+        <StackLayout VerticalOptions="Start"
+                     Grid.Row="1">
+ 
+        </StackLayout>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Don't have an account?"  />
+
+            <telerikInput:RadButton Text="Create an account"
+                                    Command="{Binding GoToViewCommand}"  
+                                    Grid.Column="1" />
+        </Grid>
+    </Grid>
+
+</views:MvxContentPage>
