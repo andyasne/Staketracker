@@ -7,11 +7,11 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Login;assembly=Staketracker.Core"
              x:TypeArguments="viewModels:LoginViewModel">
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!--<ResourceDictionary Source="Styles.xaml" />-->
+                <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -24,30 +24,38 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
         </Grid.RowDefinitions>
 
         <StackLayout Margin="10,0">
-            <Label Text="Log Into Your Account"
-                  />
+            <Label Text="Staketracker"
+                   Style="{StaticResource TitleLabelStyle}" />
 
-            <telerikInput:RadEntry 
-                                   WatermarkText="Username"  />
+      
+            <telerikInput:RadEntry x:Name="entry"/>
+      <telerikInput:RadEntry Text="test"
+                                   WatermarkText="Username"
+                                   Style="{StaticResource LoginEntryStyle}" />
 
             <telerikInput:RadEntry  
                                    IsPassword="True"
                                    WatermarkText="Password"
-                                  />
+                                   Style="{StaticResource LoginEntryStyle}" />
+            
 
-            <telerikInput:RadButton Text="LOGIN" />
+            <telerikInput:RadButton Text="LOGIN"
+                                     Style="{StaticResource ActionButtonStyle}" />
 
-            <telerikInput:RadButton Text="Forgot Your Password?" 
+            <telerikInput:RadButton Text="Forgot Your Password?"
+                                     Style="{StaticResource SecondaryActionButtonStyle}"
                                     FontAttributes="None" />
 
-            <telerikInput:RadButton Text="Use PIN Instead" 
+            <telerikInput:RadButton Text="Use PIN Instead"
+                                     Style="{StaticResource SecondaryActionButtonStyle}"
                                     FontAttributes="None" />
         </StackLayout>
 
         <!-- Optional Features -->
         <StackLayout VerticalOptions="Start"
                      Grid.Row="1">
- 
+
+
         </StackLayout>
 
         <Grid Grid.Row="2">
@@ -56,12 +64,12 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Label Text="Don't have an account?"  />
+            <Label Text="Don't have an account?"
+                   Style="{StaticResource NormalLabelStyle}" />
 
             <telerikInput:RadButton Text="Create an account"
-                                    Command="{Binding GoToViewCommand}"  
+                                     Style="{StaticResource SecondaryActionButtonStyle}"
                                     Grid.Column="1" />
         </Grid>
     </Grid>
-
 </views:MvxContentPage>
