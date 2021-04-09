@@ -22,6 +22,64 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!Solution Items", "!Solutio
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{0153C6D6-E658-4D20-B42B-7309BB8A5901}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Telerik_Portable", "Telerik_Portable", "{821986A7-B55A-4FF4-BA0E-78F583C614EA}"
+	ProjectSection(SolutionItems) = preProject
+		src\Libs\Telerik-Portable\Telerik.Documents.CMapUtils.dll = src\Libs\Telerik-Portable\Telerik.Documents.CMapUtils.dll
+		src\Libs\Telerik-Portable\Telerik.Documents.Core.dll = src\Libs\Telerik-Portable\Telerik.Documents.Core.dll
+		src\Libs\Telerik-Portable\Telerik.Documents.Fixed.dll = src\Libs\Telerik-Portable\Telerik.Documents.Fixed.dll
+		src\Libs\Telerik-Portable\Telerik.Documents.Flow.dll = src\Libs\Telerik-Portable\Telerik.Documents.Flow.dll
+		src\Libs\Telerik-Portable\Telerik.Documents.Flow.FormatProviders.Pdf.dll = src\Libs\Telerik-Portable\Telerik.Documents.Flow.FormatProviders.Pdf.dll
+		src\Libs\Telerik-Portable\Telerik.Documents.Spreadsheet.dll = src\Libs\Telerik-Portable\Telerik.Documents.Spreadsheet.dll
+		src\Libs\Telerik-Portable\Telerik.Documents.Spreadsheet.FormatProviders.OpenXml.dll = src\Libs\Telerik-Portable\Telerik.Documents.Spreadsheet.FormatProviders.OpenXml.dll
+		src\Libs\Telerik-Portable\Telerik.Documents.Spreadsheet.FormatProviders.Pdf.dll = src\Libs\Telerik-Portable\Telerik.Documents.Spreadsheet.FormatProviders.Pdf.dll
+		src\Libs\Telerik-Portable\Telerik.Documents.Spreadsheet.FormatProviders.Xls.dll = src\Libs\Telerik-Portable\Telerik.Documents.Spreadsheet.FormatProviders.Xls.dll
+		src\Libs\Telerik-Portable\Telerik.Documents.SpreadsheetStreaming.dll = src\Libs\Telerik-Portable\Telerik.Documents.SpreadsheetStreaming.dll
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.Barcode.deps.json = src\Libs\Telerik-Portable\Telerik.XamarinForms.Barcode.deps.json
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.Barcode.dll = src\Libs\Telerik-Portable\Telerik.XamarinForms.Barcode.dll
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.Barcode.xml = src\Libs\Telerik-Portable\Telerik.XamarinForms.Barcode.xml
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.Chart.deps.json = src\Libs\Telerik-Portable\Telerik.XamarinForms.Chart.deps.json
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.Chart.dll = src\Libs\Telerik-Portable\Telerik.XamarinForms.Chart.dll
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.Chart.xml = src\Libs\Telerik-Portable\Telerik.XamarinForms.Chart.xml
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.Common.deps.json = src\Libs\Telerik-Portable\Telerik.XamarinForms.Common.deps.json
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.Common.dll = src\Libs\Telerik-Portable\Telerik.XamarinForms.Common.dll
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.Common.xml = src\Libs\Telerik-Portable\Telerik.XamarinForms.Common.xml
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.ConversationalUI.deps.json = src\Libs\Telerik-Portable\Telerik.XamarinForms.ConversationalUI.deps.json
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.ConversationalUI.dll = src\Libs\Telerik-Portable\Telerik.XamarinForms.ConversationalUI.dll
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.ConversationalUI.xml = src\Libs\Telerik-Portable\Telerik.XamarinForms.ConversationalUI.xml
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.DataControls.deps.json = src\Libs\Telerik-Portable\Telerik.XamarinForms.DataControls.deps.json
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.DataControls.dll = src\Libs\Telerik-Portable\Telerik.XamarinForms.DataControls.dll
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.DataControls.xml = src\Libs\Telerik-Portable\Telerik.XamarinForms.DataControls.xml
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.DataGrid.deps.json = src\Libs\Telerik-Portable\Telerik.XamarinForms.DataGrid.deps.json
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.DataGrid.dll = src\Libs\Telerik-Portable\Telerik.XamarinForms.DataGrid.dll
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.DataGrid.xml = src\Libs\Telerik-Portable\Telerik.XamarinForms.DataGrid.xml
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.DataVisualization.deps.json = src\Libs\Telerik-Portable\Telerik.XamarinForms.DataVisualization.deps.json
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.DataVisualization.dll = src\Libs\Telerik-Portable\Telerik.XamarinForms.DataVisualization.dll
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.DataVisualization.xml = src\Libs\Telerik-Portable\Telerik.XamarinForms.DataVisualization.xml
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.ImageEditor.deps.json = src\Libs\Telerik-Portable\Telerik.XamarinForms.ImageEditor.deps.json
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.ImageEditor.dll = src\Libs\Telerik-Portable\Telerik.XamarinForms.ImageEditor.dll
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.ImageEditor.xml = src\Libs\Telerik-Portable\Telerik.XamarinForms.ImageEditor.xml
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.Input.deps.json = src\Libs\Telerik-Portable\Telerik.XamarinForms.Input.deps.json
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.Input.dll = src\Libs\Telerik-Portable\Telerik.XamarinForms.Input.dll
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.Input.xml = src\Libs\Telerik-Portable\Telerik.XamarinForms.Input.xml
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.Map.deps.json = src\Libs\Telerik-Portable\Telerik.XamarinForms.Map.deps.json
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.Map.dll = src\Libs\Telerik-Portable\Telerik.XamarinForms.Map.dll
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.Map.xml = src\Libs\Telerik-Portable\Telerik.XamarinForms.Map.xml
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.PdfViewer.deps.json = src\Libs\Telerik-Portable\Telerik.XamarinForms.PdfViewer.deps.json
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.PdfViewer.dll = src\Libs\Telerik-Portable\Telerik.XamarinForms.PdfViewer.dll
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.Primitives.deps.json = src\Libs\Telerik-Portable\Telerik.XamarinForms.Primitives.deps.json
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.Primitives.dll = src\Libs\Telerik-Portable\Telerik.XamarinForms.Primitives.dll
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.Primitives.xml = src\Libs\Telerik-Portable\Telerik.XamarinForms.Primitives.xml
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.RichTextEditor.deps.json = src\Libs\Telerik-Portable\Telerik.XamarinForms.RichTextEditor.deps.json
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.RichTextEditor.dll = src\Libs\Telerik-Portable\Telerik.XamarinForms.RichTextEditor.dll
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.RichTextEditor.xml = src\Libs\Telerik-Portable\Telerik.XamarinForms.RichTextEditor.xml
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.SkiaSharp.deps.json = src\Libs\Telerik-Portable\Telerik.XamarinForms.SkiaSharp.deps.json
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.SkiaSharp.dll = src\Libs\Telerik-Portable\Telerik.XamarinForms.SkiaSharp.dll
+		src\Libs\Telerik-Portable\Telerik.XamarinForms.SkiaSharp.xml = src\Libs\Telerik-Portable\Telerik.XamarinForms.SkiaSharp.xml
+		src\Libs\Telerik-Portable\Telerik.Zip.dll = src\Libs\Telerik-Portable\Telerik.Zip.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -174,6 +232,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9AA4A330-C8B3-4C04-8C33-150200F8D8C0} = {C1A7C0FF-D017-463E-952A-5B5B75F61B40}
 		{6CE3F365-CC75-4FEA-B0B1-6D08900FBD75} = {F0CB8F6E-A34F-42EC-B080-390EE3FE98F1}
+		{821986A7-B55A-4FF4-BA0E-78F583C614EA} = {0153C6D6-E658-4D20-B42B-7309BB8A5901}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A32023A-8994-447A-9890-63D0A2746288}

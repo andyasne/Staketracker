@@ -22,16 +22,16 @@
 
   <ItemGroup>
     <Reference Include="Telerik.XamarinForms.Common">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for Xamarin R1 2021\Binaries\Portable\Telerik.XamarinForms.Common.dll</HintPath>
+      <HintPath>..\Libs\Telerik-Portable\Telerik.XamarinForms.Common.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Input">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for Xamarin R1 2021\Binaries\Portable\Telerik.XamarinForms.Input.dll</HintPath>
+      <HintPath>..\Libs\Telerik-Portable\Telerik.XamarinForms.Input.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Primitives">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for Xamarin R1 2021\Binaries\Portable\Telerik.XamarinForms.Primitives.dll</HintPath>
+      <HintPath>..\Libs\Telerik-Portable\Telerik.XamarinForms.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.SkiaSharp">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for Xamarin R1 2021\Binaries\Portable\Telerik.XamarinForms.SkiaSharp.dll</HintPath>
+      <HintPath>..\Libs\Telerik-Portable\Telerik.XamarinForms.SkiaSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
 

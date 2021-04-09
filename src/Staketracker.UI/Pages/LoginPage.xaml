@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <views:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:telerikImageEditor="clr-namespace:Telerik.XamarinForms.ImageEditor;assembly=Telerik.XamarinForms.ImageEditor"
 xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
 xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -19,17 +20,21 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <!--<Image Source="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Papio_anubis_%28Serengeti%2C_2009%29.jpg/200px-Papio_anubis_%28Serengeti%2C_2009%29.jpg"
+               HeightRequest="300" />-->
         <StackLayout Margin="10,0">
             <Label Text="Staketracker"
                    Style="{StaticResource TitleLabelStyle}" />
 
-      
+
             <telerikInput:RadEntry x:Name="entry"/>
-      <telerikInput:RadEntry Text="test"
+
+            <telerikInput:RadEntry Text="test"  
                                    WatermarkText="Username"
                                    Style="{StaticResource LoginEntryStyle}" />
 
@@ -37,7 +42,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                                    IsPassword="True"
                                    WatermarkText="Password"
                                    Style="{StaticResource LoginEntryStyle}" />
-            
+
 
             <telerikInput:RadButton Text="LOGIN"
                                      Style="{StaticResource ActionButtonStyle}" />
