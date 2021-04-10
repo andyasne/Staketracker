@@ -1,7 +1,7 @@
-﻿using Xamarin.Forms;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace testing.UI.Pages.LoginScreenComplete1.Views
+namespace Staketracker.UI.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Styles : ResourceDictionary

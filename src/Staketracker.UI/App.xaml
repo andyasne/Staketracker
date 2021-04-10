@@ -10,7 +10,8 @@
         <!--  Application resource dictionary  -->
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <resources:Colors />
+                <ResourceDictionary Source="Pages/Styles.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 

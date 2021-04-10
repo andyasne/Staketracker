@@ -34,9 +34,12 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
 
             <telerikInput:RadEntry x:Name="entry"/>
 
-            <telerikInput:RadEntry Text="test"  
+            <telerikPrimitives:RadBorder Style="{StaticResource RoundBorderStyle}"
+                                         >
+                <telerikInput:RadEntry Text="test"  
                                    WatermarkText="Username"
-                                   Style="{StaticResource LoginEntryStyle}" />
+                                   Style="{StaticResource PinCodeEntryStyle}" />
+            </telerikPrimitives:RadBorder>
 
             <telerikInput:RadEntry  
                                    IsPassword="True"
