@@ -1,0 +1,1044 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Telerik.XamarinForms.Map</name>
+    </assembly>
+    <members>
+        <member name="T:Telerik.XamarinForms.Map.MapCommand">
+            <summary>
+            Represents a command abstraction that is associated with a particular <see cref="T:Telerik.XamarinForms.Map.RadMap"/> instance.
+            </summary>
+        </member>
+        <member name="E:Telerik.XamarinForms.Map.MapCommand.CanExecuteChanged">
+            <summary>
+            Occurs when changes to the command source are detected.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.MapCommand.Map">
+            <summary>
+            The <see cref="T:Telerik.XamarinForms.Map.RadMap"/> instance that owns the command.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.MapCommand.CanExecute(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.MapCommand.Execute(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.MapCommand.RaiseCanExecuteChanged">
+            <summary>
+            Invokes the CanExecute.
+            </summary>
+        </member>
+        <member name="T:Telerik.XamarinForms.Map.ZoomInCommand">
+            <summary>
+            Command implementation used for performing zoom in operation over a particular <see cref="T:Telerik.XamarinForms.Map.RadMap"/> instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.ZoomInCommand.CanExecute(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.ZoomInCommand.Execute(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:Telerik.XamarinForms.Map.ZoomOutCommand">
+            <summary>
+            Command implementation used for performing zoom out operation over a particular <see cref="T:Telerik.XamarinForms.Map.RadMap"/> instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.ZoomOutCommand.CanExecute(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.ZoomOutCommand.Execute(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:Telerik.XamarinForms.Map.MapLayer">
+            <summary>
+            Base class for all layers that may reside within a <see cref="T:Telerik.XamarinForms.Map.RadMap"/> instance.
+            </summary>
+        </member>
+        <member name="T:Telerik.XamarinForms.Map.ShapefileLayer">
+            <summary>
+            Represents a concrete <see cref="T:Telerik.XamarinForms.Map.MapLayer"/> implementation that is used to visualize geometry information coming from a <see cref="T:Telerik.XamarinForms.Map.MapShapeReader"/>.
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.ShapefileLayer.ReaderProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.ShapefileLayer.Reader"/> property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.ShapefileLayer.ShapeStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.ShapefileLayer.ShapeStyle"/> property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.ShapefileLayer.ShapeStyleSelectorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.ShapefileLayer.ShapeStyleSelector"/> property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.ShapefileLayer.ShapeLabelStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.ShapefileLayer.ShapeLabelStyle"/> property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.ShapefileLayer.SelectedShapeStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.ShapefileLayer.SelectedShapeStyle"/> property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.ShapefileLayer.LabelAttributeNameProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.ShapefileLayer.LabelAttributeName"/> property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.ShapefileLayer.SelectionModeProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.ShapefileLayer.SelectionMode"/> property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.ShapefileLayer.SelectedShapeProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.ShapefileLayer.SelectedShape"/> property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.ShapefileLayer.SelectedShapesProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.ShapefileLayer.SelectedShape"/> property. 
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.ShapefileLayer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.XamarinForms.Map.ShapefileLayer"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ShapefileLayer.Reader">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.XamarinForms.Map.MapShapeReader"/> that is used for reading the .shp and .dbf files.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ShapefileLayer.ShapeStyle">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.XamarinForms.Map.MapShapeStyle"/> instance that defines the appearance of all the shapes that are currently visualized.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ShapefileLayer.ShapeStyleSelector">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.XamarinForms.Map.MapShapeStyleSelector"/> instance that may be used to dynamically style a shape based on its attributes.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ShapefileLayer.SelectedShapeStyle">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.XamarinForms.Map.MapShapeStyle"/> instance that defines the appearance of all the shapes that are currently selected.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ShapefileLayer.ShapeLabelStyle">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.XamarinForms.Map.MapShapeLabelStyle"/> instance that defines the appearance of each label, displayed by the visualized shapes.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ShapefileLayer.LabelAttributeName">
+            <summary>
+            Gets or sets the name of the attribute, as specified by the *.dbf file, that points to the value set to each Shape as its label.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ShapefileLayer.SelectionMode">
+            <summary>
+            Gets or sets the <see cref="P:Telerik.XamarinForms.Map.ShapefileLayer.SelectionMode"/> value that defines how the user input affects the current selection.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ShapefileLayer.SelectedShape">
+            <summary>
+            Gets or sets the currently selected <see cref="T:Telerik.XamarinForms.ShapefileReader.IShape"/> instance. When multiple selection is enabled, this value is set to the first selected shape.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ShapefileLayer.SelectedShapes">
+            <summary>
+            Gets the currently selected <see cref="T:Telerik.XamarinForms.ShapefileReader.IShape"/> instances.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.ShapefileLayer.GetBestView">
+            <summary>
+            Gets location rectangle which represents best view for the layer.
+            </summary>
+            <returns>Location rectangle which represents best view.</returns>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.ShapefileLayer.OnPropertyChanged(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.AngularUnitOfMeasurement">
+            <summary>
+            Gets or sets the measurement units used to define the angles of a spheroid or ellipse associated with a specific datum.
+            The datum is usually WGS (World Geodetic System) 1984 and the unit of measurement is a degree.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.Authority">
+            <summary>
+            Gets or sets the authority body that defines the standards for the spatial reference parameters.
+            Spatial Reference is usually WGS 1984 and the authority is EPSG:4326.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.CentralMeridian">
+            <summary>
+            Gets or sets the line of longitude at the center of a map projection generally used as the basis for constructing the projection.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.Datum">
+            <summary>
+            Gets or sets the horizontal datum,
+            which corresponds to the procedure used to measure positions on the surface of the Earth. 
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.DatumAuthority">
+            <summary>
+            Gets or sets the horizontal datum,
+            which corresponds to the procedure used to measure positions on the surface of the Earth.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.FalseEasting">
+            <summary>
+            Gets or sets the value added to all "x" values in the rectangular coordinate for a map projection. 
+            This value frequently is assigned to eliminate negative numbers.
+            Expressed in the unit of measure identified in Planar Coordinate Units.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.FalseNorthing">
+            <summary>
+            Gets or sets the value added to all "y" values in the rectangular coordinates for a map projection. 
+            This value frequently is assigned to eliminate negative numbers. 
+            Expressed in the unit of measure identified in Planar Coordinate Units.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.GeoGcs">
+            <summary>
+            Gets or sets a coordinate system based on latitude and longitude. Some geographic coordinate systems are Latitude/Longitude, 
+            and some are Longitude/Latitude. You can find out which this is by examining the axes. 
+            You should also check the angular units, since not all geographic coordinate systems use degrees.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.LatitudeOfOrigin">
+            <summary>
+            Gets or sets the latitude chosen as the origin of rectangular coordinate for a map projection.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.Primem">
+            <summary>
+            Gets or sets the meridian used to take longitude measurements from. 
+            The units of the longitude must be inferred from the context.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.PrimemAuthority">
+            <summary>
+            Gets or sets the meridian used to take longitude measurements from. 
+            The units of the longitude must be inferred from the context.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.ProjectionAuthority">
+            <summary>
+            Gets or sets a projection from geographic coordinates to projected coordinates.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.SpheroidRadius">
+            <summary>
+            Gets or sets a spheroid, which is an approximation of the Earth's surface as a squashed sphere.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.SpheroidFlattening">
+            <summary>
+            Gets or sets a spheroid, which is an approximation of the Earth's surface as a squashed sphere.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.SpheroidAuthority">
+            <summary>
+            Gets or sets a spheroid, which is an approximation of the Earth's surface as a squashed sphere.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.StandardParallel">
+            <summary>
+            Gets or sets the line of constant latitude at which the surface of the Earth and the plane or developable surface intersect.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.UnitAuthority">
+            <summary>
+            Gets or sets the authority body that defines the unit of measurement i.e. European Petroleum Survey Group (EPSG).
+            The unit of measurement is usually degrees and the authority for the datum the map uses, WGS 1984 is EPSG:4326.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.MinLatitude">
+            <summary>
+            Gets or sets the minimum Latitude this tile source supports.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.MaxLatitude">
+            <summary>
+            Gets or sets the maximum Latitude this tile source supports.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.MinLongitude">
+            <summary>
+            Gets or sets the minimum Longitude this tile source supports.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.ISpatialReference.MaxLongitude">
+            <summary>
+            Gets or sets the maximum Longitude this tile source supports.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.ISpatialReference.ConvertGeographicToLogicalCoordinate(Telerik.XamarinForms.ShapefileReader.Location)">
+            <summary>
+            Converts a geographical coordinate (Longitude, Latitude) to a logical Point (0->1).
+            </summary>
+            <param name="geographicPoint">The geographical coordinate (Longitude, Latitude).</param>
+            <returns>The logical Point.</returns>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.ISpatialReference.ConvertLogicalToGeographicCoordinate(Xamarin.Forms.Point)">
+            <summary>
+            Converts a logical Point (0->1) to a geographical coordinate (Longitude, Latitude).
+            </summary>
+            <param name="logicalPoint">The logical Point.</param>
+            <returns>The geographical coordinate (Longitude, Latitude).</returns>
+        </member>
+        <member name="T:Telerik.XamarinForms.Map.MercatorProjection">
+            <summary>
+            Mercator is the projection used by most online maps including Virtual Earth, GMaps and Yahoo
+            It maintains Vertical resolution while expanding the earth horizontally to fill
+            The effect is that items at the poles appear much larger then those of equal size at the equator.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.MercatorProjection.#ctor">
+            <summary>
+            Initializes a new instance of the MercatorProjection class.
+            Mercator is the projection used by most online maps including Virtual Earth, GMaps and Yahoo.
+            </summary>
+        </member>
+        <member name="T:Telerik.XamarinForms.Map.SpatialReference">
+            <summary>
+            The OGC Spatial Reference requirements.
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.SpatialReference.HalfPI">
+            <summary>
+            Half of PI.
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.SpatialReference.RadiansToDegrees">
+            <summary>
+            Degrees of one radiant.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.AngularUnitOfMeasurement">
+            <summary>
+            Gets or sets the measurement units used to define the angles of a spheroid or ellipse associated with a specific datum.
+            The datum is WGS 1984 and the unit of measurement is a degree.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.Authority">
+            <summary>
+            Gets or sets the authority body that defines the standards for the spatial reference parameters.
+            The Spatial Reference is WGS 1984 and the authority is EPSG:4326.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.CentralMeridian">
+            <summary>
+            Gets or sets the line of longitude at the center of a map projection generally used as the basis for constructing the projection.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.Datum">
+            <summary>
+            Gets or sets the horizontal datum,
+            which corresponds to the procedure used to measure positions on the surface of the Earth.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.DatumAuthority">
+            <summary>
+            Gets or sets the horizontal datum,
+            which corresponds to the procedure used to measure positions on the surface of the Earth.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.FalseEasting">
+            <summary>
+            Gets or sets value added to all "x" values in the rectangular coordinate for a map projection. 
+            This value frequently is assigned to eliminate negative numbers.
+            Expressed in the unit of measure identified in Planar Coordinate Units.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.FalseNorthing">
+            <summary>
+            Gets or sets value added to all "y" values in the rectangular coordinates for a map projection. 
+            This value frequently is assigned to eliminate negative numbers. 
+            Expressed in the unit of measure identified in Planar Coordinate Units.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.GeoGcs">
+            <summary>
+            Gets or sets coordinate system based on latitude and longitude.
+            Some geographic coordinate systems are Latitude/Longitude, and some are Longitude/Latitude.
+            You can find out which this is by examining the axes. 
+            You should also check the angular units, since not all geographic coordinate systems use degrees.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.LatitudeOfOrigin">
+            <summary>
+            Gets or sets the latitude chosen as the origin of rectangular coordinate for a map projection.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.OffsetX">
+            <summary>
+            Gets or sets logical X offset to centre of earth.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.OffsetY">
+            <summary>
+            Gets or sets logical Y offset to centre of earth.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.Primem">
+            <summary>
+            Gets or sets the meridian used to take longitude measurements from. 
+            The units of the longitude must be inferred from the context.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.PrimemAuthority">
+            <summary>
+            Gets or sets the meridian used to take longitude measurements from. 
+            The units of the longitude must be inferred from the context.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.ProjectionAuthority">
+            <summary>
+            Gets or sets a projection from geographic coordinates to projected coordinates.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.ScaleX">
+            <summary>
+            Gets or sets the real world coordinate scale at a given longitude.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.ScaleY">
+            <summary>
+            Gets or sets the real world coordinate scale at a given latitude.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.SpheroidRadius">
+            <summary>
+            Gets or sets a spheroid, which is an approximation of the Earth's surface as a squashed sphere.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.SpheroidFlattening">
+            <summary>
+            Gets or sets a spheroid, which is an approximation of the Earth's surface as a squashed sphere.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.SpheroidAuthority">
+            <summary>
+            Gets or sets a spheroid, which is an approximation of the Earth's surface as a squashed sphere.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.StandardParallel">
+            <summary>
+            Gets or sets the line of constant latitude at which the surface of the Earth
+            and the plane or developable surface intersect.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.UnitAuthority">
+            <summary>
+            Gets or sets the authority body that defines the unit of measurement i.e. European Petroleum Survey Group (EPSG).
+            The unit of measurement is usually degrees and the authority for the datum the map uses, WGS 1984 is EPSG:4326.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.MinLatitude">
+            <summary>
+            Gets or sets the minimum Latitude this tile source supports.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.MaxLatitude">
+            <summary>
+            Gets or sets the maximum Latitude this tile source supports.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.MinLongitude">
+            <summary>
+            Gets or sets the minimum Longitude this tile source supports.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.SpatialReference.MaxLongitude">
+            <summary>
+            Gets or sets the maximum Longitude this tile source supports.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.SpatialReference.ConvertGeographicToLogicalCoordinate(Telerik.XamarinForms.ShapefileReader.Location)">
+            <summary>
+            Converts a geographical coordinate (Longitude, Latitude) to a logical Point (0->1).
+            </summary>
+            <param name="geographicPoint">The geographical coordinate (Longitude, Latitude).</param>
+            <returns>The logical Point.</returns>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.SpatialReference.ConvertLogicalToGeographicCoordinate(Xamarin.Forms.Point)">
+            <summary>
+            Converts a logical Point (0->1) to a geographical coordinate (Longitude, Latitude).
+            </summary>
+            <param name="logicalPoint">The logical Point.</param>
+            <returns>The geographical coordinate (Longitude, Latitude).</returns>
+        </member>
+        <member name="T:Telerik.XamarinForms.Map.RadMap">
+            <summary>
+            Represents a custom view implementation that enables rich GeoSpatial data visualization.
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.RadMap.ZoomLevelProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.RadMap.ZoomLevel"/> property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.RadMap.MinZoomLevelProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.RadMap.MinZoomLevel"/> property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.RadMap.MaxZoomLevelProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.RadMap.MaxZoomLevel"/> property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.RadMap.InteractionModeProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.RadMap.InteractionMode"/> property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.RadMap.ZoomInCommandProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.RadMap.ZoomInCommand"/> property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.RadMap.ZoomOutCommandProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.RadMap.ZoomOutCommand"/> property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.RadMap.EnableHardwareAccelerationProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.RadMap.EnableHardwareAcceleration"/> property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.RadMap.BackgroundColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.RadMap.BackgroundColor"/> property. 
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.RadMap.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.XamarinForms.Map.RadMap"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.RadMap.Layers">
+            <summary>
+            Gets the collection with all the <see cref="T:Telerik.XamarinForms.Map.MapLayer"/> instances currently available within the map.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.RadMap.ZoomLevel">
+            <summary>
+            Gets the <see cref="T:System.Double"/> value that represents the current zoom level of the map.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.RadMap.MinZoomLevel">
+            <summary>
+            Gets or sets the <see cref="T:System.Double"/> value that defines the minimum value the <see cref="P:Telerik.XamarinForms.Map.RadMap.ZoomLevel"/> property can reach.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.RadMap.MaxZoomLevel">
+            <summary>
+            Gets or sets the <see cref="T:System.Double"/> value that defines the maximum value the <see cref="P:Telerik.XamarinForms.Map.RadMap.ZoomLevel"/> property can reach.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.RadMap.ZoomInCommand">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.Input.ICommand"/> that is used for performing zoom in operation over the map.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.RadMap.ZoomOutCommand">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.Input.ICommand"/> that is used for performing zoom out operation over the map.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.RadMap.InteractionMode">
+            <summary>
+            Gets or sets the <see cref="P:Telerik.XamarinForms.Map.RadMap.InteractionMode"/> of the map.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.RadMap.EnableHardwareAcceleration">
+            <summary>
+            Gets or sets the <see cref="T:System.Boolean"/> of the map that controls the way the control is rendered.
+            When the property is set to true the GPU is used for rendering. When it is set the false the CPU is used for rendering.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.RadMap.BackgroundColor">
+            <inheritdoc />
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.RadMap.ZoomToLevel(System.Double)">
+            <summary>
+            Sets the provided <see cref="P:Telerik.XamarinForms.Map.RadMap.ZoomLevel"/> value as the current zoom level of the map.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.RadMap.SetView(Telerik.XamarinForms.ShapefileReader.LocationRect)">
+            <summary>
+            Sets the provided <see cref="T:Telerik.XamarinForms.ShapefileReader.LocationRect"/> value as the current view of the map.
+            </summary>
+        </member>
+        <member name="T:Telerik.XamarinForms.Map.SelectionMode">
+            <summary>
+            Defines the available selection modes in a <see cref="T:Telerik.XamarinForms.Map.ShapefileLayer"/>.
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.SelectionMode.None">
+            <summary>
+            No selection is allowed.
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.SelectionMode.Single">
+            <summary>
+            Single-shape selection is allowed. A shape is selected when tapped and deselected if tapped again. If a new shape is tapped, the previous selected one is deselected.
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.SelectionMode.Multiple">
+            <summary>
+            Multiple-shape selection is allowed. A shape is selected when tapped and deselected if tapped again.
+            </summary>
+        </member>
+        <member name="T:Telerik.XamarinForms.Map.MapShapeReader">
+            <summary>
+            Represents a <see cref="T:Telerik.XamarinForms.Map.MapShapeReader"/> implementation that loads and parses shape files.
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.MapShapeReader.SourceProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.MapShapeReader.Source"/> property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.MapShapeReader.DataSourceProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.XamarinForms.Map.MapShapeReader.DataSource"/> property. 
+            </summary>
+        </member>
+        <member name="E:Telerik.XamarinForms.Map.MapShapeReader.ReadCompleted">
+            <summary>
+            Occurs when the asynchronous processing of the file has been completed.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.MapShapeReader.Source">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.XamarinForms.Map.MapSource"/> that points to the file to read data from.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.MapShapeReader.DataSource">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.XamarinForms.Map.MapSource"/> that points to the file, containing the data (or attributes) for each shape within the shape file.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.MapShapeReader.Shapes">
+            <summary>
+            Gets the shapes that are read from the <see cref="P:Telerik.XamarinForms.Map.MapShapeReader.Source"/>.
+            </summary>
+        </member>
+        <member name="T:Telerik.XamarinForms.Map.FileMapSource">
+            <summary>
+            Represents a concrete <see cref="T:Telerik.XamarinForms.Map.MapSource"/> implementation working with files that is used by the <see cref="T:Telerik.XamarinForms.Map.MapShapeReader"/> to read the shapes.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.FileMapSource.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.XamarinForms.Map.FileMapSource"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.FileMapSource.#ctor(System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.XamarinForms.Map.FileMapSource"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.FileMapSource.File">
+            <summary>
+            Gets or sets the path of the file.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.FileMapSource.IsImportAsync">
+            <summary>
+            Gets or sets a value indicating whether the file should be read asynchronously.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.FileMapSource.op_Implicit(System.String)~Telerik.XamarinForms.Map.FileMapSource">
+            <summary>
+            Converts file path into a <see cref="T:Telerik.XamarinForms.Map.FileMapSource"/>.
+            </summary>
+        </member>
+        <member name="T:Telerik.XamarinForms.Map.MapSource">
+            <summary>
+            Base class for all sources that may be used by the <see cref="T:Telerik.XamarinForms.Map.MapShapeReader"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.MapSource.FromResource(System.String,System.Reflection.Assembly)">
+            <summary>
+            Loads the <see cref="T:Telerik.XamarinForms.Map.MapSource"/> from a resource.
+            </summary>
+            <param name="resource">The name of the resource that needs to be loaded.</param>
+            <param name="sourceAssembly">The <see cref="T:System.Reflection.Assembly"/> inside which the shape file resides.</param>
+            <returns>The <see cref="T:Telerik.XamarinForms.Map.MapSource"/> that could be used by the <see cref="T:Telerik.XamarinForms.Map.MapShapeReader"/> for loading of the shapes.</returns>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.MapSource.FromResource(System.String,System.Type)">
+            <summary>
+            Loads the <see cref="T:Telerik.XamarinForms.Map.MapSource"/> from a resource.
+            </summary>
+            <param name="resource">The name of the resource that needs to be loaded.</param>
+            <param name="resolvingType">The type of the page inside which the resource resides.</param>
+            <returns>The <see cref="T:Telerik.XamarinForms.Map.MapSource"/> that could be used by the <see cref="T:Telerik.XamarinForms.Map.MapShapeReader"/> for loading of the shapes.</returns>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.MapSource.FromStream(System.IO.Stream)">
+            <summary>
+            Loads the <see cref="T:Telerik.XamarinForms.Map.MapSource"/> from a stream.
+            </summary>
+            <param name="stream">The stream from which the shape should be read.</param>
+            <returns>The <see cref="T:Telerik.XamarinForms.Map.MapSource"/> that could be used by the <see cref="T:Telerik.XamarinForms.Map.MapShapeReader"/> for loading of the shapes.</returns>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.MapSource.FromFile(System.String)">
+            <summary>
+            Loads the <see cref="T:Telerik.XamarinForms.Map.MapSource"/> from a file.
+            </summary>
+            <param name="file">The path of the file.</param>
+            <returns>The <see cref="T:Telerik.XamarinForms.Map.MapSource"/> that could be used by the <see cref="T:Telerik.XamarinForms.Map.MapShapeReader"/> for loading of the shapes.</returns>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.MapSource.op_Implicit(System.String)~Telerik.XamarinForms.Map.MapSource">
+            <summary>
+            Converts string into a <see cref="T:Telerik.XamarinForms.Map.MapSource"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.MapSource.op_Implicit(System.IO.Stream)~Telerik.XamarinForms.Map.MapSource">
+            <summary>
+            Converts stream into a <see cref="T:Telerik.XamarinForms.Map.MapSource"/>.
+            </summary>
+        </member>
+        <member name="T:Telerik.XamarinForms.Map.StreamMapSource">
+            <summary>
+            Represents a concrete <see cref="T:Telerik.XamarinForms.Map.MapSource"/> implementation working with stream that is used by the <see cref="T:Telerik.XamarinForms.Map.MapShapeReader"/> to read the shapes.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.StreamMapSource.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.XamarinForms.Map.StreamMapSource"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.StreamMapSource.#ctor(System.IO.Stream)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.XamarinForms.Map.StreamMapSource"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.StreamMapSource.op_Implicit(System.IO.Stream)~Telerik.XamarinForms.Map.StreamMapSource">
+            <summary>
+            Converts stream into a <see cref="T:Telerik.XamarinForms.Map.StreamMapSource"/>.
+            </summary>
+        </member>
+        <member name="T:Telerik.XamarinForms.Map.MapShapeLabelStyle">
+            <summary>
+            Defines the appearance of labels visualized in the <see cref="T:Telerik.XamarinForms.Map.RadMap"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.MapShapeLabelStyle.TextColor">
+            <summary>
+            Gets or sets the color of the labels.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.MapShapeLabelStyle.FontSize">
+            <summary>
+            Gets or sets the font size of the labels.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.MapShapeLabelStyle.FontFamily">
+            <summary>
+            Gets or sets the font family of the labels.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.MapShapeLabelStyle.FontAttributes">
+            <summary>
+            Gets or sets the <see cref="P:Telerik.XamarinForms.Map.MapShapeLabelStyle.FontAttributes"/> of the labels.
+            </summary>
+        </member>
+        <member name="T:Telerik.XamarinForms.Map.MapShapeStyle">
+            <summary>
+            Defines the appearance of the shapes visualized by the <see cref="T:Telerik.XamarinForms.Map.ShapefileLayer"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.MapShapeStyle.StrokeWidth">
+            <summary>
+            Gets or sets the stroke width of the shape.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.MapShapeStyle.StrokeColor">
+            <summary>
+            Gets or sets the stroke color of the shape.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.Map.MapShapeStyle.FillColor">
+            <summary>
+            Gets or sets the fill color of the shape.
+            </summary>
+        </member>
+        <member name="T:Telerik.XamarinForms.Map.MapShapeStyleSelector">
+            <summary>
+            Defines a type that may be used to dynamically style shape instances visualized within a <see cref="T:Telerik.XamarinForms.Map.ShapefileLayer"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.Map.MapShapeStyleSelector.SelectStyle(System.Object,Xamarin.Forms.BindableObject)">
+            <summary>
+            Selects the desired style, provided the <see cref="T:Telerik.XamarinForms.Map.ShapefileLayer"/> instance, containing the shape.
+            </summary>
+            <param name="shape">The shape that is goind to be styled.</param>
+            <param name="container">The <see cref="T:Telerik.XamarinForms.Map.ShapefileLayer"/> instance.</param>
+        </member>
+        <member name="T:Telerik.XamarinForms.Map.InteractionMode">
+            <summary>
+            Defines the available interaction modes in the <see cref="T:Telerik.XamarinForms.Map.RadMap"/>.
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.InteractionMode.None">
+            <summary>
+            No interaction is allowed.
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.InteractionMode.Pan">
+            <summary>
+            Only Pan is allowed to be performed with the control.
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.InteractionMode.Zoom">
+            <summary>
+            Only Zoom is allowed to be performed with the control.
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.Map.InteractionMode.PanAndZoom">
+            <summary>
+            Pan and Zoom is allowed to be performed with the control.
+            </summary>
+        </member>
+        <member name="T:Telerik.XamarinForms.ShapefileReader.I2DShape">
+            <summary>
+            Represents a 2-Dimensional <see cref="T:Telerik.XamarinForms.ShapefileReader.IShape"/>. Such a shape is represented by one or more polygons.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.ShapefileReader.I2DShape.Locations">
+            <summary>
+            Gets the collection of collections of <see cref="T:Telerik.XamarinForms.ShapefileReader.Location"/> values that represent the shape.
+            </summary>
+        </member>
+        <member name="T:Telerik.XamarinForms.ShapefileReader.IPointShape">
+            <summary>
+            Defines a 1-Dimensional <see cref="T:Telerik.XamarinForms.ShapefileReader.IShape"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.ShapefileReader.IPointShape.Location">
+            <summary>
+            Gets the geographical location of the shape.
+            </summary>
+        </member>
+        <member name="T:Telerik.XamarinForms.ShapefileReader.IShape">
+            <summary>
+            Defines the abstraction of a geographical shape.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.ShapefileReader.IShape.GetAttribute(System.String)">
+            <summary>
+            Gets the attribute value associated with the provided key.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.ShapefileReader.IShape.SetAttribute(System.String,System.Object)">
+            <summary>
+            Sets the attribute value associated with the provided key.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="T:Telerik.XamarinForms.ShapefileReader.Location">
+            <summary>
+            Represents a geographical location.
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.ShapefileReader.Location.invalid">
+            <summary>
+            An empty location.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.ShapefileReader.Location.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.XamarinForms.ShapefileReader.Location"/> struct.
+            </summary>
+            <param name="latitude">The latitude.</param>
+            <param name="longitude">The longitude.</param>
+        </member>
+        <member name="P:Telerik.XamarinForms.ShapefileReader.Location.Invalid">
+            <summary>
+            Gets a value that represents an invalid Location structure.
+            </summary>
+            <remarks>A Location structure with Latitude and Longitude values set to 0 is not empty. An empty Location 
+            structure has Latitude and Longitude values set to negative infinity. This is the only time a Location 
+            structure can have negative infinity values.</remarks>
+        </member>
+        <member name="P:Telerik.XamarinForms.ShapefileReader.Location.IsEmpty">
+            <summary>
+            Gets a value that indicates whether this Location structure is empty.
+            </summary>
+            <remarks>A Location structure with Latitude and Longitude values set to 0 is not empty. An empty Location 
+            structure has Latitude and Longitude values set to negative infinity. This is the only time a Location 
+            structure can have negative infinity values.</remarks>
+        </member>
+        <member name="P:Telerik.XamarinForms.ShapefileReader.Location.Latitude">
+            <summary>
+            Gets or sets the latitude value of the location.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.ShapefileReader.Location.Longitude">
+            <summary>
+            Gets or sets the longitude value of the location.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.ShapefileReader.Location.op_Equality(Telerik.XamarinForms.ShapefileReader.Location,Telerik.XamarinForms.ShapefileReader.Location)">
+            <summary>
+            Checks whether two <see cref="T:Telerik.XamarinForms.ShapefileReader.Location"/> values are equal.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.ShapefileReader.Location.op_Inequality(Telerik.XamarinForms.ShapefileReader.Location,Telerik.XamarinForms.ShapefileReader.Location)">
+            <summary>
+            Checks whether two <see cref="T:Telerik.XamarinForms.ShapefileReader.Location"/> values are not equal.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.ShapefileReader.Location.Equals(Telerik.XamarinForms.ShapefileReader.Location,Telerik.XamarinForms.ShapefileReader.Location)">
+            <summary>
+            Checks whether two <see cref="T:Telerik.XamarinForms.ShapefileReader.Location"/> values are equal.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.ShapefileReader.Location.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Telerik.XamarinForms.ShapefileReader.Location.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Telerik.XamarinForms.ShapefileReader.Location.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="T:Telerik.XamarinForms.ShapefileReader.LocationCollection">
+            <summary>
+            A strongly-typed collection of <see cref="T:Telerik.XamarinForms.ShapefileReader.Location"/> values.
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.ShapefileReader.LocationRect.Empty">
+            <summary>
+            An empty rect.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.ShapefileReader.LocationRect.#ctor(Telerik.XamarinForms.ShapefileReader.Location,Telerik.XamarinForms.ShapefileReader.Location)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.XamarinForms.ShapefileReader.LocationRect"/> struct.
+            </summary>
+            <param name="northwest">The northwest.</param>
+            <param name="southeast">The southeast.</param>
+        </member>
+        <member name="P:Telerik.XamarinForms.ShapefileReader.LocationRect.Northwest">
+            <summary>
+            Gets the northwest value of the rect.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.ShapefileReader.LocationRect.Southeast">
+            <summary>
+            Gets the southeast value of the rect.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.ShapefileReader.LocationRect.North">
+            <summary>
+            Gets the north value of the rect.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.ShapefileReader.LocationRect.East">
+            <summary>
+            Gets the east value of the rect.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.ShapefileReader.LocationRect.South">
+            <summary>
+            Gets the south value of the rect.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.ShapefileReader.LocationRect.West">
+            <summary>
+            Gets the west value of the rect.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.ShapefileReader.LocationRect.IsEmpty">
+            <summary>
+            Gets a value indicating whether the current rect is empty.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.ShapefileReader.LocationRect.op_Equality(Telerik.XamarinForms.ShapefileReader.LocationRect,Telerik.XamarinForms.ShapefileReader.LocationRect)">
+            <summary>
+            Checks whether two <see cref="T:Telerik.XamarinForms.ShapefileReader.LocationRect"/> values are equal.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.ShapefileReader.LocationRect.op_Inequality(Telerik.XamarinForms.ShapefileReader.LocationRect,Telerik.XamarinForms.ShapefileReader.LocationRect)">
+            <summary>
+            Checks whether two <see cref="T:Telerik.XamarinForms.ShapefileReader.LocationRect"/> values are not equal.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.ShapefileReader.LocationRect.Equals(Telerik.XamarinForms.ShapefileReader.LocationRect,Telerik.XamarinForms.ShapefileReader.LocationRect)">
+            <summary>
+            Checks whether two <see cref="T:Telerik.XamarinForms.ShapefileReader.LocationRect"/> values are equal.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.ShapefileReader.LocationRect.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Telerik.XamarinForms.ShapefileReader.LocationRect.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="P:Telerik.XamarinForms.ShapefileReader.ShapeModel.UniqueId">
+            <summary>
+            Gets the unique identifier of the shape model; used for hashing purposes.
+            </summary>
+        </member>
+        <member name="T:Telerik.XamarinForms.ShapefileReader.ShapeModelCollection">
+            <summary>
+            Represents a collection of <see cref="T:Telerik.XamarinForms.ShapefileReader.IShape"/> instances. This collection is the final result of a shape file processing.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.ShapefileReader.ShapeModelCollection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.XamarinForms.ShapefileReader.ShapeModelCollection"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.XamarinForms.ShapefileReader.ShapeModelCollection.BoundingRect">
+            <summary>
+            Gets the <see cref="T:Telerik.XamarinForms.ShapefileReader.LocationRect"/> that represents the best view for all the shapes within the collection.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -75,9 +75,56 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Telerik_Portable", "Telerik
 		src\Libs\Telerik-Portable\Telerik.XamarinForms.RichTextEditor.dll = src\Libs\Telerik-Portable\Telerik.XamarinForms.RichTextEditor.dll
 		src\Libs\Telerik-Portable\Telerik.XamarinForms.RichTextEditor.xml = src\Libs\Telerik-Portable\Telerik.XamarinForms.RichTextEditor.xml
 		src\Libs\Telerik-Portable\Telerik.XamarinForms.SkiaSharp.deps.json = src\Libs\Telerik-Portable\Telerik.XamarinForms.SkiaSharp.deps.json
+		src\Libs\Telerik-Portable\Lite\Telerik.XamarinForms.SkiaSharp.deps.json = src\Libs\Telerik-Portable\Lite\Telerik.XamarinForms.SkiaSharp.deps.json
 		src\Libs\Telerik-Portable\Telerik.XamarinForms.SkiaSharp.dll = src\Libs\Telerik-Portable\Telerik.XamarinForms.SkiaSharp.dll
+		src\Libs\Telerik-Portable\Lite\Telerik.XamarinForms.SkiaSharp.dll = src\Libs\Telerik-Portable\Lite\Telerik.XamarinForms.SkiaSharp.dll
 		src\Libs\Telerik-Portable\Telerik.XamarinForms.SkiaSharp.xml = src\Libs\Telerik-Portable\Telerik.XamarinForms.SkiaSharp.xml
+		src\Libs\Telerik-Portable\Lite\Telerik.XamarinForms.SkiaSharp.xml = src\Libs\Telerik-Portable\Lite\Telerik.XamarinForms.SkiaSharp.xml
 		src\Libs\Telerik-Portable\Telerik.Zip.dll = src\Libs\Telerik-Portable\Telerik.Zip.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Telerik_Android", "Telerik_Android", "{1CFAFEC9-956A-48F8-8A73-DE898435B74B}"
+	ProjectSection(SolutionItems) = preProject
+		src\Libs\Telerik-Android\Telerik.Xamarin.Android.Data.dll = src\Libs\Telerik-Android\Telerik.Xamarin.Android.Data.dll
+		src\Libs\Telerik-Android\Telerik.Xamarin.Android.Gauges.dll = src\Libs\Telerik-Android\Telerik.Xamarin.Android.Gauges.dll
+		src\Libs\Telerik-Android\Telerik.Xamarin.Android.Input.dll = src\Libs\Telerik-Android\Telerik.Xamarin.Android.Input.dll
+		src\Libs\Telerik-Android\Telerik.Xamarin.Android.List.dll = src\Libs\Telerik-Android\Telerik.Xamarin.Android.List.dll
+		src\Libs\Telerik-Android\Telerik.Xamarin.Android.Primitives.dll = src\Libs\Telerik-Android\Telerik.Xamarin.Android.Primitives.dll
+		src\Libs\Telerik-Android\Telerik.XamarinForms.Barcode.deps.json = src\Libs\Telerik-Android\Telerik.XamarinForms.Barcode.deps.json
+		src\Libs\Telerik-Android\Telerik.XamarinForms.Barcode.dll = src\Libs\Telerik-Android\Telerik.XamarinForms.Barcode.dll
+		src\Libs\Telerik-Android\Telerik.XamarinForms.Barcode.xml = src\Libs\Telerik-Android\Telerik.XamarinForms.Barcode.xml
+		src\Libs\Telerik-Android\Telerik.XamarinForms.Chart.dll = src\Libs\Telerik-Android\Telerik.XamarinForms.Chart.dll
+		src\Libs\Telerik-Android\Telerik.XamarinForms.Chart.xml = src\Libs\Telerik-Android\Telerik.XamarinForms.Chart.xml
+		src\Libs\Telerik-Android\Telerik.XamarinForms.Common.dll = src\Libs\Telerik-Android\Telerik.XamarinForms.Common.dll
+		src\Libs\Telerik-Android\Telerik.XamarinForms.Common.xml = src\Libs\Telerik-Android\Telerik.XamarinForms.Common.xml
+		src\Libs\Telerik-Android\Telerik.XamarinForms.ConversationalUI.dll = src\Libs\Telerik-Android\Telerik.XamarinForms.ConversationalUI.dll
+		src\Libs\Telerik-Android\Telerik.XamarinForms.ConversationalUI.xml = src\Libs\Telerik-Android\Telerik.XamarinForms.ConversationalUI.xml
+		src\Libs\Telerik-Android\Telerik.XamarinForms.DataControls.dll = src\Libs\Telerik-Android\Telerik.XamarinForms.DataControls.dll
+		src\Libs\Telerik-Android\Telerik.XamarinForms.DataControls.xml = src\Libs\Telerik-Android\Telerik.XamarinForms.DataControls.xml
+		src\Libs\Telerik-Android\Telerik.XamarinForms.DataGrid.deps.json = src\Libs\Telerik-Android\Telerik.XamarinForms.DataGrid.deps.json
+		src\Libs\Telerik-Android\Telerik.XamarinForms.DataGrid.dll = src\Libs\Telerik-Android\Telerik.XamarinForms.DataGrid.dll
+		src\Libs\Telerik-Android\Telerik.XamarinForms.DataGrid.xml = src\Libs\Telerik-Android\Telerik.XamarinForms.DataGrid.xml
+		src\Libs\Telerik-Android\Telerik.XamarinForms.DataVisualization.deps.json = src\Libs\Telerik-Android\Telerik.XamarinForms.DataVisualization.deps.json
+		src\Libs\Telerik-Android\Telerik.XamarinForms.DataVisualization.dll = src\Libs\Telerik-Android\Telerik.XamarinForms.DataVisualization.dll
+		src\Libs\Telerik-Android\Telerik.XamarinForms.DataVisualization.xml = src\Libs\Telerik-Android\Telerik.XamarinForms.DataVisualization.xml
+		src\Libs\Telerik-Android\Telerik.XamarinForms.ImageEditor.dll = src\Libs\Telerik-Android\Telerik.XamarinForms.ImageEditor.dll
+		src\Libs\Telerik-Android\Telerik.XamarinForms.ImageEditor.xml = src\Libs\Telerik-Android\Telerik.XamarinForms.ImageEditor.xml
+		src\Libs\Telerik-Android\Telerik.XamarinForms.Input.dll = src\Libs\Telerik-Android\Telerik.XamarinForms.Input.dll
+		src\Libs\Telerik-Android\Telerik.XamarinForms.Input.xml = src\Libs\Telerik-Android\Telerik.XamarinForms.Input.xml
+		src\Libs\Telerik-Android\Telerik.XamarinForms.Map.dll = src\Libs\Telerik-Android\Telerik.XamarinForms.Map.dll
+		src\Libs\Telerik-Android\Telerik.XamarinForms.Map.xml = src\Libs\Telerik-Android\Telerik.XamarinForms.Map.xml
+		src\Libs\Telerik-Android\Telerik.XamarinForms.PdfViewer.deps.json = src\Libs\Telerik-Android\Telerik.XamarinForms.PdfViewer.deps.json
+		src\Libs\Telerik-Android\Telerik.XamarinForms.PdfViewer.dll = src\Libs\Telerik-Android\Telerik.XamarinForms.PdfViewer.dll
+		src\Libs\Telerik-Android\Telerik.XamarinForms.Primitives.dll = src\Libs\Telerik-Android\Telerik.XamarinForms.Primitives.dll
+		src\Libs\Telerik-Android\Telerik.XamarinForms.Primitives.xml = src\Libs\Telerik-Android\Telerik.XamarinForms.Primitives.xml
+		src\Libs\Telerik-Android\Telerik.XamarinForms.RichTextEditor.dll = src\Libs\Telerik-Android\Telerik.XamarinForms.RichTextEditor.dll
+		src\Libs\Telerik-Android\Telerik.XamarinForms.RichTextEditor.xml = src\Libs\Telerik-Android\Telerik.XamarinForms.RichTextEditor.xml
+		src\Libs\Telerik-Android\Telerik.XamarinForms.SkiaSharp.deps.json = src\Libs\Telerik-Android\Telerik.XamarinForms.SkiaSharp.deps.json
+		src\Libs\Telerik-Android\Lite\Telerik.XamarinForms.SkiaSharp.deps.json = src\Libs\Telerik-Android\Lite\Telerik.XamarinForms.SkiaSharp.deps.json
+		src\Libs\Telerik-Android\Telerik.XamarinForms.SkiaSharp.dll = src\Libs\Telerik-Android\Telerik.XamarinForms.SkiaSharp.dll
+		src\Libs\Telerik-Android\Lite\Telerik.XamarinForms.SkiaSharp.dll = src\Libs\Telerik-Android\Lite\Telerik.XamarinForms.SkiaSharp.dll
+		src\Libs\Telerik-Android\Telerik.XamarinForms.SkiaSharp.xml = src\Libs\Telerik-Android\Telerik.XamarinForms.SkiaSharp.xml
+		src\Libs\Telerik-Android\Lite\Telerik.XamarinForms.SkiaSharp.xml = src\Libs\Telerik-Android\Lite\Telerik.XamarinForms.SkiaSharp.xml
 	EndProjectSection
 EndProject
 Global
@@ -233,6 +280,7 @@ Global
 		{9AA4A330-C8B3-4C04-8C33-150200F8D8C0} = {C1A7C0FF-D017-463E-952A-5B5B75F61B40}
 		{6CE3F365-CC75-4FEA-B0B1-6D08900FBD75} = {F0CB8F6E-A34F-42EC-B080-390EE3FE98F1}
 		{821986A7-B55A-4FF4-BA0E-78F583C614EA} = {0153C6D6-E658-4D20-B42B-7309BB8A5901}
+		{1CFAFEC9-956A-48F8-8A73-DE898435B74B} = {0153C6D6-E658-4D20-B42B-7309BB8A5901}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A32023A-8994-447A-9890-63D0A2746288}

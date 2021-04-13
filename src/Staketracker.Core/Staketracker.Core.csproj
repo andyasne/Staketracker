@@ -21,17 +21,65 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Telerik.XamarinForms.Chart">
+      <HintPath>..\Libs\Telerik-Portable\Telerik.XamarinForms.Chart.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.XamarinForms.Common">
       <HintPath>..\Libs\Telerik-Portable\Telerik.XamarinForms.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.XamarinForms.DataControls">
+      <HintPath>..\Libs\Telerik-Portable\Telerik.XamarinForms.DataControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.DataGrid">
+      <HintPath>..\Libs\Telerik-Portable\Telerik.XamarinForms.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Barcode">
+      <HintPath>..\Libs\Telerik-Portable\Telerik.XamarinForms.Barcode.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.ConversationalUI">
+      <HintPath>..\Libs\Telerik-Portable\Telerik.XamarinForms.ConversationalUI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.DataVisualization">
+      <HintPath>..\Libs\Telerik-Portable\Telerik.XamarinForms.DataVisualization.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.XamarinForms.Input">
       <HintPath>..\Libs\Telerik-Portable\Telerik.XamarinForms.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.PdfViewer">
+      <HintPath>..\Libs\Telerik-Portable\Telerik.XamarinForms.PdfViewer.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.ImageEditor">
+      <HintPath>..\Libs\Telerik-Portable\Telerik.XamarinForms.ImageEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Map">
+      <HintPath>..\Libs\Telerik-Portable\Telerik.XamarinForms.Map.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.RichTextEditor">
+      <HintPath>..\Libs\Telerik-Portable\Telerik.XamarinForms.RichTextEditor.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Primitives">
       <HintPath>..\Libs\Telerik-Portable\Telerik.XamarinForms.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.SkiaSharp">
       <HintPath>..\Libs\Telerik-Portable\Telerik.XamarinForms.SkiaSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.SpreadsheetStreaming">
+      <HintPath>..\Libs\Telerik-Portable\Telerik.Documents.SpreadsheetStreaming.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Zip">
+      <HintPath>..\Libs\Telerik-Portable\Telerik.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Flow">
+      <HintPath>..\Libs\Telerik-Portable\Telerik.Documents.Flow.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Flow.FormatProviders.Pdf">
+      <HintPath>..\Libs\Telerik-Portable\Telerik.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Core">
+      <HintPath>..\Libs\Telerik-Portable\Telerik.Documents.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Fixed">
+      <HintPath>..\Libs\Telerik-Portable\Telerik.Documents.Fixed.dll</HintPath>
     </Reference>
   </ItemGroup>
 
