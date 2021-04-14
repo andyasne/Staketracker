@@ -6,11 +6,11 @@
                     xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                     x:Class="Staketracker.UI.Pages.Styles">
 
-    <Color x:Key="DarkBlueColor">#007FEB</Color>
-    <Color x:Key="MediumBlueColor">#2699FB</Color>
-    <Color x:Key="LightBlueColor">#BCE0FD</Color>
+    <Color x:Key="DarkBlueColor">#052B59</Color>
+    <Color x:Key="MediumBlueColor">#124B8F</Color>
+    <Color x:Key="LightBlueColor">#4B78AE</Color>
     <Color x:Key="LightColor">#FFFFFF</Color>
-    <Color x:Key="DarkTextColor">#FF444444</Color>
+    <Color x:Key="DarkTextColor">#001023</Color>
 
     <Style x:Key="TitleLabelStyle"
            TargetType="Label">
@@ -42,21 +42,60 @@
            TargetType="telerikInput:RadEntry">
         <Setter Property="TextColor"
                 Value="{StaticResource DarkTextColor}" />
+         
         <Setter Property="WatermarkTextColor"
                 Value="{StaticResource LightBlueColor}" />
         <Setter Property="FontSize"
-                Value="14" />
+                Value="18" />
         <Setter Property="HeightRequest"
                 Value="48" />
         <Setter Property="Margin"
                 Value="0,0,0,16" />
+        <Setter Property="Padding"
+                Value="10,5,5,10" />
         <Setter Property="BorderStyle">
             <Setter.Value>
-                <telerikInput:BorderStyle BorderColor="{StaticResource DarkBlueColor}"
+                <telerikInput:BorderStyle BorderColor="{StaticResource LightBlueColor}"  CornerRadius="6"
                                           BorderThickness="1" />
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="ComboEntryStyle"
+           TargetType="telerikInput:RadComboBox">
+        <Setter Property="TextColor"
+                Value="{StaticResource DarkTextColor}" />
+        <Setter Property="PlaceholderColor"
+                Value="{StaticResource MediumBlueColor}" />
+
+      
+        <Setter Property="FontSize"
+                Value="18" />
+        <Setter Property="HeightRequest"
+                Value="38" />
+        <Setter Property="TextColor"
+                Value="{StaticResource DarkTextColor}" />
+  
+        <Setter Property="Margin"
+                Value="0,0,0,16" />
+        <Setter Property="Padding"
+                Value="10,0,0,10" />
+        
+        <Setter Property="BorderColor"
+                Value= "{StaticResource LightBlueColor}" />
+        <Setter Property="BorderThickness"
+                Value= "1" />
+        <Setter Property="CornerRadius"
+                Value= "6" />
+        <!--<Setter Property="BorderStyle">
+            <Setter.Value>
+                <telerikInput:BorderStyle BorderColor="{StaticResource LightBlueColor}"  CornerRadius="6"
+                                          BorderThickness="1" />
+            </Setter.Value>
+        </Setter>-->
+    </Style>
+    
+    
 
     <Style x:Key="ActionButtonStyle"
            TargetType="telerikInput:RadButton">
@@ -74,14 +113,11 @@
                 Value="Center" />
         <Setter Property="HeightRequest"
                 Value="48" />
-        <Setter Property="Margin">
-            <Setter.Value>
-                <OnPlatform x:TypeArguments="Thickness">
-                    <On Platform="UWP"
-                        Value="0,0,0,16" />
-                </OnPlatform>
-            </Setter.Value>
-        </Setter>
+        <!--<Setter Property="BorderColor"
+                Value="{StaticResource LightBlueColor}" />
+        <Setter Property="CornerRadius"
+                Value="6" />-->
+ 
     </Style>
 
     <Style x:Key="SecondaryActionButtonStyle"
@@ -170,6 +206,16 @@
                 Value="Center" />
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />
+    </Style>
+
+    <Style x:Key="checkBoxButtonStyle"
+           TargetType="telerikPrimitives:RadCheckBox">
+        <Setter Property="CheckedColor"
+                Value="{StaticResource LightBlueColor}" />
+        <Setter Property="UncheckedColor"
+                Value="{StaticResource LightBlueColor}" />
+        
+
     </Style>
 
     <OnPlatform x:Key="PinNumberGridLength"

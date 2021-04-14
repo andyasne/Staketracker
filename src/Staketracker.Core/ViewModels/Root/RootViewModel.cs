@@ -22,7 +22,7 @@ namespace Staketracker.Core.ViewModels.Root
         {
             base.ViewAppearing();
 
-            await _navigationService.Navigate<MenuViewModel>();
+            //await _navigationService.Navigate<MenuViewModel>();
             await _navigationService.Navigate<LoginViewModel>();
         }
     }
