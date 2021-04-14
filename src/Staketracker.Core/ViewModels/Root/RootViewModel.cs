@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using MvvmCross.Navigation;
-using Staketracker.Core.ViewModels.Home;
 using Staketracker.Core.ViewModels.Login;
-using Staketracker.Core.ViewModels.Menu;
 
 namespace Staketracker.Core.ViewModels.Root
 {

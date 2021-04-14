@@ -1,5 +1,4 @@
-﻿using System;
-using Fusillade;
+﻿using Fusillade;
 
 namespace Staketracker.Core.Services
 {

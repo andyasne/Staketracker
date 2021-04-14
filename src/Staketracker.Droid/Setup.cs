@@ -11,6 +11,6 @@ namespace Staketracker.Droid
 {
     public class Setup : MvxFormsAndroidSetup<Core.App, UI.App>
     {
-        
+
     }
 }

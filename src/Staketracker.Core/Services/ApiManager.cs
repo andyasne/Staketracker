@@ -6,11 +6,11 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
-using Fusillade; 
+using Fusillade;
+using Plugin.Connectivity;
+using Plugin.Connectivity.Abstractions;
 using Polly;
 using Refit;
-using Plugin.Connectivity.Abstractions;
-using Plugin.Connectivity;
 
 
 namespace Staketracker.Core.Services
@@ -70,7 +70,7 @@ namespace Staketracker.Core.Services
         }
 
         protected async Task<TData> RemoteRequestAsync<TData>(Task<TData> task)
-            where TData : HttpResponseMessage, 
+            where TData : HttpResponseMessage,
             new()
         {
             TData data = new TData();

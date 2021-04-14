@@ -10,13 +10,13 @@ namespace Staketracker.Droid.Views
        MainLauncher = true,
        Label = "@string/app_name",
        Theme = "@style/AppTheme.Splash",
-       Icon = "@mipmap/ic_launcher" )]
+       Icon = "@mipmap/ic_launcher")]
     public class SplashActivity : MvxFormsSplashScreenActivity<Setup, Core.App, UI.App>
     {
         protected override Task RunAppStartAsync(Bundle bundle)
         {
-            
-           
+
+
             StartActivity(typeof(MainActivity));
             return Task.CompletedTask;
         }

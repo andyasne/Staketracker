@@ -1,6 +1,4 @@
-using MvvmCross.IoC;
 using MvvmCross.ViewModels;
-using Staketracker.Core.ViewModels.Home;
 using Staketracker.Core.ViewModels.Root;
 
 namespace Staketracker.Core
