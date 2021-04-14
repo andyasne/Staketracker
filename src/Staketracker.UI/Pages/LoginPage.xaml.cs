@@ -12,7 +12,7 @@ using Staketracker.Core.ViewModels.Login;
 namespace Staketracker.UI.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-    [MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Detail, NoHistory = true)]
+    [MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Detail,  NoHistory = true)]
     public partial class LoginPage : MvxContentPage<LoginViewModel>
     {
 		public LoginPage()

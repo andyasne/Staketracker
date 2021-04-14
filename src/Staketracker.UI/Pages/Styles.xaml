@@ -23,7 +23,7 @@
         <Setter Property="HorizontalTextAlignment"
                 Value="Center" />
         <Setter Property="Margin"
-                Value="0,30" />
+                Value="0,20" />
     </Style>
 
     <Style x:Key="NormalLabelStyle"
@@ -79,7 +79,7 @@
         <Setter Property="Margin"
                 Value="0,0,0,16" />
         <Setter Property="Padding"
-                Value="10,0,0,10" />
+                Value="10,5,0,5" />
         
         <Setter Property="BorderColor"
                 Value= "{StaticResource LightBlueColor}" />
@@ -113,6 +113,11 @@
                 Value="Center" />
         <Setter Property="HeightRequest"
                 Value="48" />
+
+        <Setter Property="CornerRadius"
+                Value="12" />
+
+        
         <!--<Setter Property="BorderColor"
                 Value="{StaticResource LightBlueColor}" />
         <Setter Property="CornerRadius"

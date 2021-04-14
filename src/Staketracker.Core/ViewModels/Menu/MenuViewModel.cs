@@ -21,13 +21,13 @@ namespace Staketracker.Core.ViewModels.Menu
 
         public MenuViewModel(IMvxNavigationService navigationService)
         {
-            _navigationService = navigationService;
-            MenuItemList = new MvxObservableCollection<string>()
-            {
-                "Login" 
-            };
+            //    _navigationService = navigationService;
+            //    MenuItemList = new MvxObservableCollection<string>()
+            //    {
+            //        "Login" 
+            //    };
 
-            ShowDetailPageAsyncCommand = new MvxAsyncCommand(ShowDetailPageAsync);
+            //    ShowDetailPageAsyncCommand = new MvxAsyncCommand(ShowDetailPageAsync);
         }
 
         private ObservableCollection<string> _menuItemList;

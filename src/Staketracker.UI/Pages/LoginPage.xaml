@@ -7,6 +7,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
              x:Class="Staketracker.UI.Pages.LoginPage"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Login;assembly=Staketracker.Core"
+                     
              x:TypeArguments="viewModels:LoginViewModel">
 
     <ContentPage.Resources>
@@ -23,22 +24,19 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackLayout BackgroundColor="{StaticResource MediumBlueColor}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center"  HeightRequest="100" >
-                <!--<ContentView Padding="0,20,0,20" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >-->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center"  HeightRequest="120" >
 
-                <!--<Image Source="splash_logo.png" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"  HeightRequest="240" />-->
+                <Image Source="splash_logo.png"  VerticalOptions="FillAndExpand" WidthRequest="150" HeightRequest="272"  Margin="10,0,0,0" Aspect="AspectFill" />
 
-                <Label Text="Staketracker For Mobile" FontSize="Title" TextColor="{StaticResource LightColor}" Style="{StaticResource TitleLabelStyle}" />
+                <Label Text="Staketracker For Mobile" FontSize="35" Margin="0,5,20,5" TextColor="{StaticResource LightColor}" FontFamily="Lobster" Style="{StaticResource TitleLabelStyle}" />
 
             </StackLayout>
         </StackLayout>
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
 
-                <!--<telerikInput:RadEntry  
-                                   WatermarkText="Production"
-                                   Style="{StaticResource LoginEntryStyle}"  Margin="0,0,0,0"/>-->
-                <telerikInput:RadComboBox x:Name="comboBox"  Style="{StaticResource ComboEntryStyle}"  Margin="0,0,0,0"   Placeholder="Production"     />
+                
+                <telerikInput:RadComboBox x:Name="comboBox"  Style="{StaticResource ComboEntryStyle}"  Margin="0,0,0,5"    Placeholder="Production"     />
 
                 <StackLayout Orientation="Horizontal">
                     <telerikPrimitives:RadCheckBox x:Name="connectto" Style="{StaticResource checkBoxButtonStyle}" />
@@ -47,7 +45,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                 <telerikInput:RadEntry   Margin="0,20,0,0"
                                    WatermarkText="User ID"
                                    Style="{StaticResource LoginEntryStyle}" />
-
+ 
                 <telerikInput:RadEntry  
                                    IsPassword="True"
                                    WatermarkText="Password"
@@ -57,7 +55,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                     <Label Text="Remember Me" Style="{StaticResource NormalLabelStyle}" />
                 </StackLayout>
 
-                <telerikInput:RadButton Text="SIGN IN"
+                <telerikInput:RadButton Text="SIGN IN" 
                                      Style="{StaticResource ActionButtonStyle}" />
 
                 <Grid  HorizontalOptions="FillAndExpand" HeightRequest="90" >
