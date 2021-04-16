@@ -67,8 +67,8 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
         
     </Grid>
     <RelativeLayout VerticalOptions="EndAndExpand" HorizontalOptions="Fill"    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
-            <StackLayout>
-            <Grid   >
+            <StackLayout Spacing="0">
+            <Grid  Margin="0,5,0,5" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
 
@@ -80,17 +80,21 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
 
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <telerikInput:RadButton VerticalContentAlignment="Center" HorizontalContentAlignment="Start" HeightRequest="30" Text="Forgot Your User Id ?"   Grid.Row="0" Grid.Column="1"
+                <telerikInput:RadButton VerticalContentAlignment="End" HorizontalContentAlignment="Start"  HeightRequest="20" Text="Forgot Your User Id ?"   Grid.Row="0" Grid.Column="1"
                                      Style="{StaticResource SecondaryActionButtonStyle}"
                                     FontAttributes="None" />
 
-                    <telerikInput:RadButton Text="Forget Your Password?" HeightRequest="30"  HorizontalContentAlignment="End" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="3"
+                    <telerikInput:RadButton Text="Forget Your Password?" HeightRequest="20"  HorizontalContentAlignment="End" VerticalContentAlignment="End" Grid.Row="0" Grid.Column="3"
                                      Style="{StaticResource SecondaryActionButtonStyle}"
                                     FontAttributes="None" />
 
             </Grid>
-            <Label  TextColor="{StaticResource DarkTextColor}"     VerticalTextAlignment="Center" VerticalOptions="Start"  Text="(c) SustaiNet Software International Inc." HorizontalTextAlignment="Center"  HorizontalOptions="CenterAndExpand"/>
 
+                <Label  TextColor="{StaticResource DarkTextColor}"  VerticalTextAlignment="End"  VerticalOptions="End"  Text="(c) SustaiNet Software International Inc." HorizontalTextAlignment="Center"  HorizontalOptions="CenterAndExpand"/>
+                <StackLayout Orientation="Horizontal" VerticalOptions="Start"   >
+                    <Label  TextColor="{StaticResource DarkTextColor}"     VerticalTextAlignment="Start" VerticalOptions="Start"  Text="All Rights Reserved |" HorizontalTextAlignment="End"  HorizontalOptions="EndAndExpand"/>
+                    <Label  TextColor="{StaticResource LightBlueColor}"     VerticalTextAlignment="Start" VerticalOptions="Start"  Text="Privacy" HorizontalTextAlignment="Start"  HorizontalOptions="StartAndExpand"/>
+                </StackLayout>
             </StackLayout>
         </RelativeLayout>
      
