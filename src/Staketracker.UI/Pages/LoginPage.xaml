@@ -17,11 +17,11 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-
+    <StackLayout>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="*" /> 
         </Grid.RowDefinitions>
         <StackLayout BackgroundColor="{StaticResource MediumBlueColor}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center"  HeightRequest="120" >
@@ -36,7 +36,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
 
                 
-                <telerikInput:RadComboBox x:Name="comboBox"  Style="{StaticResource ComboEntryStyle}"  Margin="0,0,0,5"    Placeholder="Production"     />
+                <telerikInput:RadComboBox x:Name="comboBox"   Style="{StaticResource ComboEntryStyle}"  Margin="0,0,0,5"    Placeholder="Production"     />
 
                 <StackLayout Orientation="Horizontal">
                     <telerikPrimitives:RadCheckBox x:Name="connectto" Style="{StaticResource checkBoxButtonStyle}" />
@@ -58,31 +58,42 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                 <telerikInput:RadButton Text="SIGN IN" 
                                      Style="{StaticResource ActionButtonStyle}" />
 
-                <Grid  HorizontalOptions="FillAndExpand" HeightRequest="90" >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-
-
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <telerikInput:RadButton VerticalContentAlignment="End" Text="Forgot Your User Id ?"   Grid.Row="0" Grid.Column="1"
-                                     Style="{StaticResource SecondaryActionButtonStyle}"
-                                    FontAttributes="None" />
-
-                    <telerikInput:RadButton Text="Forget Your Password?"  VerticalContentAlignment="End" Grid.Row="0" Grid.Column="3"
-                                     Style="{StaticResource SecondaryActionButtonStyle}"
-                                    FontAttributes="None" />
-
-                </Grid>
+               
             </StackLayout>
 
-
+          
 
         </ScrollView>
+        
     </Grid>
+    <RelativeLayout VerticalOptions="End" HorizontalOptions="Fill"   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
+            <StackLayout>
+            <Grid   >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+
+
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <telerikInput:RadButton VerticalContentAlignment="End" Text="Forgot Your User Id ?"   Grid.Row="0" Grid.Column="1"
+                                     Style="{StaticResource SecondaryActionButtonStyle}"
+                                    FontAttributes="None" />
+
+                <telerikInput:RadButton Text="Forget Your Password?"  VerticalContentAlignment="End" Grid.Row="0" Grid.Column="3"
+                                     Style="{StaticResource SecondaryActionButtonStyle}"
+                                    FontAttributes="None" />
+
+            </Grid>
+            <Label  TextColor="{StaticResource DarkTextColor}"   VerticalTextAlignment="End"  Text="(c) SustaiNet Software International Inc." HorizontalTextAlignment="Center"  HorizontalOptions="CenterAndExpand"/>
+
+            </StackLayout>
+        </RelativeLayout>
+     
+    </StackLayout>
+
 </views:MvxContentPage>
