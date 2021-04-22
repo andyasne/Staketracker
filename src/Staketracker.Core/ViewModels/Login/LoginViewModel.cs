@@ -7,27 +7,37 @@ using Xamarin.Forms;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using Staketracker.Core.ViewModels.Contacts;
+using MvvmCross.Navigation;
+
 namespace Staketracker.Core.ViewModels.Login
 
 {
     public class LoginViewModel : BaseViewModel
     {
+        readonly IMvxNavigationService _navigationService;
+
         public ObservableCollection<MakeUp> MakeUps { get; set; }
         public ObservableCollection<News> News { get; set; }
-        public AuthReply authReply { get; set; }
         public LoginAPIBody loginApiBody { get; set; }
         public JsonText jsonText { get; set; }
+        public String username { get; set; }
+        public String password { get; set; }
 
         public ICommand GetDataCommand { get; set; }
         public ICommand AuthenticateUserCommand { get; set; }
         public ICommand GetTimeLineDataCommand { get; set; }
 
+        public AuthReply authReply { get; set; }
 
 
-        public LoginViewModel()
+        public LoginViewModel(IMvxNavigationService navigationService)
         {
             authReply = new AuthReply();
-            loginApiBody = new LoginAPIBody();
+            _navigationService = navigationService;
+            username = "Alem";
+            password = "Biniye@99";
+
             // loginApiBody.jsonText.username = "alem";
             //loginApiBody.jsonText.password = "Biniye@99";
             //      GetDataCommand = new Command(async () => await RunSafe(GetData()));
@@ -70,20 +80,26 @@ namespace Staketracker.Core.ViewModels.Login
 
         async Task AuthenticateUser(LoginAPIBody loginApiBody)
         {
+            loginApiBody = new LoginAPIBody(username, password);
 
             var makeUpsResponse = await ApiManager.AuthenticateUser(loginApiBody);
 
             if (makeUpsResponse.IsSuccessStatusCode)
             {
                 var response = await makeUpsResponse.Content.ReadAsStringAsync();
-                var json = await Task.Run(() => JsonConvert.DeserializeObject<AuthReply>(response));
-                await PageDialog.AlertAsync("Logged in successfully", "Login", "Ok");
+                authReply = await Task.Run(() => JsonConvert.DeserializeObject<AuthReply>(response));
+                String msg = "Logged in successfully, SessionId-" + authReply.d.sessionId;
+                PageDialog.Toast(msg, TimeSpan.FromSeconds(5));
+                //await PageDialog.AlertAsync("Logged in successfully,     SessionId-" + authReply.d.sessionId, "Login", "Ok");
 
-                //    LoginAPIBody = new  LoginAPIBody(json);
+                await _navigationService.Navigate<ContactsViewModel>();
+
+
             }
             else
             {
-                await PageDialog.AlertAsync(makeUpsResponse.ReasonPhrase, "Error", "Ok");
+                //await PageDialog.AlertAsync(makeUpsResponse.ReasonPhrase, "Error", "Ok");
+                await PageDialog.AlertAsync("Incorrect Username or Password", "Validation Error", "Ok");
             }
         }
 

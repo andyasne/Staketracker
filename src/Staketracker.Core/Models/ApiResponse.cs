@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
+using MvvmCross.ViewModels;
 
 namespace Staketracker.Core.Models
 {
@@ -24,6 +26,7 @@ namespace Staketracker.Core.Models
             this.d = new D();
         }
         public D d { get; set; }
+
     }
 
 }

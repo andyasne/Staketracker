@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Acr.UserDialogs;
 using Staketracker.Core.Services;
 using Xamarin.Forms;
+using Staketracker.Core.Models;
 
 namespace Staketracker.Core.ViewModels
 {
