@@ -99,6 +99,7 @@ namespace Staketracker.Core.Services
             {
                 var result = await task;
 
+
                 if (result.StatusCode == HttpStatusCode.Unauthorized)
                 {
                     //Logout the user 

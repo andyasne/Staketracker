@@ -19,6 +19,10 @@ namespace Staketracker.Core.Models
 
     public class AuthReply
     {
+        public AuthReply()
+        {
+            this.d = new D();
+        }
         public D d { get; set; }
     }
 

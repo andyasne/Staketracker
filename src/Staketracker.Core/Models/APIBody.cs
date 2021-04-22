@@ -13,6 +13,10 @@ namespace Staketracker.Core.Models
 
     public class LoginAPIBody
     {
+        public LoginAPIBody()
+        {
+            jsonText = new JsonText();
+        }
         public JsonText jsonText { get; set; }
     }
 

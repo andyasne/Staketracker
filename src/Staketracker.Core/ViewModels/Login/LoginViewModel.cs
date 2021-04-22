@@ -21,8 +21,14 @@ namespace Staketracker.Core.ViewModels.Login
         public ICommand AuthenticateUserCommand { get; set; }
         public ICommand GetTimeLineDataCommand { get; set; }
 
+
+
         public LoginViewModel()
         {
+            authReply = new AuthReply();
+            loginApiBody = new LoginAPIBody();
+            loginApiBody.jsonText.username = "alem";
+            loginApiBody.jsonText.password = "Biniye@99";
             //      GetDataCommand = new Command(async () => await RunSafe(GetData()));
             // GetTimeLineDataCommand = new Command(async () => await RunSafe(GetTimeLine()));
             AuthenticateUserCommand = new Command(async () => await RunSafe(AuthenticateUser(loginApiBody)));

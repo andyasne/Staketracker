@@ -18,7 +18,7 @@ namespace Staketracker.UI.Pages
             base.OnAppearing();
 
             //ViewModel.GetDataCommand.Execute(null);
-            ViewModel.GetTimeLineDataCommand.Execute(null);
+            //ViewModel.GetTimeLineDataCommand.Execute(null);
 
 
         }

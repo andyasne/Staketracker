@@ -44,21 +44,21 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                     </StackLayout>
                     <telerikInput:RadEntry   Margin="0,30,0,0"
                                    WatermarkText="User ID"  
-                                                Text="{Binding Login}"
+                                   Text="{Binding loginApiBody.JsonText.username}"
                                    Style="{StaticResource LoginEntryStyle}" />
-                    <!--Text="{Binding News.kind}"-->
 
 
                     <telerikInput:RadEntry  
                                    IsPassword="True"
                                    WatermarkText="Password"
+                        Text="{Binding loginApiBody.JsonText.password, Mode=TwoWay}"
                                    Style="{StaticResource LoginEntryStyle}"  Margin="0,0,0,0" />
                     <StackLayout Orientation="Horizontal"  Margin="0,0,0,40">
                         <telerikPrimitives:RadCheckBox x:Name="rememberMe" Style="{StaticResource checkBoxButtonStyle}" />
                         <Label Text="Remember Me" Style="{StaticResource NormalLabelStyle}" />
                     </StackLayout>
 
-                    <telerikInput:RadButton Text="SIGN IN" 
+                    <telerikInput:RadButton Text="SIGN IN"   Command="{Binding AuthenticateUserCommand}"
                                      Style="{StaticResource ActionButtonStyle}" />
 
 
