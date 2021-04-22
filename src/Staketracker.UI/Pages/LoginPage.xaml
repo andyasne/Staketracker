@@ -18,69 +18,71 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" /> 
-        </Grid.RowDefinitions>
-        <StackLayout BackgroundColor="{StaticResource MediumBlueColor}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center"  HeightRequest="120" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackLayout BackgroundColor="{StaticResource MediumBlueColor}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center"  HeightRequest="120" >
 
-                <Image Source="splash_logo.png"  VerticalOptions="FillAndExpand" WidthRequest="170" HeightRequest="300"  Margin="10,0,0,0" Aspect="AspectFill" />
+                    <Image Source="splash_logo.png"  VerticalOptions="FillAndExpand" WidthRequest="170" HeightRequest="300"  Margin="10,0,0,0" Aspect="AspectFill" />
 
-                <Label Text="Staketracker For Mobile" FontSize="35" Margin="0,5,20,5" TextColor="{StaticResource LightColor}" FontFamily="Lobster" Style="{StaticResource TitleLabelStyle}" />
+                    <Label Text="Staketracker For Mobile" FontSize="35" Margin="0,5,20,5" TextColor="{StaticResource LightColor}" FontFamily="Lobster" Style="{StaticResource TitleLabelStyle}" />
 
-            </StackLayout>
-        </StackLayout>
-        <ScrollView Grid.Row="1">
-            <StackLayout Orientation="Vertical" Padding="30,50,30,24" Spacing="10">
-
-                
-                <telerikInput:RadComboBox x:Name="comboBox"   Style="{StaticResource ComboEntryStyle}"  Margin="0,0,0,5"    Placeholder="Production"     />
-
-                <StackLayout Orientation="Horizontal">
-                    <telerikPrimitives:RadCheckBox x:Name="connectto" Style="{StaticResource checkBoxButtonStyle}" />
-                    <Label Text="Connect to Sandbox"  Style="{StaticResource NormalLabelStyle}" />
                 </StackLayout>
-                <telerikInput:RadEntry   Margin="0,30,0,0"
-                                   WatermarkText="User ID"
+            </StackLayout>
+            <ScrollView Grid.Row="1">
+                <StackLayout Orientation="Vertical" Padding="30,50,30,24" Spacing="10">
+
+
+                    <telerikInput:RadComboBox x:Name="comboBox"   Style="{StaticResource ComboEntryStyle}"  Margin="0,0,0,5"    Placeholder="Production"     />
+
+                    <StackLayout Orientation="Horizontal">
+                        <telerikPrimitives:RadCheckBox x:Name="connectto" Style="{StaticResource checkBoxButtonStyle}" />
+                        <Label Text="Connect to Sandbox"  Style="{StaticResource NormalLabelStyle}" />
+                    </StackLayout>
+                    <telerikInput:RadEntry   Margin="0,30,0,0"
+                                   WatermarkText="User ID" 
                                    Style="{StaticResource LoginEntryStyle}" />
- 
-                <telerikInput:RadEntry  
+                    <!--Text="{Binding News.kind}"-->
+
+
+                    <telerikInput:RadEntry  
                                    IsPassword="True"
                                    WatermarkText="Password"
                                    Style="{StaticResource LoginEntryStyle}"  Margin="0,0,0,0" />
-                <StackLayout Orientation="Horizontal"  Margin="0,0,0,40">
-                    <telerikPrimitives:RadCheckBox x:Name="rememberMe" Style="{StaticResource checkBoxButtonStyle}" />
-                    <Label Text="Remember Me" Style="{StaticResource NormalLabelStyle}" />
-                </StackLayout>
+                    <StackLayout Orientation="Horizontal"  Margin="0,0,0,40">
+                        <telerikPrimitives:RadCheckBox x:Name="rememberMe" Style="{StaticResource checkBoxButtonStyle}" />
+                        <Label Text="Remember Me" Style="{StaticResource NormalLabelStyle}" />
+                    </StackLayout>
 
-                <telerikInput:RadButton Text="SIGN IN" 
+                    <telerikInput:RadButton Text="SIGN IN" 
                                      Style="{StaticResource ActionButtonStyle}" />
 
-               
-            </StackLayout>
 
-          
+                </StackLayout>
 
-        </ScrollView>
-        
-    </Grid>
-    <RelativeLayout VerticalOptions="EndAndExpand" HorizontalOptions="Fill"    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
+
+
+            </ScrollView>
+
+        </Grid>
+        <RelativeLayout VerticalOptions="EndAndExpand" HorizontalOptions="Fill"    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
             <StackLayout Spacing="0">
-            <Grid  Margin="0,5,0,5" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
+                <Grid  Margin="0,5,0,5" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
 
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
 
 
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <telerikInput:RadButton VerticalContentAlignment="End" HorizontalContentAlignment="Start"  HeightRequest="20" Text="Forgot Your User Id ?"   Grid.Row="0" Grid.Column="1"
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <telerikInput:RadButton VerticalContentAlignment="End" HorizontalContentAlignment="Start"  HeightRequest="20" Text="Forgot Your User Id ?"   Grid.Row="0" Grid.Column="1"
                                      Style="{StaticResource SecondaryActionButtonStyle}"
                                     FontAttributes="None" />
 
@@ -88,7 +90,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                                      Style="{StaticResource SecondaryActionButtonStyle}"
                                     FontAttributes="None" />
 
-            </Grid>
+                </Grid>
 
                 <Label  TextColor="{StaticResource DarkTextColor}"  VerticalTextAlignment="End"  VerticalOptions="End"  Text="(c) SustaiNet Software International Inc." HorizontalTextAlignment="Center"  HorizontalOptions="CenterAndExpand"/>
                 <StackLayout Orientation="Horizontal" VerticalOptions="Start"   >
@@ -97,7 +99,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                 </StackLayout>
             </StackLayout>
         </RelativeLayout>
-     
+
     </StackLayout>
 
 </views:MvxContentPage>

@@ -13,5 +13,13 @@ namespace Staketracker.UI.Pages
         {
             InitializeComponent();
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            //ViewModel.GetDataCommand.Execute(null);
+            ViewModel.GetTimeLineDataCommand.Execute(null);
+
+        }
     }
 }

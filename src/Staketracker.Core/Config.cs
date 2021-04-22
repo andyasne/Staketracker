@@ -5,7 +5,7 @@ namespace Staketracker.Core
     public static class Config
     {
         public static string ApiUrl = " ";
-        public static string RedditApiUrl = " ";
+        public static string RedditApiUrl = "http://www.reddit.com/r";
 
         public static string ApiHostName
         {
