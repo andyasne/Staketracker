@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-//using Acr.UserDialogs;
+using Acr.UserDialogs;
 using Staketracker.Core.Services;
 using Xamarin.Forms;
 
@@ -12,7 +12,7 @@ namespace Staketracker.Core.ViewModels
     public abstract class BaseViewModel : MvxViewModel, INotifyPropertyChanged
     {
 
-        //public IUserDialogs PageDialog = UserDialogs.Instance;
+        public IUserDialogs PageDialog = UserDialogs.Instance;
         public IApiManager ApiManager;
         IApiService<IMakeUpApi> makeUpApi = new ApiService<IMakeUpApi>(Config.ApiUrl);
         IApiService<IRedditApi> redditApi = new ApiService<IRedditApi>(Config.RedditApiUrl);
@@ -35,23 +35,23 @@ namespace Staketracker.Core.ViewModels
                 IsBusy = true;
 
                 if (ShowLoading)
-                    //UserDialogs.Instance.ShowLoading(loadinMessage ?? "Loading");
+                    UserDialogs.Instance.ShowLoading(loadinMessage ?? "Loading");
 
-                    await task;
+                await task;
             }
             catch (Exception e)
             {
                 IsBusy = false;
                 //   UserDialogs.Instance.HideLoading();
                 Debug.WriteLine(e.ToString());
-                await Application.Current.MainPage.DisplayAlert("Eror", "Check your internet connection", "Ok");
-                //await PageDialog.AlertAsync("Check your internet connection", "Error", "Ok");
+                //await Application.Current.MainPage.DisplayAlert("Eror", "Check your internet connection", "Ok");
+                await PageDialog.AlertAsync("Check your internet connection", "Error", "Ok");
             }
             finally
             {
                 IsBusy = false;
-                // if (ShowLoading)
-                //   UserDialogs.Instance.HideLoading();
+                if (ShowLoading)
+                    UserDialogs.Instance.HideLoading();
             }
         }
 

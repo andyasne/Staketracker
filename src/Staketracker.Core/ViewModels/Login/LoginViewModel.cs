@@ -36,7 +36,7 @@ namespace Staketracker.Core.ViewModels.Login
             }
             else
             {
-                //    await PageDialog.AlertAsync("Unable to get data", "Error", "Ok");
+                await PageDialog.AlertAsync("Unable to get data", "Error", "Ok");
             }
         }
 
@@ -52,7 +52,7 @@ namespace Staketracker.Core.ViewModels.Login
             }
             else
             {
-                //    await PageDialog.AlertAsync("Unable to get data", "Error", "Ok");
+                await PageDialog.AlertAsync("Unable to get data", "Error", "Ok");
             }
         }
 

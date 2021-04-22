@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-//using Acr.UserDialogs;
+using Acr.UserDialogs;
 using Fusillade;
 using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
@@ -17,7 +17,7 @@ namespace Staketracker.Core.Services
 {
     public class ApiManager : IApiManager
     {
-        //IUserDialogs _userDialogs = UserDialogs.Instance;
+        IUserDialogs _userDialogs = UserDialogs.Instance;
         IConnectivity _connectivity = CrossConnectivity.Current;
         IApiService<IMakeUpApi> makeUpApi;
         IApiService<IRedditApi> redditApi;
@@ -81,7 +81,7 @@ namespace Staketracker.Core.Services
                 data.StatusCode = HttpStatusCode.BadRequest;
                 data.Content = new StringContent(strngResponse);
 
-                //_userDialogs.Toast(strngResponse, TimeSpan.FromSeconds(1));
+                _userDialogs.Toast(strngResponse, TimeSpan.FromSeconds(1));
                 return data;
             }
 
@@ -93,7 +93,7 @@ namespace Staketracker.Core.Services
                 data.StatusCode = HttpStatusCode.BadRequest;
                 data.Content = new StringContent(strngResponse);
 
-                //_userDialogs.Toast(strngResponse, TimeSpan.FromSeconds(1));
+                _userDialogs.Toast(strngResponse, TimeSpan.FromSeconds(1));
                 return data;
             }
 
