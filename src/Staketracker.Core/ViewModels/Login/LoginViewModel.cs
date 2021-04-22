@@ -16,6 +16,7 @@ namespace Staketracker.Core.ViewModels.Login
         public ObservableCollection<News> News { get; set; }
         public AuthReply authReply { get; set; }
         public LoginAPIBody loginApiBody { get; set; }
+        public JsonText jsonText { get; set; }
 
         public ICommand GetDataCommand { get; set; }
         public ICommand AuthenticateUserCommand { get; set; }
@@ -27,8 +28,8 @@ namespace Staketracker.Core.ViewModels.Login
         {
             authReply = new AuthReply();
             loginApiBody = new LoginAPIBody();
-            loginApiBody.jsonText.username = "alem";
-            loginApiBody.jsonText.password = "Biniye@99";
+            // loginApiBody.jsonText.username = "alem";
+            //loginApiBody.jsonText.password = "Biniye@99";
             //      GetDataCommand = new Command(async () => await RunSafe(GetData()));
             // GetTimeLineDataCommand = new Command(async () => await RunSafe(GetTimeLine()));
             AuthenticateUserCommand = new Command(async () => await RunSafe(AuthenticateUser(loginApiBody)));
@@ -82,7 +83,7 @@ namespace Staketracker.Core.ViewModels.Login
             }
             else
             {
-                await PageDialog.AlertAsync("Unable to get data", "Error", "Ok");
+                await PageDialog.AlertAsync(makeUpsResponse.ReasonPhrase, "Error", "Ok");
             }
         }
 

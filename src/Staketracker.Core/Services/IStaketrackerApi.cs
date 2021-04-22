@@ -9,7 +9,7 @@ namespace Staketracker.Core
     [Headers("Content-Type: application/json")]
     public interface IStaketrackerApi
     {
-        [Get("/uat/mobilev1.asmx/authenticateUser")]
+        [Post("/uat/mobilev1.asmx/authenticateUser")]
         Task<HttpResponseMessage> AuthenticateUser([Body] LoginAPIBody loginApiBody, CancellationToken cancellationToken);
     }
 }

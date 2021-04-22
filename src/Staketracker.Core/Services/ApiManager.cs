@@ -127,7 +127,6 @@ namespace Staketracker.Core.Services
             var cts = new CancellationTokenSource();
             var task = RemoteRequestAsync<HttpResponseMessage>(makeUpApi.GetApi(Priority.UserInitiated).GetMakeUps(brand, cts.Token));
             runningTasks.Add(task.Id, cts);
-
             return await task;
         }
 
