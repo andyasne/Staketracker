@@ -49,6 +49,7 @@ namespace Staketracker.Core.ViewModels.Login
                 var response = await timelineResponse.Content.ReadAsStringAsync();
                 var json = await Task.Run(() => JsonConvert.DeserializeObject<RootNews>(response));
                 News = new ObservableCollection<News>(json.Data.News);
+                await PageDialog.AlertAsync(News.Count.ToString() + " News Found", "Connected", "Ok");
             }
             else
             {

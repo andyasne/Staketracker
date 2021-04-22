@@ -20,6 +20,7 @@ namespace Staketracker.UI.Pages
             //ViewModel.GetDataCommand.Execute(null);
             ViewModel.GetTimeLineDataCommand.Execute(null);
 
+
         }
     }
 }
