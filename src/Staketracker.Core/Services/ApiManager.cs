@@ -11,7 +11,7 @@ using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
 using Polly;
 using Refit;
-
+using Staketracker.Core.Models;
 
 namespace Staketracker.Core.Services
 {
@@ -21,15 +21,17 @@ namespace Staketracker.Core.Services
         IConnectivity _connectivity = CrossConnectivity.Current;
         IApiService<IMakeUpApi> makeUpApi;
         IApiService<IRedditApi> redditApi;
+        IApiService<IStaketrackerApi> staketrackerApi;
         public bool IsConnected { get; set; }
         public bool IsReachable { get; set; }
         Dictionary<int, CancellationTokenSource> runningTasks = new Dictionary<int, CancellationTokenSource>();
         Dictionary<string, Task<HttpResponseMessage>> taskContainer = new Dictionary<string, Task<HttpResponseMessage>>();
 
-        public ApiManager(IApiService<IMakeUpApi> _makeUpApi, IApiService<IRedditApi> _redditApi)
+        public ApiManager(IApiService<IMakeUpApi> _makeUpApi, IApiService<IRedditApi> _redditApi, IApiService<IStaketrackerApi> _staketrackerApi)
         {
             makeUpApi = _makeUpApi;
             redditApi = _redditApi;
+            staketrackerApi = _staketrackerApi;
             IsConnected = _connectivity.IsConnected;
             _connectivity.ConnectivityChanged += OnConnectivityChanged;
         }
@@ -50,24 +52,6 @@ namespace Staketracker.Core.Services
             }
         }
 
-        public async Task<HttpResponseMessage> GetNews()
-        {
-            var cts = new CancellationTokenSource();
-            var task = RemoteRequestAsync<HttpResponseMessage>(redditApi.GetApi(Priority.UserInitiated).GetNews(cts.Token));
-            runningTasks.Add(task.Id, cts);
-
-            return await task;
-        }
-
-
-        public async Task<HttpResponseMessage> GetMakeUps(string brand)
-        {
-            var cts = new CancellationTokenSource();
-            var task = RemoteRequestAsync<HttpResponseMessage>(makeUpApi.GetApi(Priority.UserInitiated).GetMakeUps(brand, cts.Token));
-            runningTasks.Add(task.Id, cts);
-
-            return await task;
-        }
 
         protected async Task<TData> RemoteRequestAsync<TData>(Task<TData> task)
             where TData : HttpResponseMessage,
@@ -83,6 +67,11 @@ namespace Staketracker.Core.Services
 
                 _userDialogs.Toast(strngResponse, TimeSpan.FromSeconds(1));
                 return data;
+            }
+            else
+            {
+                _userDialogs.Toast("Connection Established With sustainet.com Server", TimeSpan.FromSeconds(3));
+
             }
 
             IsReachable = await _connectivity.IsRemoteReachable(Config.ApiHostName);
@@ -120,6 +109,33 @@ namespace Staketracker.Core.Services
             });
 
             return data;
+        }
+
+        public async Task<HttpResponseMessage> GetNews()
+        {
+            var cts = new CancellationTokenSource();
+            var task = RemoteRequestAsync<HttpResponseMessage>(redditApi.GetApi(Priority.UserInitiated).GetNews(cts.Token));
+            runningTasks.Add(task.Id, cts);
+
+            return await task;
+        }
+
+
+        public async Task<HttpResponseMessage> GetMakeUps(string brand)
+        {
+            var cts = new CancellationTokenSource();
+            var task = RemoteRequestAsync<HttpResponseMessage>(makeUpApi.GetApi(Priority.UserInitiated).GetMakeUps(brand, cts.Token));
+            runningTasks.Add(task.Id, cts);
+
+            return await task;
+        }
+
+        public async Task<HttpResponseMessage> AuthenticateUser(LoginAPIBody loginApiBody)
+        {
+            var cts = new CancellationTokenSource();
+            var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).AuthenticateUser(loginApiBody, cts.Token));
+            runningTasks.Add(task.Id, cts);
+            return await task;
         }
     }
 }

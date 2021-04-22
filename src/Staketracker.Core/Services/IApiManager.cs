@@ -1,5 +1,6 @@
-﻿using System.Net.Http;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Staketracker.Core.Models;
 
 namespace Staketracker.Core.Services
 {
@@ -7,5 +8,6 @@ namespace Staketracker.Core.Services
     {
         Task<HttpResponseMessage> GetMakeUps(string brand);
         Task<HttpResponseMessage> GetNews();
+        Task<HttpResponseMessage> AuthenticateUser(LoginAPIBody loginApiBody);
     }
 }

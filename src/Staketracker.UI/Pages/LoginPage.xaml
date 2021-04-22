@@ -43,7 +43,8 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                         <Label Text="Connect to Sandbox"  Style="{StaticResource NormalLabelStyle}" />
                     </StackLayout>
                     <telerikInput:RadEntry   Margin="0,30,0,0"
-                                   WatermarkText="User ID" 
+                                   WatermarkText="User ID"  
+                                                Text="{Binding Login}"
                                    Style="{StaticResource LoginEntryStyle}" />
                     <!--Text="{Binding News.kind}"-->
 
