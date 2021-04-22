@@ -1,35 +1,39 @@
-using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Staketracker.Core.Models;
-using Xamarin.Forms;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Linq;
-using Staketracker.Core.ViewModels.Contacts;
-using MvvmCross.Navigation;
-
 namespace Staketracker.Core.ViewModels.Login
-
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
+    using System.Windows.Input;
+    using MvvmCross.Navigation;
+    using Newtonsoft.Json;
+    using Staketracker.Core.Models;
+    using Staketracker.Core.ViewModels.Contacts;
+    using Xamarin.Forms;
+
     public class LoginViewModel : BaseViewModel
     {
-        readonly IMvxNavigationService _navigationService;
+        internal readonly IMvxNavigationService _navigationService;
 
         public ObservableCollection<MakeUp> MakeUps { get; set; }
+
         public ObservableCollection<News> News { get; set; }
+
         public LoginAPIBody loginApiBody { get; set; }
+
         public JsonText jsonText { get; set; }
+
         public String username { get; set; }
+
         public String password { get; set; }
 
         public ICommand GetDataCommand { get; set; }
+
         public ICommand AuthenticateUserCommand { get; set; }
+
         public ICommand GetTimeLineDataCommand { get; set; }
 
         public AuthReply authReply { get; set; }
-
 
         public LoginViewModel(IMvxNavigationService navigationService)
         {
@@ -45,7 +49,7 @@ namespace Staketracker.Core.ViewModels.Login
             AuthenticateUserCommand = new Command(async () => await RunSafe(AuthenticateUser(loginApiBody)));
         }
 
-        async Task GetData()
+        internal async Task GetData()
         {
 
             var makeUpsResponse = await ApiManager.GetMakeUps("maybelline");
@@ -62,7 +66,7 @@ namespace Staketracker.Core.ViewModels.Login
             }
         }
 
-        async Task GetTimeLine()
+        internal async Task GetTimeLine()
         {
             var timelineResponse = await ApiManager.GetNews();
 
@@ -78,7 +82,7 @@ namespace Staketracker.Core.ViewModels.Login
             }
         }
 
-        async Task AuthenticateUser(LoginAPIBody loginApiBody)
+        internal async Task AuthenticateUser(LoginAPIBody loginApiBody)
         {
             loginApiBody = new LoginAPIBody(username, password);
 
@@ -88,6 +92,11 @@ namespace Staketracker.Core.ViewModels.Login
             {
                 var response = await makeUpsResponse.Content.ReadAsStringAsync();
                 authReply = await Task.Run(() => JsonConvert.DeserializeObject<AuthReply>(response));
+                if (authReply.d.sessionId == null)
+                {
+                    await PageDialog.AlertAsync("Incorrect Username or Password", "Validation Error", "Ok");
+                    return;
+                }
                 String msg = "Logged in successfully, SessionId-" + authReply.d.sessionId;
                 PageDialog.Toast(msg, TimeSpan.FromSeconds(5));
                 //await PageDialog.AlertAsync("Logged in successfully,     SessionId-" + authReply.d.sessionId, "Login", "Ok");
@@ -102,7 +111,5 @@ namespace Staketracker.Core.ViewModels.Login
                 await PageDialog.AlertAsync("Incorrect Username or Password", "Validation Error", "Ok");
             }
         }
-
-
     }
 }

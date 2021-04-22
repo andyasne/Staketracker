@@ -15,7 +15,7 @@ namespace Staketracker.Core.Models
     {
         public LoginAPIBody()
         {
-            this.jsonText = "{\"username\":\"alem\",\"password\":\"Biniye@99\"}";
+            //  this.jsonText = "{\"username\":\"alem\",\"password\":\"Biniye@99\"}";
 
         }
         public LoginAPIBody(string username, string password)
@@ -26,7 +26,7 @@ namespace Staketracker.Core.Models
         public LoginAPIBody(JsonText jsonText)
         {
             _jsonText = jsonText;
-            this.jsonText = "{\"username\":\"alem\",\"password\":\"Biniye@99\"}";
+            //    this.jsonText = "{\"username\":\"alem\",\"password\":\"Biniye@99\"}";
         }
         private JsonText _jsonText { get; set; }
         public string jsonText { get; set; }
