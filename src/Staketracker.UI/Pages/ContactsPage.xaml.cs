@@ -13,8 +13,6 @@ namespace Staketracker.UI.Pages
         {
             InitializeComponent();
 
-            //  var v = ViewModel.authReply;
-
         }
     }
 }
