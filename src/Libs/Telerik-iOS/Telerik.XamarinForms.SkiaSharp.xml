@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Telerik.XamarinForms.SkiaSharp</name>
+    </assembly>
+    <members>
+        <member name="F:Telerik.XamarinForms.SkiaSharp.DocumentView.PaintMode.SnapshotCache">
+            <summary>
+            Use only cached snapshots to get a better performance.
+            </summary>
+        </member>
+        <member name="F:Telerik.XamarinForms.SkiaSharp.DocumentView.PaintMode.ActualInstructions">
+            <summary>
+            Use actual instruction set to get a smoother looking content.
+            </summary>
+        </member>
+        <member name="M:Telerik.XamarinForms.SkiaSharp.DocumentView.SkiaDocumentCaches.FullReleaseOverride">
+            <summary>
+            This method is executed within a write scope.
+            </summary>
+        </member>
+    </members>
+</doc>
