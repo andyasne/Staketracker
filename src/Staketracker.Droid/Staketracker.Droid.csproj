@@ -23,6 +23,7 @@
     <JavaOptions />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <AndroidLinkSkip>Staketracker.Core;Staketracker.UI;</AndroidLinkSkip>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,7 +37,6 @@
     <AndroidLinkMode>None</AndroidLinkMode>
     <AndroidSupportedAbis>
     </AndroidSupportedAbis>
-    <AndroidLinkSkip>Staketracker.Core;Staketracker.UI;</AndroidLinkSkip>
     <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
     <EnableProguard>false</EnableProguard>
     <AotAssemblies>false</AotAssemblies>
@@ -54,7 +54,6 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
-    <AndroidLinkSkip>Staketracker.Core;Staketracker.UI;</AndroidLinkSkip>
     <EnableProguard>true</EnableProguard>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <LangVersion>8.0</LangVersion>
