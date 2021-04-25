@@ -6,7 +6,7 @@ using Xamarin.Forms.Xaml;
 namespace Staketracker.UI.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    [MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Master, WrapInNavigationPage = false, Title = "NavigationMenu")]
+    [MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Master, WrapInNavigationPage = false)]
     public partial class MenuPage : MvxContentPage<MenuViewModel>
     {
         public MenuPage()
