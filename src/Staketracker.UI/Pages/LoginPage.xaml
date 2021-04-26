@@ -23,12 +23,12 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <StackLayout BackgroundColor="{StaticResource DarkBlueColor}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center"  HeightRequest="200" >
+            <StackLayout BackgroundColor="{StaticResource MediumBlueColor}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center"  HeightRequest="120" >
 
-                   <Image Source="splash_logo.png"  VerticalOptions="FillAndExpand" WidthRequest="170" HeightRequest="100"  Margin="10,0,0,0" Aspect="AspectFill" />
+                    <Image Source="splash_logo.png"  VerticalOptions="FillAndExpand" WidthRequest="170" HeightRequest="300"  Margin="10,0,0,0" Aspect="AspectFill" />
 
-                    <Label Text="Staketracker For Mobile" FontSize="35" Margin="0,0,20,5" VerticalTextAlignment="End" TextColor="{StaticResource LightColor}" FontFamily="Lobster" Style="{StaticResource TitleLabelStyle}"   />
+                    <Label Text="Staketracker For Mobile" FontSize="35" Margin="0,5,20,5" TextColor="{StaticResource LightColor}" FontFamily="Lobster" Style="{StaticResource TitleLabelStyle}" />
 
                 </StackLayout>
             </StackLayout>
@@ -95,7 +95,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                 </Grid>
 
                 <Label  TextColor="{StaticResource DarkTextColor}"  VerticalTextAlignment="End"  VerticalOptions="End"  Text="(c) SustaiNet Software International Inc." HorizontalTextAlignment="Center"  HorizontalOptions="CenterAndExpand"/>
-                <StackLayout Orientation="Horizontal" VerticalOptions="Start"  Margin="0,0,0,20"  >
+                <StackLayout Orientation="Horizontal" VerticalOptions="Start"   >
                     <Label  TextColor="{StaticResource DarkTextColor}"     VerticalTextAlignment="Start" VerticalOptions="Start"  Text="All Rights Reserved |" HorizontalTextAlignment="End"  HorizontalOptions="EndAndExpand"/>
                     <Label  TextColor="{StaticResource LightBlueColor}"     VerticalTextAlignment="Start" VerticalOptions="Start"  Text="Privacy" HorizontalTextAlignment="Start"  HorizontalOptions="StartAndExpand"/>
                 </StackLayout>
