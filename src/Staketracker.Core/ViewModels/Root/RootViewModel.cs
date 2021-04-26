@@ -1,5 +1,6 @@
 using MvvmCross.Navigation;
 using Staketracker.Core.ViewModels.Login;
+using Staketracker.Core.ViewModels.Menu;
 
 namespace Staketracker.Core.ViewModels.Root
 {
@@ -17,6 +18,8 @@ namespace Staketracker.Core.ViewModels.Root
         {
             base.ViewAppearing();
 
+            await _navigationService.Navigate<MenuViewModel
+                >();
             await _navigationService.Navigate<LoginViewModel>();
         }
     }
