@@ -28,7 +28,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
 
                    <Image Source="splash_logo.png"  VerticalOptions="FillAndExpand" ScaleX="2" ScaleY="2" WidthRequest="130" HeightRequest="130"  Margin="10,0,0,0" Aspect="AspectFill" />
 
-                    <Label Text="Staketracker Form Mobile" FontSize="40" Margin="0,0,20,5" VerticalTextAlignment="Center" TextColor="{StaticResource LightColor}" FontFamily="Lobster" Style="{StaticResource TitleLabelStyle}"   />
+                    <Label Text="Staketracker For Mobile" FontSize="38" Margin="0,0,20,5" VerticalTextAlignment="Center" TextColor="{StaticResource LightColor}" FontFamily="Lobster" Style="{StaticResource TitleLabelStyle}"   />
 
                 </StackLayout>
             </StackLayout>
