@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 using Staketracker.Core.ViewModels.Contacts;
 using Staketracker.Core.ViewModels.Login;
 using Xamarin.Forms;
@@ -16,13 +17,13 @@ namespace Staketracker.Core.ViewModels.Menu
 
         public MenuViewModel(IMvxNavigationService navigationService)
         {
-            //    _navigationService = navigationService;
-            //    MenuItemList = new MvxObservableCollection<string>()
-            //    {
-            //        "Login" 
-            //    };
+            _navigationService = navigationService;
+            MenuItemList = new MvxObservableCollection<string>()
+                {
+                    "Login"
+                };
 
-            //    ShowDetailPageAsyncCommand = new MvxAsyncCommand(ShowDetailPageAsync);
+            ShowDetailPageAsyncCommand = new MvxAsyncCommand(ShowDetailPageAsync);
         }
 
         private ObservableCollection<string> _menuItemList;

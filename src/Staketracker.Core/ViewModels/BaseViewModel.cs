@@ -15,15 +15,13 @@ namespace Staketracker.Core.ViewModels
 
         public IUserDialogs PageDialog = UserDialogs.Instance;
         public IApiManager ApiManager;
-        IApiService<IMakeUpApi> makeUpApi = new ApiService<IMakeUpApi>(Config.ApiUrl);
-        IApiService<IRedditApi> redditApi = new ApiService<IRedditApi>(Config.RedditApiUrl);
         IApiService<IStaketrackerApi> staketrackerApi = new ApiService<IStaketrackerApi>(Config.StaketrackerApiUrl);
         public event PropertyChangedEventHandler PropertyChanged;
 
         public bool IsBusy { get; set; }
         public BaseViewModel()
         {
-            ApiManager = new ApiManager(makeUpApi, redditApi, staketrackerApi);
+            ApiManager = new ApiManager(staketrackerApi);
 
         }
 
