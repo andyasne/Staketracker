@@ -11,7 +11,7 @@ namespace Staketracker.Core.ViewModels.Menu
 {
     public class MenuViewModel : BaseViewModel
     {
-        readonly IMvxNavigationService _navigationService;
+        private readonly IMvxNavigationService _navigationService;
 
         public IMvxAsyncCommand ShowDetailPageAsyncCommand { get; private set; }
 
@@ -27,6 +27,7 @@ namespace Staketracker.Core.ViewModels.Menu
         }
 
         private ObservableCollection<string> _menuItemList;
+
         public ObservableCollection<string> MenuItemList
         {
             get => _menuItemList;
@@ -41,9 +42,11 @@ namespace Staketracker.Core.ViewModels.Menu
                 case "Login":
                     await _navigationService.Navigate<LoginViewModel>();
                     break;
+
                 case "Contacts":
                     await _navigationService.Navigate<ContactsViewModel>();
                     break;
+
                 default:
                     break;
             }
@@ -60,6 +63,7 @@ namespace Staketracker.Core.ViewModels.Menu
         }
 
         private string _selectedMenuItem;
+
         public string SelectedMenuItem
         {
             get => _selectedMenuItem;

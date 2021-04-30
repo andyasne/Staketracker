@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                    x:Class="Staketracker.UI.Resources.Colors"
-                    xmlns:local="clr-namespace:Staketracker.UI.Resources">
+                    x:Class="Staketracker.UI.Resources.Colors">
 
     <Color x:Key="PrimaryColor">#124B8F</Color>
     <Color x:Key="PrimaryDarkColor">#052B59</Color>
@@ -14,6 +13,4 @@
 
     <Color x:Key="PrimaryTextColor">#001023</Color>
     <Color x:Key="SecondaryTextColor">#ffffff</Color>
- 
-
 </ResourceDictionary>

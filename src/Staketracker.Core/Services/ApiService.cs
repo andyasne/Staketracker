@@ -7,7 +7,8 @@ namespace Staketracker.Core.Services
 {
     public class ApiService<T> : IApiService<T>
     {
-        Func<HttpMessageHandler, T> createClient;
+        private Func<HttpMessageHandler, T> createClient;
+
         public ApiService(string apiBaseAddress)
         {
             createClient = messageHandler =>
@@ -54,15 +55,16 @@ namespace Staketracker.Core.Services
             {
                 case Priority.Background:
                     return Background;
+
                 case Priority.UserInitiated:
                     return UserInitiated;
+
                 case Priority.Speculative:
                     return Speculative;
+
                 default:
                     return UserInitiated;
             }
         }
-
     }
 }
-

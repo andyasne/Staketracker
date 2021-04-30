@@ -17,24 +17,23 @@ namespace Staketracker.Core.Services
 {
     public class ApiManager : IApiManager
     {
-        IUserDialogs _userDialogs = UserDialogs.Instance;
-        IConnectivity _connectivity = CrossConnectivity.Current;
+        private IUserDialogs _userDialogs = UserDialogs.Instance;
+        private IConnectivity _connectivity = CrossConnectivity.Current;
 
-        IApiService<IStaketrackerApi> staketrackerApi;
+        private IApiService<IStaketrackerApi> staketrackerApi;
         public bool IsConnected { get; set; }
         public bool IsReachable { get; set; }
-        Dictionary<int, CancellationTokenSource> runningTasks = new Dictionary<int, CancellationTokenSource>();
-        Dictionary<string, Task<HttpResponseMessage>> taskContainer = new Dictionary<string, Task<HttpResponseMessage>>();
+        private Dictionary<int, CancellationTokenSource> runningTasks = new Dictionary<int, CancellationTokenSource>();
+        private Dictionary<string, Task<HttpResponseMessage>> taskContainer = new Dictionary<string, Task<HttpResponseMessage>>();
 
         public ApiManager(IApiService<IStaketrackerApi> _staketrackerApi)
         {
-
             staketrackerApi = _staketrackerApi;
             IsConnected = _connectivity.IsConnected;
             _connectivity.ConnectivityChanged += OnConnectivityChanged;
         }
 
-        void OnConnectivityChanged(object sender, Plugin.Connectivity.Abstractions.ConnectivityChangedEventArgs e)
+        private void OnConnectivityChanged(object sender, Plugin.Connectivity.Abstractions.ConnectivityChangedEventArgs e)
         {
             IsConnected = e.IsConnected;
 
@@ -49,7 +48,6 @@ namespace Staketracker.Core.Services
                 }
             }
         }
-
 
         protected async Task<TData> RemoteRequestAsync<TData>(Task<TData> task)
             where TData : HttpResponseMessage,
@@ -69,7 +67,6 @@ namespace Staketracker.Core.Services
             else
             {
                 _userDialogs.Toast("Connection Established With sustainet.com Server", TimeSpan.FromSeconds(3));
-
             }
 
             IsReachable = await _connectivity.IsRemoteReachable(Config.ApiHostName);
@@ -97,10 +94,9 @@ namespace Staketracker.Core.Services
             {
                 var result = await task;
 
-
                 if (result.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    //Logout the user 
+                    //Logout the user
                 }
                 runningTasks.Remove(task.Id);
 
@@ -109,7 +105,6 @@ namespace Staketracker.Core.Services
 
             return data;
         }
-
 
         public async Task<HttpResponseMessage> AuthenticateUser(LoginAPIBody loginApiBody)
         {

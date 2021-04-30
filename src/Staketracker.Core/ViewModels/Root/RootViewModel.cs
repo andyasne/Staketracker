@@ -6,13 +6,12 @@ namespace Staketracker.Core.ViewModels.Root
 {
     public class RootViewModel : BaseViewModel
     {
-        readonly IMvxNavigationService _navigationService;
+        private readonly IMvxNavigationService _navigationService;
 
         public RootViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
         }
-
 
         public override async void ViewAppearing()
         {

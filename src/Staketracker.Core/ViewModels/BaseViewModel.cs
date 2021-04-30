@@ -10,17 +10,17 @@ namespace Staketracker.Core.ViewModels
 {
     public abstract class BaseViewModel : MvxViewModel, INotifyPropertyChanged
     {
-
         public IUserDialogs PageDialog = UserDialogs.Instance;
         public IApiManager ApiManager;
-        IApiService<IStaketrackerApi> staketrackerApi = new ApiService<IStaketrackerApi>(Config.StaketrackerApiUrl);
+        private IApiService<IStaketrackerApi> staketrackerApi = new ApiService<IStaketrackerApi>(Config.StaketrackerApiUrl);
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public bool IsBusy { get; set; }
+
         public BaseViewModel()
         {
             ApiManager = new ApiManager(staketrackerApi);
-
         }
 
         public async Task RunSafe(Task task, bool ShowLoading = true, string loadinMessage = null)
@@ -52,6 +52,5 @@ namespace Staketracker.Core.ViewModels
                     UserDialogs.Instance.HideLoading();
             }
         }
-
     }
 }

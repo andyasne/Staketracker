@@ -4,7 +4,6 @@ namespace Staketracker.Core
 {
     public static class Config
     {
-
         public static string ApiUrl = "https://www.sustainet.com/";
 
         public static string StaketrackerApiUrl = "https://www.staketracker.com";

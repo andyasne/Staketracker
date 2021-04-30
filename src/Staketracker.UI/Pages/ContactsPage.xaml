@@ -1,21 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <views:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Staketracker.UI.Pages.ContactsPage"
-             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Contacts;assembly=Staketracker.Core" xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Contacts;assembly=Staketracker.Core"
+                      xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+                      x:Class="Staketracker.UI.Pages.ContactsPage"
                       x:TypeArguments="viewModels:ContactsViewModel">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Add Dashboard UI Design Here" HorizontalOptions="CenterAndExpand"  VerticalOptions="Center" VerticalTextAlignment="Center" HeightRequest="200"/>
+            <Label Text="Add Dashboard UI Design Here" HorizontalOptions="CenterAndExpand"  VerticalOptions="Center" VerticalTextAlignment="Center" HeightRequest="200" />
 
-            <telerikInput:RadButton Text="SIGN OUT"  
+            <telerikInput:RadButton Text="SIGN OUT"
                                             Command="{Binding SignOutCommand}"
                                      Style="{StaticResource ActionButtonStyle}" Margin="10" />
         </StackLayout>
     </ContentPage.Content>
-
-
-
-
 </views:MvxContentPage>
