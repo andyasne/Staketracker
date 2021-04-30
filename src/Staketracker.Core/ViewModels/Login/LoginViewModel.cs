@@ -68,7 +68,7 @@ namespace Staketracker.Core.ViewModels.Login
             else
             {
                 //await PageDialog.AlertAsync(makeUpsResponse.ReasonPhrase, "Error", "Ok");
-                await PageDialog.AlertAsync(makeUpsResponse.ReasonPhrase, "Error", "Ok");
+                await PageDialog.AlertAsync("Incorrect Username or Password", "Validation Error", "Ok");
             }
         }
     }
