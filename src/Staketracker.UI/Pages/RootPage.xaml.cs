@@ -1,7 +1,8 @@
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Staketracker.Core.ViewModels.Root;
-using Xamarin.Forms.Xaml;namespace Staketracker.UI.Pages
+using Xamarin.Forms.Xaml;
+namespace Staketracker.UI.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     [MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Root, WrapInNavigationPage = false)]

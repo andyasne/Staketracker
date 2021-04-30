@@ -6,9 +6,9 @@ namespace Staketracker.iOS
     {
         private static void Main(string[] args)
         {
-        
-               UIApplication.Main(args, null, nameof(AppDelegate));
-         
+
+            UIApplication.Main(args, null, nameof(AppDelegate));
+
         }
     }
 }

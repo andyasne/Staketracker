@@ -13,6 +13,6 @@ namespace Staketracker.UI.Pages
         {
             InitializeComponent();
         }
-  
+
     }
 }

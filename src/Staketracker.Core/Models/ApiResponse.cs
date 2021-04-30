@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
-using MvvmCross.ViewModels;
-
 namespace Staketracker.Core.Models
 {
     public class D

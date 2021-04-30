@@ -1,12 +1,10 @@
-using MvvmCross.ViewModels;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
+using MvvmCross.ViewModels;
 using Staketracker.Core.Services;
-using Xamarin.Forms;
-using Staketracker.Core.Models;
 
 namespace Staketracker.Core.ViewModels
 {
