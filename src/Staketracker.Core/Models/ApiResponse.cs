@@ -19,8 +19,7 @@ namespace Staketracker.Core.Models
         {
             this.d = new D();
         }
+
         public D d { get; set; }
-
     }
-
 }

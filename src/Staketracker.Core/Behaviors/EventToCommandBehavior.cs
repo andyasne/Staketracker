@@ -7,7 +7,7 @@ namespace Staketracker.Core.Behaviors
 {
     public class EventToCommandBehavior : BehaviorBase<View>
     {
-        Delegate eventHandler;
+        private Delegate eventHandler;
 
         public static readonly BindableProperty EventNameProperty = BindableProperty.Create(nameof(EventName), typeof(string), typeof(EventToCommandBehavior), null, propertyChanged: OnEventNameChanged);
         public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(EventToCommandBehavior), null);
@@ -50,7 +50,7 @@ namespace Staketracker.Core.Behaviors
             base.OnDetachingFrom(bindable);
         }
 
-        void RegisterEvent(string name)
+        private void RegisterEvent(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -67,7 +67,7 @@ namespace Staketracker.Core.Behaviors
             eventInfo.AddEventHandler(AssociatedObject, eventHandler);
         }
 
-        void DeregisterEvent(string name)
+        private void DeregisterEvent(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -87,7 +87,7 @@ namespace Staketracker.Core.Behaviors
             eventHandler = null;
         }
 
-        void OnEvent(object sender, object eventArgs)
+        private void OnEvent(object sender, object eventArgs)
         {
             if (Command == null)
             {
@@ -114,7 +114,7 @@ namespace Staketracker.Core.Behaviors
             }
         }
 
-        static void OnEventNameChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void OnEventNameChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var behavior = (EventToCommandBehavior)bindable;
             if (behavior.AssociatedObject == null)

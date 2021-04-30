@@ -12,7 +12,6 @@ namespace Staketracker.UI.Pages
         public ContactsPage()
         {
             InitializeComponent();
-
         }
     }
 }

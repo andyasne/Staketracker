@@ -6,7 +6,6 @@ namespace Staketracker.Core.Services
 {
     public interface IApiManager
     {
-
         Task<HttpResponseMessage> AuthenticateUser(LoginAPIBody loginApiBody);
     }
 }

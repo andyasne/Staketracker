@@ -13,7 +13,6 @@ namespace Staketracker.Core.ViewModels.Login
     {
         internal readonly IMvxNavigationService _navigationService;
 
-
         public LoginAPIBody loginApiBody { get; set; }
 
         public JsonText jsonText { get; set; }
@@ -44,7 +43,6 @@ namespace Staketracker.Core.ViewModels.Login
             AuthenticateUserCommand = new Command(async () => await RunSafe(AuthenticateUser(loginApiBody)));
         }
 
-
         internal async Task AuthenticateUser(LoginAPIBody loginApiBody)
         {
             loginApiBody = new LoginAPIBody(username, password);
@@ -65,8 +63,6 @@ namespace Staketracker.Core.ViewModels.Login
                 //await PageDialog.AlertAsync("Logged in successfully,     SessionId-" + authReply.d.sessionId, "Login", "Ok");
 
                 await _navigationService.Navigate<ContactsViewModel>();
-
-
             }
             else
             {

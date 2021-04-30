@@ -6,25 +6,23 @@ using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels.Contacts
 {
-
     public class ContactsViewModel : BaseViewModel
 
     {
-        readonly IMvxNavigationService _navigationService;
+        private readonly IMvxNavigationService _navigationService;
 
         public ICommand SignOutCommand { get; set; }
+
         public ContactsViewModel(IMvxNavigationService navigationService)
         {
-
             _navigationService = navigationService;
 
             SignOutCommand = new Command(async () => await SignOut());
         }
 
-        async Task SignOut()
+        private async Task SignOut()
         {
             await _navigationService.Navigate<LoginViewModel>();
         }
-
     }
 }

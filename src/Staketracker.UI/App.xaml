@@ -2,18 +2,14 @@
 <Application
     x:Class="Staketracker.UI.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="clr-namespace:MvvmCross.Forms;assembly=MvvmCross.Forms"
-    xmlns:resources="clr-namespace:Staketracker.UI.Resources">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Application.Resources>
 
         <!--  Application resource dictionary  -->
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Pages/Styles.xaml" />
-
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-
     </Application.Resources>
 </Application>
