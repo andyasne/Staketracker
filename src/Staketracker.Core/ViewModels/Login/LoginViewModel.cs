@@ -7,6 +7,7 @@ namespace Staketracker.Core.ViewModels.Login
     using Newtonsoft.Json;
     using Staketracker.Core.Models;
     using Staketracker.Core.ViewModels.Contacts;
+    using Staketracker.Core.ViewModels.TwoStepVerification;
     using Xamarin.Forms;
 
     public class LoginViewModel : BaseViewModel
@@ -62,7 +63,7 @@ namespace Staketracker.Core.ViewModels.Login
                 PageDialog.Toast(msg, TimeSpan.FromSeconds(5));
                 //await PageDialog.AlertAsync("Logged in successfully,     SessionId-" + authReply.d.sessionId, "Login", "Ok");
 
-                await _navigationService.Navigate<ContactsViewModel>();
+                await _navigationService.Navigate<TwoStepVerificationViewModel>();
             }
             else
             {

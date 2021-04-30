@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.TwoStepVerification;assembly=Staketracker.Core"
+                      xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+                      xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+                      x:Class="Staketracker.UI.Pages.TwoStepVerificationPage"
+                      NavigationPage.HasNavigationBar="False"
+             x:TypeArguments="viewModels:TwoStepVerificationViewModel">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackLayout BackgroundColor="{StaticResource DarkBlueColor}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center"  HeightRequest="150">
+
+                    <Image Source="splash_logo.png"  VerticalOptions="FillAndExpand" ScaleX="2" ScaleY="2" WidthRequest="130" HeightRequest="130"  Margin="10,0,0,0" Aspect="AspectFill" />
+
+                    <Label Text="Staketracker For Mobile" FontSize="38" Margin="0,0,20,5" VerticalTextAlignment="Center" TextColor="{StaticResource LightColor}" FontFamily="Lobster" Style="{StaticResource TitleLabelStyle}" />
+                </StackLayout>
+            </StackLayout>
+            <ScrollView Grid.Row="1">
+                <StackLayout Orientation="Vertical"  Padding="30,30,30,0" VerticalOptions="CenterAndExpand" Spacing="0">
+                    <Label Text="Two-Step Verification" FontSize="20" Margin="0,30,0,0" VerticalTextAlignment="Start" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="{StaticResource DarkTextColor}" FontFamily="Lobster" Style="{StaticResource TitleLabelStyle}" />
+                    <Label Text="An email with your  code was sent to:" FontSize="15" Margin="10,30,0,0"   VerticalTextAlignment="Start" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center" TextColor="{StaticResource MediumBlueColor}" FontFamily="Lobster" Style="{StaticResource NormalLabelStyle}" />
+                    <Label Text="hxxxxd@sustainet.com"  FontSize="15" Margin="10,0,0,0" Padding="0" VerticalTextAlignment="Start" VerticalOptions="Start" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center" TextColor="{StaticResource MediumBlueColor}" FontFamily="Lobster" Style="{StaticResource NormalLabelStyle}" />
+
+                    <telerikInput:RadEntry   Margin="0,30,0,0"
+                                  
+                                   Style="{StaticResource LoginEntryStyle}" />
+
+                    <telerikInput:RadButton Text="Validate" Margin="0,20"
+                                           
+                                     Style="{StaticResource ActionButtonStyle}" />
+
+                    <Label Text="Resend Code" FontSize="15" Margin="10,10,0,0" VerticalTextAlignment="Start" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" TextColor="{StaticResource MediumBlueColor}" FontFamily="Lobster" Style="{StaticResource TitleLabelStyle}" />
+
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+        <RelativeLayout VerticalOptions="EndAndExpand" HorizontalOptions="Fill"    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
+            <StackLayout Spacing="0">
+
+                <Label  TextColor="Red"  Margin="10,0,10,20"  VerticalTextAlignment="Center"  VerticalOptions="CenterAndExpand"  Text="Please note that this is the SANDBOX login screen,and NOT the 'live' production database" HorizontalTextAlignment="Center"  HorizontalOptions="CenterAndExpand" />
+                 
+            </StackLayout>
+        </RelativeLayout>
+    </StackLayout>
+</views:MvxContentPage>
