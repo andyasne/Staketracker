@@ -79,6 +79,9 @@
     <Compile Update="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\TwoStepVerificationPage.xaml.cs">
+      <DependentUpon>TwoStepVerificationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>

@@ -10,6 +10,7 @@
     <Color x:Key="LightBlueColor">#4B78AE</Color>
     <Color x:Key="LightColor">#FFFFFF</Color>
     <Color x:Key="DarkTextColor">#001023</Color>
+    <Color x:Key="EntryBackgroundColor">#E8E9EA</Color>
 
     <Style x:Key="TitleLabelStyle"
            TargetType="Label">
@@ -44,6 +45,9 @@
 
         <Setter Property="WatermarkTextColor"
                 Value="{StaticResource LightBlueColor}" />
+        <Setter Property="BackgroundColor"
+                Value="{StaticResource EntryBackgroundColor}" />
+
         <Setter Property="FontSize"
                 Value="18" />
         <Setter Property="HeightRequest"
@@ -55,7 +59,7 @@
         <Setter Property="BorderStyle">
             <Setter.Value>
                 <telerikInput:BorderStyle BorderColor="{StaticResource LightBlueColor}"  CornerRadius="6"
-                                          BorderThickness="1" />
+                                          BorderThickness="0.3" />
             </Setter.Value>
         </Setter>
     </Style>
