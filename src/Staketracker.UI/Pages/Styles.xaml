@@ -58,7 +58,7 @@
                 Value="10,5,5,10" />
         <Setter Property="BorderStyle">
             <Setter.Value>
-                <telerikInput:BorderStyle BorderColor="{StaticResource LightBlueColor}"  CornerRadius="6"
+                <telerikInput:BorderStyle BorderColor="{StaticResource LightBlueColor}"  CornerRadius="9"
                                           BorderThickness="0.3" />
             </Setter.Value>
         </Setter>

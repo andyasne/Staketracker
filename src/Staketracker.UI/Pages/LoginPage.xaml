@@ -42,7 +42,7 @@
                         <Label Text="Connect to Sandbox"  Style="{StaticResource NormalLabelStyle}" />
                     </StackLayout>
                     <telerikInput:RadEntry   Margin="0,30,0,0"
-                                   WatermarkText="User ID"
+                                   WatermarkText="User ID" 
                                    Text="{Binding username, Mode=TwoWay }"
                                    Style="{StaticResource LoginEntryStyle}" />
 
@@ -64,7 +64,7 @@
         </Grid>
         <RelativeLayout VerticalOptions="EndAndExpand" HorizontalOptions="Fill"    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
             <StackLayout Spacing="0">
-                <Grid  Margin="0,5,0,5">
+                <Grid  Margin="10,5,10,5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>

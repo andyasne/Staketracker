@@ -13,13 +13,22 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
     public class TwoStepVerificationViewModel : BaseViewModel
     {
 
+        public ICommand OpenDashboardPageCommand { get; set; }
+
+        internal readonly IMvxNavigationService _navigationService;
 
         public TwoStepVerificationViewModel(IMvxNavigationService navigationService)
         {
+            _navigationService = navigationService;
+
+            OpenDashboardPageCommand = new Command(async () => await RunSafe(OpenDashboardPage()));
+
         }
 
-        internal async Task AuthenticateUser(LoginAPIBody loginApiBody)
+        internal async Task OpenDashboardPage()
         {
+
+            await _navigationService.Navigate<ContactsViewModel>();
 
         }
     }
