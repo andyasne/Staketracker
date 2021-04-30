@@ -35,7 +35,7 @@
 
 
 
-                    <telerikInput:RadComboBox x:Name="comboBox"   Style="{StaticResource ComboEntryStyle}"  Margin="0,0,0,5"    Placeholder="Production" />
+                    <telerikInput:RadEntry x:Name="comboBox"   Style="{StaticResource ComboEntryStyle}"  Margin="0,0,0,5"    WatermarkText="Production" />
 
                     <StackLayout Orientation="Horizontal">
                         <telerikPrimitives:RadCheckBox x:Name="connectto" Style="{StaticResource checkBoxButtonStyle}" />
