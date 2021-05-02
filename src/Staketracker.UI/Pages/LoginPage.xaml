@@ -70,11 +70,11 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />  
 
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <telerikInput:RadButton VerticalContentAlignment="End" HorizontalContentAlignment="Start"  HeightRequest="20" Text="Forgot Your User Id ?"   Grid.Row="0" Grid.Column="1"
+                    <telerikInput:RadButton VerticalContentAlignment="End" HorizontalContentAlignment="Start"  HeightRequest="20" Text="Forgot Your User Id?"   Grid.Row="0" Grid.Column="1"
                                      Style="{StaticResource SecondaryActionButtonStyle}"
                                     FontAttributes="None" />
 
