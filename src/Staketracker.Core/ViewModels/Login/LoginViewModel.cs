@@ -63,7 +63,7 @@ namespace Staketracker.Core.ViewModels.Login
                 PageDialog.Toast(msg, TimeSpan.FromSeconds(5));
                 //await PageDialog.AlertAsync("Logged in successfully,     SessionId-" + authReply.d.sessionId, "Login", "Ok");
 
-                bool Is2FEnabled = Is2FEnabled();
+                bool Is2FEnabled = Is2FEnabled();//use same authenticateusr api call - usr obj now has Is2FEnabled
                 if (Is2FEnabled)
                     await _navigationService.Navigate<TwoStepVerificationViewModel>();
             }
