@@ -1,9 +1,10 @@
 using System;
+using Telerik.XamarinForms.Input;
 using Xamarin.Forms;
 
 namespace Staketracker.Core.Helpers.Behaviours
 {
-    public class EntryLineValidationBehaviour : BehaviorBase<Entry>
+    public class EntryLineValidationBehaviour : BehaviorBase<RadEntry>
     {
         #region StaticFields
         public static readonly BindableProperty IsValidProperty = BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(EntryLineValidationBehaviour), true, BindingMode.Default, null, (bindable, oldValue, newValue) => OnIsValidChanged(bindable, newValue));
@@ -27,7 +28,7 @@ namespace Staketracker.Core.Helpers.Behaviours
             if (bindable is EntryLineValidationBehaviour IsValidBehavior &&
                  newValue is bool IsValid)
             {
-                IsValidBehavior.AssociatedObject.PlaceholderColor = IsValid ? Color.Default : Color.Red;
+                IsValidBehavior.AssociatedObject.WatermarkTextColor = IsValid ? Color.Default : Color.Red;
             }
         }
 
