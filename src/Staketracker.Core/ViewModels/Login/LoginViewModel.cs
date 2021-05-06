@@ -6,6 +6,8 @@ namespace Staketracker.Core.ViewModels.Login
     using MvvmCross.Navigation;
     using Newtonsoft.Json;
     using Staketracker.Core.Models;
+    using Staketracker.Core.Validators;
+    using Staketracker.Core.Validators.Rules;
     using Staketracker.Core.ViewModels.Contacts;
     using Staketracker.Core.ViewModels.TwoStepVerification;
     using Xamarin.Forms;
@@ -18,7 +20,7 @@ namespace Staketracker.Core.ViewModels.Login
 
         public JsonText jsonText { get; set; }
 
-        public String username { get; set; }
+        public ValidatableObject<string> username { get; set; } = new ValidatableObject<string>();
 
         public String password { get; set; }
 
@@ -32,46 +34,65 @@ namespace Staketracker.Core.ViewModels.Login
 
         public LoginViewModel(IMvxNavigationService navigationService)
         {
+            AddValidationRules();
+
             authReply = new AuthReply();
             _navigationService = navigationService;
-            username = "Alem";
+            username.Value = "Alem";
             password = "Biniye@99";
 
-            // loginApiBody.jsonText.username = "alem";
-            //loginApiBody.jsonText.password = "Biniye@99";
-            //      GetDataCommand = new Command(async () => await RunSafe(GetData()));
-            // GetTimeLineDataCommand = new Command(async () => await RunSafe(GetTimeLine()));
             AuthenticateUserCommand = new Command(async () => await RunSafe(AuthenticateUser(loginApiBody)));
+        }
+
+        public void AddValidationRules()
+        {
+            username.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "User Id is Required" });
+        }
+
+        bool AreFieldsValid()
+        {
+            bool isFirstNameValid = username.Validate();
+            return isFirstNameValid;
+
         }
 
         internal async Task AuthenticateUser(LoginAPIBody loginApiBody)
         {
-            loginApiBody = new LoginAPIBody(username, password);
-
-            var makeUpsResponse = await ApiManager.AuthenticateUser(loginApiBody);
-
-            if (makeUpsResponse.IsSuccessStatusCode)
+            if (AreFieldsValid())
             {
-                var response = await makeUpsResponse.Content.ReadAsStringAsync();
-                authReply = await Task.Run(() => JsonConvert.DeserializeObject<AuthReply>(response));
-                if (authReply.d.sessionId == null)
+                loginApiBody = new LoginAPIBody(username.Value, password);
+
+                var makeUpsResponse = await ApiManager.AuthenticateUser(loginApiBody);
+
+                if (makeUpsResponse.IsSuccessStatusCode)
                 {
-                    await PageDialog.AlertAsync("Incorrect Username or Password", "Validation Error", "Ok");
-                    return;
+                    var response = await makeUpsResponse.Content.ReadAsStringAsync();
+                    authReply = await Task.Run(() => JsonConvert.DeserializeObject<AuthReply>(response));
+                    if (authReply.d.sessionId == null)
+                    {
+                        await PageDialog.AlertAsync("Incorrect Username or Password", "Validation Error", "Ok");
+                        return;
+                    }
+                    String msg = "Logged in successfully, SessionId-" + authReply.d.sessionId;
+                    PageDialog.Toast(msg, TimeSpan.FromSeconds(5));
+                    //await PageDialog.AlertAsync("Logged in successfully,     SessionId-" + authReply.d.sessionId, "Login", "Ok");
+
+                    bool Is2FEnabled = GetIs2FEnabled();//Consume the 'Is2FEnabled'(returns "True" or "False") API right after AuthenticateUsr.
+                    if (Is2FEnabled)
+                        await _navigationService.Navigate<TwoStepVerificationViewModel>();
                 }
-                String msg = "Logged in successfully, SessionId-" + authReply.d.sessionId;
-                PageDialog.Toast(msg, TimeSpan.FromSeconds(5));
-                //await PageDialog.AlertAsync("Logged in successfully,     SessionId-" + authReply.d.sessionId, "Login", "Ok");
-//
-             //   bool Is2FEnabled = Is2FEnabled();//Consume the 'Is2FEnabled'(returns "True" or "False") API right after AuthenticateUsr.
-              //  if (Is2FEnabled == "True")
-               //     await _navigationService.Navigate<TwoStepVerificationViewModel>();
+                else
+                {
+                    //await PageDialog.AlertAsync(makeUpsResponse.ReasonPhrase, "Error", "Ok");
+                    await PageDialog.AlertAsync("Incorrect Username or Password", "Validation Error", "Ok");
+                }
             }
-            else
-            {
-                //await PageDialog.AlertAsync(makeUpsResponse.ReasonPhrase, "Error", "Ok");
-                await PageDialog.AlertAsync("Incorrect Username or Password", "Validation Error", "Ok");
-            }
+        }
+
+        private static bool GetIs2FEnabled()
+        {
+            //TOD : call the api and retrieve this val
+            return true;
         }
     }
 }

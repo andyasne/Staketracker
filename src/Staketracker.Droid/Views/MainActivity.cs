@@ -12,8 +12,15 @@ namespace Staketracker.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
-            UserDialogs.Init(this);
+            try
+            {
+                UserDialogs.Init(this);
 
+            }
+            catch (System.Exception)
+            {
+
+            }
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
