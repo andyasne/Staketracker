@@ -5,9 +5,8 @@
                       xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Login;assembly=Staketracker.Core"
                       xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
                       xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
-                          xmlns:behaviour="clr-namespace:Staketracker.Core.Helpers.Behaviours;assembly=Staketracker.Core"
-           
-           
+                          xmlns:behaviour="clr-namespace:Staketracker.Core.Helpers.Behaviours;assembly=Staketracker.Core" 
+                      xmlns:converter="clr-namespace:Staketracker.Core.Helpers.Converters;assembly=Staketracker.Core"
                       x:Class="Staketracker.UI.Pages.LoginPage"
                       NavigationPage.HasNavigationBar="False"
              x:TypeArguments="viewModels:LoginViewModel">
@@ -17,6 +16,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout>
@@ -54,7 +55,9 @@
                         </telerikInput:RadEntry.Behaviors>
                     </telerikInput:RadEntry>
 
-                    <Label Text="{Binding username.Errors }" />
+                    <Label Text="{Binding username.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                        IsVisible="{Binding username.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                         Style="{StaticResource ErrorTextStyle}"/>
 
                     <!--/User Id-->
 
