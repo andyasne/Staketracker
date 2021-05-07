@@ -9,7 +9,9 @@ namespace Staketracker.Core.ViewModels.Login
     using Staketracker.Core.Validators;
     using Staketracker.Core.Validators.Rules;
     using Staketracker.Core.ViewModels.TwoStepVerification;
+    using Staketracker.Core.ViewModels.Dashboard;
     using Xamarin.Forms;
+    using System.Net.Http;
 
     public class LoginViewModel : BaseViewModel
     {
@@ -56,11 +58,11 @@ namespace Staketracker.Core.ViewModels.Login
             {
                 loginApiBody = new LoginAPIBody(Username.Value, Password.Value);
 
-                var makeUpsResponse = await ApiManager.AuthenticateUser(loginApiBody);
+                var authResponse = await ApiManager.AuthenticateUser(loginApiBody);
 
-                if (makeUpsResponse.IsSuccessStatusCode)
+                if (authResponse.IsSuccessStatusCode)
                 {
-                    var response = await makeUpsResponse.Content.ReadAsStringAsync();
+                    var response = await authResponse.Content.ReadAsStringAsync();
                     authReply = await Task.Run(() => JsonConvert.DeserializeObject<AuthReply>(response));
                     if (authReply.d.sessionId == null)
                     {
@@ -71,22 +73,47 @@ namespace Staketracker.Core.ViewModels.Login
                     PageDialog.Toast(msg, TimeSpan.FromSeconds(5));
                     //await PageDialog.AlertAsync("Logged in successfully,     SessionId-" + authReply.d.sessionId, "Login", "Ok");
 
-                    bool Is2FEnabled = GetIs2FEnabled();//Consume the 'Is2FEnabled'(returns "True" or "False") API right after AuthenticateUsr.
+                    bool Is2FEnabled = await GetIs2FEnabled(loginApiBody);//Consume the 'Is2FEnabled'(returns "True" or "False") API right after AuthenticateUsr.
                     if (Is2FEnabled)
-                        await _navigationService.Navigate<TwoStepVerificationViewModel>();
+                    { await _navigationService.Navigate<TwoStepVerificationViewModel>(); }
+                    else
+                    {
+                        await _navigationService.Navigate<DashboardViewModel>();
+                    }
                 }
                 else
                 {
-                    //await PageDialog.AlertAsync(makeUpsResponse.ReasonPhrase, "Error", "Ok");
+                    //await PageDialog.AlertAsync(authResponse.ReasonPhrase, "Error", "Ok");
                     await PageDialog.AlertAsync("Incorrect Username or Password", "Validation Error", "Ok");
                 }
             }
         }
 
-        private static bool GetIs2FEnabled()
+        internal async Task<bool> GetIs2FEnabled(LoginAPIBody loginApiBody)
         {
-            //TOD : call the api and retrieve this val
-            return true;
+            Is2FEnabledResponse is2FEnabledResponse;
+            HttpResponseMessage _Is2FEnabled = await ApiManager.Is2FEnabled(loginApiBody);
+
+            if (_Is2FEnabled.IsSuccessStatusCode)
+            {
+                var response = await _Is2FEnabled.Content.ReadAsStringAsync();
+                is2FEnabledResponse = await Task.Run(() => JsonConvert.DeserializeObject<Is2FEnabledResponse>(response));
+                if (is2FEnabledResponse.d == "True")
+                {
+                    return true;
+                }
+                else
+                { return false; }
+
+            }
+            else
+            {
+                await PageDialog.AlertAsync("API Error While retrieving IS2 Enabled State for the user", "API Response Error", "Ok");
+                return false;
+            }
+
         }
+
+
     }
 }

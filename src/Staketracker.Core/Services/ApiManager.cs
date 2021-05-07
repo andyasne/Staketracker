@@ -113,5 +113,14 @@ namespace Staketracker.Core.Services
             runningTasks.Add(task.Id, cts);
             return await task;
         }
+
+        public async Task<HttpResponseMessage> Is2FEnabled(LoginAPIBody loginApiBody)
+        {
+            var cts = new CancellationTokenSource();
+            var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).Is2FEnabled(loginApiBody, cts.Token));
+            runningTasks.Add(task.Id, cts);
+            return await task;
+        }
+
     }
 }

@@ -4,16 +4,16 @@ using MvvmCross.Navigation;
 using Staketracker.Core.ViewModels.Login;
 using Xamarin.Forms;
 
-namespace Staketracker.Core.ViewModels.Contacts
+namespace Staketracker.Core.ViewModels.Dashboard
 {
-    public class ContactsViewModel : BaseViewModel
+    public class DashboardViewModel : BaseViewModel
 
     {
         private readonly IMvxNavigationService _navigationService;
 
         public ICommand SignOutCommand { get; set; }
 
-        public ContactsViewModel(IMvxNavigationService navigationService)
+        public DashboardViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
 

@@ -7,5 +7,8 @@ namespace Staketracker.Core.Services
     public interface IApiManager
     {
         Task<HttpResponseMessage> AuthenticateUser(LoginAPIBody loginApiBody);
+
+        Task<HttpResponseMessage> Is2FEnabled(LoginAPIBody loginApiBody);
+
     }
 }

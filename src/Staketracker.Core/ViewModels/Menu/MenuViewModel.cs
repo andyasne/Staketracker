@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using Staketracker.Core.ViewModels.Contacts;
+using Staketracker.Core.ViewModels.Dashboard;
 using Staketracker.Core.ViewModels.Home;
 using Xamarin.Forms;
 
@@ -46,7 +46,7 @@ namespace Staketracker.Core.ViewModels.Menu
                     await _navigationService.Navigate<HomeViewModel>();
                     break;
                 case "Contacts":
-                    await _navigationService.Navigate<ContactsViewModel>();
+                    await _navigationService.Navigate<DashboardViewModel>();
                     break;
                 default:
                     break;

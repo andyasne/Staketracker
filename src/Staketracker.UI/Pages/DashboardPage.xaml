@@ -3,10 +3,10 @@
 xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                      xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Contacts;assembly=Staketracker.Core"
+                      xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Dashboard;assembly=Staketracker.Core"
                       xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
-                      x:Class="Staketracker.UI.Pages.ContactsPage"
-                      x:TypeArguments="viewModels:ContactsViewModel">
+                      x:Class="Staketracker.UI.Pages.DashboardPage"
+                      x:TypeArguments="viewModels:DashboardViewModel">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Add Dashboard UI Design Here" HorizontalOptions="CenterAndExpand"  VerticalOptions="Center" VerticalTextAlignment="Center" HeightRequest="200" />
