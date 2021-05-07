@@ -14,7 +14,6 @@ namespace Staketracker.Core.Validators
 
         }
 
-        // boiler-plate
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
                 => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -27,7 +26,6 @@ namespace Staketracker.Core.Validators
             OnPropertyChanged(propertyName);
             return true;
         }
-
 
         public List<IValidationRule<T>> Validations { get; } = new List<IValidationRule<T>>();
 

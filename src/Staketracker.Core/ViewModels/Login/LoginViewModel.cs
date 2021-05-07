@@ -1,9 +1,5 @@
 namespace Staketracker.Core.ViewModels.Login
 {
-    using System;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-    using System.Windows.Input;
     using MvvmCross.Navigation;
     using Newtonsoft.Json;
     using Staketracker.Core.Models;
@@ -11,6 +7,10 @@ namespace Staketracker.Core.ViewModels.Login
     using Staketracker.Core.Validators.Rules;
     using Staketracker.Core.ViewModels.Dashboard;
     using Staketracker.Core.ViewModels.TwoStepVerification;
+    using System;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using System.Windows.Input;
     using Xamarin.Forms;
 
     public class LoginViewModel : BaseViewModel
