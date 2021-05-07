@@ -2,11 +2,11 @@
 <views:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:behaviour="clr-namespace:Staketracker.Core.Helpers.Behaviours;assembly=Staketracker.Core"
+                      xmlns:converter="clr-namespace:Staketracker.Core.Helpers.Converters;assembly=Staketracker.Core"
                       xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Login;assembly=Staketracker.Core"
                       xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
-                      xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
-                          xmlns:behaviour="clr-namespace:Staketracker.Core.Helpers.Behaviours;assembly=Staketracker.Core" 
-                      xmlns:converter="clr-namespace:Staketracker.Core.Helpers.Converters;assembly=Staketracker.Core"
+                      xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       x:Class="Staketracker.UI.Pages.LoginPage"
                       NavigationPage.HasNavigationBar="False"
              x:TypeArguments="viewModels:LoginViewModel">
@@ -16,8 +16,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <converter:InverseBoolConverter x:Key="InverseBoolConverter"/>
-            <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter"/>
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout>
@@ -28,44 +28,46 @@
             </Grid.RowDefinitions>
             <StackLayout BackgroundColor="{StaticResource DarkBlueColor}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center"  HeightRequest="150">
-
                     <Image Source="splash_logo.png"  VerticalOptions="FillAndExpand" ScaleX="2" ScaleY="2" WidthRequest="130" HeightRequest="130"  Margin="10,0,0,0" Aspect="AspectFill" />
-
                     <Label Text="Staketracker For Mobile" FontSize="38" Margin="0,0,20,5" VerticalTextAlignment="Center" TextColor="{StaticResource LightColor}" FontFamily="Lobster" Style="{StaticResource TitleLabelStyle}" />
                 </StackLayout>
             </StackLayout>
             <ScrollView Grid.Row="1">
                 <StackLayout Orientation="Vertical" Padding="30,30,30,0" VerticalOptions="CenterAndExpand" Spacing="10">
-
-
-
                     <telerikInput:RadEntry x:Name="production" Text="Production" IsReadOnly="True"   Style="{StaticResource LoginEntryStyle}"  Margin="0,0,0,5"    WatermarkText="Production" />
-
                     <StackLayout Orientation="Horizontal">
                         <telerikPrimitives:RadCheckBox x:Name="connectto" Style="{StaticResource checkBoxButtonStyle}" />
                         <Label Text="Connect to Sandbox"  Style="{StaticResource NormalLabelStyle}" />
                     </StackLayout>
                     <!--User Id-->
                     <telerikInput:RadEntry   Margin="0,30,0,0"
-                                   WatermarkText="User ID" 
-                                   Text="{Binding username.Value, Mode=TwoWay }"
-                                   Style="{StaticResource LoginEntryStyle}" >
+                                   WatermarkText="User ID"
+                                   Text="{Binding Username.Value, Mode=TwoWay }"
+                                   Style="{StaticResource LoginEntryStyle}">
                         <telerikInput:RadEntry.Behaviors>
-                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding username.IsValid}"/>
+                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding Username.IsValid}" />
                         </telerikInput:RadEntry.Behaviors>
                     </telerikInput:RadEntry>
 
-                    <Label Text="{Binding username.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
-                        IsVisible="{Binding username.IsValid, Converter={StaticResource InverseBoolConverter}}"
-                         Style="{StaticResource ErrorTextStyle}"/>
+                    <Label Text="{Binding Username.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                        IsVisible="{Binding Username.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                         Style="{StaticResource ErrorTextStyle}" />
 
                     <!--/User Id-->
 
                     <telerikInput:RadEntry
                                    IsPassword="True"
                                    WatermarkText="Password"
-                        Text="{Binding password, Mode=TwoWay}"
-                                   Style="{StaticResource LoginEntryStyle}"  Margin="0,0,0,0" />
+                        Text="{Binding Password.Value, Mode=TwoWay}"
+                                   Style="{StaticResource LoginEntryStyle}"  Margin="0,0,0,0">
+                        <telerikInput:RadEntry.Behaviors>
+                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding Password.IsValid}" />
+                        </telerikInput:RadEntry.Behaviors>
+                    </telerikInput:RadEntry>
+                    <Label Text="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                        IsVisible="{Binding Password.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                        Style="{StaticResource ErrorTextStyle}" />
+
                     <StackLayout Orientation="Horizontal"  Margin="0,0,0,40">
                         <telerikPrimitives:RadCheckBox x:Name="rememberMe" Style="{StaticResource checkBoxButtonStyle}" />
                         <Label Text="Remember Me" Style="{StaticResource NormalLabelStyle}" />

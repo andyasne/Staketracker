@@ -8,7 +8,6 @@ namespace Staketracker.Core.ViewModels.Login
     using Staketracker.Core.Models;
     using Staketracker.Core.Validators;
     using Staketracker.Core.Validators.Rules;
-    using Staketracker.Core.ViewModels.Contacts;
     using Staketracker.Core.ViewModels.TwoStepVerification;
     using Xamarin.Forms;
 
@@ -18,17 +17,10 @@ namespace Staketracker.Core.ViewModels.Login
 
         public LoginAPIBody loginApiBody { get; set; }
 
-        public JsonText jsonText { get; set; }
-
-        public ValidatableObject<string> username { get; set; } = new ValidatableObject<string>();
-
-        public String password { get; set; }
-
-        public ICommand GetDataCommand { get; set; }
+        public ValidatableObject<string> Username { get; set; } = new ValidatableObject<string>();
+        public ValidatableObject<string> Password { get; set; } = new ValidatableObject<string>();
 
         public ICommand AuthenticateUserCommand { get; set; }
-
-        public ICommand GetTimeLineDataCommand { get; set; }
 
         public AuthReply authReply { get; set; }
 
@@ -38,29 +30,31 @@ namespace Staketracker.Core.ViewModels.Login
 
             authReply = new AuthReply();
             _navigationService = navigationService;
-            username.Value = "Alem";
-            password = "Biniye@99";
+
+            Username.Value = "Alem";
+            Password.Value = "Biniye@99";
 
             AuthenticateUserCommand = new Command(async () => await RunSafe(AuthenticateUser(loginApiBody)));
         }
 
         public void AddValidationRules()
         {
-            username.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "User Id is Required" });
+            Username.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "User Id is Required" });
+            Password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Password Required" });
         }
 
-        bool AreFieldsValid()
+        private bool AreFieldsValid()
         {
-            bool isFirstNameValid = username.Validate();
-            return isFirstNameValid;
-
+            bool isFirstNameValid = Username.Validate();
+            bool isPasswordValid = Password.Validate();
+            return isFirstNameValid && isPasswordValid;
         }
 
         internal async Task AuthenticateUser(LoginAPIBody loginApiBody)
         {
             if (AreFieldsValid())
             {
-                loginApiBody = new LoginAPIBody(username.Value, password);
+                loginApiBody = new LoginAPIBody(Username.Value, Password.Value);
 
                 var makeUpsResponse = await ApiManager.AuthenticateUser(loginApiBody);
 
