@@ -28,7 +28,7 @@ namespace Staketracker.Core.Helpers.Behaviours
             if (bindable is EntryLineValidationBehaviour IsValidBehavior &&
                  newValue is bool IsValid)
             {
-                IsValidBehavior.AssociatedObject.WatermarkTextColor = IsValid ? Color.Default : Color.Red;
+                IsValidBehavior.AssociatedObject.WatermarkTextColor = IsValid ? Color.Black : Color.Red;
             }
         }
 
