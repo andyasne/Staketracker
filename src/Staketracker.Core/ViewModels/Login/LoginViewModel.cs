@@ -15,15 +15,55 @@ namespace Staketracker.Core.ViewModels.Login
 
     public class LoginViewModel : BaseViewModel
     {
+        private const string sandboxTitle = "Sandbox";
+        private const string productionTitle = "Production";
         internal readonly IMvxNavigationService _navigationService;
 
-        public LoginAPIBody loginApiBody { get; set; }
 
         public ValidatableObject<string> Username { get; set; } = new ValidatableObject<string>();
         public ValidatableObject<string> Password { get; set; } = new ValidatableObject<string>();
 
-        public ICommand AuthenticateUserCommand { get; set; }
+        private bool? isSandboxChecked;
 
+        public bool? IsSandboxChecked
+        {
+            get { return this.isSandboxChecked; }
+            set
+            {
+
+                if (this.isSandboxChecked != value)
+                {
+                    SetField(ref isSandboxChecked, value);
+
+                }
+
+                if (this.isSandboxChecked == true)
+                    IsSandboxDisplay = sandboxTitle;
+                else
+                    IsSandboxDisplay = productionTitle;
+
+
+            }
+        }
+
+        private string? isSandboxDisplay;
+
+        public string? IsSandboxDisplay
+        {
+            get { return this.isSandboxDisplay; }
+            set
+            {
+
+                if (this.isSandboxDisplay != value)
+                {
+                    SetField(ref isSandboxDisplay, value);
+                    this.isSandboxDisplay = value;
+                }
+
+            }
+        }
+        public LoginAPIBody loginApiBody { get; set; }
+        public ICommand AuthenticateUserCommand { get; set; }
         public AuthReply authReply { get; set; }
 
         public LoginViewModel(IMvxNavigationService navigationService)
@@ -35,6 +75,7 @@ namespace Staketracker.Core.ViewModels.Login
 
             Username.Value = "Alem";
             Password.Value = "Biniye@99";
+            IsSandboxChecked = false;
 
             AuthenticateUserCommand = new Command(async () => await RunSafe(AuthenticateUser(loginApiBody)));
         }

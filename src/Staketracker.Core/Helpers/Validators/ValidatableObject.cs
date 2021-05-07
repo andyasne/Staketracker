@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -10,14 +10,14 @@ namespace Staketracker.Core.Validators
         public ValidatableObject()
         {
             IsValid = true;
-          Errors = new List<string>();
+            Errors = new List<string>();
 
-    }
+        }
 
-    // boiler-plate
-    public event PropertyChangedEventHandler PropertyChanged;
+        // boiler-plate
+        public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
-    => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
@@ -27,12 +27,12 @@ namespace Staketracker.Core.Validators
             OnPropertyChanged(propertyName);
             return true;
         }
-       
-         
+
+
         public List<IValidationRule<T>> Validations { get; } = new List<IValidationRule<T>>();
 
         public List<string> _Errors;
-        public List<string> Errors { get=>_Errors; set => SetField(ref _Errors, value); } 
+        public List<string> Errors { get => _Errors; set => SetField(ref _Errors, value); }
 
         public bool CleanOnChange { get; set; } = true;
 
@@ -42,7 +42,6 @@ namespace Staketracker.Core.Validators
             get => _value;
             set
             {
-                _value = value;
 
                 if (CleanOnChange)
                     IsValid = true;
@@ -55,7 +54,7 @@ namespace Staketracker.Core.Validators
         {
             get => _IsValid;
             set => SetField(ref _IsValid, value);
-        } 
+        }
 
         public virtual bool Validate()
         {
