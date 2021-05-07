@@ -92,11 +92,11 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <telerikInput:RadButton VerticalContentAlignment="End" HorizontalContentAlignment="Start"  HeightRequest="20" Text="Forgot Your User Id?"   Grid.Row="0" Grid.Column="1"
-                                     Style="{StaticResource SecondaryActionButtonStyle}"
+                                     Style="{StaticResource SecondaryActionButtonStyle}" Command="{Binding OnDevelopmentCommand}"
                                     FontAttributes="None" />
 
                     <telerikInput:RadButton Text="Forget Your Password?" HeightRequest="20"  HorizontalContentAlignment="End" VerticalContentAlignment="End" Grid.Row="0" Grid.Column="3"
-                                     Style="{StaticResource SecondaryActionButtonStyle}"
+                                     Style="{StaticResource SecondaryActionButtonStyle}"  Command="{Binding OnDevelopmentCommand}"
                                     FontAttributes="None" />
                 </Grid>
                 <Label  TextColor="{StaticResource DarkTextColor}"  VerticalTextAlignment="End"  VerticalOptions="End"  Text="(c) SustaiNet Software International Inc." HorizontalTextAlignment="Center"  HorizontalOptions="CenterAndExpand" />

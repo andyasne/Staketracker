@@ -64,6 +64,8 @@ namespace Staketracker.Core.ViewModels.Login
         }
         public LoginAPIBody loginApiBody { get; set; }
         public ICommand AuthenticateUserCommand { get; set; }
+        public ICommand OnDevelopmentCommand { get; set; }
+
         public AuthReply authReply { get; set; }
 
         public LoginViewModel(IMvxNavigationService navigationService)
@@ -78,7 +80,12 @@ namespace Staketracker.Core.ViewModels.Login
             IsSandboxChecked = false;
 
             AuthenticateUserCommand = new Command(async () => await RunSafe(AuthenticateUser(loginApiBody)));
+            OnDevelopmentCommand = new Command(() =>
+           {
+               OnDevelopment().Start();
+           });
         }
+
 
         public void AddValidationRules()
         {
@@ -110,8 +117,6 @@ namespace Staketracker.Core.ViewModels.Login
                         await PageDialog.AlertAsync("Incorrect Username or Password", "Validation Error", "Ok");
                         return;
                     }
-                    String msg = "Logged in successfully, SessionId-" + authReply.d.sessionId;
-                    PageDialog.Toast(msg, TimeSpan.FromSeconds(5));
 
                     bool Is2FEnabled = await GetIs2FEnabled(loginApiBody);
                     if (Is2FEnabled)
@@ -120,12 +125,23 @@ namespace Staketracker.Core.ViewModels.Login
                     {
                         await _navigationService.Navigate<DashboardViewModel>();
                     }
+                    String msg = "Logged in successfully, SessionId-" + authReply.d.sessionId;
+                    PageDialog.Toast(msg, TimeSpan.FromSeconds(5));
                 }
                 else
                 {
                     await PageDialog.AlertAsync("Incorrect Username or Password", "Validation Error", "Ok");
                 }
             }
+        }
+        private Task OnDevelopment()
+        {
+            return new Task(() =>
+            {
+                var msg = "This Page is Under Development";
+                PageDialog.Toast(msg, TimeSpan.FromSeconds(3));
+            });
+
         }
 
         internal async Task<bool> GetIs2FEnabled(LoginAPIBody loginApiBody)
