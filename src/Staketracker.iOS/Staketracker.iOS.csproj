@@ -100,9 +100,12 @@
       <SubType>Designer</SubType>
     </InterfaceDefinition>
   </ItemGroup>
+   <PropertyGroup>
+    <TelerikInstallationBinariesPath>$(TelerikXamarinDir)Binaries</TelerikInstallationBinariesPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Telerik.Xamarin.iOS">
-      <HintPath>..\Libs\Telerik-iOS\Telerik.Xamarin.iOS.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\ios\Telerik.Xamarin.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
@@ -157,55 +160,55 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Telerik.XamarinForms.Chart">
-      <HintPath>..\Libs\Telerik-ios\Telerik.XamarinForms.Chart.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\ios\Telerik.XamarinForms.Chart.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Common">
-      <HintPath>..\Libs\Telerik-ios\Telerik.XamarinForms.Common.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\ios\Telerik.XamarinForms.Common.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.DataControls">
-      <HintPath>..\Libs\Telerik-ios\Telerik.XamarinForms.DataControls.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\ios\Telerik.XamarinForms.DataControls.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.DataGrid">
-      <HintPath>..\Libs\Telerik-ios\Telerik.XamarinForms.DataGrid.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\ios\Telerik.XamarinForms.DataGrid.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.DataVisualization">
-      <HintPath>..\Libs\Telerik-ios\Telerik.XamarinForms.DataVisualization.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\ios\Telerik.XamarinForms.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.ImageEditor">
-      <HintPath>..\Libs\Telerik-ios\Telerik.XamarinForms.ImageEditor.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\ios\Telerik.XamarinForms.ImageEditor.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Input">
-      <HintPath>..\Libs\Telerik-ios\Telerik.XamarinForms.Input.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\ios\Telerik.XamarinForms.Input.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Map">
-      <HintPath>..\Libs\Telerik-ios\Telerik.XamarinForms.Map.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\ios\Telerik.XamarinForms.Map.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.PdfViewer">
-      <HintPath>..\Libs\Telerik-ios\Telerik.XamarinForms.PdfViewer.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\ios\Telerik.XamarinForms.PdfViewer.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Primitives">
-      <HintPath>..\Libs\Telerik-ios\Telerik.XamarinForms.Primitives.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\ios\Telerik.XamarinForms.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.RichTextEditor">
-      <HintPath>..\Libs\Telerik-ios\Telerik.XamarinForms.RichTextEditor.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\ios\Telerik.XamarinForms.RichTextEditor.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.SkiaSharp">
-      <HintPath>..\Libs\Telerik-ios\Telerik.XamarinForms.SkiaSharp.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\ios\Telerik.XamarinForms.SkiaSharp.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.ConversationalUI">
-      <HintPath>..\Libs\Telerik-ios\Telerik.XamarinForms.ConversationalUI.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\ios\Telerik.XamarinForms.ConversationalUI.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.Core">
-      <HintPath>..\Libs\Telerik-Portable\Telerik.Documents.Core.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Portable\Telerik.Documents.Core.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.Fixed">
-      <HintPath>..\Libs\Telerik-Portable\Telerik.Documents.Fixed.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Portable\Telerik.Documents.Fixed.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.Flow">
-      <HintPath>..\Libs\Telerik-Portable\Telerik.Documents.Flow.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Portable\Telerik.Documents.Flow.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.Flow.FormatProviders.Pdf">
-      <HintPath>..\Libs\Telerik-Portable\Telerik.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Portable\Telerik.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -45,6 +45,9 @@
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
+  <PropertyGroup>
+    <TelerikInstallationBinariesPath>$(TelerikXamarinDir)Binaries</TelerikInstallationBinariesPath>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
@@ -66,76 +69,76 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="Telerik.Xamarin.Android.Chart">
-      <HintPath>..\Libs\Telerik-Android\Telerik.Xamarin.Android.Chart.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.Xamarin.Android.Chart.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Common">
-      <HintPath>..\Libs\Telerik-Android\Telerik.Xamarin.Android.Common.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.Xamarin.Android.Common.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Data">
-      <HintPath>..\Libs\Telerik-Android\Telerik.Xamarin.Android.Data.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.Xamarin.Android.Data.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Gauges">
-      <HintPath>..\Libs\Telerik-Android\Telerik.Xamarin.Android.Gauges.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.Xamarin.Android.Gauges.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Input">
-      <HintPath>..\Libs\Telerik-Android\Telerik.Xamarin.Android.Input.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.Xamarin.Android.Input.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.List">
-      <HintPath>..\Libs\Telerik-Android\Telerik.Xamarin.Android.List.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.Xamarin.Android.List.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Primitives">
-      <HintPath>..\Libs\Telerik-Android\Telerik.Xamarin.Android.Primitives.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.Xamarin.Android.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Chart">
-      <HintPath>..\Libs\Telerik-Android\Telerik.XamarinForms.Chart.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.XamarinForms.Chart.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Common">
-      <HintPath>..\Libs\Telerik-Android\Telerik.XamarinForms.Common.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.XamarinForms.Common.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.DataControls">
-      <HintPath>..\Libs\Telerik-Android\Telerik.XamarinForms.DataControls.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.XamarinForms.DataControls.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.DataGrid">
-      <HintPath>..\Libs\Telerik-Android\Telerik.XamarinForms.DataGrid.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.XamarinForms.DataGrid.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.DataVisualization">
-      <HintPath>..\Libs\Telerik-Android\Telerik.XamarinForms.DataVisualization.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.XamarinForms.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.ImageEditor">
-      <HintPath>..\Libs\Telerik-Android\Telerik.XamarinForms.ImageEditor.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.XamarinForms.ImageEditor.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Input">
-      <HintPath>..\Libs\Telerik-Android\Telerik.XamarinForms.Input.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.XamarinForms.Input.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Map">
-      <HintPath>..\Libs\Telerik-Android\Telerik.XamarinForms.Map.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.XamarinForms.Map.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.PdfViewer">
-      <HintPath>..\Libs\Telerik-Android\Telerik.XamarinForms.PdfViewer.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.XamarinForms.PdfViewer.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Primitives">
-      <HintPath>..\Libs\Telerik-Android\Telerik.XamarinForms.Primitives.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.XamarinForms.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.RichTextEditor">
-      <HintPath>..\Libs\Telerik-Android\Telerik.XamarinForms.RichTextEditor.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.XamarinForms.RichTextEditor.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.SkiaSharp">
-      <HintPath>..\Libs\Telerik-Android\Telerik.XamarinForms.SkiaSharp.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.XamarinForms.SkiaSharp.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.ConversationalUI">
-      <HintPath>..\Libs\Telerik-Android\Telerik.XamarinForms.ConversationalUI.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Android\Telerik.XamarinForms.ConversationalUI.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.Core">
-      <HintPath>..\Libs\Telerik-Portable\Telerik.Documents.Core.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Portable\Telerik.Documents.Core.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.Fixed">
-      <HintPath>..\Libs\Telerik-Portable\Telerik.Documents.Fixed.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Portable\Telerik.Documents.Fixed.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.Flow">
-      <HintPath>..\Libs\Telerik-Portable\Telerik.Documents.Flow.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Portable\Telerik.Documents.Flow.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.Flow.FormatProviders.Pdf">
-      <HintPath>..\Libs\Telerik-Portable\Telerik.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
+      <HintPath>$(TelerikInstallationBinariesPath)\Portable\Telerik.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
