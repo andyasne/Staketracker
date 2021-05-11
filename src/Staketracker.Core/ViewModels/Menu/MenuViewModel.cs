@@ -10,6 +10,7 @@ using Staketracker.Core.ViewModels.Dashboard;
 using Staketracker.Core.ViewModels.EventsList;
 using Staketracker.Core.ViewModels.Home;
 using Staketracker.Core.ViewModels.Login;
+using Staketracker.Core.ViewModels.TwoStepVerification;
 using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels.Menu
@@ -27,6 +28,7 @@ namespace Staketracker.Core.ViewModels.Menu
             {
                 "Dashboard",
                 "Events",
+                "Two Step Verification",
                 "Login"
             };
 
@@ -53,6 +55,9 @@ namespace Staketracker.Core.ViewModels.Menu
                     break;
                 case "Events":
                     await _navigationService.Navigate<EventsListViewModel>();
+                    break;
+                case "Two Step Verification":
+                    await _navigationService.Navigate<TwoStepVerificationViewModel>();
                     break;
                 default:
                     break;
