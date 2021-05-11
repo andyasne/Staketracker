@@ -32,7 +32,7 @@ namespace Staketracker.Core.ViewModels.EventsList
         public EventsListViewModel(IMvxNavigationService navigationService)
         {
 
-            this.listDescription = "All Eventss";
+            this.listDescription = "Events";
 
             //this.eventsomers = new ObservableCollection<Events> { new Events("Tom"), new Events("Anna"), new Events("Peter"), new Events("Teodor"), new Events("Lorenzo"), new Events("Andrea"), new Events("Martin") };
 
@@ -70,7 +70,7 @@ namespace Staketracker.Core.ViewModels.EventsList
             base.Prepare();
             await this.FetchData();
         }
-        public ObservableCollection<Events> Eventss
+        public ObservableCollection<Events> Events
         {
             get => eventsomers;
             private set => SetField(ref eventsomers, value);
