@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Staketracker.Core.ViewModels.Login;
 using Xamarin.Forms;
@@ -28,6 +29,7 @@ namespace Staketracker.Core.ViewModels.EventsList
         private string listDescription;
 
         private readonly IMvxNavigationService _navigationService;
+        public IMvxCommand SearchCommand { get; }
 
         public EventsListViewModel(IMvxNavigationService navigationService)
         {
@@ -38,6 +40,7 @@ namespace Staketracker.Core.ViewModels.EventsList
 
             _navigationService = navigationService;
 
+            this.SearchCommand = new MvxAsyncCommand(OnSearch);
 
 
         }
@@ -97,7 +100,13 @@ namespace Staketracker.Core.ViewModels.EventsList
             get => listDescription;
             private set => SetProperty(ref listDescription, value);
         }
+        private async Task OnSearch()
+        {
+            if (Device.Idiom != TargetIdiom.Phone)
+                return;
 
+            await this._navigationService.Navigate<SearchResultsViewModel>();
+        }
 
     }
 }

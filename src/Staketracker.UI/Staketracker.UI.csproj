@@ -16,6 +16,9 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Staketracker.Core\Staketracker.Core.csproj" />
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v10.0\Mono.Android.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.XamarinForms.Chart">
       <HintPath>$(TelerikInstallationBinariesPath)\Portable\Telerik.XamarinForms.Chart.dll</HintPath>
     </Reference>
@@ -112,6 +115,9 @@
     <EmbeddedResource Update="Pages\RootPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\SearchResultsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -119,6 +125,12 @@
 
   <ItemGroup>
     <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\EmptySearchResultsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\SelectablePath.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Pages\ContactsPage.xaml">
@@ -131,6 +143,9 @@
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Pages\RootPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\SearchResultsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Resources\Colors.xaml">
