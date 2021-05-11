@@ -10,20 +10,21 @@ using Xamarin.Forms;
 namespace Staketracker.Core.ViewModels.EventsList
 {
 
-    public class Customer
+    public class Events
     {
 
         public string Name { get; set; }
-        public string Email { get; set; }
-        public Uri ImageURL { get; set; }
+        public string Date { get; set; }
+        public string Type { get; set; }
+        public string Status { get; set; }
 
     }
 
     public class EventsListViewModel : BaseViewModel
 
     {
-        private Customer selectedCustomer, selectedCustomerDetail;
-        private ObservableCollection<Customer> customers;
+        private Events selectedEvents, selectedEventsDetail;
+        private ObservableCollection<Events> eventsomers;
         private string listDescription;
 
         private readonly IMvxNavigationService _navigationService;
@@ -31,9 +32,9 @@ namespace Staketracker.Core.ViewModels.EventsList
         public EventsListViewModel(IMvxNavigationService navigationService)
         {
 
-            this.listDescription = "All Customers";
+            this.listDescription = "All Eventss";
 
-            //this.customers = new ObservableCollection<Customer> { new Customer("Tom"), new Customer("Anna"), new Customer("Peter"), new Customer("Teodor"), new Customer("Lorenzo"), new Customer("Andrea"), new Customer("Martin") };
+            //this.eventsomers = new ObservableCollection<Events> { new Events("Tom"), new Events("Anna"), new Events("Peter"), new Events("Teodor"), new Events("Lorenzo"), new Events("Andrea"), new Events("Martin") };
 
             _navigationService = navigationService;
 
@@ -43,36 +44,46 @@ namespace Staketracker.Core.ViewModels.EventsList
 
         private async Task FetchData()
         {
-            Customer cust = new Customer();
-            cust.Name = "TEST";
-            Customer cust1 = new Customer();
-            cust1.Name = "TEST-1";
-            Customer cust2 = new Customer();
-            cust2.Name = "TEST-2";
-            this.customers = new ObservableCollection<Customer>();
-            customers.Add(cust);
-            customers.Add(cust1);
-            customers.Add(cust2);
+            Events events = new Events();
+            events.Name = "Sugan Event";
+            events.Date = "5/6/2020 :12:30 PM";
+            events.Type = "Type 1";
+            events.Status = "In - Progress / On - Going";
+
+            Events events1 = new Events();
+            events1.Name = "CLonning Project";
+            events1.Date = "7/6/2020 :12:30 PM";
+            events1.Type = "Type 4";
+            events1.Status = "In - Progress / On - Going";
+            Events events2 = new Events();
+            events2.Name = "Hope Event";
+            events2.Date = "7/6/2020 :12:30 PM";
+            events2.Type = "Type 2";
+            events2.Status = "Completed";
+            this.eventsomers = new ObservableCollection<Events>();
+            eventsomers.Add(events);
+            eventsomers.Add(events1);
+            eventsomers.Add(events2);
         }
         public async override void Prepare()
         {
             base.Prepare();
             await this.FetchData();
         }
-        public ObservableCollection<Customer> Customers
+        public ObservableCollection<Events> Eventss
         {
-            get => customers;
-            private set => SetField(ref customers, value);
+            get => eventsomers;
+            private set => SetField(ref eventsomers, value);
         }
 
-        public Customer SelectedCustomer
+        public Events SelectedEvents
         {
-            get => selectedCustomer;
+            get => selectedEvents;
             set
             {
-                if (SetProperty(ref selectedCustomer, value) && value != null)
+                if (SetProperty(ref selectedEvents, value) && value != null)
                 {
-                    SetField(ref selectedCustomer, value);
+                    SetField(ref selectedEvents, value);
 
                 }
             }

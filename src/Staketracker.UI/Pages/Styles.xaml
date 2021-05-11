@@ -11,6 +11,7 @@
     <Color x:Key="LightColor">#FFFFFF</Color>
     <Color x:Key="DarkTextColor">#001023</Color>
     <Color x:Key="EntryBackgroundColor">#E8E9EA</Color>
+    <Color x:Key="LightTextColor">#757575</Color>
 
     <Style TargetType="Label" x:Key="ErrorTextStyle">
         <Setter Property="TextColor" Value = "Red"   />

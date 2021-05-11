@@ -57,7 +57,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchExtraArgs>--linkskip=Staketracker.Core --linkskip=Staketracker.UI</MtouchExtraArgs>
     <LangVersion>8.0</LangVersion>
-    <MtouchLink>None</MtouchLink> 
+    <MtouchLink>None</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -94,13 +94,14 @@
     <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <BundleResource Include="Resources\Fonts\fontello.ttf" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
   </ItemGroup>
-   <PropertyGroup>
+  <PropertyGroup>
     <TelerikInstallationBinariesPath>$(TelerikXamarinDir)Binaries</TelerikInstallationBinariesPath>
   </PropertyGroup>
   <ItemGroup>
@@ -219,5 +220,5 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-  </Target> 
+  </Target>
 </Project>
