@@ -1,15 +1,25 @@
 using Acr.UserDialogs;
 using Android.App;
+using Android.Content.PM;
 using Android.OS;
+using MvvmCross.Forms.Platforms.Android.Core;
 using MvvmCross.Forms.Platforms.Android.Views;
+using MvvmCross.Forms.Presenters;
+using Staketracker.Core;
 using Staketracker.Core.ViewModels.Main;
 
 namespace Staketracker.Droid
 {
     [Activity(
-        Theme = "@style/AppTheme")]
-    public class MainActivity : MvxFormsAppCompatActivity<MainViewModel>
+       NoHistory = true,
+       MainLauncher = true,
+       Label = "@string/app_name",
+       Theme = "@style/AppTheme.Splash",
+       Icon = "@mipmap/ic_launcher")]
+    public class MainActivity : MvxFormsAppCompatActivity<Setup, Core.App, UI.App>
     {
+
+
         protected override void OnCreate(Bundle bundle)
         {
             try
@@ -23,8 +33,25 @@ namespace Staketracker.Droid
             }
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
+            Xamarin.Forms.Forms.SetFlags("AppTheme_Experimental");
             base.OnCreate(bundle);
+            Xamarin.Essentials.Platform.Init(this, bundle);
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    public class StakeTrackerAndroidSetup : MvxFormsAndroidSetup<Core.App, UI.App>
+    {
+        protected override IMvxFormsPagePresenter CreateFormsPagePresenter(IMvxFormsViewPresenter viewPresenter)
+        {
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(false);
+            return new AppPagePresenter(viewPresenter);
         }
     }
 }

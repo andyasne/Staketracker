@@ -48,7 +48,7 @@
                                              Command="{Binding OpenDashboardPageCommand}"
                                      Style="{StaticResource ActionButtonStyle}" />
 
-                    <telerikInput:RadButton Text="Resend Code" BackgroundColor="Transparent" FontSize="15" Margin="10,10,0,0"    Command="{Binding ResendCodeCommand}" HorizontalOptions="StartAndExpand"   TextColor="{StaticResource MediumBlueColor}" FontFamily="Lobster"   />
+                    <telerikInput:RadButton Text="Resend Code" BackgroundColor="Transparent" FontSize="15" Margin="10,5,0,0"    Command="{Binding ResendCodeCommand}" HorizontalOptions="StartAndExpand"   TextColor="{StaticResource MediumBlueColor}"   />
 
                 </StackLayout>
             </ScrollView>
