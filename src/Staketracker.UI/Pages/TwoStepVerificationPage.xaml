@@ -7,13 +7,18 @@
                       xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       x:Class="Staketracker.UI.Pages.TwoStepVerificationPage"
                       NavigationPage.HasNavigationBar="False"
+                      xmlns:converter="clr-namespace:Staketracker.Core.Helpers.Converters;assembly=Staketracker.Core"
+                      
              x:TypeArguments="viewModels:TwoStepVerificationViewModel">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
+            <converter:NullableIntConverter x:Key="NullableIntConverter" />
+
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout>
@@ -36,8 +41,7 @@
                     <Label Text="An email with your  code was sent to:" FontSize="15" Margin="10,30,0,0"   VerticalTextAlignment="Start" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center" TextColor="{StaticResource MediumBlueColor}" FontFamily="Lobster" Style="{StaticResource NormalLabelStyle}" />
                     <Label Text="{Binding Email}"  FontSize="15" Margin="10,0,0,0" Padding="0" VerticalTextAlignment="Start" VerticalOptions="Start" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center" TextColor="{StaticResource MediumBlueColor}" FontFamily="Lobster" Style="{StaticResource NormalLabelStyle}" />
 
-                    <telerikInput:RadEntry   Margin="0,30,0,0"  Text="{Binding VerificationCode, Mode=TwoWay}"
-                                  
+                    <telerikInput:RadEntry   Margin="0,30,0,0"  Text="{Binding VerificationCode, Mode=TwoWay, Converter={StaticResource NullableIntConverter}}" WatermarkText="- - - -" Keyboard="Numeric"                
                                    Style="{StaticResource LoginEntryStyle}" />
 
                     <telerikInput:RadButton Text="Validate" Margin="0,20"

@@ -149,6 +149,7 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
         }
         Task ResendCode()
         {
+            VerificationCode = 0;
             return InitTwoStepVerification();
 
         }
