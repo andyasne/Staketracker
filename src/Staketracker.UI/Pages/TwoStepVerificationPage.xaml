@@ -36,7 +36,7 @@
                     <Label Text="An email with your  code was sent to:" FontSize="15" Margin="10,30,0,0"   VerticalTextAlignment="Start" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center" TextColor="{StaticResource MediumBlueColor}" FontFamily="Lobster" Style="{StaticResource NormalLabelStyle}" />
                     <Label Text="hxxxxd@sustainet.com"  FontSize="15" Margin="10,0,0,0" Padding="0" VerticalTextAlignment="Start" VerticalOptions="Start" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center" TextColor="{StaticResource MediumBlueColor}" FontFamily="Lobster" Style="{StaticResource NormalLabelStyle}" />
 
-                    <telerikInput:RadEntry   Margin="0,30,0,0"  Text="{StaticResource VerificationCode}"
+                    <telerikInput:RadEntry   Margin="0,30,0,0"  Text="{Binding VerificationCode}"
                                   
                                    Style="{StaticResource LoginEntryStyle}" />
 

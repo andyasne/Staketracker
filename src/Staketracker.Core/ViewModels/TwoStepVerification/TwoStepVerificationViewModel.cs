@@ -23,6 +23,7 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
         private readonly IMvxLog _logger;
         internal readonly IMvxNavigationService _navigationService;
         private int generatedCode;
+        private string email;
         private int _VerificationCode;
         private readonly Random _random = new Random();
 
@@ -59,8 +60,8 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
             generatedCode = RandomNumber(1000, 9999);
             String email = GetUserEmail();
             SendTwoStepVerificationEmail(email, generatedCode);
-            //String msg = "Email Sent to " + email;
-            //PageDialog.Toast(msg, TimeSpan.FromSeconds(3));
+            String msg = "Email Sent to " + email;
+            PageDialog.Toast(msg, TimeSpan.FromSeconds(3));
         }
         string GetUserEmail()
         {
@@ -83,7 +84,7 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
             //end email attachment part
 
             SmtpServer.Port = 587;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("", "");
+            SmtpServer.Credentials = new System.Net.NetworkCredential("datastorea4@gmail.com", "storepassword");
             SmtpServer.EnableSsl = true;
             ServicePointManager.ServerCertificateValidationCallback = delegate (object sender, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
             {
