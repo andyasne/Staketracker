@@ -23,14 +23,20 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
         private readonly IMvxLog _logger;
         internal readonly IMvxNavigationService _navigationService;
         private int generatedCode;
-        private string email;
+        private string _email;
         private int _VerificationCode;
         private readonly Random _random = new Random();
 
         public int VerificationCode
         {
             get => _VerificationCode;
-            private set => SetProperty(ref _VerificationCode, value);
+            set => SetField(ref _VerificationCode, value);
+        }
+
+        public string Email
+        {
+            get => _email;
+            set => SetField(ref _email, value);
         }
         public TwoStepVerificationViewModel(IMvxNavigationService navigationService, IMvxLog logger)
         {
@@ -58,9 +64,9 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
         private async Task InitTwoStepVerification()
         {
             generatedCode = RandomNumber(1000, 9999);
-            String email = GetUserEmail();
-            SendTwoStepVerificationEmail(email, generatedCode);
-            String msg = "Email Sent to " + email;
+            Email = GetUserEmail();
+            SendTwoStepVerificationEmail(Email, generatedCode);
+            String msg = "Email Sent to " + Email;
             PageDialog.Toast(msg, TimeSpan.FromSeconds(3));
         }
         string GetUserEmail()
@@ -113,7 +119,10 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
             }
             else
             {
-                await _navigationService.Navigate<LoginViewModel>();
+                await PageDialog.AlertAsync("Incorrect Verification Code Entered", "Verification Error", "Ok");
+
+
+                //  await _navigationService.Navigate<LoginViewModel>();
 
             }
 
