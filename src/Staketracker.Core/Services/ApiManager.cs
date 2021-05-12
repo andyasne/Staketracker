@@ -122,5 +122,12 @@ namespace Staketracker.Core.Services
             return await task;
         }
 
+        public async Task<HttpResponseMessage> GetUsrEmail(LoginAPIBody loginApiBody)
+        {
+            var cts = new CancellationTokenSource();
+            var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).GetUsrEmail(loginApiBody, cts.Token));
+            runningTasks.Add(task.Id, cts);
+            return await task;
+        }
     }
 }

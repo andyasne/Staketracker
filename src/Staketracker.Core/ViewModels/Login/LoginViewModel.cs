@@ -1,6 +1,7 @@
 namespace Staketracker.Core.ViewModels.Login
 {
     using MvvmCross.Navigation;
+    using MvvmCross.ViewModels;
     using Newtonsoft.Json;
     using Staketracker.Core.Models;
     using Staketracker.Core.Validators;
@@ -8,6 +9,7 @@ namespace Staketracker.Core.ViewModels.Login
     using Staketracker.Core.ViewModels.Dashboard;
     using Staketracker.Core.ViewModels.TwoStepVerification;
     using System;
+    using System.Collections.Generic;
     using System.Net.Http;
     using System.Threading.Tasks;
     using System.Windows.Input;
@@ -120,7 +122,12 @@ namespace Staketracker.Core.ViewModels.Login
 
                     bool Is2FEnabled = await GetIs2FEnabled(loginApiBody);
                     if (Is2FEnabled)
-                    { await _navigationService.Navigate<TwoStepVerificationViewModel>(); }
+                    {
+                        var dic = new Dictionary<string, string> { { "jsonText", "loginApiBody.jsonText" } };
+                        MvxBundle bundle = new MvxBundle(dic);
+
+                        await this._navigationService.Navigate<TwoStepVerificationViewModel, LoginAPIBody>(loginApiBody);
+                    }
                     else
                     {
                         await _navigationService.Navigate<DashboardViewModel>();

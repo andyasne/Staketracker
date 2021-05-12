@@ -28,7 +28,6 @@ namespace Staketracker.Core.ViewModels.Menu
             {
                 "Dashboard",
                 "Events",
-                "Two Step Verification",
                 "Login"
             };
 

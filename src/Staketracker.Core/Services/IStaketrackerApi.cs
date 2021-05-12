@@ -16,5 +16,9 @@ namespace Staketracker.Core
         [Post("/uat/mobilev1.asmx/Is2FEnabled")]
         Task<HttpResponseMessage> Is2FEnabled([Body] LoginAPIBody loginApiBody, CancellationToken cancellationToken);
 
+
+        [Post("/uat/mobilev1.asmx/getUsrEmail")]
+        Task<HttpResponseMessage> GetUsrEmail([Body] LoginAPIBody loginApiBody, CancellationToken cancellationToken);
+
     }
 }

@@ -10,5 +10,9 @@ namespace Staketracker.Core.Services
 
         Task<HttpResponseMessage> Is2FEnabled(LoginAPIBody loginApiBody);
 
+        Task<HttpResponseMessage> GetUsrEmail(LoginAPIBody loginApiBody);
+
+
+
     }
 }
