@@ -16,10 +16,9 @@ namespace Staketracker.Droid
        Label = "@string/app_name",
        Theme = "@style/AppTheme.Splash",
        Icon = "@mipmap/ic_launcher")]
-    public class MainActivity : MvxFormsAppCompatActivity<Setup, Core.App, UI.App>
+    public class MainActivity : MvxFormsAppCompatActivity<StakeTrackerAndroidSetup, Core.App, UI.App>
     {
-
-
+      
         protected override void OnCreate(Bundle bundle)
         {
             try
