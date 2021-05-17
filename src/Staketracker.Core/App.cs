@@ -13,7 +13,7 @@ namespace Staketracker.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            RegisterAppStart<RootViewModel>();
+            RegisterCustomAppStart<AppStart>();
         }
     }
 }

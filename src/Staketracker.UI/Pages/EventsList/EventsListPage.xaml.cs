@@ -13,9 +13,9 @@ using Xamarin.Forms;
 
 namespace Staketracker.UI.Pages.EventsList
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    [MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Detail, NoHistory = true, Title = "SustaiNet Core")]
-    public partial class EventsListPage : MvxContentPage<EventsListViewModel>
+    //[XamlCompilation(XamlCompilationOptions.Compile)]
+    //[MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Detail, NoHistory = true, Title = "SustaiNet Core")]
+    public partial class EventsListPage : MvxContentPage<EventsListViewModel>, IMvxOverridePresentationAttribute
     {
         public EventsListPage()
         {
@@ -42,6 +42,19 @@ namespace Staketracker.UI.Pages.EventsList
         {
             await ViewModel.Refresh();
             (sender as RadListView).IsPullToRefreshActive = false;
+        }
+
+
+        public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
+        {
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+                return new MvxTabbedPagePresentationAttribute(TabbedPosition.Tab) { WrapInNavigationPage = true };
+            }
+            else
+            {
+                return new MvxMasterDetailPagePresentationAttribute(MasterDetailPosition.Master) { WrapInNavigationPage = false };
+            }
         }
 
     }

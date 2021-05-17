@@ -12,6 +12,7 @@ namespace Staketracker.UI.Pages
         public LoginPage()
         {
             InitializeComponent();
+
         }
 
         private void isSandbox_IsCheckedChanged(object sender, Telerik.XamarinForms.Primitives.CheckBox.IsCheckedChangedEventArgs e)

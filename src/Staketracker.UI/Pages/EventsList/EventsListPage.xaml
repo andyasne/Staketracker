@@ -8,6 +8,7 @@
                       xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
                       xmlns:telerikBusyIndicator="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       x:Class="Staketracker.UI.Pages.EventsList.EventsListPage"
+                       Title="Events" 
                       x:TypeArguments="viewModels:EventsListViewModel">
 
     <Grid x:Name="LayoutRoot" RowSpacing="0">

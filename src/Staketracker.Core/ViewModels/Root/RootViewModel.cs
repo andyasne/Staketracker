@@ -1,4 +1,6 @@
+using System.Threading.Tasks;
 using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 using Staketracker.Core.ViewModels.EventsList;
 using Staketracker.Core.ViewModels.Login;
 using Staketracker.Core.ViewModels.Menu;
@@ -19,8 +21,19 @@ namespace Staketracker.Core.ViewModels.Root
         {
             base.ViewAppearing();
 
-            await _navigationService.Navigate<MenuViewModel>();
-            await _navigationService.Navigate<LoginViewModel>();
+            MvxNotifyTask.Create(async () => await this.InitializeViewModels());
+
+        }
+
+
+        private async Task InitializeViewModels()
+        {
+
+            //await _navigationService.Navigate<MenuViewModel>();
+            await _navigationService.Navigate<Dashboard.DashboardViewModel>();
+            await _navigationService.Navigate<EventsListViewModel>();
+            await _navigationService.Navigate<EventsListViewModel>();
+            await _navigationService.Navigate<EventsListViewModel>();
         }
     }
 }
