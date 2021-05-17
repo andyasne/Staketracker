@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Staketracker.Core.ViewModels.CommunicationList;
 using Staketracker.Core.ViewModels.EventsList;
 using Staketracker.Core.ViewModels.Login;
 using Staketracker.Core.ViewModels.Menu;
@@ -32,6 +33,7 @@ namespace Staketracker.Core.ViewModels.Root
             //await _navigationService.Navigate<MenuViewModel>();
             await _navigationService.Navigate<Dashboard.DashboardViewModel>();
             await _navigationService.Navigate<EventsListViewModel>();
+            await _navigationService.Navigate<CommunicationListViewModel>();
 
         }
     }
