@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Stakeholders;assembly=Staketracker.Core"
+                      xmlns:telerikListView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls"
+                      xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
+                      xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+                      xmlns:telerikBusyIndicator="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+                      xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                      x:Class="Staketracker.UI.Pages.StakeholderList.StakeholderListPage"
+                      Title="Stakeholder" Icon="Stakeholder" ios:Page.UseSafeArea="true"
+                      x:TypeArguments="viewModels:StakeholdersListViewModel">
+
+    <Grid x:Name="LayoutRoot" RowSpacing="0">
+        <Grid.RowDefinitions>
+            <!--<RowDefinition Height="75" />-->
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!--<Grid x:Name="searchBar" Grid.Row="0" BackgroundColor="White">
+            <Label Text="Stakeholder" HorizontalOptions="Start" VerticalOptions="Center" Margin="30,0,0,0"
+                    FontAttributes="Bold" FontSize="25" />
+        </Grid>-->
+        <Grid x:Name="ContentRoot">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.Padding>
+                <OnIdiom x:TypeArguments="Thickness">
+                    <OnIdiom.Tablet>20,20,0,20</OnIdiom.Tablet>
+                </OnIdiom>
+            </Grid.Padding>
+            <BoxView BackgroundColor="White" Grid.RowSpan="2">
+                <BoxView.CornerRadius>
+                    <OnIdiom x:TypeArguments="CornerRadius" Default="4,0,4,0">
+                        <OnIdiom.Phone>0</OnIdiom.Phone>
+                    </OnIdiom>
+                </BoxView.CornerRadius>
+            </BoxView>
+            <Label Text="{Binding HeaderTitle}" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
+            </Label>
+
+
+            <Label Grid.Row="1" Text="No Stakeholder." IsVisible="False" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Path=Stakeholder.Count}" Value="0">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+
+            <telerikInput:RadButton Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" Margin="0, 0, 18, 18"
+                                        FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-plus}"
+                                        Command="{Binding OnDevelopmentNotifyCommand, Mode=OneWay}"
+                                        Style="{StaticResource FloatingActionButton}" />
+        </Grid>
+
+        <telerikBusyIndicator:RadBusyIndicator x:Name="busyIndicator"  AnimationType="Animation3" IsBusy="{Binding IsBusy, Mode=TwoWay}"  BackgroundColor="#E6FFFFFF" IsVisible="{Binding IsBusy}" AnimationContentColor="#2196F3" AnimationContentWidthRequest="60" AnimationContentHeightRequest="60" />
+    </Grid>
+</views:MvxContentPage>

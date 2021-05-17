@@ -34,6 +34,7 @@ namespace Staketracker.Core.ViewModels.Root
             await _navigationService.Navigate<Dashboard.DashboardViewModel>();
             await _navigationService.Navigate<EventsListViewModel>();
             await _navigationService.Navigate<CommunicationListViewModel>();
+            await _navigationService.Navigate<Stakeholders.StakeholdersListViewModel>();
 
         }
     }
