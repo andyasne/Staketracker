@@ -16,6 +16,7 @@ namespace Staketracker.UI.Pages
         public DashboardPage()
         {
             InitializeComponent();
+
         }
 
 

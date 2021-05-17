@@ -4,14 +4,16 @@
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimary">@color/primaryDarkColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/accentColor</item>
         <item name="colorControlNormal">@color/primaryColor</item>
         <item name="colorControlActivated">@color/accentColor</item>
         <item name="colorControlHighlight">@color/accentColor</item>
         <item name="android:windowContentOverlay">@null</item>
+
         <item name="windowActionModeOverlay">false</item>
+
 
 
 

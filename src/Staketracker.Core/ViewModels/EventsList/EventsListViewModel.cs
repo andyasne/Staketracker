@@ -1,24 +1,17 @@
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
-using Staketracker.Core.ViewModels.Login;
 using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels.EventsList
 {
-
     public class Events
     {
-
         public string Name { get; set; }
         public string Date { get; set; }
         public string Type { get; set; }
         public string Status { get; set; }
-
     }
 
     public class EventsListViewModel : BaseViewModel
@@ -26,23 +19,18 @@ namespace Staketracker.Core.ViewModels.EventsList
     {
         private Events selectedEvents, selectedEventsDetail;
         private ObservableCollection<Events> eventsomers;
-        private string listDescription;
+        private string headerTitle;
 
         private readonly IMvxNavigationService _navigationService;
         public IMvxCommand SearchCommand { get; }
 
         public EventsListViewModel(IMvxNavigationService navigationService)
         {
-
-            this.listDescription = "Events";
-
-            //this.eventsomers = new ObservableCollection<Events> { new Events("Tom"), new Events("Anna"), new Events("Peter"), new Events("Teodor"), new Events("Lorenzo"), new Events("Andrea"), new Events("Martin") };
+            this.headerTitle = "Events";
 
             _navigationService = navigationService;
 
             this.SearchCommand = new MvxAsyncCommand(OnSearch);
-
-
         }
 
         private async Task FetchData()
@@ -68,11 +56,13 @@ namespace Staketracker.Core.ViewModels.EventsList
             eventsomers.Add(events1);
             eventsomers.Add(events2);
         }
+
         public async override void Prepare()
         {
             base.Prepare();
             await this.FetchData();
         }
+
         public ObservableCollection<Events> Events
         {
             get => eventsomers;
@@ -87,19 +77,20 @@ namespace Staketracker.Core.ViewModels.EventsList
                 if (SetProperty(ref selectedEvents, value) && value != null)
                 {
                     SetField(ref selectedEvents, value);
-
                 }
             }
         }
+
         public async Task Refresh()
         {
+        }
 
-        }
-        public string ListDescription
+        public string HeaderTitle
         {
-            get => listDescription;
-            private set => SetProperty(ref listDescription, value);
+            get => headerTitle;
+            private set => SetProperty(ref headerTitle, value);
         }
+
         private async Task OnSearch()
         {
             if (Device.Idiom != TargetIdiom.Phone)
@@ -107,6 +98,5 @@ namespace Staketracker.Core.ViewModels.EventsList
 
             await this._navigationService.Navigate<SearchResultsViewModel>();
         }
-
     }
 }

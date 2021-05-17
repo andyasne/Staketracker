@@ -6,9 +6,15 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                       xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Dashboard;assembly=Staketracker.Core"
                       xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
                       x:Class="Staketracker.UI.Pages.DashboardPage"
+                         xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                    Title="Dashboard" Icon="Dashboard" ios:Page.UseSafeArea="true"
                       x:TypeArguments="viewModels:DashboardViewModel">
     <ContentPage.Content>
         <StackLayout>
+
+            <Label Text="SustaiNet Core" VerticalOptions="Start"  HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"   TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="Subtitle" FontAttributes="Bold" Grid.Row="0"/>
+            <BoxView   HeightRequest="1" VerticalOptions="StartAndExpand" BackgroundColor="#d7d7d7" />
+
             <Label Text="Add Dashboard UI Design Here" HorizontalOptions="CenterAndExpand"  VerticalOptions="Center" VerticalTextAlignment="Center" HeightRequest="200" />
 
             <telerikInput:RadButton Text="SIGN OUT"

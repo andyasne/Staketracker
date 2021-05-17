@@ -96,6 +96,9 @@
     <Compile Update="Pages\DashboardPage.xaml.cs">
       <DependentUpon>DashboardPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\Communication\CommunicationPage.xaml.cs">
+      <DependentUpon>CommunicationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\EventsList\EventsListPage.xaml.cs">
       <DependentUpon>EventsListPage.xaml</DependentUpon>
     </Compile>

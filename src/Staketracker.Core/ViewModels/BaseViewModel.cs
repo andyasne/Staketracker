@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Acr.UserDialogs;
 using MvvmCross.ViewModels;
 using Staketracker.Core.Services;
+using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels
 {
@@ -15,6 +17,7 @@ namespace Staketracker.Core.ViewModels
         public IUserDialogs PageDialog = UserDialogs.Instance;
         public IApiManager ApiManager;
         private IApiService<IStaketrackerApi> staketrackerApi = new ApiService<IStaketrackerApi>(Config.StaketrackerApiUrl);
+        public ICommand OnDevelopmentNotifyCommand { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
@@ -34,8 +37,21 @@ namespace Staketracker.Core.ViewModels
         public BaseViewModel()
         {
             ApiManager = new ApiManager(staketrackerApi);
-        }
 
+            OnDevelopmentNotifyCommand = new Command(() =>
+            {
+                OnDevelopment().Start();
+            });
+        }
+        public Task OnDevelopment()
+        {
+            return new Task(() =>
+            {
+                var msg = "This Page is Under Development";
+                PageDialog.Toast(msg, TimeSpan.FromSeconds(3));
+            });
+
+        }
         public async Task RunSafe(Task task, bool ShowLoading = true, string loadinMessage = null)
         {
             try

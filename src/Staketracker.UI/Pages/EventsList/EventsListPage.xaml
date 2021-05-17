@@ -7,20 +7,21 @@
                       xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
                       xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
                       xmlns:telerikBusyIndicator="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+                      xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
                       x:Class="Staketracker.UI.Pages.EventsList.EventsListPage"
-                       Title="Events" 
+                      Title="Events" Icon="Events" ios:Page.UseSafeArea="true"
                       x:TypeArguments="viewModels:EventsListViewModel">
 
     <Grid x:Name="LayoutRoot" RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="75" />
+            <!--<RowDefinition Height="75" />-->
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid x:Name="searchBar" Grid.Row="0" BackgroundColor="White">
+        <!--<Grid x:Name="searchBar" Grid.Row="0" BackgroundColor="White">
             <Label Text="Events" HorizontalOptions="Start" VerticalOptions="Center" Margin="30,0,0,0"
                     FontAttributes="Bold" FontSize="25" />
-        </Grid>
-        <Grid x:Name="ContentRoot" RowSpacing="0" Grid.Row="1">
+        </Grid>-->
+        <Grid x:Name="ContentRoot">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -38,7 +39,7 @@
                     </OnIdiom>
                 </BoxView.CornerRadius>
             </BoxView>
-            <Label Text="{Binding ListDescription}" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
+            <Label Text="{Binding HeaderTitle}" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
             </Label>
 
             <telerikDataControls:RadListView ItemsSource="{Binding Events, Mode=OneWay}" SelectionMode="None"
@@ -49,17 +50,19 @@
                     <DataTemplate>
                         <telerikListView:ListViewTemplateCell>
                             <telerikListView:ListViewTemplateCell.View>
-                                <Grid>
+                                <Grid >
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30" />
+
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
 
-                                    <Label Text="{Binding Name}" Grid.Column="1"  TextColor="Black" Margin="0,5,0,0" VerticalOptions="Start" />
-                                    <Label Text="{Binding Date}" Grid.Column="1" VerticalOptions="Start" Margin="0,25,0,0" TextColor="{StaticResource LightTextColor}" FontSize="Micro" />
+
+
+                                    <Label Text="{Binding Name}" Grid.Column="1"   TextColor="Black" FontSize="Medium"  Margin="0,2,0,0" VerticalOptions="Start" />
+                                    <Label Text="{Binding Date}" Grid.Column="1" VerticalOptions="Start" Margin="0,27,0,0" TextColor="{StaticResource LightTextColor}" FontSize="Micro" />
                                     <Label Text="{Binding Type}" Grid.Column="1"     VerticalOptions="Start"   Margin="0,40,0,0" TextColor="{StaticResource LightTextColor}" FontSize="Micro" />
-                                    <Label Text="{Binding Status}" Grid.Column="1"   VerticalOptions="Start"   Margin="0,55,0,0" TextColor="{StaticResource LightTextColor}" FontSize="Micro" />
 
                                     <Label Grid.Column="2"   VerticalOptions="Center" HorizontalOptions="Center" TextColor="Gray" Margin="0,0,40,0"
                                             FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-right-open-big}">
@@ -94,9 +97,10 @@
 
             <telerikInput:RadButton Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" Margin="0, 0, 18, 18"
                                         FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-plus}"
-                                        Command="{Binding CreateEventsCommand, Mode=OneWay}"
+                                        Command="{Binding OnDevelopmentNotifyCommand, Mode=OneWay}"
                                         Style="{StaticResource FloatingActionButton}" />
         </Grid>
+
         <telerikBusyIndicator:RadBusyIndicator x:Name="busyIndicator"  AnimationType="Animation3" IsBusy="{Binding IsBusy, Mode=TwoWay}"  BackgroundColor="#E6FFFFFF" IsVisible="{Binding IsBusy}" AnimationContentColor="#2196F3" AnimationContentWidthRequest="60" AnimationContentHeightRequest="60" />
     </Grid>
 </views:MvxContentPage>

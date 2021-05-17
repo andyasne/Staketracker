@@ -13,29 +13,30 @@ using Xamarin.Forms;
 
 namespace Staketracker.UI.Pages.EventsList
 {
-    //[XamlCompilation(XamlCompilationOptions.Compile)]
-    //[MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Detail, NoHistory = true, Title = "SustaiNet Core")]
     public partial class EventsListPage : MvxContentPage<EventsListViewModel>, IMvxOverridePresentationAttribute
     {
         public EventsListPage()
         {
             InitializeComponent();
 
-            this.IconImageSource = new FileImageSource() { File = "search" };
-            this.LayoutRoot.Children.Remove(this.searchBar);
-            this.LayoutRoot.RowDefinitions.Clear();
-            this.ContentRoot.ClearValue(Grid.RowProperty);
+            AddToolbarItems();
 
+        }
+
+        private void AddToolbarItems()
+        {
             var searchToolbarItem = new ToolbarItem();
             searchToolbarItem.Text = "Search";
             searchToolbarItem.IconImageSource = new FileImageSource() { File = "search" };
             searchToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("SearchCommand"));
 
-
+            var filterToolbarItem = new ToolbarItem();
+            filterToolbarItem.Text = "Filter";
+            filterToolbarItem.IconImageSource = new FileImageSource() { File = "Filter" };
+            filterToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("OnDevelopmentNotifyCommand"));
 
             this.ToolbarItems.Add(searchToolbarItem);
-
-
+            this.ToolbarItems.Add(filterToolbarItem);
         }
 
         private async void Handle_RefreshRequested(object sender, Telerik.XamarinForms.DataControls.ListView.PullToRefreshRequestedEventArgs e)
