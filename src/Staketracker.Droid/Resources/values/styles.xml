@@ -12,6 +12,10 @@
         <item name="colorControlHighlight">@color/accentColor</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="windowActionModeOverlay">false</item>
+
+
+
+
     </style>
 
     <!-- Default App theme applied if no resource style overrides for specific API level -->

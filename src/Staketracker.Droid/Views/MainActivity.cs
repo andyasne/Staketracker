@@ -11,12 +11,10 @@ using Staketracker.Core.ViewModels.Main;
 namespace Staketracker.Droid
 {
     [Activity(
-       NoHistory = true,
-       MainLauncher = true,
 
        Label = "@string/app_name",
-       Theme = "@style/AppTheme.Splash",
-       Icon = "@mipmap/ic_launcher")]
+       Theme = "@style/AppTheme"
+     , ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : MvxFormsAppCompatActivity<StakeTrackerAndroidSetup, Core.App, UI.App>
     {
 
@@ -33,7 +31,7 @@ namespace Staketracker.Droid
             }
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-            Xamarin.Forms.Forms.SetFlags("AppTheme_Experimental");
+
             base.OnCreate(bundle);
             Xamarin.Essentials.Platform.Init(this, bundle);
         }

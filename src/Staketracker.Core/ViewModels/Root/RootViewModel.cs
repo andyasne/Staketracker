@@ -32,8 +32,7 @@ namespace Staketracker.Core.ViewModels.Root
             //await _navigationService.Navigate<MenuViewModel>();
             await _navigationService.Navigate<Dashboard.DashboardViewModel>();
             await _navigationService.Navigate<EventsListViewModel>();
-            await _navigationService.Navigate<EventsListViewModel>();
-            await _navigationService.Navigate<EventsListViewModel>();
+
         }
     }
 }
