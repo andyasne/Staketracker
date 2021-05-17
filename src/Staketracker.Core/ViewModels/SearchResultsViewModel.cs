@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels
 {
-    public class SearchResultsViewModel : BaseViewModel
+    public class SearchResultsViewModel : BaseViewModel<SearchRequest>
     {
         public SearchResultsViewModel(IMvxNavigationService navigationService)
         {
@@ -81,10 +81,12 @@ namespace Staketracker.Core.ViewModels
             set => SetProperty(ref isSearchEmpty, value);
         }
 
-        //public override void Prepare(SearchRequest parameter)
-        //{
-        //    this.searchContext = parameter.Context;
-        //    this.senderType = parameter.Sender;
+        public override void Prepare(SearchRequest parameter)
+        {
+            //    this.searchContext = parameter.Context;
+            this.senderType = parameter.Sender;
+
+        }
 
         //    //switch (this.searchContext)
         //    //{
