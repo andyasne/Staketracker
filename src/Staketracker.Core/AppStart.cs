@@ -38,7 +38,7 @@ namespace Staketracker.Core
         }
         bool isAuthenticated()
         {
-            return true;
+            return false;
 
         }
     }

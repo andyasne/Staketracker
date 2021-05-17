@@ -93,6 +93,9 @@
     <Compile Update="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\Commitments\CommitmentssListPage.xaml.cs">
+      <DependentUpon>CommitmentssListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\Tasks\TasksListPage.xaml.cs">
       <DependentUpon>TasksListPage.xaml</DependentUpon>
     </Compile>
