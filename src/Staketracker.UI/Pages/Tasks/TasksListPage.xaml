@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Tasks;assembly=Staketracker.Core"
+                      xmlns:telerikListView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls"
+                      xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
+                      xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+                      xmlns:telerikBusyIndicator="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+                      xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                      x:Class="Staketracker.UI.Pages.Tasks.TasksListPage"
+                      Title="Tasks" Icon="Tasks" ios:Page.UseSafeArea="true"
+                      x:TypeArguments="viewModels:TasksListViewModel">
+
+    <Grid x:Name="LayoutRoot" RowSpacing="0">
+        <Grid.RowDefinitions>
+            <!--<RowDefinition Height="75" />-->
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!--<Grid x:Name="searchBar" Grid.Row="0" BackgroundColor="White">
+            <Label Text="Tasks" HorizontalOptions="Start" VerticalOptions="Center" Margin="30,0,0,0"
+                    FontAttributes="Bold" FontSize="25" />
+        </Grid>-->
+        <Grid x:Name="ContentRoot">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.Padding>
+                <OnIdiom x:TypeArguments="Thickness">
+                    <OnIdiom.Tablet>20,20,0,20</OnIdiom.Tablet>
+                </OnIdiom>
+            </Grid.Padding>
+            <BoxView BackgroundColor="White" Grid.RowSpan="2">
+                <BoxView.CornerRadius>
+                    <OnIdiom x:TypeArguments="CornerRadius" Default="4,0,4,0">
+                        <OnIdiom.Phone>0</OnIdiom.Phone>
+                    </OnIdiom>
+                </BoxView.CornerRadius>
+            </BoxView>
+            <Label Text="{Binding HeaderTitle}" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
+            </Label>
+
+            <telerikDataControls:RadListView ItemsSource="{Binding Tasks, Mode=OneWay}" SelectionMode="None"
+                                                IsPullToRefreshEnabled="true" Grid.Row="1"
+                                                RefreshRequested="Handle_RefreshRequested"
+                                                SelectedItem="{Binding SelectedTasks, Mode=TwoWay}">
+                <telerikDataControls:RadListView.ItemTemplate>
+                    <DataTemplate>
+                        <telerikListView:ListViewTemplateCell>
+                            <telerikListView:ListViewTemplateCell.View>
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30" />
+
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+
+
+                                    <Label Text="{Binding Name}" Grid.Column="1"   TextColor="Black" FontSize="Medium"  Margin="0,2,0,0" VerticalOptions="Start" />
+                                    <Label Text="{Binding Date}" Grid.Column="1" VerticalOptions="Start" Margin="0,27,0,0" TextColor="{StaticResource LightTextColor}" FontSize="Micro" />
+                                    <Label Text="{Binding Type}" Grid.Column="1"     VerticalOptions="Start"   Margin="0,40,0,0" TextColor="{StaticResource LightTextColor}" FontSize="Micro" />
+
+                                    <Label Grid.Column="2"   VerticalOptions="Center" HorizontalOptions="Center" TextColor="Gray" Margin="0,0,40,0"
+                                            FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-right-open-big}">
+                                        <Label.IsVisible>
+                                            <OnIdiom x:TypeArguments="x:Boolean" Default="False">
+                                                <OnIdiom.Phone>True</OnIdiom.Phone>
+                                            </OnIdiom>
+                                        </Label.IsVisible>
+                                    </Label>
+
+                                    <BoxView Grid.ColumnSpan="3" HeightRequest="1" VerticalOptions="End" BackgroundColor="#d7d7d7" />
+                                </Grid>
+                            </telerikListView:ListViewTemplateCell.View>
+                        </telerikListView:ListViewTemplateCell>
+                    </DataTemplate>
+                </telerikDataControls:RadListView.ItemTemplate>
+                <telerikDataControls:RadListView.ItemStyle>
+                    <telerikListView:ListViewItemStyle BorderLocation="None" BorderWidth="0" />
+                </telerikDataControls:RadListView.ItemStyle>
+                <telerikDataControls:RadListView.LayoutDefinition>
+                    <telerikListView:ListViewLinearLayout ItemLength="60" />
+                </telerikDataControls:RadListView.LayoutDefinition>
+            </telerikDataControls:RadListView>
+
+            <Label Grid.Row="1" Text="No Tasks." IsVisible="False" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Path=Tasks.Count}" Value="0">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+
+            <telerikInput:RadButton Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" Margin="0, 0, 18, 18"
+                                        FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-plus}"
+                                        Command="{Binding OnDevelopmentNotifyCommand, Mode=OneWay}"
+                                        Style="{StaticResource FloatingActionButton}" />
+        </Grid>
+
+        <telerikBusyIndicator:RadBusyIndicator x:Name="busyIndicator"  AnimationType="Animation3" IsBusy="{Binding IsBusy, Mode=TwoWay}"  BackgroundColor="#E6FFFFFF" IsVisible="{Binding IsBusy}" AnimationContentColor="#2196F3" AnimationContentWidthRequest="60" AnimationContentHeightRequest="60" />
+    </Grid>
+</views:MvxContentPage>
