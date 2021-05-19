@@ -57,13 +57,14 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
+                                    <StackLayout  Grid.Column="1" Spacing="1" >
 
+                                    <Label Text="{Binding Name}" TextColor="Black"   VerticalOptions="Start" />
+                                    <Label Text="{Binding Date}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+                                    <Label Text="{Binding Type}"  VerticalOptions="Start"  TextColor="#757575" FontSize="Micro"/>
 
-
-                                    <Label Text="{Binding Name}" Grid.Column="1"   TextColor="Black" FontSize="Medium"  Margin="0,2,0,0" VerticalOptions="Start" />
-                                    <Label Text="{Binding Date}" Grid.Column="1" VerticalOptions="Start" Margin="0,27,0,0" TextColor="{StaticResource LightTextColor}" FontSize="Micro" />
-                                    <Label Text="{Binding Type}" Grid.Column="1"     VerticalOptions="Start"   Margin="0,40,0,0" TextColor="{StaticResource LightTextColor}" FontSize="Micro" />
-
+                                    </StackLayout>
+                                    
                                     <Label Grid.Column="2"   VerticalOptions="Center" HorizontalOptions="Center" TextColor="Gray" Margin="0,0,40,0"
                                             FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-right-open-big}">
                                         <Label.IsVisible>
