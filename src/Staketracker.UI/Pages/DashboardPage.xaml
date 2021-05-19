@@ -8,20 +8,33 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                       x:Class="Staketracker.UI.Pages.DashboardPage"
                          xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
                     Title="Dashboard" Icon="Dashboard" ios:Page.UseSafeArea="true"
+                        xmlns:cards="clr-namespace:Staketracker.UI.Pages.Dashboard"
                       x:TypeArguments="viewModels:DashboardViewModel">
     <ContentPage.Content>
-        <StackLayout>
-
-            <Label Text="SustaiNet Core" VerticalOptions="Start"  HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"   TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="Subtitle" FontAttributes="Bold" Grid.Row="0"/>
-            <BoxView   HeightRequest="1" VerticalOptions="StartAndExpand" BackgroundColor="#d7d7d7" />
-
-            <Label Text="Add Dashboard UI Design Here" HorizontalOptions="CenterAndExpand"  VerticalOptions="Center" VerticalTextAlignment="Center" HeightRequest="200" />
-
-            <telerikInput:RadButton Text="SIGN OUT"
-                                            Command="{Binding SignOutCommand}"
-                                     Style="{StaticResource ActionButtonStyle}" Margin="10" />
-
-
-        </StackLayout>
+        <Grid>
+            <ScrollView>
+                <StackLayout Orientation="Vertical" Spacing="10" Margin="20,0">
+                    <StackLayout.Resources>
+                        <Style x:Key="cardStyle" TargetType="ContentView">
+                            <Setter Property="ControlTemplate">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Grid>
+                                            <telerikPrimitives:RadBorder CornerRadius="4" BackgroundColor="White" />
+                                            <ContentPresenter Margin="20" />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </StackLayout.Resources>
+                    <cards:Top10TopicsDiscussedCard HeightRequest="200" Margin="0,10,0,0" Style="{StaticResource cardStyle}" />
+                    <cards:CommitmentStatusCard HeightRequest="220" Style="{StaticResource cardStyle}" />
+                    <cards:IssuesStatusCard HeightRequest="200" Style="{StaticResource cardStyle}" />
+                    <cards:Top5StakeholderGroupsCard HeightRequest="200" Style="{StaticResource cardStyle}" />
+                </StackLayout>
+            </ScrollView>
+            <telerikPrimitives:RadBusyIndicator AnimationType="Animation3" IsBusy="{Binding IsBusy, Mode=TwoWay}" BackgroundColor="#E6FFFFFF" IsVisible="{Binding IsBusy}" AnimationContentColor="#2196F3" AnimationContentWidthRequest="60" AnimationContentHeightRequest="60"/>
+        </Grid>
     </ContentPage.Content>
 </views:MvxContentPage>

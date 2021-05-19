@@ -96,6 +96,18 @@
     <Compile Update="Pages\Commitments\CommitmentssListPage.xaml.cs">
       <DependentUpon>CommitmentssListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\Dashboard\IssuesStatusCard.xaml.cs">
+      <DependentUpon>IssuesStatusCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Dashboard\CommitmentStatusCard.xaml.cs">
+      <DependentUpon>CommitmentStatusCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Dashboard\Top5StakeholderGroupsCard.xaml.cs">
+      <DependentUpon>Top5StakeholderGroupsCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Dashboard\Top10TopicsDiscussedCard.xaml.cs">
+      <DependentUpon>Top10TopicsDiscussedCard.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\Tasks\TasksListPage.xaml.cs">
       <DependentUpon>TasksListPage.xaml</DependentUpon>
     </Compile>
@@ -128,6 +140,18 @@
   <ItemGroup>
     <EmbeddedResource Update="Pages\DashboardPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Dashboard\IssuesStatusCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Dashboard\Top5StakeholderGroupsCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Dashboard\Top10TopicsDiscussedCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Dashboard\CommitmentStatusCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\MenuPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
