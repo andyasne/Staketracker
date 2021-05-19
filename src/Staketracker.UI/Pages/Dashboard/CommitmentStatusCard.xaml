@@ -38,7 +38,7 @@
                     <telerikChart:LineSeries.CategoryBinding>
                         <telerikChart:PropertyNameDataPointBinding PropertyName="Name" />
                     </telerikChart:LineSeries.CategoryBinding>
-                </telerikChart:LineSeries>
+                </telerikChart:LineSeries >
                 <telerikChart:LineSeries ItemsSource="{Binding InProgressCommitment}" ShowLabels="false" DisplayName="In-Progress">
                     <telerikChart:LineSeries.ValueBinding>
                         <telerikChart:PropertyNameDataPointBinding PropertyName="Value"/>

@@ -59,12 +59,12 @@
                                     </Grid.ColumnDefinitions>
                                     <StackLayout  Grid.Column="1" Spacing="1" >
 
-                                    <Label Text="{Binding Name}" TextColor="Black"   VerticalOptions="Start" />
-                                    <Label Text="{Binding Date}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
-                                    <Label Text="{Binding Type}"  VerticalOptions="Start"  TextColor="#757575" FontSize="Micro"/>
+                                        <Label Text="{Binding Name}" TextColor="Black"   VerticalOptions="Start" />
+                                        <Label Text="{Binding Date}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+                                        <Label Text="{Binding Type}"  VerticalOptions="Start"  TextColor="#757575" FontSize="Micro"/>
 
                                     </StackLayout>
-                                    
+
                                     <Label Grid.Column="2"   VerticalOptions="Center" HorizontalOptions="Center" TextColor="Gray" Margin="0,0,40,0"
                                             FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-right-open-big}">
                                         <Label.IsVisible>
@@ -81,7 +81,7 @@
                     </DataTemplate>
                 </telerikDataControls:RadListView.ItemTemplate>
                 <telerikDataControls:RadListView.ItemStyle>
-                    <telerikListView:ListViewItemStyle BorderLocation="None" BorderWidth="0" />
+                    <telerikListView:ListViewItemStyle BorderLocation="None"  BorderWidth="0" />
                 </telerikDataControls:RadListView.ItemStyle>
                 <telerikDataControls:RadListView.LayoutDefinition>
                     <telerikListView:ListViewLinearLayout ItemLength="60" />
@@ -98,7 +98,7 @@
 
             <telerikInput:RadButton Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" Margin="0, 0, 18, 18"
                                         FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-plus}"
-                                        Command="{Binding OnDevelopmentNotifyCommand, Mode=OneWay}"
+                                        Command="{Binding AddEventsCommand, Mode=OneWay}"
                                         Style="{StaticResource FloatingActionButton}" />
         </Grid>
 

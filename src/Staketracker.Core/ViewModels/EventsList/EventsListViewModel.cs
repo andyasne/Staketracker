@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using System;
 using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels.EventsList
@@ -23,6 +24,7 @@ namespace Staketracker.Core.ViewModels.EventsList
 
         private readonly IMvxNavigationService _navigationService;
         public IMvxCommand SearchCommand { get; }
+        public IMvxCommand AddEventsCommand { get; }
 
         public EventsListViewModel(IMvxNavigationService navigationService)
         {
@@ -31,7 +33,10 @@ namespace Staketracker.Core.ViewModels.EventsList
             _navigationService = navigationService;
 
             this.SearchCommand = new MvxAsyncCommand(OnSearch);
+            this.AddEventsCommand = new MvxAsyncCommand(OnAddEvents);
         }
+
+
 
         private async Task FetchData()
         {
@@ -97,6 +102,10 @@ namespace Staketracker.Core.ViewModels.EventsList
                 return;
 
             await this._navigationService.Navigate<SearchResultsViewModel>();
+        }
+        private async Task OnAddEvents()
+        {
+            await this._navigationService.Navigate<EventsEditViewModel>();
         }
     }
 }

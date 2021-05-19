@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.EventsList;assembly=Staketracker.Core"
+                      xmlns:telerikListView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls"
+                      xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
+                      xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+                      xmlns:telerikBusyIndicator="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+                      xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                      x:Class="Staketracker.UI.Pages.EventsList.EventsEditPage"
+                      Title="Add Event" Icon="Events" ios:Page.UseSafeArea="true"
+                      x:TypeArguments="viewModels:EventsEditViewModel">
+
+    <ScrollView>
+        <StackLayout>
+           
+            <Label Text="Enter your Name below here"
+                   Style="{StaticResource SubtitleLabelStyle}" />
+            <telerikInput:RadEntry x:Name="usernameBox" 
+                                   BackgroundColor="White"
+                                   WatermarkText="Name"
+                                   Style="{StaticResource LoginEntryStyle}"/>
+
+            <Label Text="Enter your Description below here"
+                   Style="{StaticResource SubtitleLabelStyle}" />
+            <telerikInput:RadEntry x:Name="usernameBox" 
+                                   BackgroundColor="White"
+                                   WatermarkText="Description"
+                                   Style="{StaticResource LoginEntryStyle}"/>
+
+
+
+
+        </StackLayout>
+    </ScrollView>
+</views:MvxContentPage>
