@@ -14,7 +14,7 @@
 
     <ScrollView>
         <StackLayout>
-           
+
             <Label Text="Enter your Name below here"
                    Style="{StaticResource SubtitleLabelStyle}" />
             <telerikInput:RadEntry x:Name="usernameBox" 
@@ -24,7 +24,7 @@
 
             <Label Text="Enter your Description below here"
                    Style="{StaticResource SubtitleLabelStyle}" />
-            <telerikInput:RadEntry x:Name="usernameBox" 
+            <telerikInput:RadEntry x:Name="Description" 
                                    BackgroundColor="White"
                                    WatermarkText="Description"
                                    Style="{StaticResource LoginEntryStyle}"/>
