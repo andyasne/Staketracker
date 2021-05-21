@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Staketracker.Core.ViewModels.Menu;
 
 namespace Staketracker.Core.ViewModels.Dashboard
 {
@@ -53,8 +54,21 @@ namespace Staketracker.Core.ViewModels.Dashboard
             //    await FetchData();
             //}
             IsBusy = false;
+
         }
 
+        public override async void ViewAppearing()
+        {
+            base.ViewAppearing();
+
+            //    MvxNotifyTask.Create(async () => await this.InitializeViewModels());
+
+        }
+        private async Task InitializeViewModels()
+        {
+
+            //    await _navigationService.Navigate<MenuViewModel>();
+        }
         public IReadOnlyCollection<NameValuePair> SalesChannels { get => salesChannels; private set => SetProperty(ref salesChannels, value); }
         public IReadOnlyCollection<NameValuePair> BusinessOverview { get => businessOverview; private set => SetProperty(ref businessOverview, value); }
         public IReadOnlyCollection<NameValuePair> NewCustomers { get => newCustomers; private set => SetProperty(ref newCustomers, value); }

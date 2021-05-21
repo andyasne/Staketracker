@@ -71,6 +71,7 @@
         </Setter>
     </Style>
 
+
     <Style x:Key="ComboEntryStyle"
            TargetType="telerikInput:RadComboBox">
         <Setter Property="TextColor"
