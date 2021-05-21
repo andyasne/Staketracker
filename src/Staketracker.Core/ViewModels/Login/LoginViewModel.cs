@@ -7,6 +7,7 @@ namespace Staketracker.Core.ViewModels.Login
     using Staketracker.Core.Validators;
     using Staketracker.Core.Validators.Rules;
     using Staketracker.Core.ViewModels.Dashboard;
+    using Staketracker.Core.ViewModels.Root;
     using Staketracker.Core.ViewModels.TwoStepVerification;
     using System;
     using System.Collections.Generic;
@@ -130,7 +131,7 @@ namespace Staketracker.Core.ViewModels.Login
                     }
                     else
                     {
-                        await _navigationService.Navigate<DashboardViewModel>();
+                        await _navigationService.Navigate<RootViewModel, AuthReply>(authReply);
                     }
                     String msg = "Logged in successfully, SessionId-" + authReply.d.sessionId;
                     PageDialog.Toast(msg, TimeSpan.FromSeconds(5));

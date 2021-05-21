@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Refit;
 using Staketracker.Core.Models;
+using Staketracker.Core.Models.ApiRequestBody;
 
 namespace Staketracker.Core
 {
@@ -19,6 +20,9 @@ namespace Staketracker.Core
 
         [Post("/uat/mobilev1.asmx/getUsrEmail")]
         Task<HttpResponseMessage> GetUsrEmail([Body] LoginAPIBody loginApiBody, CancellationToken cancellationToken);
+
+        [Post("/uat/mobilev1.asmx/getEvents")]
+        Task<HttpResponseMessage> GetEvents([Body] APIRequestBody aPIRequestBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
     }
 }

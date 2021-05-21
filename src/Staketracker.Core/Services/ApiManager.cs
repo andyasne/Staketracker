@@ -12,6 +12,7 @@ using Plugin.Connectivity.Abstractions;
 using Polly;
 using Refit;
 using Staketracker.Core.Models;
+using Staketracker.Core.Models.ApiRequestBody;
 
 namespace Staketracker.Core.Services
 {
@@ -105,29 +106,42 @@ namespace Staketracker.Core.Services
 
             return data;
         }
+        private async Task<HttpResponseMessage> AddToRunningTasks(CancellationTokenSource cts, Task<HttpResponseMessage> task)
+        {
+            runningTasks.Add(task.Id, cts);
+            return await task;
+        }
 
         public async Task<HttpResponseMessage> AuthenticateUser(LoginAPIBody loginApiBody)
         {
             var cts = new CancellationTokenSource();
             var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).AuthenticateUser(loginApiBody, cts.Token));
-            runningTasks.Add(task.Id, cts);
-            return await task;
+            return await AddToRunningTasks(cts, task);
+
         }
 
         public async Task<HttpResponseMessage> Is2FEnabled(LoginAPIBody loginApiBody)
         {
             var cts = new CancellationTokenSource();
             var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).Is2FEnabled(loginApiBody, cts.Token));
-            runningTasks.Add(task.Id, cts);
-            return await task;
+            return await AddToRunningTasks(cts, task);
+
         }
 
         public async Task<HttpResponseMessage> GetUsrEmail(LoginAPIBody loginApiBody)
         {
             var cts = new CancellationTokenSource();
             var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).GetUsrEmail(loginApiBody, cts.Token));
-            runningTasks.Add(task.Id, cts);
-            return await task;
+            return await AddToRunningTasks(cts, task);
+        }
+
+
+        public async Task<HttpResponseMessage> GetEvents(APIRequestBody aPIRequestBody, string sessionId)
+        {
+            var cts = new CancellationTokenSource();
+            var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).GetEvents(aPIRequestBody, sessionId, cts.Token));
+            return await AddToRunningTasks(cts, task);
+
         }
     }
 }

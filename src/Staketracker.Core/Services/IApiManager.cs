@@ -1,6 +1,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Staketracker.Core.Models;
+using Staketracker.Core.Models.ApiRequestBody;
 
 namespace Staketracker.Core.Services
 {
@@ -11,6 +12,8 @@ namespace Staketracker.Core.Services
         Task<HttpResponseMessage> Is2FEnabled(LoginAPIBody loginApiBody);
 
         Task<HttpResponseMessage> GetUsrEmail(LoginAPIBody loginApiBody);
+
+        Task<HttpResponseMessage> GetEvents(APIRequestBody apiRequestBody, string sessionId);
 
 
 
