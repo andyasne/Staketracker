@@ -78,8 +78,8 @@ namespace Staketracker.Core.ViewModels.Login
             authReply = new AuthReply();
             _navigationService = navigationService;
 
-            Username.Value = "Alem";
-            Password.Value = "Biniye@99";
+            Username.Value = "Howard demo";
+            Password.Value = "Sustainet1";
             IsSandboxChecked = false;
 
             AuthenticateUserCommand = new Command(async () => await RunSafe(AuthenticateUser(loginApiBody)));
