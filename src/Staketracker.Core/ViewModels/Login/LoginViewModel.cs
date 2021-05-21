@@ -133,8 +133,8 @@ namespace Staketracker.Core.ViewModels.Login
                     {
                         await _navigationService.Navigate<RootViewModel, AuthReply>(authReply);
                     }
-                    String msg = "Logged in successfully, SessionId-" + authReply.d.sessionId;
-                    PageDialog.Toast(msg, TimeSpan.FromSeconds(5));
+                 //   String msg = "Logged in successfully, SessionId-" + authReply.d.sessionId;
+                   // PageDialog.Toast(msg, TimeSpan.FromSeconds(5));
                 }
                 else
                 {

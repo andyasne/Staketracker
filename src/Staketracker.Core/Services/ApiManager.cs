@@ -67,7 +67,7 @@ namespace Staketracker.Core.Services
             }
             else
             {
-                _userDialogs.Toast("Connection Established With sustainet.com Server", TimeSpan.FromSeconds(3));
+                // _userDialogs.Toast("Connection Established With sustainet.com Server", TimeSpan.FromSeconds(3));
             }
 
             IsReachable = await _connectivity.IsRemoteReachable(Config.ApiHostName);
