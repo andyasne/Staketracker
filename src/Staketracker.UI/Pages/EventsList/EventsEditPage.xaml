@@ -12,11 +12,19 @@
                       Title="Add Event" Icon="Events" ios:Page.UseSafeArea="true"
                       x:TypeArguments="viewModels:EventsEditViewModel">
 
+    <ContentPage.Resources>
+        <ResourceDictionary xmlns:themes="clr-namespace:Staketracker.UI.Themes">
+            <ResourceDictionary.MergedDictionaries>
+                <themes:DashboardStyles />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ScrollView>
         <StackLayout Margin="15,15,15,15" >
 
             <Label  Text="Name"  Style="{StaticResource FormSubtitleLabelStyle}" />
-            <telerikInput:RadEntry x:Name="usernameBox" Style="{StaticResource FormEntryStyle}"/>
+            <telerikInput:RadEntry x:Name="usernameBox"   Style="{StaticResource FormEntryStyle}"  />
 
             <Label  Text="Description"  Style="{StaticResource FormSubtitleLabelStyle}" />
             <telerikInput:RadEntry x:Name="Description" Style="{StaticResource FormEntryStyle}"/>
