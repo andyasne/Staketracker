@@ -9,9 +9,7 @@ using Xamarin.Forms.Xaml;
 
 namespace Staketracker.UI.Pages
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    [MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Detail, NoHistory = true)]
-    public partial class LoginPage : MvxContentPage<LoginViewModel>
+    public partial class LoginPage : MvxContentPage<LoginViewModel>, IMvxOverridePresentationAttribute
     {
         public LoginPage()
         {
@@ -20,14 +18,24 @@ namespace Staketracker.UI.Pages
 
 
         }
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            NavigationPage.SetHasNavigationBar(this, false);
-        }
+
+
         private void isSandbox_IsCheckedChanged(object sender, Telerik.XamarinForms.Primitives.CheckBox.IsCheckedChangedEventArgs e)
         {
 
+        }
+
+
+        public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
+        {
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+                return new MvxTabbedPagePresentationAttribute(TabbedPosition.Tab) { WrapInNavigationPage = true };
+            }
+            else
+            {
+                return new MvxTabbedPagePresentationAttribute(TabbedPosition.Tab) { WrapInNavigationPage = false };
+            }
         }
 
     }

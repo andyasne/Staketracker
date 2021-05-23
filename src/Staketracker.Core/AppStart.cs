@@ -28,7 +28,7 @@ namespace Staketracker.Core
                 }
                 else
                 {
-                    await NavigationService.Navigate<LoginViewModel>();
+                    await NavigationService.Navigate<LoginRootViewModel>();
                 }
             }
             catch (Exception exception)
@@ -39,7 +39,7 @@ namespace Staketracker.Core
         bool isAuthenticated()
         {
             //Do Auth Impl Here
-            return true;
+            return false;
 
         }
     }
