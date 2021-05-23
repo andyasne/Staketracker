@@ -37,7 +37,7 @@
                 </telerikChart:RadPieChart.Series>
             </telerikChart:RadPieChart>
 
-            <telerikChart:RadLegend Grid.Row="2" Grid.Column="1" HeightRequest="300"
+            <telerikChart:RadLegend Grid.Row="2" Grid.Column="1" HeightRequest="00"
                                     Style="{StaticResource LegendStyle}"
                                     LegendProvider="{x:Reference Name=pieChart}"/>
         </Grid>

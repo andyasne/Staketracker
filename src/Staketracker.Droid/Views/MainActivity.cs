@@ -31,6 +31,7 @@ namespace Staketracker.Droid
             }
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+            Xamarin.Forms.Forms.SetFlags("AppTheme_Experimental");
 
             base.OnCreate(bundle);
             Xamarin.Essentials.Platform.Init(this, bundle);
