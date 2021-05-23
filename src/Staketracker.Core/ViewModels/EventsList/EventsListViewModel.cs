@@ -114,12 +114,12 @@ namespace Staketracker.Core.ViewModels.EventsList
             if (Device.Idiom != TargetIdiom.Phone)
                 return;
 
-            await this._navigationService.Navigate<SearchResultsViewModel>();
+            await this._navigationService.Navigate<SearchResultsViewModel, SearchRequest>(new SearchRequest(SearchResultsViewModel.CustomersContext, this.GetType()));
         }
 
         private async Task OnAddEvents()
         {
-            await this._navigationService.Navigate<EventsEditViewModel>();
+            await this._navigationService.Navigate<EventsEditViewModel, PresentationContext<string>>(new PresentationContext<string>(null, Models.PresentationMode.Create));
         }
     }
 }
