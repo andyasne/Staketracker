@@ -39,7 +39,7 @@ namespace Staketracker.Core
         bool isAuthenticated()
         {
             //Do Auth Impl Here
-            return false;
+            return true;
 
         }
     }

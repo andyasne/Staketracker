@@ -19,7 +19,6 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <Label Grid.Row="0" Grid.ColumnSpan="0" Text="Top 5 Stakeholder Groups" Style="{StaticResource TitleLabelStyle}"  />
