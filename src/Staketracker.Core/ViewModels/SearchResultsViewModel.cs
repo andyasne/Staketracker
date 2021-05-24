@@ -31,7 +31,7 @@ namespace Staketracker.Core.ViewModels
         private object selectedItem;
         private Func<string, Task> searchAction;
 
-        public const string CustomersContext = "search_customers";
+        public const string EventsContext = "search_events";
         public const string OrdersContext = "search_orders";
         public const string ProductsContext = "search_products";
         public const string VendorsContext = "search_vendors";
