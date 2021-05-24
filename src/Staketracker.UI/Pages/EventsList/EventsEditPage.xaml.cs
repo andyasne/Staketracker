@@ -14,7 +14,7 @@ using Staketracker.Core;
 
 namespace Staketracker.UI.Pages.EventsList
 {
-    public partial class EventsEditPage : MvxContentPage<EventsEditViewModel>, IMvxOverridePresentationAttribute
+    public partial class EventsEditPage : MvxContentPage<EventsDetailViewModel>, IMvxOverridePresentationAttribute
     {
         public EventsEditPage()
         {

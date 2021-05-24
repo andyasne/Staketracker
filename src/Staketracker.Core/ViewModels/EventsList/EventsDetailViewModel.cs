@@ -8,11 +8,11 @@ using Xamarin.Forms;
 namespace Staketracker.Core.ViewModels.EventsList
 {
 
-    public class EventsEditViewModel : BaseViewModel<PresentationContext<string>>
+    public class EventsDetailViewModel : BaseViewModel<PresentationContext<string>>
 
     {
 
-        public EventsEditViewModel(IMvxNavigationService navigationService)
+        public EventsDetailViewModel(IMvxNavigationService navigationService)
         {
 
         }
