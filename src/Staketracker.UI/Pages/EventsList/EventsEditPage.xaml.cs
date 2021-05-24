@@ -14,7 +14,7 @@ using Staketracker.Core;
 
 namespace Staketracker.UI.Pages.EventsList
 {
-    public partial class EventsEditPage : MvxContentPage<EventsDetailViewModel>, IMvxOverridePresentationAttribute
+    public partial class EventsEditPage : MvxContentPage<SEventDetailViewModel>, IMvxOverridePresentationAttribute
     {
         public EventsEditPage()
         {
@@ -33,7 +33,7 @@ namespace Staketracker.UI.Pages.EventsList
             }
             else
             {
-                return new MvxCustomMasterDetailPagePresentationAttribute(MasterDetailPosition.Detail) { NoHistory = true, MasterHostViewType = typeof(EventsListPage) };
+                return new MvxCustomMasterDetailPagePresentationAttribute(MasterDetailPosition.Detail) { NoHistory = true, MasterHostViewType = typeof(SEventsListPage) };
             }
         }
 

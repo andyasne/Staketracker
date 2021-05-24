@@ -13,9 +13,9 @@ using Xamarin.Forms;
 
 namespace Staketracker.UI.Pages.EventsList
 {
-    public partial class EventsListPage : MvxContentPage<EventsListViewModel>, IMvxOverridePresentationAttribute
+    public partial class SEventsListPage : MvxContentPage<SEventsListViewModel>, IMvxOverridePresentationAttribute
     {
-        public EventsListPage()
+        public SEventsListPage()
         {
             InitializeComponent();
 

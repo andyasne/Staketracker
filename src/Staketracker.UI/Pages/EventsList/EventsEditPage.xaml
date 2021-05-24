@@ -10,7 +10,7 @@
                       xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
                       x:Class="Staketracker.UI.Pages.EventsList.EventsEditPage"
                       Title="Add Event" Icon="Events" ios:Page.UseSafeArea="true"
-                      x:TypeArguments="viewModels:EventsEditViewModel">
+                      x:TypeArguments="viewModels:SEventDetailViewModel">
 
     <ContentPage.Resources>
         <ResourceDictionary xmlns:themes="clr-namespace:Staketracker.UI.Themes">

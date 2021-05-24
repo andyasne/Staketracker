@@ -53,7 +53,7 @@ namespace Staketracker.Core.ViewModels.Menu
                     await _navigationService.Navigate<LoginViewModel>();
                     break;
                 case "Events":
-                    await _navigationService.Navigate<EventsListViewModel>();
+                    await _navigationService.Navigate<SEventsListViewModel>();
                     break;
                 case "Two Step Verification":
                     await _navigationService.Navigate<TwoStepVerificationViewModel>();

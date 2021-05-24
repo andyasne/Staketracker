@@ -8,9 +8,9 @@
                       xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
                       xmlns:telerikBusyIndicator="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-                      x:Class="Staketracker.UI.Pages.EventsList.EventsListPage"
+                      x:Class="Staketracker.UI.Pages.EventsList.SEventsListPage"
                       Title="Events" Icon="Events" ios:Page.UseSafeArea="true"
-                      x:TypeArguments="viewModels:EventsListViewModel">
+                      x:TypeArguments="viewModels:SEventsListViewModel">
 
     <Grid x:Name="LayoutRoot" RowSpacing="0">
         <Grid.RowDefinitions>

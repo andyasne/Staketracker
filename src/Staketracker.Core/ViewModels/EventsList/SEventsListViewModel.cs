@@ -14,7 +14,7 @@ namespace Staketracker.Core.ViewModels.EventsList
     using Staketracker.Core.Models.Events;
     using Xamarin.Forms;
 
-    public class Events
+    public class SEvent
     {
         public string Id { get; set; }
 
@@ -25,35 +25,44 @@ namespace Staketracker.Core.ViewModels.EventsList
         public string Type { get; set; }
 
         public string Status { get; set; }
+
+
+        public SEvent Copy()
+        {
+            SEvent newS = new SEvent()
+            {
+            };
+            return newS;
+        }
     }
 
 
     public class EventUpdatedMessage : MvxMessage
     {
-        public EventUpdatedMessage(object sender, Events entity)
+        public EventUpdatedMessage(object sender, SEvent entity)
             : base(sender)
         {
-            Event = entity;
+            SEvent = entity;
         }
 
-        public Events Event { get; }
+        public SEvent SEvent { get; }
     }
     public class EventDeletedMessage : MvxMessage
     {
-        public EventDeletedMessage(object sender, Events entity)
+        public EventDeletedMessage(object sender, SEvent entity)
             : base(sender)
         {
-            Event = entity;
+            SEvent = entity;
         }
 
-        public Events Event { get; }
+        public SEvent SEvent { get; }
     }
 
-    public class EventsListViewModel : BaseViewModel<AuthReply>
+    public class SEventsListViewModel : BaseViewModel<AuthReply>
     {
-        private Events selectedEvents, selectedEventsDetail;
+        private SEvent selectedEvents, selectedEventsDetail;
 
-        private ObservableCollection<Events> eventsomers;
+        private ObservableCollection<SEvent> eventsomers;
 
         private string headerTitle;
 
@@ -63,7 +72,7 @@ namespace Staketracker.Core.ViewModels.EventsList
 
         public IMvxCommand AddEventsCommand { get; }
 
-        public EventsListViewModel(IMvxNavigationService navigationService)
+        public SEventsListViewModel(IMvxNavigationService navigationService)
         {
             this.headerTitle = "Events";
 
@@ -82,7 +91,7 @@ namespace Staketracker.Core.ViewModels.EventsList
 
         public override Task Initialize()
         {
-            this.eventsomers = new ObservableCollection<Events>();
+            this.eventsomers = new ObservableCollection<SEvent>();
 
             return GetEvents(authReply);
         }
@@ -102,7 +111,7 @@ namespace Staketracker.Core.ViewModels.EventsList
 
                 foreach (Models.Events.D d in eventsRep.d)
                 {
-                    Events _events = new Events();
+                    SEvent _events = new SEvent();
                     _events.Name = d.Name;
                     _events.Date = d.EventDate.ToShortDateString();
                     _events.Type = d.Type;
@@ -117,9 +126,9 @@ namespace Staketracker.Core.ViewModels.EventsList
             }
         }
 
-        public ObservableCollection<Events> Events { get => eventsomers; private set => SetField(ref eventsomers, value); }
+        public ObservableCollection<SEvent> Events { get => eventsomers; private set => SetField(ref eventsomers, value); }
 
-        public Events SelectedEvents
+        public SEvent SelectedEvents
         {
             get => selectedEvents;
             set
@@ -151,8 +160,8 @@ namespace Staketracker.Core.ViewModels.EventsList
         //}
         private IMvxNavigationService navigationService;
         //private IErpService service;
-        private Events selectedEvent;
-        private ObservableCollection<Events> events;
+        private SEvent selectedEvent;
+        private ObservableCollection<SEvent> events;
         private LayoutMode currentLayoutMode;
         private bool isSearchEmpty, isBusy;
         private string draftSearchTerm, listDescription, currentUserName;
@@ -164,7 +173,7 @@ namespace Staketracker.Core.ViewModels.EventsList
         //    private set => SetProperty(ref events, value);
         //}
 
-        public Events SelectedEvent
+        public SEvent SelectedEvent
         {
             get => selectedEvent;
             set
@@ -238,12 +247,13 @@ namespace Staketracker.Core.ViewModels.EventsList
             //this.Events = target;
         }
 
-        private void OnSelectedEventChanged(Events _event)
+        private void OnSelectedEventChanged(SEvent _event)
         {
             if (Device.Idiom != TargetIdiom.Phone)
                 return;
 
-            this.navigationService.Navigate<EventsDetailViewModel, PresentationContext<string>>(new PresentationContext<string>(_event.Id, Models.PresentationMode.Read));
+            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<string>>(new PresentationContext<string>(_event.Id, Models.PresentationMode.Read));
+
             this.SelectedEvent = null;
         }
 
@@ -255,7 +265,7 @@ namespace Staketracker.Core.ViewModels.EventsList
 
         private async Task DoSeach(string term)
         {
-            ObservableCollection<Events> newEvents;
+            ObservableCollection<SEvent> newEvents;
             //if (string.IsNullOrEmpty(term))
             //    newEvents = await this.service.GetEventsAsync();
             //else
@@ -275,7 +285,7 @@ namespace Staketracker.Core.ViewModels.EventsList
 
         private void OnEventDeleted(EventDeletedMessage message)
         {
-            //var found = this.events.SingleOrDefault(c => c.Id == message.Event.Id);
+            //var found = this.events.SingleOrDefault(c => c.Id == message.SEvent.Id);
             //if (found != null)
             //{
             //    this.events.Remove(found);
@@ -286,15 +296,16 @@ namespace Staketracker.Core.ViewModels.EventsList
 
         private void OnCreateEvent()
         {
-            this.navigationService.Navigate<EventsDetailViewModel, PresentationContext<string>>(new PresentationContext<string>(null, Models.PresentationMode.Create));
+            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<string>>(new PresentationContext<string>(null, Models.PresentationMode.Create));
+
         }
 
-        private void OnEditEvent(Events _event)
+        private void OnEditEvent(SEvent _event)
         {
             if (_event == null)
                 return;
+            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<string>>(new PresentationContext<string>(_event.Id, Models.PresentationMode.Edit));
 
-            this.navigationService.Navigate<EventsDetailViewModel, PresentationContext<string>>(new PresentationContext<string>(_event.Id, Models.PresentationMode.Edit));
         }
 
         //private void ShowAboutPage()
@@ -310,19 +321,19 @@ namespace Staketracker.Core.ViewModels.EventsList
             await this.navigationService.Navigate<SearchResultsViewModel, SearchRequest>(new SearchRequest(SearchResultsViewModel.EventsContext, this.GetType()));
         }
 
-        private async Task OnDeleteEvent(Events _event)
+        private async Task OnDeleteEvent(SEvent _event)
         {
             if (_event == null)
                 return;
 
-            //bool result = await  DisplayAlert("Delete product", $"Are you sure you want to delete event {event.Name}?", "Yes", "No");
+            //bool result = await  DisplayAlert("Delete product", $"Are you sure you want to delete SEvent {SEvent.Name}?", "Yes", "No");
             //if (!result)
             //    return;
 
-            //     await this.service.RemoveEventAsync(event);
+            //     await this.service.RemoveEventAsync(SEvent);
         }
 
-        private static void ApplyEventIndexing(IEnumerable<Events> events)
+        private static void ApplyEventIndexing(IEnumerable<SEvent> events)
         {
             int index = 0;
             foreach (var item in events)
