@@ -28,11 +28,11 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <StackLayout BackgroundColor="{StaticResource DarkBlueColor}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center"  HeightRequest="150">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center"  HeightRequest="130">
 
-                    <Image Source="splash_logo.png"  VerticalOptions="FillAndExpand" ScaleX="2" ScaleY="2" WidthRequest="130" HeightRequest="130"  Margin="10,0,0,0" Aspect="AspectFill" />
+                    <Image Source="splash_logo_white.png"  VerticalOptions="FillAndExpand" ScaleX="2" ScaleY="2" WidthRequest="130" HeightRequest="130"  Margin="10,0,0,0" Aspect="AspectFill" />
 
-                    <Label Text="Staketracker For Mobile" FontSize="38" Margin="0,0,20,5" VerticalTextAlignment="Center" TextColor="{StaticResource LightColor}" FontFamily="Lobster" Style="{StaticResource TitleLabelStyle}" />
+                    <Label Text="StakeTracker For Mobile" FontSize="38" Margin="0,0,20,5" VerticalTextAlignment="Center" TextColor="{StaticResource LightColor}" FontFamily="Lobster" Style="{StaticResource TitleLabelStyle}" />
                 </StackLayout>
             </StackLayout>
             <ScrollView Grid.Row="1">
