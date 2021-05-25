@@ -24,21 +24,23 @@
         <StackLayout Margin="15,15,15,15" >
 
             <Label  Text="Name"  Style="{StaticResource FormSubtitleLabelStyle}" />
-            <telerikInput:RadEntry x:Name="usernameBox"   Style="{StaticResource FormEntryStyle}"  />
+            <telerikInput:RadEntry x:Name="usernameBox"   Text="{Binding  sEvent.Name,Mode=TwoWay}"  Style="{StaticResource FormEntryStyle}"  />
 
             <Label  Text="Description"  Style="{StaticResource FormSubtitleLabelStyle}" />
-            <telerikInput:RadEntry x:Name="Description" Style="{StaticResource FormEntryStyle}"/>
+            <telerikInput:RadEntry x:Name="Description"  Text="{Binding sEvent.Description,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}"/>
+
+            <Label  Text="Date"  Style="{StaticResource FormSubtitleLabelStyle}" />
+            <telerikInput:RadEntry x:Name="EventDate"  Text="{Binding sEvent.Date,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}"/>
+
+
 
             <Label  Text="Type"  Style="{StaticResource FormSubtitleLabelStyle}" />
-            <telerikInput:RadEntry x:Name="Type" Style="{StaticResource FormEntryStyle}"/>
+            <telerikInput:RadEntry x:Name="Type"  Text="{Binding sEvent.Type,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}"/>
 
 
             <Label  Text="Status"  Style="{StaticResource FormSubtitleLabelStyle}" />
-            <telerikInput:RadEntry x:Name="Status" Style="{StaticResource FormEntryStyle}"/>
+            <telerikInput:RadEntry x:Name="Status"  Text="{Binding sEvent.Status,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}"/>
 
-
-            <Label  Text="EventDate"  Style="{StaticResource FormSubtitleLabelStyle}" />
-            <telerikInput:RadEntry x:Name="EventDate" Style="{StaticResource FormEntryStyle}"/>
 
 
 

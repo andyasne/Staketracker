@@ -12,7 +12,7 @@ using PresentationMode = Staketracker.Core.Models.PresentationMode;
 
 namespace Staketracker.Core.ViewModels.EventsList
 {
-    public class SEventDetailViewModel : MvxViewModel<PresentationContext<string>>
+    public class SEventDetailViewModel : MvxViewModel<PresentationContext<SEvent>>
     {
         public SEventDetailViewModel(IStaketrackerApi stkaeTrackerAPI, IMvxNavigationService navigationService)
         {
@@ -30,13 +30,13 @@ namespace Staketracker.Core.ViewModels.EventsList
         private string targetSEventId;
         private PresentationMode mode;
         private string title;
-
-        public SEvent SEvent
+        private SEvent _sEvent;
+        public SEvent sEvent
         {
-            get => this.targetSEvent;
+            get => this._sEvent;
             private set
             {
-                if (SetProperty(ref this.targetSEvent, value))
+                if (SetProperty(ref this._sEvent, value))
                 {
                     RaisePropertyChanged(() => IsEditing);
                     RaisePropertyChanged(() => IsReading);
@@ -85,9 +85,10 @@ namespace Staketracker.Core.ViewModels.EventsList
         public IMvxCommand CancelCommand { get; }
         public IMvxCommand DeleteCommand { get; }
 
-        public override void Prepare(PresentationContext<string> parameter)
+
+        public override void Prepare(PresentationContext<SEvent> parameter)
         {
-            this.targetSEventId = parameter.Model;
+            this.sEvent = parameter.Model;
             this.Mode = parameter.Mode;
         }
 
@@ -125,7 +126,7 @@ namespace Staketracker.Core.ViewModels.EventsList
             }
             else
             {
-                this.SEvent = sEvent;
+                this.sEvent = sEvent;
             }
             this.UpdateTitle();
         }
@@ -138,10 +139,10 @@ namespace Staketracker.Core.ViewModels.EventsList
                     this.Title = this.targetSEvent.Name;
                     break;
                 case PresentationMode.Edit:
-                    this.Title = $"Edit SEvent";
+                    this.Title = $"Edit Event";
                     break;
                 case PresentationMode.Create:
-                    this.Title = "Add New SEvent";
+                    this.Title = "Add New Event";
                     break;
             }
         }
