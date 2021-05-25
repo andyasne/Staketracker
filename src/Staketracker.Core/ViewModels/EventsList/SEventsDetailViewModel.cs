@@ -30,8 +30,8 @@ namespace Staketracker.Core.ViewModels.EventsList
         private string targetSEventId;
         private PresentationMode mode;
         private string title;
-
-        public SEvent SEvent
+        private SEvent _sEvent;
+        public SEvent sEvent
         {
             get => this._sEvent;
             private set
