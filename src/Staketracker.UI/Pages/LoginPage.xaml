@@ -35,14 +35,14 @@
                 </StackLayout>
             </StackLayout>
             <ScrollView Grid.Row="1">
-                <StackLayout Orientation="Vertical" Padding="30,30,30,0" VerticalOptions="CenterAndExpand" Spacing="10">
+                <StackLayout Orientation="Vertical" Padding="30,50,30,0" VerticalOptions="CenterAndExpand" Spacing="10">
                     <telerikInput:RadEntry x:Name="production" Text="{Binding IsSandboxDisplay}" IsReadOnly="True"   Style="{StaticResource LoginEntryStyle}"  Margin="0,0,0,5"    WatermarkText="Production" />
                     <StackLayout Orientation="Horizontal">
                         <telerikPrimitives:RadCheckBox x:Name="isSandbox" Style="{StaticResource checkBoxButtonStyle}"  IsChecked="{Binding IsSandboxChecked}" />
                         <Label Text="Connect to Sandbox"  Style="{StaticResource NormalLabelStyle}" />
                     </StackLayout>
                     <!--User Id-->
-                    <telerikInput:RadEntry   Margin="0,20,0,0"
+                    <telerikInput:RadEntry   Margin="0,30,0,0"
                                    WatermarkText="User ID"
                                    Text="{Binding Username.Value, Mode=TwoWay }"
                                    Style="{StaticResource LoginEntryStyle}">

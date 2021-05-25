@@ -96,7 +96,7 @@ namespace Staketracker.Core.ViewModels.EventsList
         {
             await base.Initialize();
 
-            SEvent sEvent = null;
+            // SEvent sEvent = null;
             if (this.mode == PresentationMode.Create)
             {
                 sEvent = new SEvent();
@@ -136,7 +136,7 @@ namespace Staketracker.Core.ViewModels.EventsList
             switch (this.mode)
             {
                 case PresentationMode.Read:
-                    this.Title = this.targetSEvent.Name;
+                    this.Title = this.sEvent.Name;
                     break;
                 case PresentationMode.Edit:
                     this.Title = $"Edit Event";
