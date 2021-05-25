@@ -25,6 +25,7 @@ namespace Staketracker.Core.ViewModels.EventsList
         public string Type { get; set; }
 
         public string Status { get; set; }
+        public string Description { get; set; }
 
 
         public SEvent Copy()
@@ -128,17 +129,7 @@ namespace Staketracker.Core.ViewModels.EventsList
 
         public ObservableCollection<SEvent> Events { get => eventsomers; private set => SetField(ref eventsomers, value); }
 
-        public SEvent SelectedEvents
-        {
-            get => selectedEvents;
-            set
-            {
-                if (SetProperty(ref selectedEvents, value) && value != null)
-                {
-                    SetField(ref selectedEvents, value);
-                }
-            }
-        }
+
 
         public async Task Refresh()
         {
@@ -252,7 +243,7 @@ namespace Staketracker.Core.ViewModels.EventsList
             if (Device.Idiom != TargetIdiom.Phone)
                 return;
 
-            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<string>>(new PresentationContext<string>(_event.Id, Models.PresentationMode.Read));
+            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<SEvent>>(new PresentationContext<SEvent>(_event, Models.PresentationMode.Read));
 
             this.SelectedEvent = null;
         }
@@ -296,7 +287,7 @@ namespace Staketracker.Core.ViewModels.EventsList
 
         private void OnCreateEvent()
         {
-            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<string>>(new PresentationContext<string>(null, Models.PresentationMode.Create));
+            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<SEvent>>(new PresentationContext<SEvent>(new SEvent(), Models.PresentationMode.Create));
 
         }
 
@@ -304,7 +295,7 @@ namespace Staketracker.Core.ViewModels.EventsList
         {
             if (_event == null)
                 return;
-            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<string>>(new PresentationContext<string>(_event.Id, Models.PresentationMode.Edit));
+            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<SEvent>>(new PresentationContext<SEvent>(_event, Models.PresentationMode.Edit));
 
         }
 

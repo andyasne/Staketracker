@@ -45,7 +45,7 @@
             <telerikDataControls:RadListView ItemsSource="{Binding Events, Mode=OneWay}" SelectionMode="None"
                                                 IsPullToRefreshEnabled="true" Grid.Row="1"
                                                 RefreshRequested="Handle_RefreshRequested"
-                                                SelectedItem="{Binding SelectedEvents, Mode=TwoWay}">
+                                                SelectedItem="{Binding SelectedEvent, Mode=TwoWay}">
                 <telerikDataControls:RadListView.ItemTemplate>
                     <DataTemplate>
                         <telerikListView:ListViewTemplateCell>

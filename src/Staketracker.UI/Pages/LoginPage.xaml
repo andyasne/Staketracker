@@ -29,20 +29,20 @@
 
             </Grid.RowDefinitions>
             <StackLayout BackgroundColor="{StaticResource DarkBlueColor}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center"  HeightRequest="160">
-                    <Image Source="splash_logo_white.png"  VerticalOptions="FillAndExpand" ScaleX="2" ScaleY="2" WidthRequest="95" HeightRequest="130"  Margin="10,0,0,0" Aspect="AspectFill" />
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center"  HeightRequest="120">
+                    <Image Source="splash_logo_white.png"  VerticalOptions="FillAndExpand" ScaleX="2" ScaleY="2" WidthRequest="95" HeightRequest="110"  Margin="10,0,0,0" Aspect="AspectFill" />
                     <Label Text="StakeTracker For Mobile" FontSize="35" Margin="0,0,20,5" VerticalTextAlignment="Center" TextColor="{StaticResource LightColor}" FontFamily="Lobster" Style="{StaticResource TitleLabelStyle}" />
                 </StackLayout>
             </StackLayout>
             <ScrollView Grid.Row="1">
-                <StackLayout Orientation="Vertical" Padding="30,50,30,0" VerticalOptions="CenterAndExpand" Spacing="10">
+                <StackLayout Orientation="Vertical" Padding="30,30,30,0" VerticalOptions="CenterAndExpand" Spacing="10">
                     <telerikInput:RadEntry x:Name="production" Text="{Binding IsSandboxDisplay}" IsReadOnly="True"   Style="{StaticResource LoginEntryStyle}"  Margin="0,0,0,5"    WatermarkText="Production" />
                     <StackLayout Orientation="Horizontal">
                         <telerikPrimitives:RadCheckBox x:Name="isSandbox" Style="{StaticResource checkBoxButtonStyle}"  IsChecked="{Binding IsSandboxChecked}" />
                         <Label Text="Connect to Sandbox"  Style="{StaticResource NormalLabelStyle}" />
                     </StackLayout>
                     <!--User Id-->
-                    <telerikInput:RadEntry   Margin="0,40,0,0"
+                    <telerikInput:RadEntry   Margin="0,20,0,0"
                                    WatermarkText="User ID"
                                    Text="{Binding Username.Value, Mode=TwoWay }"
                                    Style="{StaticResource LoginEntryStyle}">
@@ -102,7 +102,7 @@
                                     FontAttributes="None" />
                 </Grid>
                 <Label  TextColor="{StaticResource DarkTextColor}"  VerticalTextAlignment="End"  VerticalOptions="End"  Text="(c) SustaiNet Software International Inc." HorizontalTextAlignment="Center"  HorizontalOptions="CenterAndExpand" />
-                <StackLayout Orientation="Horizontal" VerticalOptions="Start"  Margin="0,0,0,30">
+                <StackLayout Orientation="Horizontal" VerticalOptions="Start"  Margin="0,0,0,10">
                     <Label  TextColor="{StaticResource DarkTextColor}"     VerticalTextAlignment="Start" VerticalOptions="Start"  Text="All Rights Reserved |" HorizontalTextAlignment="End"  HorizontalOptions="EndAndExpand" />
                     <Label  TextColor="{StaticResource LightBlueColor}"     VerticalTextAlignment="Start" VerticalOptions="Start"  Text="Privacy" HorizontalTextAlignment="Start"  HorizontalOptions="StartAndExpand" />
                 </StackLayout>
