@@ -12,11 +12,11 @@ using PresentationMode = Staketracker.Core.Models.PresentationMode;
 
 namespace Staketracker.Core.ViewModels.EventsList
 {
-    public class SEventDetailViewModel : MvxViewModel<PresentationContext<SEvent>>
+    public class SEventDetailViewModel : BaseViewModel<PresentationContext<SEvent>>
     {
-        public SEventDetailViewModel(IStaketrackerApi stkaeTrackerAPI, IMvxNavigationService navigationService)
+        public SEventDetailViewModel(IMvxNavigationService navigationService)
         {
-            this.stkaeTrackerAPI = stkaeTrackerAPI;
+            //this.stkaeTrackerAPI = stkaeTrackerAPI;
             this.navigationService = navigationService;
             this.BeginEditCommand = new Command(OnBeginEditSEvent);
             this.CommitCommand = new MvxAsyncCommand(OnCommitEditOrder);
