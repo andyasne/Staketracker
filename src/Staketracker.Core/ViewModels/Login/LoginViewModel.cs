@@ -113,6 +113,7 @@ namespace Staketracker.Core.ViewModels.Login
 
                 if (authResponse.IsSuccessStatusCode)
                 {
+
                     var response = await authResponse.Content.ReadAsStringAsync();
                     authReply = await Task.Run(() => JsonConvert.DeserializeObject<AuthReply>(response));
                     if (authReply.d.sessionId == null)
@@ -133,6 +134,8 @@ namespace Staketracker.Core.ViewModels.Login
                     {
                         await _navigationService.Navigate<RootViewModel, AuthReply>(authReply);
                     }
+
+
                     //   String msg = "Logged in successfully, SessionId-" + authReply.d.sessionId;
                     // PageDialog.Toast(msg, TimeSpan.FromSeconds(5));
                 }

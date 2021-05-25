@@ -26,16 +26,9 @@ namespace Staketracker.Core.ViewModels.Root
         public override async void ViewAppearing()
         {
             base.ViewAppearing();
-            try
-            {
 
-                MvxNotifyTask.Create(async () => await this.InitializeViewModels());
-            }
-            catch (System.Exception)
-            {
+            MvxNotifyTask.Create(async () => await this.InitializeViewModels());
 
-
-            }
 
         }
 
@@ -46,52 +39,15 @@ namespace Staketracker.Core.ViewModels.Root
 
 
                 await _navigationService.Navigate<Dashboard.DashboardViewModel>();
-            }
-            catch (System.Exception)
-            {
-
-
-            }
-
-            try
-            {
 
                 await _navigationService.Navigate<SEventsListViewModel, AuthReply>(authReply);
-            }
-            catch (System.Exception)
-            {
 
-
-            }
-            try
-            {
                 await _navigationService.Navigate<CommunicationListViewModel>();
-            }
-            catch (System.Exception)
-            {
 
-
-            }
-            try
-            {
                 await _navigationService.Navigate<Stakeholders.StakeholdersListViewModel>();
-            }
-            catch (System.Exception)
-            {
 
-
-            }
-            try
-            {
                 await _navigationService.Navigate<Tasks.TasksListViewModel>();
-            }
-            catch (System.Exception)
-            {
 
-
-            }
-            try
-            {
                 await _navigationService.Navigate<Commitments.CommitmentsViewModel>();
             }
             catch (System.Exception)

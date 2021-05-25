@@ -28,7 +28,7 @@ namespace Staketracker.Core.ViewModels.EventsList
         private IMvxNavigationService navigationService;
         private SEvent targetSEvent, draftSEvent;
         private string targetSEventId;
-        private PresentationMode mode;
+        public PresentationMode mode;
         private string title;
         private SEvent _sEvent;
         public SEvent sEvent
@@ -161,15 +161,20 @@ namespace Staketracker.Core.ViewModels.EventsList
 
         private async Task OnDeleteSEvent()
         {
-            //    bool result = await App.Current.MainPage.DisplayAlert("Delete sEvent", $"Are you sure you want to delete sEvent {this.targetSEvent.Name}?", "Yes", "No");
-            //if (!result)
-            //    return;
+            bool result = await PageDialog.ConfirmAsync($"Are you sure you want to delete Event {this.sEvent.Name}?", "Delete Event", "Yes", "No");
+
+            if (!result)
+                return;
 
             //await this.stkaeTrackerAPI.RemoveSEventAsync(this.targetSEvent);
             //if (Device.Idiom == TargetIdiom.Phone)
             //{
-            //    await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsViewModel)));
+            await this.navigationService.Close(this);
+
+            await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
             //}
+
+
         }
 
         private async Task OnCancel()

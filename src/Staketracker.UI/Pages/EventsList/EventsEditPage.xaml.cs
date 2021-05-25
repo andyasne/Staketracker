@@ -26,20 +26,29 @@ namespace Staketracker.UI.Pages.EventsList
             saveToolbarItem = new ToolbarItem();
             saveToolbarItem.Text = "Save";
             //     checkToolbarItem.IconImageSource = new FileImageSource() { File = "check" };
-            //   checkToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("CommitCommand"));
-            Telerik.XamarinForms.Primitives.RadPopup.SetPopup(this, null);
+            saveToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("CommitCommand"));
 
 
             deleteToolbarItem = new ToolbarItem();
             deleteToolbarItem.Text = "Delete";
             //     checkToolbarItem.IconImageSource = new FileImageSource() { File = "check" };
-            //   checkToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("CommitCommand"));
+            deleteToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("DeleteCommand"));
 
         }
         protected override void OnAppearing()
         {
-            this.ToolbarItems.Add(saveToolbarItem);
-            this.ToolbarItems.Add(deleteToolbarItem);
+            if (this.ViewModel.Mode == Core.Models.PresentationMode.Read)
+            {
+                if (!this.ToolbarItems.Contains(saveToolbarItem))
+                { this.ToolbarItems.Add(saveToolbarItem); }
+                if (!this.ToolbarItems.Contains(deleteToolbarItem))
+                { this.ToolbarItems.Add(deleteToolbarItem); }
+            }
+            else
+            {
+                if (!this.ToolbarItems.Contains(saveToolbarItem))
+                { this.ToolbarItems.Add(saveToolbarItem); }
+            }
 
 
         }
