@@ -28,7 +28,7 @@ namespace Staketracker.Core.ViewModels.EventsList
         private IMvxNavigationService navigationService;
         private SEvent targetSEvent, draftSEvent;
         private string targetSEventId;
-        private PresentationMode mode;
+        public PresentationMode mode;
         private string title;
         private SEvent _sEvent;
         public SEvent sEvent

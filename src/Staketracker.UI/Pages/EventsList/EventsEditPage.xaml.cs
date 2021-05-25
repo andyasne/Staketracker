@@ -38,8 +38,18 @@ namespace Staketracker.UI.Pages.EventsList
         }
         protected override void OnAppearing()
         {
-            this.ToolbarItems.Add(saveToolbarItem);
-            this.ToolbarItems.Add(deleteToolbarItem);
+            if (this.ViewModel.Mode == Core.Models.PresentationMode.Read)
+            {
+                if (!this.ToolbarItems.Contains(saveToolbarItem))
+                { this.ToolbarItems.Add(saveToolbarItem); }
+                if (!this.ToolbarItems.Contains(deleteToolbarItem))
+                { this.ToolbarItems.Add(deleteToolbarItem); }
+            }
+            else
+            {
+                if (!this.ToolbarItems.Contains(saveToolbarItem))
+                { this.ToolbarItems.Add(saveToolbarItem); }
+            }
 
 
         }
