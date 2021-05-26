@@ -44,6 +44,13 @@
                 <telerikInput:RadEntry x:Name="Status"  Text="{Binding sEvent.Status,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}"/>
 
 
+                <Label  Text="Venue"  Style="{StaticResource FormSubtitleLabelStyle}" />
+                <telerikInput:RadEntry x:Name="Venue"    Style="{StaticResource FormEntryStyle}"/>
+
+
+                <Label  Text="Head Count"  Style="{StaticResource FormSubtitleLabelStyle}" />
+                <telerikInput:RadEntry x:Name="Head"    Style="{StaticResource FormEntryStyle}"/>
+
 
 
             </StackLayout>
