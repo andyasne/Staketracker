@@ -10,7 +10,7 @@ using MvvmCross.ViewModels;
 using Xamarin.Forms;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
 
-namespace Staketracker.Core.ViewModels.EventsList
+namespace Staketracker.Core.ViewModels.Events
 {
     public class SEventDetailViewModel : BaseViewModel<PresentationContext<SEvent>>
     {

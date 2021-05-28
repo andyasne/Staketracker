@@ -7,7 +7,7 @@ using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Staketracker.Core.ViewModels.Dashboard;
-using Staketracker.Core.ViewModels.EventsList;
+using Staketracker.Core.ViewModels.Events;
 using Staketracker.Core.ViewModels.Home;
 using Staketracker.Core.ViewModels.Login;
 using Staketracker.Core.ViewModels.TwoStepVerification;

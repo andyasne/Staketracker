@@ -1,6 +1,6 @@
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
-using Staketracker.Core.ViewModels.EventsList;
+using Staketracker.Core.ViewModels.Events;
 using Telerik.XamarinForms.DataControls;
 using Xamarin.Forms.Xaml;
 using MvvmCross.Forms.Presenters.Attributes;
@@ -11,7 +11,7 @@ using MvvmCross.ViewModels;
 using Telerik.XamarinForms.DataControls;
 using Xamarin.Forms;
 
-namespace Staketracker.UI.Pages.EventsList
+namespace Staketracker.UI.Pages.Events
 {
     public partial class SEventsListPage : MvxContentPage<SEventsListViewModel>, IMvxOverridePresentationAttribute
     {

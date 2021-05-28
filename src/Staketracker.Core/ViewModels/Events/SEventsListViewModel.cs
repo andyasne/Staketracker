@@ -1,4 +1,4 @@
-namespace Staketracker.Core.ViewModels.EventsList
+namespace Staketracker.Core.ViewModels.Events
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;

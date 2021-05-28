@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             
+             xmlns:rating="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+                                   x:Class="Staketracker.UI.Pages.Events.EventsEditPage"
+>
+
+
+    <ContentView.Content>
+        <Grid x:Name="LayoutRoot" Margin="12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" /> 
+            </Grid.RowDefinitions>
+ 
+
+            <ScrollView  >
+                <StackLayout Orientation="Vertical">
+                    <Grid Margin="20, 0">
+                        <Grid.ColumnDefinitions>
+                             
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Margin="15,15,15,15" >
+
+                            <Label  Text="Name"  Style="{StaticResource FormSubtitleLabelStyle}" />
+                            <telerikInput:RadEntry x:Name="usernameBox"   Text="{Binding  sEvent.Name,Mode=TwoWay}"  Style="{StaticResource FormEntryStyle}"  />
+
+                            <Label  Text="Description"  Style="{StaticResource FormSubtitleLabelStyle}" />
+                            <telerikInput:RadEntry x:Name="Description"  Text="{Binding sEvent.Description,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}"/>
+
+                            <Label  Text="Date"  Style="{StaticResource FormSubtitleLabelStyle}" />
+                            <telerikInput:RadEntry x:Name="EventDate"  Text="{Binding sEvent.Date,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}"/>
+
+
+
+                            <Label  Text="Type"  Style="{StaticResource FormSubtitleLabelStyle}" />
+                            <telerikInput:RadEntry x:Name="Type"  Text="{Binding sEvent.Type,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}"/>
+
+
+                            <Label  Text="Status"  Style="{StaticResource FormSubtitleLabelStyle}" />
+                            <telerikInput:RadEntry x:Name="Status"  Text="{Binding sEvent.Status,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}"/>
+
+
+                            <Label  Text="Venue"  Style="{StaticResource FormSubtitleLabelStyle}" />
+                            <telerikInput:RadEntry x:Name="Venue"    Style="{StaticResource FormEntryStyle}"/>
+
+
+                            <Label  Text="Head Count"  Style="{StaticResource FormSubtitleLabelStyle}" />
+                            <telerikInput:RadEntry x:Name="Head"    Style="{StaticResource FormEntryStyle}"/>
+
+
+
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

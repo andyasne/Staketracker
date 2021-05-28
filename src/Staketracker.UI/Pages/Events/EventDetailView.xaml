@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+                      xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:rating="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             x:Class="Staketracker.UI.Pages.Events.EventDetailView" BackgroundColor="White">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Thickness x:Key="itemSpacing">0,0,0,10</Thickness>
+            <Color x:Key="TitleLabelColor">#bcbcbc</Color>
+            <Color x:Key="LineColor">#d7d7d7</Color>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+        <ScrollView>
+            <Grid RowSpacing="6" Margin="12,12,12,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+
+                </Grid.ColumnDefinitions>
+
+
+                <Label  Text="Name"  Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
+                <telerikInput:RadEntry x:Name="usernameBox"   Text="{Binding  sEvent.Name,Mode=TwoWay}"  Style="{StaticResource FormEntryStyle}"   Margin="{StaticResource itemSpacing}" />
+                <BoxView  HeightRequest="1" VerticalOptions="End" BackgroundColor="{StaticResource LineColor}" />
+
+                <Label  Text="Description"  Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
+                <telerikInput:RadEntry x:Name="Description"  Text="{Binding sEvent.Description,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}" Margin="{StaticResource itemSpacing}" />
+
+                <Label  Text="Date"  Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
+                <telerikInput:RadEntry x:Name="EventDate"  Text="{Binding sEvent.Date,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}" Margin="{StaticResource itemSpacing}" />
+
+
+
+                <Label  Text="Type"  Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
+                <telerikInput:RadEntry x:Name="Type"  Text="{Binding sEvent.Type,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}" Margin="{StaticResource itemSpacing}" />
+
+
+                <Label  Text="Status"  Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
+                <telerikInput:RadEntry x:Name="Status"  Text="{Binding sEvent.Status,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}" Margin="{StaticResource itemSpacing}" />
+
+
+                <Label  Text="Venue"  Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
+                <telerikInput:RadEntry x:Name="Venue"    Style="{StaticResource FormEntryStyle}" Margin="{StaticResource itemSpacing}" />
+
+
+                <Label  Text="Head Count"  Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
+                <telerikInput:RadEntry x:Name="Head"    Style="{StaticResource FormEntryStyle}" Margin="{StaticResource itemSpacing}" />
+
+
+
+            </Grid>
+        </ScrollView>
+    </ContentView.Content>
+
+    <telerikPrimitives:RadPopup.Popup>
+        <telerikPrimitives:RadPopup x:Name="popup"
+                                    IsModal="false"
+                                    Placement="Right" VerticalOffset="10"
+                                    OutsideBackgroundColor="#6F000000">
+            <telerikPrimitives:RadBorder CornerRadius="2" WidthRequest="110"
+                                         BackgroundColor="White">
+                <telerikPrimitives:RadBorder.HeightRequest>
+                    <OnPlatform x:TypeArguments="x:Double" Default="110">
+                        <On Platform="iOS" Value="130" />
+                    </OnPlatform>
+                </telerikPrimitives:RadBorder.HeightRequest>
+                <StackLayout Padding="20" HorizontalOptions="Center" VerticalOptions="Center">
+                    <StackLayout.Spacing>
+                        <OnPlatform x:TypeArguments="x:Double" Default="18">
+                            <On Platform="iOS" Value="0" />
+                        </OnPlatform>
+                    </StackLayout.Spacing>
+                    <Button Text="&#xE813; Edit" FontFamily="{StaticResource IconsFont}" TextColor="Orange" Command="{Binding BeginEditCommand, Mode=OneWay}" HorizontalOptions="Start" />
+                    <Button Text="&#xE809; Delete" FontFamily="{StaticResource IconsFont}" TextColor="#f33d4c" Clicked="Button_Clicked" Command="{Binding DeleteCommand, Mode=OneWay}" HorizontalOptions="Start" />
+                </StackLayout>
+            </telerikPrimitives:RadBorder>
+        </telerikPrimitives:RadPopup>
+    </telerikPrimitives:RadPopup.Popup>
+</ContentView>

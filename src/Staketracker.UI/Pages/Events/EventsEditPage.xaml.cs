@@ -1,6 +1,6 @@
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
-using Staketracker.Core.ViewModels.EventsList;
+using Staketracker.Core.ViewModels.Events;
 using Telerik.XamarinForms.DataControls;
 using Xamarin.Forms.Xaml;
 using MvvmCross.Forms.Presenters.Attributes;
@@ -12,9 +12,9 @@ using Telerik.XamarinForms.DataControls;
 using Xamarin.Forms;
 using Staketracker.Core;
 
-namespace Staketracker.UI.Pages.EventsList
+namespace Staketracker.UI.Pages.Events
 {
-    public partial class EventsEditPage : MvxContentPage<SEventDetailViewModel>, IPopupHost
+    public partial class EventsEditPage : ContentView
     {
         private ToolbarItem saveToolbarItem;
         private ToolbarItem deleteToolbarItem;
@@ -35,38 +35,8 @@ namespace Staketracker.UI.Pages.EventsList
             deleteToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("DeleteCommand"));
 
         }
-        protected override void OnAppearing()
-        {
-            if (this.ViewModel.Mode == Core.Models.PresentationMode.Read)
-            {
-                if (!this.ToolbarItems.Contains(saveToolbarItem))
-                { this.ToolbarItems.Add(saveToolbarItem); }
-                if (!this.ToolbarItems.Contains(deleteToolbarItem))
-                { this.ToolbarItems.Add(deleteToolbarItem); }
-            }
-            else
-            {
-                if (!this.ToolbarItems.Contains(saveToolbarItem))
-                { this.ToolbarItems.Add(saveToolbarItem); }
-            }
 
 
-        }
-
-        public void ClosePopup()
-        {
-            this.popup.IsOpen = false;
-        }
-
-        public void OpenPopup()
-        {
-            this.popup.IsOpen = true;
-        }
-
-        private void Button_Clicked(object sender, System.EventArgs e)
-        {
-            this.ClosePopup();
-        }
         public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
         {
             if (Device.Idiom == TargetIdiom.Phone)

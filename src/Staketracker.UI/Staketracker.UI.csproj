@@ -110,8 +110,14 @@
     <Compile Update="Pages\Dashboard\Top10TopicsDiscussedCard.xaml.cs">
       <DependentUpon>Top10TopicsDiscussedCard.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Pages\EventsList\EventsEditPage.xaml.cs">
+    <Compile Update="Pages\Events\EventsEditPage.xaml.cs">
       <DependentUpon>EventsEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Events\EventDetailView.xaml.cs">
+      <DependentUpon>EventDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Events\EventDetailPage.xaml.cs">
+      <DependentUpon>EventDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Pages\Tasks\TasksListPage.xaml.cs">
       <DependentUpon>TasksListPage.xaml</DependentUpon>
@@ -125,7 +131,7 @@
     <Compile Update="Pages\Communication\CommunicationListPage.xaml.cs">
       <DependentUpon>CommunicationListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Pages\EventsList\EventsListPage.xaml.cs">
+    <Compile Update="Pages\Events\EventsListPage.xaml.cs">
       <DependentUpon>EventsListPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Pages\TwoStepVerificationPage.xaml.cs">
@@ -156,6 +162,12 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Dashboard\CommitmentStatusCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Events\EventDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Events\EventDetailView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\MenuPage.xaml">

@@ -2,13 +2,13 @@
 <views:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                      xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.EventsList;assembly=Staketracker.Core"
+                      xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Events;assembly=Staketracker.Core"
                       xmlns:telerikListView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls"
                       xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
                       xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
                       xmlns:telerikBusyIndicator="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-                      x:Class="Staketracker.UI.Pages.EventsList.SEventsListPage"
+                      x:Class="Staketracker.UI.Pages.Events.SEventsListPage"
                       Title="Events" Icon="Events" ios:Page.UseSafeArea="true"
                       x:TypeArguments="viewModels:SEventsListViewModel">
 
