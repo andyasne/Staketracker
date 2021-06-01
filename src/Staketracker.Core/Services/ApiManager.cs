@@ -143,5 +143,13 @@ namespace Staketracker.Core.Services
             return await AddToRunningTasks(cts, task);
 
         }
+
+        public async Task<HttpResponseMessage> GetFormAndDropDownFieldValues(APIRequestBody aPIRequestBody, string sessionId)
+        {
+            var cts = new CancellationTokenSource();
+            var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).GetFormAndDropDownFieldValues(aPIRequestBody, sessionId, cts.Token));
+            return await AddToRunningTasks(cts, task);
+
+        }
     }
 }

@@ -24,5 +24,9 @@ namespace Staketracker.Core
         [Post("/demo/mobilev1.asmx/getEvents")]
         Task<HttpResponseMessage> GetEvents([Body] APIRequestBody aPIRequestBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
+        [Post("/demo/mobilev1.asmx/getFormAndDropDownFieldValues")]
+        Task<HttpResponseMessage> GetFormAndDropDownFieldValues([Body] APIRequestBody aPIRequestBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
+
+
     }
 }
