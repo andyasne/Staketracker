@@ -5,6 +5,17 @@ using System.Runtime.CompilerServices;
 
 namespace Staketracker.Core.Validators
 {
+    public class DropdownValues
+    {
+
+        public DropdownValues()
+        {
+
+        }
+        public string PrimaryKey { get; set; }
+        public string Label { get; set; }
+    }
+
     public class ValidatableObject<T> : IValidatable<T>
     {
         public ValidatableObject()
@@ -28,6 +39,12 @@ namespace Staketracker.Core.Validators
         }
 
         public List<IValidationRule<T>> Validations { get; } = new List<IValidationRule<T>>();
+
+        public List<DropdownValues> _DropdownValues { get; set; } = new List<DropdownValues>();
+        public List<DropdownValues> SelectedItems { get; set; } = new List<DropdownValues>();
+
+        public DropdownValues SelectedItem { get; set; } = new DropdownValues();
+
 
         public List<string> _Errors;
         public List<string> Errors { get => _Errors; set => SetField(ref _Errors, value); }
