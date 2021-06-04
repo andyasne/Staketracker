@@ -242,7 +242,7 @@ namespace Staketracker.Core.ViewModels.Events
             if (Device.Idiom != TargetIdiom.Phone)
                 return;
 
-            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<SEvent>>(new PresentationContext<SEvent>(_event, Models.PresentationMode.Read));
+            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(new PresentationContext<AuthReply>(authReply, Models.PresentationMode.Read));
 
             this.SelectedEvent = null;
         }
@@ -286,7 +286,7 @@ namespace Staketracker.Core.ViewModels.Events
 
         private void OnCreateEvent()
         {
-            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<SEvent>>(new PresentationContext<SEvent>(new SEvent(), Models.PresentationMode.Create));
+            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(new PresentationContext<AuthReply>(authReply, Models.PresentationMode.Create));
 
         }
 
@@ -294,7 +294,8 @@ namespace Staketracker.Core.ViewModels.Events
         {
             if (_event == null)
                 return;
-            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<SEvent>>(new PresentationContext<SEvent>(_event, Models.PresentationMode.Edit));
+            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(new PresentationContext<AuthReply>(authReply, Models.PresentationMode.Edit));
+
 
         }
 

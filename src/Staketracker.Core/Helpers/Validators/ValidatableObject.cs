@@ -40,11 +40,13 @@ namespace Staketracker.Core.Validators
 
         public List<IValidationRule<T>> Validations { get; } = new List<IValidationRule<T>>();
 
-        public List<DropdownValues> _DropdownValues { get; set; } = new List<DropdownValues>();
+        public List<Models.FormAndDropDownField.DropdownValue> DropdownValues { get; set; } = new List<Models.FormAndDropDownField.DropdownValue>();
         public List<DropdownValues> SelectedItems { get; set; } = new List<DropdownValues>();
 
         public DropdownValues SelectedItem { get; set; } = new DropdownValues();
+        public string Label { get; set; }
 
+        public Models.FormAndDropDownField.D FormAndDropDownField { get; set; }
 
         public List<string> _Errors;
         public List<string> Errors { get => _Errors; set => SetField(ref _Errors, value); }

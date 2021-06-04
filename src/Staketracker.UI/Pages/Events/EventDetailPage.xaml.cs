@@ -6,6 +6,8 @@ using Xamarin.Forms;
 
 namespace Staketracker.UI.Pages.Events
 {
+
+
     [MvxContentPagePresentation(WrapInNavigationPage = true)]
     public partial class EventDetailPage : MvxContentPage<SEventDetailViewModel>
     {
@@ -106,6 +108,39 @@ namespace Staketracker.UI.Pages.Events
                         this.ToolbarItems.Remove(checkToolbarItem);
                 }
             }
+        }
+    }
+
+    public class PersonDataTemplateSelector : DataTemplateSelector
+    {
+        public DataTemplate TextBoxTemplate { get; set; }
+        public DataTemplate DropDownListTemplate { get; set; }
+        public DataTemplate MultiLineTemplate { get; set; }
+        public DataTemplate DateTimeTemplate { get; set; }
+        public DataTemplate CheckBoxTemplate { get; set; }
+        public DataTemplate ListBoxMultiTemplate { get; set; }
+
+
+
+
+        protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
+        {
+            var s = (KeyValuePair<string, ValidatableObject<string>>)item;
+
+            if (s.Key == "TextBox")
+                return TextBoxTemplate;
+            else if (s.Key == "MultiLine")
+                return MultiLineTemplate;
+            else if (s.Key == "DateTime")
+                return DateTimeTemplate;
+            else if (s.Key == "CheckBox")
+                return CheckBoxTemplate;
+            else if (s.Key == "ListBoxMulti")
+                return ListBoxMultiTemplate;
+            else
+
+                return DropDownListTemplate;
+            // return ((Person)item).DateOfBirth.Year >= 1980 ? ValidTemplate : InvalidTemplate;
         }
     }
 }

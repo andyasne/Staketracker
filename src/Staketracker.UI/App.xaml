@@ -45,9 +45,9 @@
         </OnPlatform>
         <!--  Application resource dictionary  -->
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Pages/Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+
+            <ResourceDictionary Source="Pages/Styles.xaml" />
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

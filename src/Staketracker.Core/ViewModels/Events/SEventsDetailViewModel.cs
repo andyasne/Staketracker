@@ -9,10 +9,18 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
+using System.Collections.Generic;
+using Staketracker.Core.Validators;
+using System;
+using System.ComponentModel;
+using Staketracker.Core.Models.ApiRequestBody;
+using System.Net.Http;
+using Newtonsoft.Json;
+using Staketracker.Core.Models.FormAndDropDownField;
 
 namespace Staketracker.Core.ViewModels.Events
 {
-    public class SEventDetailViewModel : BaseViewModel<PresentationContext<SEvent>>
+    public class SEventDetailViewModel : BaseViewModel<PresentationContext<AuthReply>>
     {
         public SEventDetailViewModel(IMvxNavigationService navigationService)
         {
@@ -80,22 +88,74 @@ namespace Staketracker.Core.ViewModels.Events
             private set => SetProperty(ref this.title, value);
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private Dictionary<string, ValidatableObject<string>> formContent = new Dictionary<string, ValidatableObject<string>>();
+
+        public Dictionary<string, ValidatableObject<string>> FormContent
+        {
+            get { return formContent; }
+            set
+            {
+                formContent = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Dict"));
+            }
+        }
+
+
+
         public Command BeginEditCommand { get; }
         public IMvxCommand CommitCommand { get; }
         public IMvxCommand CancelCommand { get; }
         public IMvxCommand DeleteCommand { get; }
 
 
-        public override void Prepare(PresentationContext<SEvent> parameter)
+        public AuthReply authReply;
+        public override void Prepare(PresentationContext<AuthReply> parameter)
         {
-            this.sEvent = parameter.Model;
+            this.authReply = parameter.Model;
             this.Mode = parameter.Mode;
+        }
+
+        async void GetFormandDropDownFields(AuthReply authReply)
+        {
+
+            FormFieldBody formFieldBody = new FormFieldBody(authReply, "Events");
+
+            HttpResponseMessage events = await ApiManager.GetFormAndDropDownFieldValues(formFieldBody, authReply.d.sessionId);
+
+            if (events.IsSuccessStatusCode)
+            {
+                var response = await events.Content.ReadAsStringAsync();
+                FormAndDropDownField formAndDropDownField = await Task.Run(() => JsonConvert.DeserializeObject<FormAndDropDownField>(response));
+                // return eventsReply;
+
+                foreach (Models.FormAndDropDownField.D d in formAndDropDownField.d)
+                {
+
+                    ValidatableObject<string> validatableObj = new ValidatableObject<string>();
+                    validatableObj.FormAndDropDownField = d;
+                    validatableObj.DropdownValues = d.DropdownValues;
+
+                    formContent.Add(d.InputType, validatableObj);
+
+                }
+            }
+            else
+            {
+                await PageDialog.AlertAsync("API Error while Geting Form Fields", "API Response Error", "Ok");
+                //  return null;
+            }
         }
 
         public async override Task Initialize()
         {
             await base.Initialize();
 
+            GetFormandDropDownFields(authReply);
+
+            return;
             // SEvent sEvent = null;
             if (this.mode == PresentationMode.Create)
             {
@@ -217,8 +277,11 @@ namespace Staketracker.Core.ViewModels.Events
             //      await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsViewModel)));
         }
 
+
         private void InitializeEditData(SEvent sEvent)
         {
         }
+
+
     }
 }

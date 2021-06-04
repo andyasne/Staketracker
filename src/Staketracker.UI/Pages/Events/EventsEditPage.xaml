@@ -11,45 +11,23 @@
     <ContentView.Content>
         <Grid x:Name="LayoutRoot" Margin="12">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" /> 
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
- 
+
 
             <ScrollView  >
                 <StackLayout Orientation="Vertical">
                     <Grid Margin="20, 0">
                         <Grid.ColumnDefinitions>
-                             
+
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <StackLayout Margin="15,15,15,15" >
+                            <ScrollView>
+                                <ListView x:Name="listView" VerticalOptions="FillAndExpand" SeparatorVisibility="Default" HasUnevenRows="true"  ItemTemplate="{StaticResource personDataTemplateSelector}" ItemsSource="{Binding formContent}"/>
 
-                            <Label  Text="Name"  Style="{StaticResource FormSubtitleLabelStyle}" />
-                            <telerikInput:RadEntry x:Name="usernameBox"   Text="{Binding  sEvent.Name,Mode=TwoWay}"  Style="{StaticResource FormEntryStyle}"  />
-
-                            <Label  Text="Description"  Style="{StaticResource FormSubtitleLabelStyle}" />
-                            <telerikInput:RadEntry x:Name="Description"  Text="{Binding sEvent.Description,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}"/>
-
-                            <Label  Text="Date"  Style="{StaticResource FormSubtitleLabelStyle}" />
-                            <telerikInput:RadEntry x:Name="EventDate"  Text="{Binding sEvent.Date,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}"/>
-
-
-
-                            <Label  Text="Type"  Style="{StaticResource FormSubtitleLabelStyle}" />
-                            <telerikInput:RadEntry x:Name="Type"  Text="{Binding sEvent.Type,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}"/>
-
-
-                            <Label  Text="Status"  Style="{StaticResource FormSubtitleLabelStyle}" />
-                            <telerikInput:RadEntry x:Name="Status"  Text="{Binding sEvent.Status,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}"/>
-
-
-                            <Label  Text="Venue"  Style="{StaticResource FormSubtitleLabelStyle}" />
-                            <telerikInput:RadEntry x:Name="Venue"    Style="{StaticResource FormEntryStyle}"/>
-
-
-                            <Label  Text="Head Count"  Style="{StaticResource FormSubtitleLabelStyle}" />
-                            <telerikInput:RadEntry x:Name="Head"    Style="{StaticResource FormEntryStyle}"/>
+                            </ScrollView>
 
 
 
