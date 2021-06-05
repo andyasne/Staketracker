@@ -2,7 +2,9 @@
 <Application
     x:Class="Staketracker.UI.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:forms="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.Core"
+    xmlns:converter="clr-namespace:Staketracker.Core.Helpers.Converters;assembly=Staketracker.Core">
     <Application.Resources>
         <x:String x:Key="icon-th-large">&#xe800;</x:String>
         <x:String x:Key="icon-menu">&#xe801;</x:String>
@@ -38,16 +40,17 @@
         <x:String x:Key="icon-left-open-3">&#xe81b;</x:String>
         <x:String x:Key="icon-left-open-4">&#xe81c;</x:String>
 
-        <OnPlatform x:TypeArguments="x:String" x:Key="IconsFont">
-            <On Platform="iOS">fontello</On>
-            <On Platform="Android">Fonts/fontello.ttf#fontello</On>
-            <On Platform="UWP">/Assets/Fonts/fontello.ttf#fontello</On>
-        </OnPlatform>
+        <forms:OnPlatform x:TypeArguments="x:String" x:Key="IconsFont">
+            <forms:On Platform="iOS">fontello</forms:On>
+            <forms:On Platform="Android">Fonts/fontello.ttf#fontello</forms:On>
+            <forms:On Platform="UWP">/Assets/Fonts/fontello.ttf#fontello</forms:On>
+        </forms:OnPlatform>
         <!--  Application resource dictionary  -->
-        <ResourceDictionary>
+        <forms:ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
+            <forms:ResourceDictionary Source="Pages/Styles.xaml" />
 
-            <ResourceDictionary Source="Pages/Styles.xaml" />
-
-        </ResourceDictionary>
+        </forms:ResourceDictionary>
     </Application.Resources>
 </Application>

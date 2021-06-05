@@ -9,9 +9,51 @@
                       xmlns:telerikBusyIndicator="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
                       x:Class="Staketracker.UI.Pages.CommunicationList.CommunicationListPage"
+                                 xmlns:behaviour="clr-namespace:Staketracker.Core.Helpers.Behaviours;assembly=Staketracker.Core"
+                      xmlns:converter="clr-namespace:Staketracker.Core.Helpers.Converters;assembly=Staketracker.Core"
+                      xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+                      xmlns:local="clr-namespace: Staketracker.UI.Pages.CommunicationList"
+                    
                       Title="Communication" Icon="Communication" ios:Page.UseSafeArea="true"
                       x:TypeArguments="viewModels:CommunicationListViewModel">
 
+
+    <views:MvxContentPage.Resources>
+
+        <ResourceDictionary>
+            <DataTemplate x:Key="TextBoxTemplate">
+                <ViewCell>
+
+                    <StackLayout Margin="0,30,0,0">
+                        <telerikInput:RadEntry    
+                                   WatermarkText="{Binding Key}"
+                                   Text="{Binding  Value.Value, Mode=TwoWay }"
+                                   Style="{StaticResource LoginEntryStyle}">
+                            <telerikInput:RadEntry.Behaviors>
+                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding Value.IsValid}" />
+                            </telerikInput:RadEntry.Behaviors>
+                        </telerikInput:RadEntry>
+
+                        <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                        IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                         Style="{StaticResource ErrorTextStyle}" />
+                    </StackLayout>
+                </ViewCell>
+
+            </DataTemplate>
+
+
+
+            <local:PersonDataTemplateSelector x:Key="personDataTemplateSelector"
+                TextBoxTemplate="{StaticResource TextBoxTemplate}"
+               
+                                              
+                     />
+
+        </ResourceDictionary>
+
+
+    </views:MvxContentPage.Resources>
     <Grid x:Name="LayoutRoot" RowSpacing="0">
         <Grid.RowDefinitions>
             <!--<RowDefinition Height="75" />-->
@@ -42,7 +84,8 @@
             <Label Text="{Binding HeaderTitle}" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
             </Label>
 
-         
+            <ListView Grid.Row="1" x:Name="listView" VerticalOptions="FillAndExpand"   ItemTemplate="{StaticResource personDataTemplateSelector}" ItemsSource="{Binding FormContent}"/>
+
             <Label Grid.Row="1" Text="No Communication." IsVisible="False" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                 <Label.Triggers>
                     <DataTrigger TargetType="Label" Binding="{Binding Path=Communication.Count}" Value="0">

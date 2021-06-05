@@ -16,8 +16,8 @@ namespace Staketracker.Core.Models.ApiRequestBody
 
             if (!String.IsNullOrEmpty(type))
             {
-                type = String.Format("{ \"{0}\": \"\"}", type);
-                this.jsonText = this.jsonText + ",\"Type\":" + type + "}";
+
+                this.jsonText = this.jsonText + ",\"Type\":\"" + type + "\"}";
                 ;
             }
             else
@@ -29,7 +29,7 @@ namespace Staketracker.Core.Models.ApiRequestBody
 
         public int userId { get; set; }
         public int projectId { get; set; }
-        public string type { get; set; }
+        private string type { get; set; }
     }
 
 
