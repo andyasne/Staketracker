@@ -59,6 +59,7 @@
 
                     <telerikInput:RadEntry
                                    IsPassword="True"
+                        
                                    WatermarkText="Password"
                         Text="{Binding Password.Value, Mode=TwoWay}"
                                    Style="{StaticResource LoginEntryStyle}"  Margin="0,0,0,0">
@@ -70,7 +71,7 @@
                         IsVisible="{Binding Password.IsValid, Converter={StaticResource InverseBoolConverter}}"
                         Style="{StaticResource ErrorTextStyle}" />
 
-                    <StackLayout Orientation="Horizontal"  Margin="0,0,0,40">
+                    <StackLayout Orientation="Horizontal"  Margin="0,0,0,30">
                         <telerikPrimitives:RadCheckBox x:Name="rememberMe" Style="{StaticResource checkBoxButtonStyle}" />
                         <Label Text="Remember Me" Style="{StaticResource NormalLabelStyle}" />
                     </StackLayout>

@@ -3,6 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
                     xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
                     x:Class="Staketracker.UI.Pages.Styles">
 
     <Color x:Key="DarkBlueColor">#052B59</Color>
@@ -78,6 +79,8 @@
                 Value="{StaticResource DarkTextColor}" />
         <Setter Property="PlaceholderColor"
                 Value="{StaticResource MediumBlueColor}" />
+        <Setter Property="BackgroundColor"
+                Value="{StaticResource EntryBackgroundColor}" />
 
         <Setter Property="FontSize"
                 Value="18" />
@@ -94,7 +97,7 @@
         <Setter Property="BorderColor"
                 Value= "{StaticResource LightBlueColor}" />
         <Setter Property="BorderThickness"
-                Value= "1" />
+                Value= "0.3" />
         <Setter Property="CornerRadius"
                 Value= "6" />
         <!--<Setter Property="BorderStyle">
@@ -279,5 +282,81 @@
         <Setter Property="FontSize" Value="24" />
     </Style>
 
+    <Style TargetType="telerikDataControls:RadSpinner" x:Key="spinnerStyle">
+        <Setter Property="ItemStyle">
+            <Setter.Value>
+                <Style TargetType="telerikDataControls:SpinnerItemView">
+                    <Setter Property="TextColor" Value="#4A4949"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="SelectedItemStyle">
+            <Setter.Value>
+                <Style TargetType="telerikDataControls:SpinnerItemView">
+                    <Setter Property="TextColor" Value="Black"/>
+                    <Setter Property="FontAttributes" Value="Bold"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Label" x:Key="spinnerHeaderStyle">
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+        <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+        <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        <Setter Property="VerticalTextAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="telerikPrimitives:RadBorder" x:Key="selectionHighlightStyle">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="BorderColor" Value="#00B5DC"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="0,6,0,6"/>
+        <Setter Property="HeightRequest" Value="40"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+    </Style>
+    <Style TargetType="Label" x:Key="placeholderLabelStyle">
+        <Setter Property="TextColor" Value="#4A4949"/>
+        <Setter Property="VerticalTextAlignment" Value="Center"/>
+        <Setter Property="HorizontalTextAlignment" Value="Start"/>
+        <Setter Property="HeightRequest" Value="50"/>
+    </Style>
+    <Style TargetType="Label" x:Key="displayLabelStyle">
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="VerticalTextAlignment" Value="Center"/>
+        <Setter Property="HorizontalTextAlignment" Value="Start"/>
+        <Setter Property="HeightRequest" Value="50"/>
+    </Style>
+    <Style TargetType="telerikInput:PickerPopupContentView" x:Key="popupViewStyle">
+        <Setter Property="BackgroundColor" Value="White"/>
+        <Setter Property="WidthRequest" Value="270"/>
+    </Style>
+    <Style TargetType="telerikInput:PickerPopupHeaderView" x:Key="headerStyle">
+        <Setter Property="BackgroundColor" Value="#00B5DC"/>
+        <Setter Property="HeightRequest" Value="60"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+        <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+    </Style>
+    <Style TargetType="Label" x:Key="headerLabelStyle">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="FontSize" Value="Title"/>
+    </Style>
+    <Style TargetType="telerikInput:PickerPopupFooterView" x:Key="footerStyle">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+    </Style>
+    <Style TargetType="Button" x:Key="acceptButtonStyle">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="Text" Value="OK"/>
+        <Setter Property="TextColor" Value="#00B5DC"/>
+    </Style>
+    <Style TargetType="Button" x:Key="cancelButtonStyle">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="Text" Value="X"/>
+        <Setter Property="TextColor" Value="#00B5DC"/>
+    </Style>
 
 </ResourceDictionary>

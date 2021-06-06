@@ -27,8 +27,10 @@
                 <ViewCell>
 
                     <StackLayout   Margin="0,5,0,5">
+                        <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
+
                         <telerikInput:RadEntry    
-                                   WatermarkText="{Binding Key}"
+                                  
                                    Text="{Binding  Value.Value, Mode=TwoWay }"
                              Style="{StaticResource LoginEntryStyle}"
                             
@@ -49,8 +51,19 @@
                 <ViewCell>
 
                     <StackLayout  Margin="0,5,0,5">
-                        <telerikInput:RadComboBox      DisplayMemberPath="Label" Placeholder="{Binding Value.FormAndDropDownField.Label}"  SelectedItem="{Binding Value.SelectedItem, Mode=TwoWay}"
-                                                     ItemsSource="{ Binding Value.DropdownValues }"  Style="{StaticResource ComboEntryStyle}" SelectionMode="Single" >
+                        <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
+
+                        <telerikInput:RadComboBox      DisplayMemberPath="Label" 
+                                                    
+                                                       SelectedItem="{Binding Value.SelectedItem, Mode=TwoWay}"
+                                                       ItemsSource="{ Binding Value.DropdownValues }"  
+                                                       Style="{StaticResource ComboEntryStyle}" 
+                                                       SearchMode="Contains"
+                                                       SearchTextPath="Label"
+                                                       IsDropDownClosedOnSelection="True"
+                                                       DropDownHeight="200"
+                                                       IsEditable="False" 
+                                                       SelectionMode="Single" >
 
                         </telerikInput:RadComboBox>
 
@@ -64,9 +77,13 @@
             <DataTemplate x:Key="MultiLineTemplate">
                 <ViewCell>
                     <StackLayout  Margin="0,5,0,5" >
-                        <Editor  HeightRequest="100"  
-                                   Placeholder="{Binding Key}" 
-                                   Text="{Binding  Value.Value, Mode=TwoWay }" />
+                        <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
+                        <Frame BorderColor="LightGray" HasShadow="False" Padding="3">
+
+                            <Editor  HeightRequest="100"     Text="{Binding  Value.Value, Mode=TwoWay }" >
+
+                            </Editor>
+                        </Frame>
                         <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
                          Style="{StaticResource ErrorTextStyle}" />
@@ -77,13 +94,34 @@
                 <ViewCell>
                     <StackLayout   Margin="0,5,0,5">
 
-                        <telerikInput:RadDatePicker x:Name="datePicker" DefaultHighlightedDate="2020,05,15" 
+                        <!--<telerikInput:RadDatePicker x:Name="datePicker" DefaultHighlightedDate="2020,05,15" 
                             DisplayStringFormat="yyyy/MMM/dd"  
                             Placeholder="{Binding Key}"
                             SpinnerFormat="dd/MMM/yyyy"
                             
                                                     >
-                        </telerikInput:RadDatePicker>
+                        </telerikInput:RadDatePicker>-->
+                        <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
+
+                        <telerikInput:RadDateTimePicker SpinnerHeaderStyle="{StaticResource spinnerHeaderStyle}"
+                                SpinnerStyle="{StaticResource spinnerStyle}"
+                                SelectionHighlightStyle="{StaticResource selectionHighlightStyle}"
+                                SpinnerFormat="d"
+                                                       
+                                AreSpinnerHeadersVisible="True"
+                                DisplayLabelStyle="{StaticResource displayLabelStyle}"
+                                PlaceholderLabelStyle="{StaticResource placeholderLabelStyle}">
+                            <telerikInput:RadDateTimePicker.SelectorSettings>
+                                <telerikInput:PickerPopupSelectorSettings PopupOutsideBackgroundColor="#D9D9D9CC"
+                                                  PopupViewStyle="{StaticResource popupViewStyle}"
+                                                  HeaderStyle="{StaticResource headerStyle}"
+                                                  HeaderLabelText="Date Picker"
+                                                  HeaderLabelStyle="{StaticResource headerLabelStyle}"
+                                                  FooterStyle="{StaticResource footerStyle}"
+                                                  AcceptButtonStyle="{StaticResource acceptButtonStyle}"
+                                                  CancelButtonStyle="{StaticResource cancelButtonStyle}"/>
+                            </telerikInput:RadDateTimePicker.SelectorSettings>
+                        </telerikInput:RadDateTimePicker>
 
                         <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
@@ -94,6 +132,7 @@
             <DataTemplate x:Key="CheckBoxTemplate">
                 <ViewCell>
                     <StackLayout  Margin="0,5,0,5" >
+
                         <StackLayout Orientation="Horizontal">
                             <telerikPrimitives:RadCheckBox Style="{StaticResource checkBoxButtonStyle}" />
                             <Label Text="{Binding  Key, Mode=TwoWay }"/>
@@ -108,8 +147,19 @@
                 <ViewCell>
 
                     <StackLayout  Margin="0,5,0,5">
-                        <telerikInput:RadComboBox    DisplayMemberPath="Label"   SelectedItem="{Binding Value.SelectedItems, Mode=TwoWay}" Placeholder="{Binding Value.FormAndDropDownField.Label}"  
-                                                 Style="{StaticResource ComboEntryStyle}"     ItemsSource="{ Binding Value.DropdownValues }"  SelectionMode="Multiple" >
+                        <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
+
+                        <telerikInput:RadComboBox    DisplayMemberPath="Label"  
+                                                     SelectedItem="{Binding Value.SelectedItems, Mode=TwoWay}"
+                                                 Style="{StaticResource ComboEntryStyle}"   
+                                                     ItemsSource="{ Binding Value.DropdownValues }"
+                                                            SearchMode="Contains"
+                                                     
+                                                       SearchTextPath="Label"
+                                                       IsDropDownClosedOnSelection="True"
+                                                       DropDownHeight="200"
+                                                       IsEditable="False" 
+                                                     SelectionMode="Multiple" >
 
                         </telerikInput:RadComboBox>
 
