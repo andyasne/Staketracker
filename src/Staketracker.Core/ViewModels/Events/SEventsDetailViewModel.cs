@@ -88,22 +88,7 @@ namespace Staketracker.Core.ViewModels.Events
             private set => SetProperty(ref this.title, value);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private Dictionary<string, ValidatableObject<string>> formContent = new Dictionary<string, ValidatableObject<string>>();
-
-        public Dictionary<string, ValidatableObject<string>> FormContent
-        {
-            get { return formContent; }
-            set
-            {
-                formContent = value;
-                if (PropertyChanged != null)
-                    PropertyChanged(this, new PropertyChangedEventArgs("Dict"));
-            }
-        }
-
-
+     
 
         public Command BeginEditCommand { get; }
         public IMvxCommand CommitCommand { get; }
@@ -117,6 +102,23 @@ namespace Staketracker.Core.ViewModels.Events
             this.authReply = parameter.Model;
             this.Mode = parameter.Mode;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private Dictionary<string, ValidatableObject<string>> formContent = new Dictionary<string, ValidatableObject<string>>();
+
+        public Dictionary<string, ValidatableObject<string>> FormContent
+        {
+            get { return formContent; }
+            set
+            {
+                formContent = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("FormContent"));
+            }
+        }
+
+
 
         async void GetFormandDropDownFields(AuthReply authReply)
         {

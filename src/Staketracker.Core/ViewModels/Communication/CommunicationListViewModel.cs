@@ -58,20 +58,28 @@ namespace Staketracker.Core.ViewModels.CommunicationList
 
         public Dictionary<string, ValidatableObject<string>> FormContent
         {
-            get { return formContent; }
+            get
+            {
+                return formContent;
+            }
             set
             {
-                formContent = value;
-                if (PropertyChanged != null)
-                    PropertyChanged(this, new PropertyChangedEventArgs("FormContent"));
+
+                if (this.formContent != value)
+                {
+                    SetField(ref formContent, value);
+                    this.formContent = value;
+                }
+
             }
         }
 
         public async override Task Initialize()
         {
             await base.Initialize();
-
             GetFormandDropDownFields(authReply);
+
+
 
 
         }
@@ -84,6 +92,7 @@ namespace Staketracker.Core.ViewModels.CommunicationList
             FormFieldBody formFieldBody = new FormFieldBody(authReply, "Events");
 
             HttpResponseMessage events = await ApiManager.GetFormAndDropDownFieldValues(formFieldBody, authReply.d.sessionId);
+            Dictionary<string, ValidatableObject<string>> _formContent = new Dictionary<string, ValidatableObject<string>>();
 
             if (events.IsSuccessStatusCode)
             {
@@ -96,11 +105,12 @@ namespace Staketracker.Core.ViewModels.CommunicationList
 
                     ValidatableObject<string> validatableObj = new ValidatableObject<string>();
                     validatableObj.FormAndDropDownField = d;
-                    //   validatableObj.DropdownValues = d.DropdownValues;
+                    validatableObj.DropdownValues = d.DropdownValues;
 
-                    FormContent.Add(d.Label, validatableObj);
+                    _formContent.Add(d.Label, validatableObj);
 
                 }
+                FormContent = _formContent;
             }
             else
             {

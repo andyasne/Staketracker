@@ -44,7 +44,7 @@
 
                     <StackLayout Margin="0,30,0,0">
                         <telerikInput:RadComboBox    DisplayMemberPath="Label"   SelectedItem="{Binding Value.SelectedItem, Mode=TwoWay}"
-                                                     ItemsSource="{ Binding Value._DropdownValues }"  SelectionMode="Single" >
+                                                     ItemsSource="{ Binding Value.DropdownValues }"  SelectionMode="Single" >
 
                         </telerikInput:RadComboBox>
 
@@ -104,7 +104,7 @@
 
                     <StackLayout Margin="0,30,0,0">
                         <telerikInput:RadComboBox    DisplayMemberPath="Label"  Margin="0,30,0,0" SelectedItem="{Binding Value.SelectedItems, Mode=TwoWay}"
-                                                     ItemsSource="{ Binding Value._DropdownValues }"  SelectionMode="Multiple" >
+                                                     ItemsSource="{ Binding Value.DropdownValues }"  SelectionMode="Multiple" >
 
                         </telerikInput:RadComboBox>
 
@@ -117,15 +117,7 @@
             </DataTemplate>
 
 
-            <local:PersonDataTemplateSelector x:Key="personDataTemplateSelector"
-                TextBoxTemplate="{StaticResource TextBoxTemplate}"
-                DropDownListTemplate="{StaticResource DropDownListTemplate}"
-                MultiLineTemplate="{StaticResource MultiLineTemplate}" 
-                DateTimeTemplate="{StaticResource DateTimeTemplate}" 
-                ListBoxMultiTemplate="{StaticResource ListBoxMultiTemplate}" 
-                CheckBoxTemplate="{StaticResource CheckBoxTemplate}" 
-                                              
-                     />
+
 
         </ResourceDictionary>
 
