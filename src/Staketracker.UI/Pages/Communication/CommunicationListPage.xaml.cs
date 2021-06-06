@@ -56,9 +56,9 @@ namespace Staketracker.UI.Pages.CommunicationList
             InitializeComponent();
 
 
-            var service = MvvmCross.Mvx.IoCProvider.Resolve<IMvxViewModelLoader>();
-            var vm = service.LoadViewModel(new MvxViewModelInstanceRequest(typeof(CommunicationListViewModel)), null);
-            ViewModel = vm as CommunicationListViewModel;
+            //var service = MvvmCross.Mvx.IoCProvider.Resolve<IMvxViewModelLoader>();
+            //var vm = service.LoadViewModel(new MvxViewModelInstanceRequest(typeof(CommunicationListViewModel)), null);
+            //ViewModel = vm as CommunicationListViewModel;
 
 
             AddToolbarItems();
