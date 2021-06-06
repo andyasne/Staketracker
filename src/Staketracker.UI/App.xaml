@@ -61,7 +61,7 @@
             <DataTemplate x:Key="TextBoxTemplate">
                 <ViewCell>
 
-                    <StackLayout   Margin="0,5,0,5">
+                    <StackLayout   Margin="0,2,0,2">
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
 
                         <telerikInput:RadEntry    
@@ -85,7 +85,7 @@
             <DataTemplate x:Key="DropDownListTemplate">
                 <ViewCell>
 
-                    <StackLayout  Margin="0,5,0,5">
+                    <StackLayout  Margin="0,2,0,2">
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
 
                         <telerikInput:RadComboBox      DisplayMemberPath="Label" 
@@ -111,7 +111,7 @@
             </DataTemplate>
             <DataTemplate x:Key="MultiLineTemplate">
                 <ViewCell>
-                    <StackLayout  Margin="0,5,0,5" >
+                    <StackLayout  Margin="0,2,0,2" >
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
                         <Frame BorderColor="LightGray" HasShadow="False" Padding="3">
 
@@ -127,7 +127,7 @@
             </DataTemplate>
             <DataTemplate x:Key="DateTimeTemplate">
                 <ViewCell>
-                    <StackLayout   Margin="0,5,0,5">
+                    <StackLayout   Margin="0,2,0,2">
 
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
 
@@ -159,7 +159,7 @@
             </DataTemplate>
             <DataTemplate x:Key="CheckBoxTemplate">
                 <ViewCell>
-                    <StackLayout  Margin="0,5,0,5" >
+                    <StackLayout  Margin="0,2,0,2" >
 
                         <StackLayout Orientation="Horizontal">
                             <telerikPrimitives:RadCheckBox Style="{StaticResource checkBoxButtonStyle}" />
@@ -174,7 +174,7 @@
             <DataTemplate x:Key="ListBoxMultiTemplate">
                 <ViewCell>
 
-                    <StackLayout  Margin="0,5,0,5">
+                    <StackLayout  Margin="0,2,0,2">
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
 
                         <telerikInput:RadComboBox    DisplayMemberPath="Label"  

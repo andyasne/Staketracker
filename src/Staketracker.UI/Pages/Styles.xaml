@@ -57,13 +57,15 @@ xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assem
                 Value="{StaticResource EntryBackgroundColor}" />
 
         <Setter Property="FontSize"
-                Value="18" />
+                Value="16" />
         <Setter Property="HeightRequest"
-                Value="48" />
+                Value="40" />
+
         <Setter Property="Margin"
-                Value="0,0,0,16" />
+                Value="0,0,0,4" />
         <Setter Property="Padding"
-                Value="10,5,5,10" />
+                Value="4,1,4,1" />
+
         <Setter Property="BorderStyle">
             <Setter.Value>
                 <telerikInput:BorderStyle BorderColor="{StaticResource LightBlueColor}"  CornerRadius="9"
@@ -83,16 +85,16 @@ xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assem
                 Value="{StaticResource EntryBackgroundColor}" />
 
         <Setter Property="FontSize"
-                Value="18" />
+                Value="16" />
         <Setter Property="HeightRequest"
-                Value="42" />
+                Value="40" />
         <Setter Property="TextColor"
                 Value="{StaticResource DarkTextColor}" />
 
         <Setter Property="Margin"
-                Value="0,0,0,16" />
+                Value="0,0,0,4" />
         <Setter Property="Padding"
-                Value="10,5,0,5" />
+                Value="4,1,4,1" />
 
         <Setter Property="BorderColor"
                 Value= "{StaticResource LightBlueColor}" />
