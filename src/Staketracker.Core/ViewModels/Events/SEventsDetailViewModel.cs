@@ -88,7 +88,7 @@ namespace Staketracker.Core.ViewModels.Events
             private set => SetProperty(ref this.title, value);
         }
 
-     
+
 
         public Command BeginEditCommand { get; }
         public IMvxCommand CommitCommand { get; }
@@ -103,59 +103,13 @@ namespace Staketracker.Core.ViewModels.Events
             this.Mode = parameter.Mode;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        private Dictionary<string, ValidatableObject<string>> formContent = new Dictionary<string, ValidatableObject<string>>();
-
-        public Dictionary<string, ValidatableObject<string>> FormContent
-        {
-            get { return formContent; }
-            set
-            {
-                formContent = value;
-                if (PropertyChanged != null)
-                    PropertyChanged(this, new PropertyChangedEventArgs("FormContent"));
-            }
-        }
-
-
-
-        async void GetFormandDropDownFields(AuthReply authReply)
-        {
-
-            FormFieldBody formFieldBody = new FormFieldBody(authReply, "Events");
-
-            HttpResponseMessage events = await ApiManager.GetFormAndDropDownFieldValues(formFieldBody, authReply.d.sessionId);
-
-            if (events.IsSuccessStatusCode)
-            {
-                var response = await events.Content.ReadAsStringAsync();
-                FormAndDropDownField formAndDropDownField = await Task.Run(() => JsonConvert.DeserializeObject<FormAndDropDownField>(response));
-                // return eventsReply;
-
-                foreach (Models.FormAndDropDownField.D d in formAndDropDownField.d)
-                {
-
-                    ValidatableObject<string> validatableObj = new ValidatableObject<string>();
-                    validatableObj.FormAndDropDownField = d;
-                    validatableObj.DropdownValues = d.DropdownValues;
-
-                    formContent.Add(d.InputType, validatableObj);
-
-                }
-            }
-            else
-            {
-                await PageDialog.AlertAsync("API Error while Geting Form Fields", "API Response Error", "Ok");
-                //  return null;
-            }
-        }
 
         public async override Task Initialize()
         {
             await base.Initialize();
 
-            GetFormandDropDownFields(authReply);
+            GetFormandDropDownFields(authReply, "Events");
 
             return;
             // SEvent sEvent = null;

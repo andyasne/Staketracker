@@ -2,11 +2,13 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using Staketracker.Core.Helpers;
+using Staketracker.Core.Models;
 using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels.Stakeholders
-{ 
-    public class StakeholdersListViewModel : BaseViewModel
+{
+    public class StakeholdersListViewModel : BaseViewModel<AuthReply>
 
     {
 
@@ -24,11 +26,22 @@ namespace Staketracker.Core.ViewModels.Stakeholders
             this.SearchCommand = new MvxAsyncCommand(OnSearch);
         }
 
-
-        public async override void Prepare()
+        public AuthReply authReply;
+        public override void Prepare(AuthReply parameter)
         {
-            base.Prepare();
+            this.authReply = parameter;
         }
+        public async override Task Initialize()
+        {
+            await base.Initialize();
+
+            GetFormandDropDownFields(authReply, FormType.GroupedStakeholders);
+
+
+
+
+        }
+
 
 
 
