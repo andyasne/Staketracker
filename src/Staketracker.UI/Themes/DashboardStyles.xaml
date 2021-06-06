@@ -34,7 +34,7 @@
 
         <Setter Property="TextColor" Value="LightSlateGray" />
         <Setter Property="Margin"
-                Value="0,3,0,3" />
+                Value="0,1,0,1" />
         <Setter Property="FontSize"
                 Value="Subtitle" />
     </Style>
