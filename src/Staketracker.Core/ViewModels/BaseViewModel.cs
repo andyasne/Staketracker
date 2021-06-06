@@ -2,12 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using MvvmCross.ViewModels;
+using Newtonsoft.Json;
+using Staketracker.Core.Models;
+using Staketracker.Core.Models.ApiRequestBody;
+using Staketracker.Core.Models.FormAndDropDownField;
 using Staketracker.Core.Services;
+using Staketracker.Core.Validators;
 using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels
@@ -22,6 +28,61 @@ namespace Staketracker.Core.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
              => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        private Dictionary<string, ValidatableObject<string>> formContent = new Dictionary<string, ValidatableObject<string>>();
+
+        public Dictionary<string, ValidatableObject<string>> FormContent
+        {
+            get
+            {
+                return formContent;
+            }
+            set
+            {
+
+                if (this.formContent != value)
+                {
+                    SetField(ref formContent, value);
+                    this.formContent = value;
+                }
+
+            }
+        }
+
+        public async void GetFormandDropDownFields(AuthReply authReply, string type)
+        {
+
+            FormFieldBody formFieldBody = new FormFieldBody(authReply, type);
+
+            HttpResponseMessage events = await ApiManager.GetFormAndDropDownFieldValues(formFieldBody, authReply.d.sessionId);
+            Dictionary<string, ValidatableObject<string>> _formContent = new Dictionary<string, ValidatableObject<string>>();
+
+            if (events.IsSuccessStatusCode)
+            {
+                var response = await events.Content.ReadAsStringAsync();
+                FormAndDropDownField formAndDropDownField = await Task.Run(() => JsonConvert.DeserializeObject<FormAndDropDownField>(response));
+                // return eventsReply;
+
+                foreach (Models.FormAndDropDownField.D d in formAndDropDownField.d)
+                {
+
+                    ValidatableObject<string> validatableObj = new ValidatableObject<string>();
+                    validatableObj.FormAndDropDownField = d;
+                    validatableObj.DropdownValues = d.DropdownValues;
+
+                    _formContent.Add(d.Label, validatableObj);
+
+                }
+                FormContent = _formContent;
+            }
+            else
+            {
+                await PageDialog.AlertAsync("API Error while Geting Form Fields", "API Response Error", "Ok");
+                //  return null;
+            }
+        }
+
+
 
         protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
