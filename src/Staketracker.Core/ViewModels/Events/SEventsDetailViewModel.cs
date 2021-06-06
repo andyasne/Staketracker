@@ -17,6 +17,7 @@ using Staketracker.Core.Models.ApiRequestBody;
 using System.Net.Http;
 using Newtonsoft.Json;
 using Staketracker.Core.Models.FormAndDropDownField;
+using Staketracker.Core.Helpers;
 
 namespace Staketracker.Core.ViewModels.Events
 {
@@ -109,7 +110,8 @@ namespace Staketracker.Core.ViewModels.Events
         {
             await base.Initialize();
 
-            GetFormandDropDownFields(authReply, "Events");
+            GetFormandDropDownFields(authReply, FormType.Events);
+            this.UpdateTitle();
 
             return;
             // SEvent sEvent = null;

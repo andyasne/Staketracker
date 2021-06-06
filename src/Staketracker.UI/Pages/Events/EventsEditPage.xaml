@@ -9,32 +9,17 @@
 
 
     <ContentView.Content>
-        <Grid x:Name="LayoutRoot" Margin="12">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
-
-            <ScrollView  >
-                <StackLayout Orientation="Vertical">
-                    <Grid Margin="20, 0">
-                        <Grid.ColumnDefinitions>
-
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <StackLayout Margin="15,15,15,15" >
-                            <ScrollView>
-                                <!--<ListView x:Name="listView" VerticalOptions="FillAndExpand" SeparatorVisibility="Default" HasUnevenRows="true"  ItemTemplate="{StaticResource personDataTemplateSelector}" ItemsSource="{Binding FormContent}"/>-->
-
-                            </ScrollView>
-
-
-
-                        </StackLayout>
-                    </Grid>
-                </StackLayout>
-            </ScrollView>
-        </Grid>
+        <ScrollView >
+            <StackLayout Margin="20">
+                <ListView   
+                SeparatorVisibility="Default" 
+                SeparatorColor="LightGray" 
+                x:Name="listView" HasUnevenRows="True" 
+                VerticalScrollBarVisibility="Never"  
+                ItemTemplate="{StaticResource personDataTemplateSelector}"  
+                ItemsSource="{Binding FormContent}" 
+                SelectionMode="None" />
+            </StackLayout>
+        </ScrollView>
     </ContentView.Content>
 </ContentView>

@@ -242,7 +242,7 @@ namespace Staketracker.Core.ViewModels.Events
             if (Device.Idiom != TargetIdiom.Phone)
                 return;
 
-            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(new PresentationContext<AuthReply>(authReply, Models.PresentationMode.Read));
+            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(new PresentationContext<AuthReply>(authReply, Models.PresentationMode.Edit));
 
             this.SelectedEvent = null;
         }

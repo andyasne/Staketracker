@@ -17,28 +17,36 @@ namespace Staketracker.UI.Pages.Events
         {
             InitializeComponent();
 
-            //  if (Device.Idiom == TargetIdiom.Phone)
-            //{
-            //  this.detailView.PropertyChanged += this.HandleVendorDetailViewPropertyChanged;
-            this.editView = new EventsEditPage();
-            //      this.editView.PropertyChanged += this.HandleVendorEditViewPropertyChanged;
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+                this.detailView.PropertyChanged += this.HandleVendorDetailViewPropertyChanged;
+                this.editView = new EventsEditPage();
+                this.editView.PropertyChanged += this.HandleVendorEditViewPropertyChanged;
 
-            optionsToolbarItem = new ToolbarItem();
-            optionsToolbarItem.Text = "Layout";
-            optionsToolbarItem.IconImageSource = new FileImageSource() { File = "ellipsis" };
-            optionsToolbarItem.Clicked += this.OptionsToolbarItem_Clicked;
+                optionsToolbarItem = new ToolbarItem();
+                optionsToolbarItem.Text = "Layout";
+                optionsToolbarItem.IconImageSource = new FileImageSource() { File = "ellipsis" };
+                optionsToolbarItem.Clicked += this.OptionsToolbarItem_Clicked;
 
-            checkToolbarItem = new ToolbarItem();
-            checkToolbarItem.Text = "Save";
-            checkToolbarItem.IconImageSource = new FileImageSource() { File = "check" };
-            checkToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("CommitCommand"));
-            // }
-            //else
-            //{
-            //    this.editView = new VendorEditViewTablet();
+                checkToolbarItem = new ToolbarItem();
+                checkToolbarItem.Text = "Save";
+                checkToolbarItem.IconImageSource = new FileImageSource() { File = "check" };
+                checkToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("CommitCommand"));
 
-            //    NavigationPage.SetHasNavigationBar(this, false);
-            //}
+                deleteToolbarItem = new ToolbarItem();
+                deleteToolbarItem.Text = "Delete";
+                deleteToolbarItem.IconImageSource = new FileImageSource() { File = "check" };
+                //checkToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("CommitCommand"));
+
+            }
+            else
+            {
+                //this.editView = new VendorEditViewTablet();
+
+                NavigationPage.SetHasNavigationBar(this, false);
+            }
+            this.ToolbarItems.Add(checkToolbarItem);
+            this.ToolbarItems.Add(deleteToolbarItem);
 
             this.editView.IsVisible = false;
             var trigger = new DataTrigger(editView.GetType());
@@ -50,11 +58,12 @@ namespace Staketracker.UI.Pages.Events
         }
 
         private ContentView editView;
-        private ToolbarItem optionsToolbarItem, checkToolbarItem;
+        private ToolbarItem optionsToolbarItem, checkToolbarItem, deleteToolbarItem;
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            return;
 
             if (Device.Idiom != TargetIdiom.Phone)
                 return;
@@ -79,6 +88,7 @@ namespace Staketracker.UI.Pages.Events
 
         private void HandleVendorDetailViewPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            return;
             if (e.PropertyName == IsVisibleProperty.PropertyName)
             {
                 if (this.detailView.IsVisible)
@@ -96,6 +106,7 @@ namespace Staketracker.UI.Pages.Events
 
         private void HandleVendorEditViewPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            return;
             if (e.PropertyName == IsVisibleProperty.PropertyName)
             {
                 if (this.editView?.IsVisible == true)

@@ -14,48 +14,17 @@
     </ContentView.Resources>
 
     <ContentView.Content>
-        <ScrollView>
-            <Grid RowSpacing="6" Margin="12,12,12,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-
-                </Grid.ColumnDefinitions>
-
-
-                <Label  Text="Name"  Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
-                <telerikInput:RadEntry x:Name="usernameBox"   Text="{Binding  sEvent.Name,Mode=TwoWay}"  Style="{StaticResource FormEntryStyle}"   Margin="{StaticResource itemSpacing}" />
-                <BoxView  HeightRequest="1" VerticalOptions="End" BackgroundColor="{StaticResource LineColor}" />
-
-                <Label  Text="Description"  Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
-                <telerikInput:RadEntry x:Name="Description"  Text="{Binding sEvent.Description,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}" Margin="{StaticResource itemSpacing}" />
-
-                <Label  Text="Date"  Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
-                <telerikInput:RadEntry x:Name="EventDate"  Text="{Binding sEvent.Date,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}" Margin="{StaticResource itemSpacing}" />
-
-
-
-                <Label  Text="Type"  Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
-                <telerikInput:RadEntry x:Name="Type"  Text="{Binding sEvent.Type,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}" Margin="{StaticResource itemSpacing}" />
-
-
-                <Label  Text="Status"  Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
-                <telerikInput:RadEntry x:Name="Status"  Text="{Binding sEvent.Status,Mode=TwoWay}" Style="{StaticResource FormEntryStyle}" Margin="{StaticResource itemSpacing}" />
-
-
-                <Label  Text="Venue"  Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
-                <telerikInput:RadEntry x:Name="Venue"    Style="{StaticResource FormEntryStyle}" Margin="{StaticResource itemSpacing}" />
-
-
-                <Label  Text="Head Count"  Style="{StaticResource FormSubtitleLabelStyle}"    TextColor="{StaticResource TitleLabelColor}" Margin="{StaticResource itemSpacing}" />
-                <telerikInput:RadEntry x:Name="Head"    Style="{StaticResource FormEntryStyle}" Margin="{StaticResource itemSpacing}" />
-
-
-
-            </Grid>
+        <ScrollView >
+            <StackLayout Margin="20">
+                <ListView   
+                SeparatorVisibility="Default" 
+                SeparatorColor="LightGray" 
+                x:Name="listView" HasUnevenRows="True" 
+                VerticalScrollBarVisibility="Never"  
+                ItemTemplate="{StaticResource personDataTemplateSelector}"  
+                ItemsSource="{Binding FormContent}" 
+                SelectionMode="None" />
+            </StackLayout>
         </ScrollView>
     </ContentView.Content>
 
