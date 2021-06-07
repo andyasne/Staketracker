@@ -12,8 +12,7 @@
         <ScrollView >
             <StackLayout Margin="20">
                 <ListView   
-                SeparatorVisibility="Default" 
-                SeparatorColor="LightGray" 
+            
                 x:Name="listView" HasUnevenRows="True" 
                 VerticalScrollBarVisibility="Never"  
                 ItemTemplate="{StaticResource personDataTemplateSelector}"  
