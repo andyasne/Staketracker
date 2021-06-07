@@ -76,9 +76,7 @@
                         <Label Text="Remember Me" Style="{StaticResource NormalLabelStyle}" />
                     </StackLayout>
 
-                    <telerikInput:RadButton Text="SIGN IN"
-                                            Command="{Binding AuthenticateUserCommand}"
-                                     Style="{StaticResource ActionButtonStyle}" />
+                   
                 </StackLayout>
             </ScrollView>
         </Grid>
@@ -86,6 +84,7 @@
             <StackLayout Spacing="0">
                 <Grid >
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="*"  />
                         <RowDefinition Height="Auto"  />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -94,11 +93,14 @@
 
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <telerikInput:RadButton VerticalContentAlignment="End" HorizontalContentAlignment="Start"  HeightRequest="20" Text="Forgot Your User Id?"   Grid.Row="0" Grid.Column="1"
+                    <telerikInput:RadButton Text="SIGN IN"   Grid.Row="0"  Grid.Column="0" Margin="0,0,0,20" Grid.ColumnSpan="4" WidthRequest="200" HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"
+                                            Command="{Binding AuthenticateUserCommand}"
+                                            Style="{StaticResource ActionButtonStyle}" />
+                    <telerikInput:RadButton VerticalContentAlignment="End" HorizontalContentAlignment="Start"  HeightRequest="20" Text="Forgot Your User Id?"   Grid.Row="1" Grid.Column="1"
                                      Style="{StaticResource SecondaryActionButtonStyle}" Command="{Binding OnDevelopmentCommand}"
-                                    FontAttributes="None" />
+                                    FontAttributes="None" /> 
 
-                    <telerikInput:RadButton Text="Forget Your Password?" HeightRequest="20"  HorizontalContentAlignment="End" VerticalContentAlignment="End" Grid.Row="0" Grid.Column="3"
+                    <telerikInput:RadButton Text="Forget Your Password?" HeightRequest="20"  HorizontalContentAlignment="End" VerticalContentAlignment="End" Grid.Row="1" Grid.Column="3"
                                      Style="{StaticResource SecondaryActionButtonStyle}"  Command="{Binding OnDevelopmentCommand}"
                                     FontAttributes="None" />
                 </Grid>

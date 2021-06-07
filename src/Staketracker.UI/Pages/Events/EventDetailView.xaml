@@ -7,7 +7,6 @@
              x:Class="Staketracker.UI.Pages.Events.EventDetailView" BackgroundColor="White">
     <ContentView.Resources>
         <ResourceDictionary>
-            <Thickness x:Key="itemSpacing">0,0,0,10</Thickness>
             <Color x:Key="TitleLabelColor">#bcbcbc</Color>
             <Color x:Key="LineColor">#d7d7d7</Color>
         </ResourceDictionary>
@@ -17,7 +16,7 @@
         <ScrollView >
             <StackLayout Margin="20">
                 <ListView   
-              
+               SeparatorVisibility="None" 
                 x:Name="listView" HasUnevenRows="True" 
                 VerticalScrollBarVisibility="Never"  
                 ItemTemplate="{StaticResource personDataTemplateSelector}"  
