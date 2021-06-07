@@ -48,7 +48,7 @@
         <x:String x:Key="icon-left-open-1">&#xe81a;</x:String>
         <x:String x:Key="icon-left-open-3">&#xe81b;</x:String>
         <x:String x:Key="icon-left-open-4">&#xe81c;</x:String>
-        <Thickness x:Key="itemSpacing">0,0,0,10</Thickness>
+        <Thickness x:Key="itemSpacing">0,2,0,3</Thickness>
         <Color x:Key="TitleLabelColor">#bcbcbc</Color>
         <Color x:Key="LineColor">#d7d7d7</Color>
         <ResourceDictionary xmlns:themes="clr-namespace:Staketracker.UI.Themes">
@@ -129,16 +129,20 @@
                 <ViewCell>
                     <StackLayout   Margin="0,2,0,2">
 
-                        <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
+                        <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"    
+                                Margin="{StaticResource itemSpacing}" />
 
                         <telerikInput:RadDateTimePicker SpinnerHeaderStyle="{StaticResource spinnerHeaderStyle}"
                                 SpinnerStyle="{StaticResource spinnerStyle}"
                                 SelectionHighlightStyle="{StaticResource selectionHighlightStyle}"
-                                SpinnerFormat="d"
-                                                       
+                                SpinnerFormat="d" Margin="0" 
+                                                        Placeholder="Select a Date"
                                 AreSpinnerHeadersVisible="True"
                                 DisplayLabelStyle="{StaticResource displayLabelStyle}"
-                                PlaceholderLabelStyle="{StaticResource placeholderLabelStyle}">
+                                PlaceholderLabelStyle="{StaticResource placeholderLabelStyle}"
+                                BorderColor="{StaticResource LightBlueColor}" Padding="4,1,4,1" 
+                                BackgroundColor="{StaticResource EntryBackgroundColor}" 
+                                CornerRadius="6"  BorderThickness="0.3" HeightRequest="45"  >
                             <telerikInput:RadDateTimePicker.SelectorSettings>
                                 <telerikInput:PickerPopupSelectorSettings PopupOutsideBackgroundColor="#D9D9D9CC"
                                                   PopupViewStyle="{StaticResource popupViewStyle}"
@@ -159,7 +163,7 @@
             </DataTemplate>
             <DataTemplate x:Key="CheckBoxTemplate">
                 <ViewCell>
-                    <StackLayout  Margin="0,2,0,2" >
+                    <StackLayout   Margin="0,5,0,10">
 
                         <StackLayout Orientation="Horizontal">
                             <telerikPrimitives:RadCheckBox Style="{StaticResource checkBoxButtonStyle}" />
@@ -179,10 +183,9 @@
 
                         <telerikInput:RadComboBox    DisplayMemberPath="Label"  
                                                      SelectedItem="{Binding Value.SelectedItems, Mode=TwoWay}"
-                                                 Style="{StaticResource ComboEntryStyle}"   
+                                                     Style="{StaticResource ComboEntryStyle}"    
                                                      ItemsSource="{ Binding Value.DropdownValues }"
-                                                            SearchMode="Contains"
-                                                     
+                                                      SearchMode="Contains"
                                                        SearchTextPath="Label"
                                                        IsDropDownClosedOnSelection="True"
                                                        DropDownHeight="200"
