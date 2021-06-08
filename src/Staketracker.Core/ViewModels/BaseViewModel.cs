@@ -14,6 +14,7 @@ using Staketracker.Core.Models.ApiRequestBody;
 using Staketracker.Core.Models.FormAndDropDownField;
 using Staketracker.Core.Services;
 using Staketracker.Core.Validators;
+using Staketracker.Core.Validators.Rules;
 using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels
@@ -69,6 +70,11 @@ namespace Staketracker.Core.ViewModels
                     ValidatableObject<string> validatableObj = new ValidatableObject<string>();
                     validatableObj.FormAndDropDownField = d;
                     validatableObj.DropdownValues = d.DropdownValues;
+
+                    //  if (d.MandatoryField == true)
+                    {
+                        validatableObj.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = d.Label + " is Required" });
+                    }
 
                     _formContent.Add(d.Label, validatableObj);
 
