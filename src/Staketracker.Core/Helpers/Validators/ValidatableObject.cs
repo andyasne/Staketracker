@@ -39,11 +39,11 @@ namespace Staketracker.Core.Validators
         }
 
         public List<IValidationRule<T>> Validations { get; } = new List<IValidationRule<T>>();
+        public List<IValidationRuleList> ValidationsList { get; } = new List<IValidationRuleList>();
 
         public List<Models.FormAndDropDownField.DropdownValue> DropdownValues { get; set; } = new List<Models.FormAndDropDownField.DropdownValue>();
-        public List<DropdownValues> SelectedItems { get; set; } = new List<DropdownValues>();
-
-        public DropdownValues SelectedItem { get; set; } = new DropdownValues();
+        public List<Models.FormAndDropDownField.DropdownValue> SelectedItems { get; set; } = new List<Models.FormAndDropDownField.DropdownValue>();
+        public Models.FormAndDropDownField.DropdownValue SelectedItem { get; set; } = new Models.FormAndDropDownField.DropdownValue();
         public string Label { get; set; }
 
         public Models.FormAndDropDownField.D FormAndDropDownField { get; set; }
@@ -76,9 +76,19 @@ namespace Staketracker.Core.Validators
         public virtual bool Validate()
         {
             Errors.Clear();
+            IEnumerable<string> errors;
 
-            IEnumerable<string> errors = Validations.Where(v => !v.Check(Value))
+            if (DropdownValues != null && DropdownValues.Count > 0)
+            {
+                errors = ValidationsList.Where(v => !v.Check(SelectedItems))
                 .Select(v => v.ValidationMessage);
+            }
+            else
+            {
+                errors = Validations.Where(v => !v.Check(Value))
+              .Select(v => v.ValidationMessage);
+
+            }
 
             Errors = errors.ToList();
             IsValid = !Errors.Any();

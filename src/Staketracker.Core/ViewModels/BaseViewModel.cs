@@ -73,7 +73,16 @@ namespace Staketracker.Core.ViewModels
 
                     if (d.MandatoryField == true)
                     {
-                        validatableObj.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = d.Label + " is Required" });
+                        if (d.InputType == "DropDownList")
+                        {
+                            validatableObj.ValidationsList.Add(new IsDropdownSelectedRule { ValidationMessage = d.Label + " is Required" });
+
+                        }
+                        else
+                        {
+                            validatableObj.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = d.Label + " is Required" });
+
+                        }
                     }
 
                     _formContent.Add(d.Label, validatableObj);
