@@ -25,16 +25,35 @@
 
 
     </views:MvxContentPage.Resources>
-    <ScrollView >
-        <StackLayout Margin="20">
-            <ListView   
+    <Grid x:Name="ContentRoot">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.Padding>
+            <OnIdiom x:TypeArguments="Thickness">
+                <OnIdiom.Tablet>20,20,0,20</OnIdiom.Tablet>
+            </OnIdiom>
+        </Grid.Padding>
+        <BoxView BackgroundColor="White" Grid.RowSpan="2">
+            <BoxView.CornerRadius>
+                <OnIdiom x:TypeArguments="CornerRadius" Default="4,0,4,0">
+                    <OnIdiom.Phone>0</OnIdiom.Phone>
+                </OnIdiom>
+            </BoxView.CornerRadius>
+        </BoxView>
+
+        <ScrollView >
+            <StackLayout Margin="20" Grid.Row="0">
+                <ListView   
                 SeparatorVisibility="None" 
                 x:Name="listView" HasUnevenRows="True" 
                 VerticalScrollBarVisibility="Never"  
                 ItemTemplate="{StaticResource personDataTemplateSelector}"  
                 ItemsSource="{Binding FormContent}" 
                 SelectionMode="None" />
-        </StackLayout>
-    </ScrollView>
-
+            </StackLayout>
+        </ScrollView>
+    </Grid>
 </views:MvxContentPage>

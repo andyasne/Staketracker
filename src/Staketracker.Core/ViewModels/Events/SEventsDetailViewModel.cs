@@ -211,8 +211,22 @@ namespace Staketracker.Core.ViewModels.Events
             // await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsViewModel)));
         }
 
+        bool isFormValid()
+        {
+            bool isValid = true;
+            foreach (var _formContent in this.FormContent)
+            {
+                if (_formContent.Value.Validate() == false)
+                {
+                    isValid = false;
+                }
+            }
+            return isValid;
+        }
         private async Task OnCommitEditOrder()
         {
+            isFormValid();
+
             if (this.Mode == PresentationMode.Read)
                 return;
 
@@ -227,9 +241,9 @@ namespace Staketracker.Core.ViewModels.Events
             this.DraftSEvent = null;
             this.targetSEvent = null;
             //   this.SEvent = updatedSEvent;
-            this.Mode = PresentationMode.Read;
+            //      this.Mode = PresentationMode.Read;
 
-            this.UpdateTitle();
+            //        this.UpdateTitle();
 
             //    if (Device.Idiom != TargetIdiom.Phone)
             //      await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsViewModel)));
