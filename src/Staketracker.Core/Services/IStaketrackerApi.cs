@@ -10,21 +10,21 @@ namespace Staketracker.Core
     [Headers("Content-Type: application/json")]
     public interface IStaketrackerApi
     {
-        [Post("/demo/mobilev1.asmx/authenticateUser")]
+        [Post("/uat/mobilev1.asmx/authenticateUser")]
         Task<HttpResponseMessage> AuthenticateUser([Body] LoginAPIBody loginApiBody, CancellationToken cancellationToken);
 
 
-        [Post("/demo/mobilev1.asmx/Is2FEnabled")]
+        [Post("/uat/mobilev1.asmx/Is2FEnabled")]
         Task<HttpResponseMessage> Is2FEnabled([Body] LoginAPIBody loginApiBody, CancellationToken cancellationToken);
 
 
-        [Post("/demo/mobilev1.asmx/getUsrEmail")]
+        [Post("/uat/mobilev1.asmx/getUsrEmail")]
         Task<HttpResponseMessage> GetUsrEmail([Body] LoginAPIBody loginApiBody, CancellationToken cancellationToken);
 
-        [Post("/demo/mobilev1.asmx/getEvents")]
+        [Post("/uat/mobilev1.asmx/getEvents")]
         Task<HttpResponseMessage> GetEvents([Body] APIRequestBody aPIRequestBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
-        [Post("/demo/mobilev1.asmx/getFormAndDropDownFieldValues")]
+        [Post("/uat/mobilev1.asmx/getFormAndDropDownFieldValues")]
         Task<HttpResponseMessage> GetFormAndDropDownFieldValues([Body] FormFieldBody formFieldBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
 
