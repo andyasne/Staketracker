@@ -18,6 +18,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using Staketracker.Core.Models.FormAndDropDownField;
 using Staketracker.Core.Helpers;
+using Staketracker.Core.Models.FieldsValue;
 
 namespace Staketracker.Core.ViewModels.Events
 {
@@ -98,10 +99,12 @@ namespace Staketracker.Core.ViewModels.Events
 
 
         public AuthReply authReply;
+        public int primaryKey;
         public override void Prepare(PresentationContext<AuthReply> parameter)
         {
             this.authReply = parameter.Model;
             this.Mode = parameter.Mode;
+            this.primaryKey = parameter.PrimaryKey;
         }
 
 
@@ -111,6 +114,7 @@ namespace Staketracker.Core.ViewModels.Events
             await base.Initialize();
 
             GetFormandDropDownFields(authReply, FormType.Events);
+            PopulateControls(authReply, this.primaryKey);
             this.UpdateTitle();
 
             return;
@@ -252,6 +256,49 @@ namespace Staketracker.Core.ViewModels.Events
 
         private void InitializeEditData(SEvent sEvent)
         {
+        }
+
+        internal async Task PopulateControls(AuthReply authReply, int primaryKey)
+        {
+
+            FieldsValue fieldsValue;
+            var apiReqExtra = new APIRequestExtraBody(authReply, "PrimaryKey", primaryKey.ToString());
+            HttpResponseMessage events = await ApiManager.GetEventDetails(apiReqExtra, authReply.d.sessionId);
+
+            if (events.IsSuccessStatusCode)
+            {
+                var response = await events.Content.ReadAsStringAsync();
+                fieldsValue = await Task.Run(() => JsonConvert.DeserializeObject<FieldsValue>(response));
+
+
+                foreach (Models.FieldsValue.Field field in fieldsValue.d.Fields)
+                {
+
+                    foreach (ValidatableObject<string> valObj in FormContent.Values)
+                    {
+                        if (valObj.FormAndDropDownField.PrimaryKey == field.PrimaryKey)
+                        {
+                            if (valObj.FormAndDropDownField.InputType == "DropDownList")
+                            {
+
+                                valObj.Value = field.SelectedKey.ToString();
+
+                            }
+                            else
+                            {
+                                valObj.Value = field.Value.ToString();
+                            }
+                        }
+
+                    }
+
+                }
+            }
+            else
+            {
+                await PageDialog.AlertAsync("API Error While Assigning Value", "API Response Error", "Ok");
+                //  return null;
+            }
         }
 
 

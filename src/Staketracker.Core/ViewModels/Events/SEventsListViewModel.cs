@@ -116,6 +116,7 @@ namespace Staketracker.Core.ViewModels.Events
                     _events.Name = d.Name;
                     _events.Date = d.EventDate.ToShortDateString();
                     _events.Type = d.Type;
+                    _events.Id = d.PrimaryKey;
                     eventsomers.Add(_events);
 
                 }
@@ -242,7 +243,7 @@ namespace Staketracker.Core.ViewModels.Events
             if (Device.Idiom != TargetIdiom.Phone)
                 return;
 
-            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(new PresentationContext<AuthReply>(authReply, Models.PresentationMode.Edit));
+            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(new PresentationContext<AuthReply>(authReply, Models.PresentationMode.Edit, int.Parse(_event.Id)));
 
             this.SelectedEvent = null;
         }
@@ -294,7 +295,7 @@ namespace Staketracker.Core.ViewModels.Events
         {
             if (_event == null)
                 return;
-            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(new PresentationContext<AuthReply>(authReply, Models.PresentationMode.Edit));
+            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(new PresentationContext<AuthReply>(authReply, Models.PresentationMode.Edit, int.Parse(_event.Id)));
 
 
         }
