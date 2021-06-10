@@ -152,5 +152,14 @@ namespace Staketracker.Core.Services
 
         }
 
+        public async Task<HttpResponseMessage> GetEventDetails(APIRequestExtraBody aPIRequestExtraBody, string sessionId)
+        {
+            var cts = new CancellationTokenSource();
+            var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).GetEventDetails(aPIRequestExtraBody, sessionId, cts.Token));
+            return await AddToRunningTasks(cts, task);
+
+        }
+
+
     }
 }

@@ -17,6 +17,8 @@ namespace Staketracker.Core.Services
 
         Task<HttpResponseMessage> GetFormAndDropDownFieldValues(FormFieldBody formFieldBody, string sessionId);
 
+        Task<HttpResponseMessage> GetEventDetails(APIRequestExtraBody aPIRequestExtraBody, string sessionId);
+
 
     }
 }
