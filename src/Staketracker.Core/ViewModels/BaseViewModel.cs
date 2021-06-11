@@ -16,6 +16,7 @@ using Staketracker.Core.Services;
 using Staketracker.Core.Validators;
 using Staketracker.Core.Validators.Rules;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace Staketracker.Core.ViewModels
 {
@@ -70,10 +71,24 @@ namespace Staketracker.Core.ViewModels
                     ValidatableObject<string> validatableObj = new ValidatableObject<string>();
                     validatableObj.FormAndDropDownField = d;
                     validatableObj.DropdownValues = d.DropdownValues;
+                    //if (d.InputType == "DropDownList")
+                    //{
+                    //    validatableObj.SelectedItem = validatableObj.DropdownValues.FirstOrDefault();
 
+                    //}
+                    //else if (d.InputType == "ListBoxMulti")
+                    //{
+                    //    validatableObj.SelectedItems = validatableObj.DropdownValues;
+
+                    //}
                     if (d.MandatoryField == true)
                     {
                         if (d.InputType == "DropDownList")
+                        {
+                            validatableObj.ValidationsList.Add(new IsDropdownSelectedRule { ValidationMessage = d.Label + " is Required" });
+
+                        }
+                        else if (d.InputType == "ListBoxMulti")
                         {
                             validatableObj.ValidationsList.Add(new IsDropdownSelectedRule { ValidationMessage = d.Label + " is Required" });
 

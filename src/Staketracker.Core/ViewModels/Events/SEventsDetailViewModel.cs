@@ -8,6 +8,7 @@ using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
+using System.Linq;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
 using System.Collections.Generic;
 using Staketracker.Core.Validators;
@@ -108,13 +109,18 @@ namespace Staketracker.Core.ViewModels.Events
         }
 
 
+        public override void ViewAppearing()
+        {
+            PopulateControls(authReply, this.primaryKey);
 
+        }
         public async override Task Initialize()
         {
             await base.Initialize();
 
+            this.SelectedIndex = 1;
             GetFormandDropDownFields(authReply, FormType.Events);
-            PopulateControls(authReply, this.primaryKey);
+
             this.UpdateTitle();
 
             return;
@@ -257,6 +263,23 @@ namespace Staketracker.Core.ViewModels.Events
         private void InitializeEditData(SEvent sEvent)
         {
         }
+        private int selectedIndex;
+        public int SelectedIndex
+        {
+            get
+            {
+                return this.selectedIndex;
+            }
+            set
+            {
+                if (this.selectedIndex != value)
+                {
+                    SetField(ref selectedIndex, value);
+                    this.selectedIndex = value;
+                }
+            }
+        }
+
 
         internal async Task PopulateControls(AuthReply authReply, int primaryKey)
         {
@@ -278,15 +301,34 @@ namespace Staketracker.Core.ViewModels.Events
                     {
                         if (valObj.FormAndDropDownField.PrimaryKey == field.PrimaryKey)
                         {
-                            if (valObj.FormAndDropDownField.InputType == "DropDownList")
+                            try
                             {
 
-                                valObj.Value = field.SelectedKey.ToString();
+                                if (valObj.FormAndDropDownField.InputType == "DropDownList")
+                                {
 
+                                    valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
+
+                                }
+                                else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
+                                {
+
+                                    valObj.SelectedItems = valObj.DropdownValues;
+
+                                }
+
+                                else
+                                {
+                                    if (field.Value != null)
+                                    {
+                                        valObj.Value = field.Value.ToString();
+                                    }
+                                }
                             }
-                            else
+                            catch (Exception ex)
                             {
-                                valObj.Value = field.Value.ToString();
+
+
                             }
                         }
 
