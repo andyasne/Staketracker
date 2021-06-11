@@ -127,8 +127,9 @@ namespace Staketracker.Core.ViewModels.Login
                     {
                         var dic = new Dictionary<string, string> { { "jsonText", "loginApiBody.jsonText" } };
                         MvxBundle bundle = new MvxBundle(dic);
+                        authReply.loginAPIBody = loginApiBody;
 
-                        await this._navigationService.Navigate<TwoStepVerificationViewModel, LoginAPIBody>(loginApiBody);
+                        await this._navigationService.Navigate<TwoStepVerificationViewModel, AuthReply>(authReply);
                     }
                     else
                     {

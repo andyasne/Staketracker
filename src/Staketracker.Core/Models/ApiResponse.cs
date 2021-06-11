@@ -21,5 +21,6 @@ namespace Staketracker.Core.Models
         }
 
         public D d { get; set; }
+        public LoginAPIBody loginAPIBody { get; set; }
     }
 }

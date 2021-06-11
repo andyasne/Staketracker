@@ -15,9 +15,10 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
     using Staketracker.Core.Models;
     using Staketracker.Core.ViewModels.Dashboard;
     using Staketracker.Core.ViewModels.Login;
+    using Staketracker.Core.ViewModels.Root;
     using Xamarin.Forms;
 
-    public class TwoStepVerificationViewModel : BaseViewModel<LoginAPIBody>
+    public class TwoStepVerificationViewModel : BaseViewModel<AuthReply>
     {
 
         public ICommand OpenDashboardPageCommand { get; set; }
@@ -28,7 +29,7 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
         private string _email;
         private int _VerificationCode;
         private readonly Random _random = new Random();
-        private LoginAPIBody loginAPIBody;
+        //      private LoginAPIBody loginAPIBody;
 
         public int VerificationCode
         {
@@ -78,7 +79,7 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
         {
 
             UsrEmailResponse usrEmailResponse;
-            HttpResponseMessage userEmail = await ApiManager.GetUsrEmail(loginAPIBody);
+            HttpResponseMessage userEmail = await ApiManager.GetUsrEmail(authReply.loginAPIBody);
 
             if (userEmail.IsSuccessStatusCode)
             {
@@ -96,7 +97,7 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
         }
         void SendTwoStepVerificationEmail(string email, int generatedCode)
         {
-            string emailTemplate = "Here's your Authentication code: {0} \nPlease note that, for security purposes, this temporary confirmation code will expire in 10 minutes.\nIf you did not try to login, please ignore this email, or reply to let us know.\n Best Regards,\n StakeTracker Customer Support \n Email:support @staketracker.com \n Phone: 604 - 670 - 0240";
+            string emailTemplate = "Here's your Authentication code: {0} \n Please note that, for security purposes, this temporary confirmation code will expire in 10 minutes.\nIf you did not try to login, please ignore this email, or reply to let us know.\n Best Regards,\n StakeTracker Customer Support \n Email:support @staketracker.com \n Phone: 604 - 670 - 0240";
 
             string emailBody = String.Format(emailTemplate, generatedCode.ToString());
             //define mail
@@ -134,8 +135,9 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
         {
             if (VerificationCode == generatedCode)
             {
+                await _navigationService.Navigate<RootViewModel, AuthReply>(authReply);
 
-                await _navigationService.Navigate<DashboardViewModel>();
+                // await _navigationService.Navigate<DashboardViewModel>();
             }
             else
             {
@@ -153,11 +155,12 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
             return InitTwoStepVerification();
 
         }
+        AuthReply authReply;
 
-        public override void Prepare(LoginAPIBody loginAPIBody)
 
+        public override void Prepare(AuthReply authReply)
         {
-            this.loginAPIBody = loginAPIBody;
+            this.authReply = authReply;
         }
     }
 }
