@@ -21,7 +21,7 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.ColumnSpan="0" Text="Top 5 Stakeholder Groups" Style="{StaticResource TitleLabelStyle}"  />
+        <Label Grid.Row="0"  Text="Top 5 Stakeholder Groups" Style="{StaticResource TitleLabelStyle}"  />
 
         <telerikChart:RadCartesianChart Grid.Row="1" Grid.Column="0">
             <telerikChart:RadCartesianChart.ChartBehaviors>
