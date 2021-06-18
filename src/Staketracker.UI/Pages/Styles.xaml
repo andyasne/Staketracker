@@ -57,10 +57,9 @@ xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assem
         <Setter Property="BackgroundColor"
                 Value="{StaticResource EntryBackgroundColor}" />
 
-        <Setter Property="FontSize"
-                Value="16" />
+
         <Setter Property="HeightRequest"
-                Value="40" />
+                Value="45" />
 
         <Setter Property="Margin"
                 Value="0,0,0,4" />
@@ -85,10 +84,9 @@ xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assem
         <Setter Property="BackgroundColor"
                 Value="{StaticResource EntryBackgroundColor}" />
 
-        <Setter Property="FontSize"
-                Value="16" />
+
         <Setter Property="HeightRequest"
-                Value="40" />
+                Value="45" />
         <Setter Property="TextColor"
                 Value="{StaticResource DarkTextColor}" />
 

@@ -35,7 +35,7 @@ namespace Staketracker.UI.Pages.Commitments
             filterToolbarItem.IconImageSource = new FileImageSource() { File = "Filter" };
             filterToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("OnDevelopmentNotifyCommand"));
 
-            this.ToolbarItems.Add(searchToolbarItem);
+            // this.ToolbarItems.Add(searchToolbarItem);
             this.ToolbarItems.Add(filterToolbarItem);
         }
 
