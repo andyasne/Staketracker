@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 using Acr.UserDialogs;
 using Fusillade;
 using Plugin.Connectivity;
@@ -13,6 +6,13 @@ using Polly;
 using Refit;
 using Staketracker.Core.Models;
 using Staketracker.Core.Models.ApiRequestBody;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Staketracker.Core.Services
 {

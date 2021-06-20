@@ -1,25 +1,18 @@
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using Newtonsoft.Json;
+using Staketracker.Core.Helpers;
 using Staketracker.Core.Models;
-using Xamarin.Forms;
-using MvvmCross.Commands;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-using Xamarin.Forms;
-using System.Linq;
-using PresentationMode = Staketracker.Core.Models.PresentationMode;
-using System.Collections.Generic;
+using Staketracker.Core.Models.ApiRequestBody;
+using Staketracker.Core.Models.FieldsValue;
+using Staketracker.Core.Models.FormAndDropDownField;
 using Staketracker.Core.Validators;
 using System;
-using System.ComponentModel;
-using Staketracker.Core.Models.ApiRequestBody;
+using System.Linq;
 using System.Net.Http;
-using Newtonsoft.Json;
-using Staketracker.Core.Models.FormAndDropDownField;
-using Staketracker.Core.Helpers;
-using Staketracker.Core.Models.FieldsValue;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+using PresentationMode = Staketracker.Core.Models.PresentationMode;
 
 namespace Staketracker.Core.ViewModels.Events
 {

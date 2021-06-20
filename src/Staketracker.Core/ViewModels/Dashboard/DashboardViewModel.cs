@@ -1,18 +1,14 @@
-using System.Threading.Tasks;
-using System.Windows.Input;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
-using Staketracker.Core.ViewModels.Login;
 using Staketracker.Core.Models;
-using Xamarin.Forms;
+using Staketracker.Core.ViewModels.Login;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using MvvmCross.Commands;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-using Staketracker.Core.ViewModels.Menu;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels.Dashboard
 {

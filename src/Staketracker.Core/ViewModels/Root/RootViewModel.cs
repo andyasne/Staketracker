@@ -1,11 +1,11 @@
 namespace Staketracker.Core.ViewModels.Root
 {
-    using System.Threading.Tasks;
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Staketracker.Core.Models;
     using Staketracker.Core.ViewModels.CommunicationList;
     using Staketracker.Core.ViewModels.Events;
+    using System.Threading.Tasks;
 
     public class RootViewModel : BaseViewModel<AuthReply>
     {

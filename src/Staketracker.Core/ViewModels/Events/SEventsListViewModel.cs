@@ -1,10 +1,5 @@
 namespace Staketracker.Core.ViewModels.Events
 {
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-    using System.Windows.Input;
     using MvvmCross.Commands;
     using MvvmCross.Navigation;
     using MvvmCross.Plugin.Messenger;
@@ -12,6 +7,11 @@ namespace Staketracker.Core.ViewModels.Events
     using Newtonsoft.Json;
     using Staketracker.Core.Models;
     using Staketracker.Core.Models.Events;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using System.Windows.Input;
     using Xamarin.Forms;
 
     public class SEvent

@@ -1,14 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Staketracker.Core.Models;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using Xamarin.Forms;
+using System;
+using System.Collections;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
 //using PresentationMode = Staketracker.Core.Models.PresentationMode;
 
 namespace Staketracker.Core.ViewModels

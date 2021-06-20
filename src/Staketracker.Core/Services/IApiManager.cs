@@ -1,7 +1,7 @@
-using System.Net.Http;
-using System.Threading.Tasks;
 using Staketracker.Core.Models;
 using Staketracker.Core.Models.ApiRequestBody;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Staketracker.Core.Services
 {

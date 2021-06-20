@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using Staketracker.Core.Models.FormAndDropDownField;
+using System.Collections.Generic;
 
 namespace Staketracker.Core.Validators.Rules
 {

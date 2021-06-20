@@ -1,11 +1,11 @@
-using System;
-using System.Threading.Tasks;
 using MvvmCross.Exceptions;
 using MvvmCross.Forms.Presenters;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using MvvmCross.Presenters;
 using MvvmCross.ViewModels;
+using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Staketracker.Core
