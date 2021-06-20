@@ -1,16 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
-using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Staketracker.Core.ViewModels.Dashboard;
 using Staketracker.Core.ViewModels.Events;
-using Staketracker.Core.ViewModels.Home;
 using Staketracker.Core.ViewModels.Login;
 using Staketracker.Core.ViewModels.TwoStepVerification;
+using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels.Menu

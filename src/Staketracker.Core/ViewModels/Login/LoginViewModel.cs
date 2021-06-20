@@ -6,7 +6,6 @@ namespace Staketracker.Core.ViewModels.Login
     using Staketracker.Core.Models;
     using Staketracker.Core.Validators;
     using Staketracker.Core.Validators.Rules;
-    using Staketracker.Core.ViewModels.Dashboard;
     using Staketracker.Core.ViewModels.Root;
     using Staketracker.Core.ViewModels.TwoStepVerification;
     using System;

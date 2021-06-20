@@ -1,7 +1,7 @@
-using System;
-using System.Net.Http;
 using Fusillade;
 using Refit;
+using System;
+using System.Net.Http;
 
 namespace Staketracker.Core.Services
 {

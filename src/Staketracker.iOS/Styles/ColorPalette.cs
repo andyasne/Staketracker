@@ -18,7 +18,7 @@ namespace Staketracker.iOS.Styles
 
         private static UIColor FromHexString(string hexValue)
         {
-            var colorString = hexValue.Replace("#", "");
+            var colorString = hexValue.Replace("#", string.Empty);
             float red, green, blue;
 
             switch (colorString.Length)

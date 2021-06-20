@@ -1,10 +1,8 @@
-using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
-using Android.OS;
-using MvvmCross.Forms.Platforms.Android.Views;
-using Android.Support.V7.App;
 using Android.Content.PM;
+using Android.OS;
+using Android.Support.V7.App;
 
 namespace Staketracker.Droid.Views
 {

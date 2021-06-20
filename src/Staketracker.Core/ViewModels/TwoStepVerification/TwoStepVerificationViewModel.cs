@@ -1,6 +1,11 @@
 
 namespace Staketracker.Core.ViewModels.TwoStepVerification
 {
+    using MvvmCross.Logging;
+    using MvvmCross.Navigation;
+    using Newtonsoft.Json;
+    using Staketracker.Core.Models;
+    using Staketracker.Core.ViewModels.Root;
     using System;
     using System.Net;
     using System.Net.Http;
@@ -8,14 +13,6 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
     using System.Security.Cryptography.X509Certificates;
     using System.Threading.Tasks;
     using System.Windows.Input;
-    using MvvmCross.Logging;
-    using MvvmCross.Navigation;
-    using MvvmCross.ViewModels;
-    using Newtonsoft.Json;
-    using Staketracker.Core.Models;
-    using Staketracker.Core.ViewModels.Dashboard;
-    using Staketracker.Core.ViewModels.Login;
-    using Staketracker.Core.ViewModels.Root;
     using Xamarin.Forms;
 
     public class TwoStepVerificationViewModel : BaseViewModel<AuthReply>

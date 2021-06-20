@@ -1,9 +1,9 @@
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 using Refit;
 using Staketracker.Core.Models;
 using Staketracker.Core.Models.ApiRequestBody;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Staketracker.Core
 {

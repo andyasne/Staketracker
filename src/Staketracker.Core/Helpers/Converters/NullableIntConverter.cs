@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using Xamarin.Forms;
 
 namespace Staketracker.Core.Helpers.Converters
@@ -16,7 +14,7 @@ namespace Staketracker.Core.Helpers.Converters
             if (nullable.HasValue)
             {
                 if (nullable == 0)
-                    result = "";
+                    result = string.Empty;
                 else
                     result = nullable.Value.ToString();
             }
@@ -30,7 +28,7 @@ namespace Staketracker.Core.Helpers.Converters
             var stringValue = value as string;
             int intValue;
             int? result = null;
-            if (stringValue == "")
+            if (stringValue == string.Empty)
                 stringValue = "0";
 
             if (int.TryParse(stringValue, out intValue))

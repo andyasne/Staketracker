@@ -1,11 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Net.Http;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Acr.UserDialogs;
 using MvvmCross.ViewModels;
 using Newtonsoft.Json;
@@ -15,8 +7,16 @@ using Staketracker.Core.Models.FormAndDropDownField;
 using Staketracker.Core.Services;
 using Staketracker.Core.Validators;
 using Staketracker.Core.Validators.Rules;
-using Xamarin.Forms;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels
 {

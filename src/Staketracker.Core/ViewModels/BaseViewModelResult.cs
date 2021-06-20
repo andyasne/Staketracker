@@ -1,5 +1,5 @@
-using System.Threading.Tasks;
 using MvvmCross.ViewModels;
+using System.Threading.Tasks;
 
 namespace Staketracker.Core.ViewModels
 {

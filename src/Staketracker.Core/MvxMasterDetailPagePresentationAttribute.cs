@@ -1,5 +1,5 @@
-using System;
 using MvvmCross.Forms.Presenters.Attributes;
+using System;
 
 namespace Staketracker.Core
 {

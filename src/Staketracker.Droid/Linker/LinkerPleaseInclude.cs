@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Windows.Input;
 using Android.App;
 using Android.Runtime;
 using Android.Views;
@@ -12,6 +8,10 @@ using MvvmCross.Core;
 using MvvmCross.IoC;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using System;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Windows.Input;
 
 namespace Staketracker.Droid.Linker
 {
@@ -101,8 +101,8 @@ namespace Staketracker.Droid.Linker
 
         public void Include(ConsoleColor color)
         {
-            Console.Write("");
-            Console.WriteLine("");
+            Console.Write(string.Empty);
+            Console.WriteLine(string.Empty);
             _ = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.Yellow;

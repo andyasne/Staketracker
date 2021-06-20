@@ -6,7 +6,6 @@ using MvvmCross.Forms.Platforms.Android.Core;
 using MvvmCross.Forms.Platforms.Android.Views;
 using MvvmCross.Forms.Presenters;
 using Staketracker.Core;
-using Staketracker.Core.ViewModels.Main;
 
 namespace Staketracker.Droid
 {

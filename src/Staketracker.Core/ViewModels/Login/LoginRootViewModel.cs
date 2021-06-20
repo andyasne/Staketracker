@@ -1,12 +1,8 @@
-using System.Threading.Tasks;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Staketracker.Core.Models;
-using Staketracker.Core.ViewModels.CommunicationList;
-using Staketracker.Core.ViewModels.Events;
 using Staketracker.Core.ViewModels.Login;
-using Staketracker.Core.ViewModels.Menu;
-using Staketracker.Core.ViewModels.TwoStepVerification;
+using System.Threading.Tasks;
 
 namespace Staketracker.Core.ViewModels.Root
 {

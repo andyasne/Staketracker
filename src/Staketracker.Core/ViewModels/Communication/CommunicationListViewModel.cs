@@ -1,16 +1,9 @@
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Net.Http;
-using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
-using Newtonsoft.Json;
 using Staketracker.Core.Helpers;
 using Staketracker.Core.Models;
-using Staketracker.Core.Models.ApiRequestBody;
-using Staketracker.Core.Models.FormAndDropDownField;
-using Staketracker.Core.Validators;
+using System.ComponentModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels.CommunicationList
