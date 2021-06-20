@@ -1,16 +1,8 @@
 using MvvmCross.Forms.Presenters.Attributes;
-using MvvmCross.Forms.Views;
-using Staketracker.Core.ViewModels.Events;
-using Telerik.XamarinForms.DataControls;
-using Xamarin.Forms.Xaml;
-using MvvmCross.Forms.Presenters.Attributes;
-using MvvmCross.Forms.Views;
-using MvvmCross.Presenters;
 using MvvmCross.Presenters.Attributes;
 using MvvmCross.ViewModels;
-using Telerik.XamarinForms.DataControls;
-using Xamarin.Forms;
 using Staketracker.Core;
+using Xamarin.Forms;
 
 namespace Staketracker.UI.Pages.Events
 {

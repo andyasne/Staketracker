@@ -1,13 +1,9 @@
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
-using Staketracker.Core.ViewModels.Stakeholders;
-using Telerik.XamarinForms.DataControls;
-using Xamarin.Forms.Xaml;
-using MvvmCross.Forms.Presenters.Attributes;
-using MvvmCross.Forms.Views;
 using MvvmCross.Presenters;
 using MvvmCross.Presenters.Attributes;
 using MvvmCross.ViewModels;
+using Staketracker.Core.ViewModels.Stakeholders;
 using Telerik.XamarinForms.DataControls;
 using Xamarin.Forms;
 

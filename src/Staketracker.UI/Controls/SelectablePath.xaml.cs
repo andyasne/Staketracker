@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Telerik.XamarinForms.Common;
 using Xamarin.Forms;
 

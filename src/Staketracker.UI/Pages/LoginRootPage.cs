@@ -1,4 +1,3 @@
-using Staketracker.Core.ViewModels;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Staketracker.Core.ViewModels.Root;

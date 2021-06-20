@@ -1,9 +1,7 @@
-using System;
-using System.Collections.Generic;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
-using Staketracker.Core.Validators;
 using Staketracker.Core.ViewModels.Events;
+using System;
 using Xamarin.Forms;
 
 namespace Staketracker.UI.Pages.Events

@@ -5,7 +5,6 @@ using MvvmCross.Presenters.Attributes;
 using MvvmCross.ViewModels;
 using Staketracker.Core.ViewModels.Dashboard;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Staketracker.UI.Pages
 {
