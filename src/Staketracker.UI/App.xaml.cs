@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using Staketracker.Core.Validators;
+using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace Staketracker.UI

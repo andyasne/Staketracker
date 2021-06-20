@@ -1,8 +1,7 @@
-using System.Threading.Tasks;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Staketracker.Core.ViewModels;
-using Xamarin.Forms.Xaml;
+using System.Threading.Tasks;
 
 
 namespace Staketracker.UI.Pages
