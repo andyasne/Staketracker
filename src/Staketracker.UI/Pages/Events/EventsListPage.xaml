@@ -9,7 +9,7 @@
                       xmlns:telerikBusyIndicator="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
                       x:Class="Staketracker.UI.Pages.Events.SEventsListPage"
-                      Title="Events" Icon="Events" ios:Page.UseSafeArea="true"
+                      Title="StakeTracker" Icon="Events" ios:Page.UseSafeArea="true"
                       x:TypeArguments="viewModels:SEventsListViewModel">
 
     <Grid x:Name="LayoutRoot" RowSpacing="0">
