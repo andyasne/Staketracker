@@ -19,14 +19,13 @@ namespace Staketracker.Core.ViewModels.Commitments
     {
         private Commitments selectedCommitments, selectedCommitmentsDetail;
         private ObservableCollection<Commitments> Commitments_;
-        private string headerTitle;
 
         private readonly IMvxNavigationService _navigationService;
         public IMvxCommand SearchCommand { get; }
 
         public CommitmentsViewModel(IMvxNavigationService navigationService)
         {
-            this.headerTitle = "Commitments";
+            this.HeaderTitle = "Commitments";
 
             _navigationService = navigationService;
 
@@ -85,11 +84,6 @@ namespace Staketracker.Core.ViewModels.Commitments
         {
         }
 
-        public string HeaderTitle
-        {
-            get => headerTitle;
-            private set => SetProperty(ref headerTitle, value);
-        }
 
         private async Task OnSearch()
         {

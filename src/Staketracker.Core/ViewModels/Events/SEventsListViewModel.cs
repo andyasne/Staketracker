@@ -65,7 +65,7 @@ namespace Staketracker.Core.ViewModels.Events
 
         private ObservableCollection<SEvent> eventsomers;
 
-        private string headerTitle;
+
 
         private IMvxNavigationService navigationService;
 
@@ -75,12 +75,14 @@ namespace Staketracker.Core.ViewModels.Events
 
         public SEventsListViewModel(IMvxNavigationService navigationService)
         {
-            this.headerTitle = "Events";
 
             this.navigationService = navigationService;
 
             this.SearchCommand = new MvxAsyncCommand(OnSearch);
             this.AddEventsCommand = new MvxCommand(OnCreateEvent);
+
+            this.HeaderTitle = "Events";
+
         }
 
         internal AuthReply authReply;
@@ -136,7 +138,7 @@ namespace Staketracker.Core.ViewModels.Events
         {
         }
 
-        public string HeaderTitle { get => headerTitle; private set => SetProperty(ref headerTitle, value); }
+
         //------------------------------------
         //public async override void Prepare()
         //{

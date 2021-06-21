@@ -27,6 +27,9 @@ namespace Staketracker.Core.ViewModels
         private IApiService<IStaketrackerApi> staketrackerApi = new ApiService<IStaketrackerApi>(Config.StaketrackerApiUrl);
         public ICommand OnDevelopmentNotifyCommand { get; }
 
+        private string headerTitle;
+        public string HeaderTitle { get => headerTitle; set => SetProperty(ref headerTitle, value); }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
              => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

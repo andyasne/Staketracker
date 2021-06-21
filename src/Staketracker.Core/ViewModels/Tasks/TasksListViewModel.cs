@@ -19,14 +19,13 @@ namespace Staketracker.Core.ViewModels.Tasks
     {
         private Tasks selectedTasks, selectedTasksDetail;
         private ObservableCollection<Tasks> Tasks_;
-        private string headerTitle;
 
         private readonly IMvxNavigationService _navigationService;
         public IMvxCommand SearchCommand { get; }
 
         public TasksListViewModel(IMvxNavigationService navigationService)
         {
-            this.headerTitle = "Tasks";
+            this.HeaderTitle = "Tasks";
 
             _navigationService = navigationService;
 
@@ -85,11 +84,6 @@ namespace Staketracker.Core.ViewModels.Tasks
         {
         }
 
-        public string HeaderTitle
-        {
-            get => headerTitle;
-            private set => SetProperty(ref headerTitle, value);
-        }
 
         private async Task OnSearch()
         {

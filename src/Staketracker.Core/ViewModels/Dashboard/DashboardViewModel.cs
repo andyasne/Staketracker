@@ -24,6 +24,10 @@ namespace Staketracker.Core.ViewModels.Dashboard
             _navigationService = navigationService;
 
             SignOutCommand = new Command(async () => await SignOut());
+
+
+            this.HeaderTitle = "Dashboard";
+
         }
 
         private async Task SignOut()

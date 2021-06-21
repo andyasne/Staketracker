@@ -11,14 +11,14 @@ namespace Staketracker.Core.ViewModels.Stakeholders
 
     {
 
-        private string headerTitle;
+
 
         private readonly IMvxNavigationService _navigationService;
         public IMvxCommand SearchCommand { get; }
 
         public StakeholdersListViewModel(IMvxNavigationService navigationService)
         {
-            this.headerTitle = "Stakeholder";
+            this.HeaderTitle = "Stakeholder";
 
             _navigationService = navigationService;
 
@@ -48,11 +48,6 @@ namespace Staketracker.Core.ViewModels.Stakeholders
         {
         }
 
-        public string HeaderTitle
-        {
-            get => headerTitle;
-            private set => SetProperty(ref headerTitle, value);
-        }
 
         private async Task OnSearch()
         {

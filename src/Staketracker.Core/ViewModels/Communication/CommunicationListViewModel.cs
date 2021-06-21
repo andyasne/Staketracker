@@ -23,14 +23,13 @@ namespace Staketracker.Core.ViewModels.CommunicationList
 
     {
 
-        private string headerTitle;
 
         private readonly IMvxNavigationService _navigationService;
         public IMvxCommand SearchCommand { get; }
 
         public CommunicationListViewModel(IMvxNavigationService navigationService)
         {
-            this.headerTitle = "Communication";
+            this.HeaderTitle = "Communication";
 
             _navigationService = navigationService;
 
@@ -64,11 +63,6 @@ namespace Staketracker.Core.ViewModels.CommunicationList
         {
         }
 
-        public string HeaderTitle
-        {
-            get => headerTitle;
-            private set => SetProperty(ref headerTitle, value);
-        }
 
         private async Task OnSearch()
         {

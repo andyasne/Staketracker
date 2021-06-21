@@ -14,7 +14,7 @@
                       xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       xmlns:local="clr-namespace: Staketracker.UI.Pages.CommunicationList"
                     
-                      Title="Communication" Icon="Communication" ios:Page.UseSafeArea="true"
+                      Title="StakeTracker" Icon="Communication" ios:Page.UseSafeArea="true"
                       x:TypeArguments="viewModels:CommunicationListViewModel">
 
 
