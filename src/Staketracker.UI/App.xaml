@@ -48,7 +48,7 @@
         <x:String x:Key="icon-left-open-1">&#xe81a;</x:String>
         <x:String x:Key="icon-left-open-3">&#xe81b;</x:String>
         <x:String x:Key="icon-left-open-4">&#xe81c;</x:String>
-        <Thickness x:Key="itemSpacing">0,2,0,3</Thickness>
+        <Thickness x:Key="itemSpacing">0,2,0,1</Thickness>
         <Color x:Key="TitleLabelColor">#bcbcbc</Color>
         <Color x:Key="LineColor">#d7d7d7</Color>
         <ResourceDictionary xmlns:themes="clr-namespace:Staketracker.UI.Themes">
