@@ -8,6 +8,7 @@ using Staketracker.Core.Models.FieldsValue;
 using Staketracker.Core.Models.FormAndDropDownField;
 using Staketracker.Core.Validators;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -22,25 +23,25 @@ namespace Staketracker.Core.ViewModels.Events
         {
             //this.stkaeTrackerAPI = stkaeTrackerAPI;
             this.navigationService = navigationService;
-            this.BeginEditCommand = new Command(OnBeginEditSEvent);
-            this.CommitCommand = new MvxAsyncCommand(OnCommitEditOrder);
-            this.DeleteCommand = new MvxAsyncCommand(OnDeleteSEvent);
-            this.CancelCommand = new MvxAsyncCommand(OnCancel);
+            BeginEditCommand = new Command(OnBeginEditSEvent);
+            CommitCommand = new MvxAsyncCommand(OnCommitEditOrder);
+            DeleteCommand = new MvxAsyncCommand(OnDeleteSEvent);
+            CancelCommand = new MvxAsyncCommand(OnCancel);
         }
 
-        private IStaketrackerApi stkaeTrackerAPI;
         private IMvxNavigationService navigationService;
         private SEvent targetSEvent, draftSEvent;
         private string targetSEventId;
         public PresentationMode mode;
         private string title;
         private SEvent _sEvent;
+
         public SEvent sEvent
         {
-            get => this._sEvent;
+            get => _sEvent;
             private set
             {
-                if (SetProperty(ref this._sEvent, value))
+                if (SetProperty(ref _sEvent, value))
                 {
                     RaisePropertyChanged(() => IsEditing);
                     RaisePropertyChanged(() => IsReading);
@@ -50,10 +51,10 @@ namespace Staketracker.Core.ViewModels.Events
 
         public SEvent DraftSEvent
         {
-            get => this.draftSEvent;
+            get => draftSEvent;
             private set
             {
-                if (SetProperty(ref this.draftSEvent, value))
+                if (SetProperty(ref draftSEvent, value))
                 {
                     RaisePropertyChanged(() => IsEditing);
                     RaisePropertyChanged(() => IsReading);
@@ -63,10 +64,10 @@ namespace Staketracker.Core.ViewModels.Events
 
         public PresentationMode Mode
         {
-            get => this.mode;
+            get => mode;
             private set
             {
-                if (SetProperty(ref this.mode, value))
+                if (SetProperty(ref mode, value))
                 {
                     RaisePropertyChanged(() => IsEditing);
                     RaisePropertyChanged(() => IsReading);
@@ -74,16 +75,16 @@ namespace Staketracker.Core.ViewModels.Events
             }
         }
 
-        public bool IsReading => this.targetSEvent != null && this.mode == PresentationMode.Read;
-        public bool IsEditing => this.draftSEvent != null &&
-            (this.mode == PresentationMode.Edit || this.mode == PresentationMode.Create);
+        public bool IsReading => targetSEvent != null && mode == PresentationMode.Read;
+
+        public bool IsEditing => draftSEvent != null &&
+                                 (mode == PresentationMode.Edit || mode == PresentationMode.Create);
 
         public string Title
         {
-            get => this.title;
-            private set => SetProperty(ref this.title, value);
+            get => title;
+            private set => SetProperty(ref title, value);
         }
-
 
 
         public Command BeginEditCommand { get; }
@@ -94,43 +95,41 @@ namespace Staketracker.Core.ViewModels.Events
 
         public AuthReply authReply;
         public int primaryKey;
+
         public override void Prepare(PresentationContext<AuthReply> parameter)
         {
-            this.authReply = parameter.Model;
-            this.Mode = parameter.Mode;
-            this.primaryKey = parameter.PrimaryKey;
+            authReply = parameter.Model;
+            Mode = parameter.Mode;
+            primaryKey = parameter.PrimaryKey;
         }
 
 
-        public override void ViewAppearing()
-        {
-            PopulateControls(authReply, this.primaryKey);
+        public override void ViewAppearing() => PopulateControls(authReply, primaryKey);
 
-        }
-        public async override Task Initialize()
+        public override async Task Initialize()
         {
             await base.Initialize();
 
-            this.SelectedIndex = 1;
+            SelectedIndex = 1;
             GetFormandDropDownFields(authReply, FormType.Events);
 
-            this.UpdateTitle();
+            UpdateTitle();
 
             return;
             // SEvent sEvent = null;
-            if (this.mode == PresentationMode.Create)
+            if (mode == PresentationMode.Create)
             {
                 sEvent = new SEvent();
                 //sEvent.ImageURL = Constants.EmptySEventImage;
                 //sEvent.LastOrderDate = DateTime.Today;
                 //sEvent.SalesAmount = 500;
-                this.DraftSEvent = sEvent;
-                this.UpdateTitle();
-                this.InitializeEditData(sEvent);
+                DraftSEvent = sEvent;
+                UpdateTitle();
+                InitializeEditData(sEvent);
                 return;
             }
 
-            if (!string.IsNullOrEmpty(this.targetSEventId))
+            if (!string.IsNullOrEmpty(targetSEventId))
             {
                 //     sEvent = await this.stkaeTrackerAPI.GetSEventAsync(this.targetSEventId);
             }
@@ -138,51 +137,51 @@ namespace Staketracker.Core.ViewModels.Events
             if (sEvent == null)
                 return;
 
-            if (this.mode == PresentationMode.Edit)
+            if (mode == PresentationMode.Edit)
             {
-                this.targetSEvent = sEvent;
-                var copy = sEvent.Copy();
-                this.DraftSEvent = copy;
-                this.InitializeEditData(copy);
+                targetSEvent = sEvent;
+                SEvent copy = sEvent.Copy();
+                DraftSEvent = copy;
+                InitializeEditData(copy);
             }
             else
-            {
-                this.sEvent = sEvent;
-            }
-            this.UpdateTitle();
+                sEvent = sEvent;
+
+            UpdateTitle();
         }
 
         private void UpdateTitle()
         {
-            switch (this.mode)
+            switch (mode)
             {
                 case PresentationMode.Read:
-                    this.Title = this.sEvent.Name;
+                    Title = sEvent.Name;
                     break;
                 case PresentationMode.Edit:
-                    this.Title = $"Edit Event";
+                    Title = $"Edit Event";
                     break;
                 case PresentationMode.Create:
-                    this.Title = "Add New Event";
+                    Title = "Add New Event";
                     break;
             }
         }
 
         private void OnBeginEditSEvent()
         {
-            if (!this.IsReading)
+            if (!IsReading)
                 return;
 
-            var sEvent = this.targetSEvent.Copy();
-            this.Mode = PresentationMode.Edit;
+            SEvent sEvent = targetSEvent.Copy();
+            Mode = PresentationMode.Edit;
             UpdateTitle();
-            this.InitializeEditData(sEvent);
-            this.DraftSEvent = sEvent;
+            InitializeEditData(sEvent);
+            DraftSEvent = sEvent;
         }
 
         private async Task OnDeleteSEvent()
         {
-            bool result = await PageDialog.ConfirmAsync($"Are you sure you want to delete Event {this.sEvent.Name}?", "Delete Event", "Yes", "No");
+            var result = await PageDialog.ConfirmAsync($"Are you sure you want to delete Event {sEvent.Name}?",
+                "Delete Event", "Yes", "No");
 
             if (!result)
                 return;
@@ -190,47 +189,41 @@ namespace Staketracker.Core.ViewModels.Events
             //await this.stkaeTrackerAPI.RemoveSEventAsync(this.targetSEvent);
             //if (Device.Idiom == TargetIdiom.Phone)
             //{
-            await this.navigationService.Close(this);
+            await navigationService.Close(this);
 
-            await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
+            await navigationService.ChangePresentation(
+                new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
             //}
-
-
         }
 
         private async Task OnCancel()
         {
-            if (this.mode == PresentationMode.Read)
+            if (mode == PresentationMode.Read)
                 return;
 
-            this.DraftSEvent = null;
-            this.UpdateTitle();
+            DraftSEvent = null;
+            UpdateTitle();
 
-            if (this.mode == PresentationMode.Edit)
-            {
-                this.Mode = PresentationMode.Read;
-            }
+            if (mode == PresentationMode.Edit)
+                Mode = PresentationMode.Read;
 
             // await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsViewModel)));
         }
 
-        bool isFormValid()
+        private bool isFormValid()
         {
-            bool isValid = true;
-            foreach (var _formContent in this.FormContent)
-            {
+            var isValid = true;
+            foreach (KeyValuePair<string, ValidatableObject<string>> _formContent in FormContent)
                 if (_formContent.Value.Validate() == false)
-                {
                     isValid = false;
-                }
-            }
             return isValid;
         }
+
         private async Task OnCommitEditOrder()
         {
             isFormValid();
 
-            if (this.Mode == PresentationMode.Read)
+            if (Mode == PresentationMode.Read)
                 return;
 
             //if (!this.draftSEvent.Validate(out IList<string> errors))
@@ -241,8 +234,8 @@ namespace Staketracker.Core.ViewModels.Events
 
             //   var updatedSEvent = await this.stkaeTrackerAPI.SaveSEventAsync(this.draftSEvent);
 
-            this.DraftSEvent = null;
-            this.targetSEvent = null;
+            DraftSEvent = null;
+            targetSEvent = null;
             //   this.SEvent = updatedSEvent;
             //      this.Mode = PresentationMode.Read;
 
@@ -256,19 +249,18 @@ namespace Staketracker.Core.ViewModels.Events
         private void InitializeEditData(SEvent sEvent)
         {
         }
+
         private int selectedIndex;
+
         public int SelectedIndex
         {
-            get
-            {
-                return this.selectedIndex;
-            }
+            get => selectedIndex;
             set
             {
-                if (this.selectedIndex != value)
+                if (selectedIndex != value)
                 {
                     SetField(ref selectedIndex, value);
-                    this.selectedIndex = value;
+                    selectedIndex = value;
                 }
             }
         }
@@ -276,7 +268,6 @@ namespace Staketracker.Core.ViewModels.Events
 
         internal async Task PopulateControls(AuthReply authReply, int primaryKey)
         {
-
             FieldsValue fieldsValue;
             var apiReqExtra = new APIRequestExtraBody(authReply, "PrimaryKey", primaryKey.ToString());
             HttpResponseMessage events = await ApiManager.GetEventDetails(apiReqExtra, authReply.d.sessionId);
@@ -287,70 +278,36 @@ namespace Staketracker.Core.ViewModels.Events
                 fieldsValue = await Task.Run(() => JsonConvert.DeserializeObject<FieldsValue>(response));
 
 
-                foreach (Models.FieldsValue.Field field in fieldsValue.d.Fields)
-                {
-
+                foreach (Field field in fieldsValue.d.Fields)
                     foreach (ValidatableObject<string> valObj in FormContent.Values)
-                    {
                         if (valObj.FormAndDropDownField.PrimaryKey == field.PrimaryKey)
-                        {
                             try
                             {
-
                                 if (valObj.FormAndDropDownField.InputType == "DropDownList")
-                                {
-
                                     valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
-
-                                }
                                 else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
-                                {
-
                                     valObj.SelectedItems.AddRange(valObj.DropdownValues);
-
-                                }
                                 else if (valObj.FormAndDropDownField.InputType == "CheckBox")
                                 {
-
                                     if (field.Value != null && field.Value.ToString() == "on")
-                                    {
-
                                         valObj.Value = true.ToString();
-                                    }
                                     else
-                                    {
                                         valObj.Value = false.ToString();
-
-                                    }
-
                                 }
 
                                 else
                                 {
                                     if (field.Value != null)
-                                    {
                                         valObj.Value = field.Value.ToString();
-                                    }
                                 }
                             }
                             catch (Exception ex)
                             {
-
-
                             }
-                        }
-
-                    }
-
-                }
             }
             else
-            {
                 await PageDialog.AlertAsync("API Error While Assigning Value", "API Response Error", "Ok");
-                //  return null;
-            }
+            //  return null;
         }
-
-
     }
 }

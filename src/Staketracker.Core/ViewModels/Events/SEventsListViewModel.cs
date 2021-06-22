@@ -1,19 +1,22 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using MvvmCross.Commands;
+using MvvmCross.Navigation;
+using MvvmCross.Plugin.Messenger;
+using MvvmCross.ViewModels;
+using Newtonsoft.Json;
+using Staketracker.Core.Models;
+using Staketracker.Core.Models.ApiRequestBody;
+using Staketracker.Core.Models.Events;
+using Xamarin.Forms;
+using D = Staketracker.Core.Models.Events.D;
+using PresentationMode = Staketracker.Core.Models.PresentationMode;
+
 namespace Staketracker.Core.ViewModels.Events
 {
-    using MvvmCross.Commands;
-    using MvvmCross.Navigation;
-    using MvvmCross.Plugin.Messenger;
-    using MvvmCross.ViewModels;
-    using Newtonsoft.Json;
-    using Staketracker.Core.Models;
-    using Staketracker.Core.Models.Events;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-    using System.Windows.Input;
-    using Xamarin.Forms;
-
     public class SEvent
     {
         public string Id { get; set; }
@@ -30,9 +33,7 @@ namespace Staketracker.Core.ViewModels.Events
 
         public SEvent Copy()
         {
-            SEvent newS = new SEvent()
-            {
-            };
+            var newS = new SEvent();
             return newS;
         }
     }
@@ -48,6 +49,7 @@ namespace Staketracker.Core.ViewModels.Events
 
         public SEvent SEvent { get; }
     }
+
     public class EventDeletedMessage : MvxMessage
     {
         public EventDeletedMessage(object sender, SEvent entity)
@@ -61,82 +63,18 @@ namespace Staketracker.Core.ViewModels.Events
 
     public class SEventsListViewModel : BaseViewModel<AuthReply>
     {
-        private SEvent selectedEvents, selectedEventsDetail;
-
-        private ObservableCollection<SEvent> eventsomers;
+        private readonly MvxSubscriptionToken eventUpdatedMessageToken, eventDeletedMessageToken;
 
 
-
-        private IMvxNavigationService navigationService;
-
-        public IMvxCommand SearchCommand { get; }
-
-        public IMvxCommand AddEventsCommand { get; }
-
-        public SEventsListViewModel(IMvxNavigationService navigationService)
-        {
-
-            this.navigationService = navigationService;
-
-            this.SearchCommand = new MvxAsyncCommand(OnSearch);
-            this.AddEventsCommand = new MvxCommand(OnCreateEvent);
-
-            this.HeaderTitle = "Events";
-
-        }
+        private readonly IMvxNavigationService navigationService;
 
         internal AuthReply authReply;
+        private LayoutMode currentLayoutMode;
+        private string draftSearchTerm, listDescription, currentUserName;
+        private ObservableCollection<SEvent> events;
 
-        public override void Prepare(AuthReply authReply)
-        {
-            this.authReply = authReply;
-        }
-
-        public override Task Initialize()
-        {
-            this.eventsomers = new ObservableCollection<SEvent>();
-
-            return GetEvents(authReply);
-        }
-
-        internal async Task GetEvents(AuthReply authReply)
-        {
-
-            EventsReply eventsReply;
-            Models.ApiRequestBody.APIRequestBody apiReq = new Models.ApiRequestBody.APIRequestBody(authReply);
-            HttpResponseMessage events = await ApiManager.GetEvents(apiReq, authReply.d.sessionId);
-
-            if (events.IsSuccessStatusCode)
-            {
-                var response = await events.Content.ReadAsStringAsync();
-                EventsReply eventsRep = await Task.Run(() => JsonConvert.DeserializeObject<EventsReply>(response));
-                // return eventsReply;
-
-                foreach (Models.Events.D d in eventsRep.d)
-                {
-                    SEvent _events = new SEvent();
-                    _events.Name = d.Name;
-                    _events.Date = d.EventDate.ToShortDateString();
-                    _events.Type = d.Type;
-                    _events.Id = d.PrimaryKey;
-                    eventsomers.Add(_events);
-
-                }
-            }
-            else
-            {
-                await PageDialog.AlertAsync("API Error While retrieving Email address for the user", "API Response Error", "Ok");
-                //  return null;
-            }
-        }
-
-        public ObservableCollection<SEvent> Events { get => eventsomers; private set => SetField(ref eventsomers, value); }
-
-
-
-        public async Task Refresh()
-        {
-        }
+        private ObservableCollection<SEvent> eventsomers;
+        private bool isSearchEmpty, isBusy;
 
 
         //------------------------------------
@@ -154,11 +92,27 @@ namespace Staketracker.Core.ViewModels.Events
         //}
         //private IErpService service;
         private SEvent selectedEvent;
-        private ObservableCollection<SEvent> events;
-        private LayoutMode currentLayoutMode;
-        private bool isSearchEmpty, isBusy;
-        private string draftSearchTerm, listDescription, currentUserName;
-        private readonly MvxSubscriptionToken eventUpdatedMessageToken, eventDeletedMessageToken;
+        private SEvent selectedEvents, selectedEventsDetail;
+
+        public SEventsListViewModel(IMvxNavigationService navigationService)
+        {
+            this.navigationService = navigationService;
+
+            SearchCommand = new MvxAsyncCommand(OnSearch);
+            AddEventsCommand = new MvxCommand(OnCreateEvent);
+
+            HeaderTitle = "Events";
+        }
+
+        public IMvxCommand SearchCommand { get; }
+
+        public IMvxCommand AddEventsCommand { get; }
+
+        public ObservableCollection<SEvent> Events
+        {
+            get => eventsomers;
+            private set => SetField(ref eventsomers, value);
+        }
 
         //public ObservableCollection<Events> Events
         //{
@@ -172,9 +126,7 @@ namespace Staketracker.Core.ViewModels.Events
             set
             {
                 if (SetProperty(ref selectedEvent, value) && value != null)
-                {
                     OnSelectedEventChanged(value);
-                }
             }
         }
 
@@ -186,20 +138,18 @@ namespace Staketracker.Core.ViewModels.Events
 
         public string DraftSearchTerm
         {
-            get => this.draftSearchTerm;
+            get => draftSearchTerm;
             set
             {
-                if (SetProperty(ref this.draftSearchTerm, value))
-                {
+                if (SetProperty(ref draftSearchTerm, value))
                     MvxNotifyTask.Create(async () => await DoSeach(value));
-                }
             }
         }
 
         public string CurrentUserName
         {
-            get => this.currentUserName;
-            private set => SetProperty(ref this.currentUserName, value);
+            get => currentUserName;
+            private set => SetProperty(ref currentUserName, value);
         }
 
         public string ListDescription
@@ -223,9 +173,54 @@ namespace Staketracker.Core.ViewModels.Events
         public ICommand ToggleLayoutModeCommand { get; }
         public ICommand CreateEventCommand { get; }
         public ICommand EditEventCommand { get; }
+
         public ICommand DeleteEventCommand { get; }
+
         //public ICommand SearchCommand { get; }
         public ICommand AboutCommand { get; }
+
+        public override void Prepare(AuthReply authReply) => this.authReply = authReply;
+
+        public override Task Initialize()
+        {
+            eventsomers = new ObservableCollection<SEvent>();
+
+            return GetEvents(authReply);
+        }
+
+        internal async Task GetEvents(AuthReply authReply)
+        {
+            EventsReply eventsReply;
+            var apiReq = new APIRequestBody(authReply);
+            HttpResponseMessage events = await ApiManager.GetEvents(apiReq, authReply.d.sessionId);
+
+            if (events.IsSuccessStatusCode)
+            {
+                var response = await events.Content.ReadAsStringAsync();
+                EventsReply eventsRep = await Task.Run(() => JsonConvert.DeserializeObject<EventsReply>(response));
+                // return eventsReply;
+
+                foreach (D d in eventsRep.d)
+                {
+                    var _events = new SEvent();
+                    _events.Name = d.Name;
+                    _events.Date = d.EventDate.ToShortDateString();
+                    _events.Type = d.Type;
+                    _events.Id = d.PrimaryKey;
+                    eventsomers.Add(_events);
+                }
+            }
+            else
+                await PageDialog.AlertAsync("API Error While retrieving Email address for the user",
+                    "API Response Error", "Ok");
+
+            //  return null;
+        }
+
+
+        public async Task Refresh()
+        {
+        }
 
         //public async Task Refresh()
         //{
@@ -245,16 +240,14 @@ namespace Staketracker.Core.ViewModels.Events
             if (Device.Idiom != TargetIdiom.Phone)
                 return;
 
-            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(new PresentationContext<AuthReply>(authReply, Models.PresentationMode.Edit, int.Parse(_event.Id)));
+            navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(
+                new PresentationContext<AuthReply>(authReply, PresentationMode.Edit, int.Parse(_event.Id)));
 
-            this.SelectedEvent = null;
+            SelectedEvent = null;
         }
 
-        private void ChangeLayoutMode(LayoutMode? mode)
-        {
-            this.CurrentLayoutMode = mode ?? (this.CurrentLayoutMode == LayoutMode.Linear ?
-                LayoutMode.Grid : LayoutMode.Linear);
-        }
+        private void ChangeLayoutMode(LayoutMode? mode) =>
+            CurrentLayoutMode = mode ?? (CurrentLayoutMode == LayoutMode.Linear ? LayoutMode.Grid : LayoutMode.Linear);
 
         private async Task DoSeach(string term)
         {
@@ -287,19 +280,16 @@ namespace Staketracker.Core.ViewModels.Events
             //}
         }
 
-        private void OnCreateEvent()
-        {
-            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(new PresentationContext<AuthReply>(authReply, Models.PresentationMode.Create));
-
-        }
+        private void OnCreateEvent() =>
+            navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(
+                new PresentationContext<AuthReply>(authReply, PresentationMode.Create));
 
         private void OnEditEvent(SEvent _event)
         {
             if (_event == null)
                 return;
-            this.navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(new PresentationContext<AuthReply>(authReply, Models.PresentationMode.Edit, int.Parse(_event.Id)));
-
-
+            navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(
+                new PresentationContext<AuthReply>(authReply, PresentationMode.Edit, int.Parse(_event.Id)));
         }
 
         //private void ShowAboutPage()
@@ -312,7 +302,8 @@ namespace Staketracker.Core.ViewModels.Events
             if (Device.Idiom != TargetIdiom.Phone)
                 return;
 
-            await this.navigationService.Navigate<SearchResultsViewModel, SearchRequest>(new SearchRequest(SearchResultsViewModel.EventsContext, this.GetType()));
+            await navigationService.Navigate<SearchResultsViewModel, SearchRequest>(
+                new SearchRequest(SearchResultsViewModel.EventsContext, GetType()));
         }
 
         private async Task OnDeleteEvent(SEvent _event)
@@ -329,13 +320,10 @@ namespace Staketracker.Core.ViewModels.Events
 
         private static void ApplyEventIndexing(IEnumerable<SEvent> events)
         {
-            int index = 0;
-            foreach (var item in events)
-            {
+            var index = 0;
+            foreach (SEvent item in events)
                 //  item.Index = index;
                 index++;
-            }
         }
     }
 }
-
