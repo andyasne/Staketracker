@@ -81,7 +81,7 @@ namespace Staketracker.Core.ViewModels.Login
             Password.Value = "Biniye@99";
             IsSandboxChecked = false;
 
-            AuthenticateUserCommand = new Command(async () => await RunSafe(AuthenticateUser(loginApiBody)));
+            AuthenticateUserCommand = new Command(async () => await RunSafe(AuthenticateUser(loginApiBody), true, "Signing In"));
             OnDevelopmentCommand = new Command(() =>
            {
                OnDevelopment().Start();
@@ -110,7 +110,8 @@ namespace Staketracker.Core.ViewModels.Login
 
                 var authResponse = await ApiManager.AuthenticateUser(loginApiBody);
 
-                if (authResponse.IsSuccessStatusCode)
+
+                if (authResponse.StatusCode == System.Net.HttpStatusCode.OK)
                 {
 
                     var response = await authResponse.Content.ReadAsStringAsync();
@@ -139,9 +140,13 @@ namespace Staketracker.Core.ViewModels.Login
                     //   String msg = "Logged in successfully, SessionId-" + authReply.d.sessionId;
                     // PageDialog.Toast(msg, TimeSpan.FromSeconds(5));
                 }
-                else
+                else if (authResponse.StatusCode == System.Net.HttpStatusCode.InternalServerError)
                 {
                     await PageDialog.AlertAsync("Incorrect Username or Password", "Validation Error", "Ok");
+                }
+                else if (authResponse.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    throw new Exception("Connection Problem");
                 }
             }
         }
