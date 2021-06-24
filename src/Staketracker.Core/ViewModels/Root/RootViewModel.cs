@@ -1,3 +1,5 @@
+using Staketracker.Core.ViewModels.Menu;
+
 namespace Staketracker.Core.ViewModels.Root
 {
     using MvvmCross.Navigation;

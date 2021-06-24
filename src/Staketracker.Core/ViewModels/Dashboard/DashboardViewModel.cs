@@ -8,6 +8,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MvvmCross.ViewModels;
+using Staketracker.Core.ViewModels.Menu;
 using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels.Dashboard
@@ -61,13 +63,13 @@ namespace Staketracker.Core.ViewModels.Dashboard
         {
             base.ViewAppearing();
 
-            //    MvxNotifyTask.Create(async () => await this.InitializeViewModels());
+            //  MvxNotifyTask.Create(async () => await this.InitializeViewModels());
 
         }
         private async Task InitializeViewModels()
         {
 
-            //    await _navigationService.Navigate<MenuViewModel>();
+            await _navigationService.Navigate<MenuViewModel>();
         }
         public IReadOnlyCollection<NameValuePair> SalesChannels { get => salesChannels; private set => SetProperty(ref salesChannels, value); }
         public IReadOnlyCollection<NameValuePair> BusinessOverview { get => businessOverview; private set => SetProperty(ref businessOverview, value); }

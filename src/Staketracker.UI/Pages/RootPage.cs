@@ -19,4 +19,3 @@ namespace Staketracker.UI.Pages
         }
     }
 }
-
