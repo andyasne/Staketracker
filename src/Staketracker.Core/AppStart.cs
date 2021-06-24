@@ -4,6 +4,7 @@ using MvvmCross.ViewModels;
 using Staketracker.Core.ViewModels.Root;
 using System;
 using System.Threading.Tasks;
+using Staketracker.Core.ViewModels.Menu;
 
 namespace Staketracker.Core
 {
@@ -21,6 +22,7 @@ namespace Staketracker.Core
             {
                 if (isAuthenticated())
                 {
+                    //   await NavigationService.Navigate<MenuViewModel>();
                     await NavigationService.Navigate<RootViewModel>();
                 }
                 else

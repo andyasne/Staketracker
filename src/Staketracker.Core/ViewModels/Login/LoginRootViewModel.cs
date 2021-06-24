@@ -3,6 +3,7 @@ using MvvmCross.ViewModels;
 using Staketracker.Core.Models;
 using Staketracker.Core.ViewModels.Login;
 using System.Threading.Tasks;
+using Staketracker.Core.ViewModels.Menu;
 
 namespace Staketracker.Core.ViewModels.Root
 {
@@ -26,6 +27,7 @@ namespace Staketracker.Core.ViewModels.Root
 
         private async Task InitializeViewModels()
         {
+
 
 
             await _navigationService.Navigate<LoginViewModel>();
