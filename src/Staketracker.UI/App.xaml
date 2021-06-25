@@ -13,7 +13,8 @@
                       xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       xmlns:local="clr-namespace: Staketracker.UI"
                     
-    xmlns:converter="clr-namespace:Staketracker.Core.Helpers.Converters;assembly=Staketracker.Core">
+    xmlns:converter="clr-namespace:Staketracker.Core.Helpers.Converters;assembly=Staketracker.Core"
+    xmlns:ui="clr-namespace:Staketracker.UI;assembly=Staketracker.UI">
     <Application.Resources>
         <x:String x:Key="icon-th-large">&#xe800;</x:String>
         <x:String x:Key="icon-menu">&#xe801;</x:String>
@@ -64,12 +65,8 @@
                     <StackLayout   Margin="0,2,0,2">
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
 
-                        <telerikInput:RadEntry    
-                                  
-                                   Text="{Binding  Value.Value, Mode=TwoWay }"
-                             Style="{StaticResource LoginEntryStyle}"
-                            
-                                  >
+                        <telerikInput:RadEntry    Text="{Binding  Value.Value, Mode=TwoWay }"
+                             Style="{StaticResource LoginEntryStyle}">
                             <telerikInput:RadEntry.Behaviors>
                                 <behaviour:EntryLineValidationBehaviour IsValid="{Binding Value.IsValid}" />
                             </telerikInput:RadEntry.Behaviors>
@@ -89,12 +86,9 @@
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
 
                         <telerikInput:RadComboBox      DisplayMemberPath="Label" 
-                                                       
-                                                     SelectedItem="{Binding  Value.SelectedItem}"
+                                                       SelectedItem="{Binding  Value.SelectedItem}"
                                                        ItemsSource="{ Binding Value.DropdownValues }"  
                                                        Style="{StaticResource ComboEntryStyle}" 
-                                                       
-                                                   
                                                        DropDownHeight="200"
                                                        IsEditable="False" 
                                                        SelectionMode="Single" >
@@ -202,7 +196,7 @@
 
             </DataTemplate>
 
-            <local:PersonDataTemplateSelector x:Key="personDataTemplateSelector"
+            <ui:PersonDataTemplateSelector x:Key="personDataTemplateSelector"
                 TextBoxTemplate="{StaticResource TextBoxTemplate}"
                 DropDownListTemplate="{StaticResource DropDownListTemplate}"
                 MultiLineTemplate="{StaticResource MultiLineTemplate}" 

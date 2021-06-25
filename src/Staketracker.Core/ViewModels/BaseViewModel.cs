@@ -57,7 +57,7 @@ namespace Staketracker.Core.ViewModels
             }
         }
 
-        public async void GetFormandDropDownFields(AuthReply authReply, string type)
+        public async Task GetFormandDropDownFields(AuthReply authReply, string type)
         {
 
             FormFieldBody formFieldBody = new FormFieldBody(authReply, type);

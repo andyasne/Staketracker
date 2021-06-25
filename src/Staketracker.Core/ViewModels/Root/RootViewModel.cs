@@ -29,7 +29,11 @@ namespace Staketracker.Core.ViewModels.Root
         {
             base.ViewAppearing();
 
-            MvxNotifyTask.Create(async () => await this.InitializeViewModels());
+            MvxNotifyTask.Create(async () => RunSafe(InitializeViewModels(), true, "Loading Pages"));
+
+
+
+
 
 
         }

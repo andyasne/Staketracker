@@ -14,13 +14,8 @@
 
     <Grid x:Name="LayoutRoot" RowSpacing="0">
         <Grid.RowDefinitions>
-            <!--<RowDefinition Height="75" />-->
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <!--<Grid x:Name="searchBar" Grid.Row="0" BackgroundColor="White">
-            <Label Text="Events" HorizontalOptions="Start" VerticalOptions="Center" Margin="30,0,0,0"
-                    FontAttributes="Bold" FontSize="25" />
-        </Grid>-->
         <Grid x:Name="ContentRoot">
 
             <Grid.RowDefinitions>
@@ -39,10 +34,11 @@
                     </OnIdiom>
                 </BoxView.CornerRadius>
             </BoxView>
-            <Label Text="{Binding HeaderTitle}" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
+            <Label Text="{Binding HeaderTitle}" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" 
+                   TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
             </Label>
 
-            <telerikDataControls:RadListView ItemsSource="{Binding Events, Mode=OneWay}" SelectionMode="Single"
+            <telerikDataControls:RadListView ItemsSource="{Binding EventsReply_.d, Mode=OneWay}" SelectionMode="Single"
                                                 IsPullToRefreshEnabled="true" Grid.Row="1"
                                                 RefreshRequested="Handle_RefreshRequested"
                                                 SelectedItem="{Binding SelectedEvent, Mode=TwoWay}">
@@ -60,7 +56,7 @@
                                     <StackLayout  Grid.Column="1" Spacing="1" >
 
                                         <Label Text="{Binding Name}" TextColor="Black"   VerticalOptions="Start" />
-                                        <Label Text="{Binding Date}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+                                        <Label Text="{Binding GetDateString}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
                                         <Label Text="{Binding Type}"  VerticalOptions="Start"  TextColor="#757575" FontSize="Micro"/>
 
                                     </StackLayout>
@@ -90,7 +86,7 @@
 
             <Label Grid.Row="1" Text="No Events." IsVisible="False" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                 <Label.Triggers>
-                    <DataTrigger TargetType="Label" Binding="{Binding Path=Events.Count}" Value="0">
+                    <DataTrigger TargetType="Label" Binding="{Binding Path=EventsReply_.d.Count}" Value="0">
                         <Setter Property="IsVisible" Value="True" />
                     </DataTrigger>
                 </Label.Triggers>
@@ -102,6 +98,8 @@
                                         Style="{StaticResource FloatingActionButton}" />
         </Grid>
 
-        <telerikBusyIndicator:RadBusyIndicator x:Name="busyIndicator"  AnimationType="Animation3" IsBusy="{Binding IsBusy, Mode=TwoWay}"  BackgroundColor="#E6FFFFFF" IsVisible="{Binding IsBusy}" AnimationContentColor="#2196F3" AnimationContentWidthRequest="60" AnimationContentHeightRequest="60" />
+        <telerikBusyIndicator:RadBusyIndicator x:Name="busyIndicator" 
+         AnimationType="Animation3" IsBusy="{Binding IsBusy, Mode=TwoWay}" 
+         BackgroundColor="#E6FFFFFF" IsVisible="{Binding IsBusy}" AnimationContentColor="#2196F3" AnimationContentWidthRequest="60" AnimationContentHeightRequest="60" />
     </Grid>
 </views:MvxContentPage>
