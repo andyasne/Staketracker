@@ -6,9 +6,7 @@ using Xamarin.Forms.Xaml;
 
 namespace Staketracker.UI.Pages
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    [MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Detail, NoHistory = true, Title = "Staketracker Dashboard")]
-
+    [MvxTabbedPagePresentation(TabbedPosition.Root, WrapInNavigationPage = false, NoHistory = false)]
     public class RootPage : MvxTabbedPage<RootViewModel>
     {
         public RootPage()

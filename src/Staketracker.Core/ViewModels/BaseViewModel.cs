@@ -22,6 +22,9 @@ namespace Staketracker.Core.ViewModels
 {
     public abstract class BaseViewModel : MvxViewModel, INotifyPropertyChanged
     {
+        public Boolean isDevelopmentMode = true;
+
+
         public IUserDialogs PageDialog = UserDialogs.Instance;
         public IApiManager ApiManager;
         private IApiService<IStaketrackerApi> staketrackerApi = new ApiService<IStaketrackerApi>(Config.StaketrackerApiUrl);

@@ -81,7 +81,7 @@
             </ScrollView>
         </Grid>
         <RelativeLayout VerticalOptions="EndAndExpand"  HorizontalOptions="Fill"    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
-            <StackLayout Spacing="0">
+            <StackLayout Spacing="0" Margin="20,0,20,0">
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"  />
