@@ -111,7 +111,8 @@ namespace Staketracker.Core.ViewModels.Events
             await base.Initialize();
 
             SelectedIndex = 1;
-            GetFormandDropDownFields(authReply, FormType.Events);
+            RunSafe(GetFormandDropDownFields(authReply, FormType.Events), true, "Building Form Controls");
+
 
             UpdateTitle();
 

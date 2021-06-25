@@ -71,6 +71,7 @@ namespace Staketracker.Core.ViewModels.Events
         internal AuthReply authReply;
         private LayoutMode currentLayoutMode;
         private string draftSearchTerm, listDescription, currentUserName;
+
         private ObservableCollection<SEvent> events;
 
         private ObservableCollection<SEvent> eventsomers;
@@ -114,11 +115,6 @@ namespace Staketracker.Core.ViewModels.Events
             private set => SetField(ref eventsomers, value);
         }
 
-        //public ObservableCollection<Events> Events
-        //{
-        //    get => events;
-        //    private set => SetProperty(ref events, value);
-        //}
 
         public SEvent SelectedEvent
         {
@@ -183,38 +179,31 @@ namespace Staketracker.Core.ViewModels.Events
 
         public override Task Initialize()
         {
-            eventsomers = new ObservableCollection<SEvent>();
+            return RunSafe(GetEvents(authReply), true, "Loading Events");
 
-            return GetEvents(authReply);
+        }
+
+        private EventsReply eventsReply;
+        public EventsReply EventsReply_
+        {
+            get => eventsReply;
+            private set => SetField(ref eventsReply, value);
         }
 
         internal async Task GetEvents(AuthReply authReply)
         {
-            EventsReply eventsReply;
+
             var apiReq = new APIRequestBody(authReply);
             HttpResponseMessage events = await ApiManager.GetEvents(apiReq, authReply.d.sessionId);
 
             if (events.IsSuccessStatusCode)
             {
                 var response = await events.Content.ReadAsStringAsync();
-                EventsReply eventsRep = await Task.Run(() => JsonConvert.DeserializeObject<EventsReply>(response));
-                // return eventsReply;
-
-                foreach (D d in eventsRep.d)
-                {
-                    var _events = new SEvent();
-                    _events.Name = d.Name;
-                    _events.Date = d.EventDate.ToShortDateString();
-                    _events.Type = d.Type;
-                    _events.Id = d.PrimaryKey;
-                    eventsomers.Add(_events);
-                }
+                EventsReply_ = await Task.Run(() => JsonConvert.DeserializeObject<EventsReply>(response));
             }
             else
-                await PageDialog.AlertAsync("API Error While retrieving Email address for the user",
-                    "API Response Error", "Ok");
+                await PageDialog.AlertAsync("API Error While retrieving Events", "API Response Error", "Ok");
 
-            //  return null;
         }
 
 
@@ -222,11 +211,6 @@ namespace Staketracker.Core.ViewModels.Events
         {
         }
 
-        //public async Task Refresh()
-        //{
-        //    await this.service.RefreshCustomers();
-        //    await this.FetchData();
-        //}
 
         private async Task FetchData()
         {

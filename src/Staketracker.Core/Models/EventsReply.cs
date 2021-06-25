@@ -16,6 +16,21 @@ namespace Staketracker.Core.Models.Events
         public string Status { get; set; }
         public DateTime EventDate { get; set; }
         public string PrimaryKey { get; set; }
+
+        public string GetDateString
+        {
+            get
+            {
+                if (this.EventDate != null)
+                {
+                    return this.EventDate.ToShortDateString();
+                }
+                else
+                    return null;
+
+            }
+        }
+
     }
 
     public class EventsReply
