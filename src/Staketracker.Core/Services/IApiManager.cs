@@ -19,6 +19,9 @@ namespace Staketracker.Core.Services
 
         Task<HttpResponseMessage> GetEventDetails(APIRequestExtraBody aPIRequestExtraBody, string sessionId);
 
+        Task<HttpResponseMessage> GetAllCommunications(APIRequestBody apiRequestBody, string sessionId);
+
+
 
     }
 }
