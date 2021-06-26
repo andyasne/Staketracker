@@ -49,22 +49,44 @@ namespace Staketracker.Core.ViewModels.CommunicationList
 
         public override void Prepare(AuthReply parameter)
         {
+            base.Prepare();
+
+            this.IsBusy = true;
             this.authReply = parameter;
             //this.Mode = parameter.Mode;
-        }
+            RunSafe(GetCommunication(authReply), true, "Loading Communication");
+            this.IsBusy = false;
 
+        }
+        private bool isSearchEmpty, isBusy;
+        public bool IsBusy
+        {
+            get => isBusy;
+            set => SetProperty(ref isBusy, value);
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private Staketracker.Core.Models.Communication.D selectedCommunication;
 
 
-        public override Task Initialize()
+        public Staketracker.Core.Models.Communication.D SelectedCommunication
         {
-            //  base.Initialize();
-
-            return RunSafe(GetCommunication(authReply), true, "Loading Communication");
-
+            get => selectedCommunication;
+            set
+            {
+                if (SetProperty(ref selectedCommunication, value) && value != null)
+                { }
+                //   OnSelectedEventChanged(value);
+            }
         }
+
+        //public override Task Initialize()
+        //{
+        //    //  base.Initialize();
+
+
+        //}
 
         private CommunicationReply communicationReply;
         public CommunicationReply communicationReply_
