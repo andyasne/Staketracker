@@ -64,7 +64,6 @@
                                         <Label Text="{Binding Summary}" TextColor="Black"   VerticalOptions="Start" />
                                         <Label Text="{Binding GetDateString}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
                                         <Label Text="{Binding CommunicationSubject}"  VerticalOptions="Start"  TextColor="#757575" FontSize="Micro"/>
-                                        <!--<Label Text="{Binding CommunicationSubject}"  VerticalOptions="Start"  TextColor="#757575" FontSize="Micro"/>-->
 
                                     </StackLayout>
 
@@ -99,10 +98,10 @@
                 </Label.Triggers>
             </Label>
 
-            <!--<telerikInput:RadButton Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" Margin="0, 0, 18, 18"
+            <telerikInput:RadButton Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" Margin="0, 0, 18, 18"
                                         FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-plus}"
                                         Command="{Binding AddEventsCommand, Mode=OneWay}"
-                                        Style="{StaticResource FloatingActionButton}" />-->
+                                        Style="{StaticResource FloatingActionButton}" />
         </Grid>
 
         <telerikBusyIndicator:RadBusyIndicator x:Name="busyIndicator" 
