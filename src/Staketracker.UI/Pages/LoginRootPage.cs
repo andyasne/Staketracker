@@ -11,7 +11,7 @@ namespace Staketracker.UI.Pages
         public LoginRootPage()
         {
 
-            if (Device.Idiom == TargetIdiom.Phone)
+            // if (Device.Idiom == TargetIdiom.Phone)
             {
                 // Maximum number of items supported by BottomNavigationView is 5.
                 Xamarin.Forms.PlatformConfiguration.AndroidSpecific.TabbedPage.SetToolbarPlacement(this,

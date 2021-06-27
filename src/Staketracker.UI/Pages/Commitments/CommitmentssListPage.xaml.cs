@@ -44,14 +44,14 @@ namespace Staketracker.UI.Pages.Commitments
 
         public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
         {
-            if (Device.Idiom == TargetIdiom.Phone)
+            // if (Device.Idiom == TargetIdiom.Phone)
             {
                 return new MvxTabbedPagePresentationAttribute(TabbedPosition.Tab) { WrapInNavigationPage = true };
             }
-            else
-            {
-                return new MvxMasterDetailPagePresentationAttribute(MasterDetailPosition.Master) { WrapInNavigationPage = false };
-            }
+            //else
+            //{
+            //    return new MvxMasterDetailPagePresentationAttribute(MasterDetailPosition.Master) { WrapInNavigationPage = false };
+            //}
         }
 
     }

@@ -33,7 +33,7 @@ namespace Staketracker.UI.Pages
             }
             else
             {
-                return new MvxTabbedPagePresentationAttribute(TabbedPosition.Tab) { WrapInNavigationPage = false };
+                return new MvxTabbedPagePresentationAttribute(TabbedPosition.Root) { WrapInNavigationPage = false };
             }
         }
 
