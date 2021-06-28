@@ -22,6 +22,12 @@
             <EventsList:EventDetailView x:Name="detailView" IsVisible="True">
 
             </EventsList:EventDetailView>
+
+
+            <telerikInput:RadButton HorizontalOptions="End" VerticalOptions="End" Margin="0, 0, 18, 18"
+                                    FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-plus}"
+                                    Command="{Binding AddEventsCommand, Mode=OneWay}"
+                                    Style="{StaticResource FloatingActionButton}" />
         </Grid>
 
 

@@ -61,9 +61,8 @@
                                     </Grid.ColumnDefinitions>
                                     <StackLayout  Grid.Column="1" Spacing="1" >
 
-                                        <Label Text="{Binding Summary}" TextColor="Black"   VerticalOptions="Start" />
+                                        <Label Text="{Binding CommunicationSubject}" TextColor="Black" MaxLines="2" VerticalOptions="Start" />
                                         <Label Text="{Binding GetDateString}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
-                                        <Label Text="{Binding CommunicationSubject}"  VerticalOptions="Start"  TextColor="#757575" FontSize="Micro"/>
 
                                     </StackLayout>
 
@@ -104,8 +103,5 @@
                                         Style="{StaticResource FloatingActionButton}" />
         </Grid>
 
-        <telerikBusyIndicator:RadBusyIndicator x:Name="busyIndicator" 
-         AnimationType="Animation3" IsBusy="{Binding IsBusy, Mode=TwoWay}" 
-         BackgroundColor="#E6FFFFFF" IsVisible="{Binding IsBusy}" AnimationContentColor="#2196F3" AnimationContentWidthRequest="60" AnimationContentHeightRequest="60" />
     </Grid>
 </views:MvxContentPage>

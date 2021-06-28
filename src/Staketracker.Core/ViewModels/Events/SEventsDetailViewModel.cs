@@ -95,6 +95,12 @@ namespace Staketracker.Core.ViewModels.Events
 
         public AuthReply authReply;
         public int primaryKey;
+        private bool isBusy;
+        public bool IsBusy
+        {
+            get => isBusy;
+            set => SetProperty(ref isBusy, value);
+        }
 
         public override void Prepare(PresentationContext<AuthReply> parameter)
         {
@@ -104,7 +110,15 @@ namespace Staketracker.Core.ViewModels.Events
         }
 
 
-        public override void ViewAppearing() => PopulateControls(authReply, primaryKey);
+        public override void ViewAppearing()
+        {
+            IsBusy = true;
+
+            PopulateControls(authReply, primaryKey);
+
+            IsBusy = false;
+
+        }
 
         public override async Task Initialize()
         {
@@ -305,6 +319,8 @@ namespace Staketracker.Core.ViewModels.Events
                             catch (Exception ex)
                             {
                             }
+
+
             }
             else
                 await PageDialog.AlertAsync("API Error While Assigning Value", "API Response Error", "Ok");

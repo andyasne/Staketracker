@@ -15,9 +15,14 @@
              SeparatorVisibility="None" 
                 x:Name="listView" HasUnevenRows="True" 
                 VerticalScrollBarVisibility="Never"  
+             
                 ItemTemplate="{StaticResource personDataTemplateSelector}"  
                 ItemsSource="{Binding FormContent}" 
-                SelectionMode="None" />
+                SelectionMode="None" >
+
+
+                </ListView>
+
             </StackLayout>
         </ScrollView>
     </ContentView.Content>

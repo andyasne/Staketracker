@@ -59,8 +59,8 @@
         </ResourceDictionary>
 
         <ResourceDictionary>
-            <DataTemplate x:Key="TextBoxTemplate">
-                <ViewCell>
+            <DataTemplate x:Key="TextBoxTemplate"  >
+                <ViewCell >
 
                     <StackLayout   Margin="0,2,0,2">
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
