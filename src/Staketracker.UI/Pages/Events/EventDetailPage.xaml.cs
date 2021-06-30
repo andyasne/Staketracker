@@ -34,7 +34,7 @@ namespace Staketracker.UI.Pages.Events
                 deleteToolbarItem = new ToolbarItem();
                 deleteToolbarItem.Text = "Delete";
                 deleteToolbarItem.IconImageSource = new FileImageSource() { File = "check" };
-                //checkToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("CommitCommand"));
+                deleteToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("DeleteCommand"));
 
             }
             else

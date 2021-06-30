@@ -195,7 +195,7 @@ namespace Staketracker.Core.ViewModels.Events
 
         private async Task OnDeleteSEvent()
         {
-            var result = await PageDialog.ConfirmAsync($"Are you sure you want to delete Event {sEvent.Name}?",
+            var result = await PageDialog.ConfirmAsync($"Are you sure you want to delete the Event?",
                 "Delete Event", "Yes", "No");
 
             if (!result)
@@ -204,7 +204,7 @@ namespace Staketracker.Core.ViewModels.Events
             //await this.stkaeTrackerAPI.RemoveSEventAsync(this.targetSEvent);
             //if (Device.Idiom == TargetIdiom.Phone)
             //{
-            await navigationService.Close(this);
+            await navigationService.Close(this); 
 
             await navigationService.ChangePresentation(
                 new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
