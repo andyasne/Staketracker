@@ -113,8 +113,10 @@ namespace Staketracker.Core.ViewModels.Events
         public override void ViewAppearing()
         {
             IsBusy = true;
-
-            PopulateControls(authReply, primaryKey);
+            if (mode == PresentationMode.Edit)
+            {
+                PopulateControls(authReply, primaryKey);
+            }
 
             IsBusy = false;
 
@@ -276,6 +278,8 @@ namespace Staketracker.Core.ViewModels.Events
 
             DraftSEvent = null;
             targetSEvent = null;
+
+
             //   this.SEvent = updatedSEvent;
             //      this.Mode = PresentationMode.Read;
 

@@ -13,6 +13,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Staketracker.Core.Models.EventsFormValue;
 
 namespace Staketracker.Core.Services
 {
@@ -165,6 +166,14 @@ namespace Staketracker.Core.Services
         {
             var cts = new CancellationTokenSource();
             var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).GetAllCommunications(aPIRequestBody, sessionId, cts.Token));
+            return await AddToRunningTasks(cts, task);
+
+        }
+
+        public async Task<HttpResponseMessage> AddEvent(EventFormValue eventFormValue, string sessionId)
+        {
+            var cts = new CancellationTokenSource();
+            var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).AddEvent(eventFormValue, sessionId, cts.Token));
             return await AddToRunningTasks(cts, task);
 
         }
