@@ -113,8 +113,10 @@ namespace Staketracker.Core.ViewModels.Events
         public override void ViewAppearing()
         {
             IsBusy = true;
-
-            PopulateControls(authReply, primaryKey);
+            if (mode == PresentationMode.Edit)
+            {
+                PopulateControls(authReply, primaryKey);
+            }
 
             IsBusy = false;
 
@@ -204,7 +206,7 @@ namespace Staketracker.Core.ViewModels.Events
             //await this.stkaeTrackerAPI.RemoveSEventAsync(this.targetSEvent);
             //if (Device.Idiom == TargetIdiom.Phone)
             //{
-            await navigationService.Close(this); 
+            await navigationService.Close(this);
 
             await navigationService.ChangePresentation(
                 new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
@@ -251,6 +253,8 @@ namespace Staketracker.Core.ViewModels.Events
 
             DraftSEvent = null;
             targetSEvent = null;
+
+
             //   this.SEvent = updatedSEvent;
             //      this.Mode = PresentationMode.Read;
 
