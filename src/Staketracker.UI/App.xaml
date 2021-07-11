@@ -11,8 +11,7 @@
                       xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
                                  xmlns:behaviour="clr-namespace:Staketracker.Core.Helpers.Behaviours;assembly=Staketracker.Core"
                       xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
-                      xmlns:local="clr-namespace: Staketracker.UI"
-                    
+
     xmlns:converter="clr-namespace:Staketracker.Core.Helpers.Converters;assembly=Staketracker.Core"
     xmlns:ui="clr-namespace:Staketracker.UI;assembly=Staketracker.UI">
     <Application.Resources>
@@ -52,11 +51,11 @@
         <Thickness x:Key="itemSpacing">0,2,0,1</Thickness>
         <Color x:Key="TitleLabelColor">#bcbcbc</Color>
         <Color x:Key="LineColor">#d7d7d7</Color>
-        <ResourceDictionary xmlns:themes="clr-namespace:Staketracker.UI.Themes">
+        <!--<ResourceDictionary xmlns:themes="clr-namespace:Staketracker.UI.Themes">
             <ResourceDictionary.MergedDictionaries>
                 <themes:DashboardStyles />
             </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        </ResourceDictionary>-->
 
         <ResourceDictionary>
             <DataTemplate x:Key="TextBoxTemplate"  >
