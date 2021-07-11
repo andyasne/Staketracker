@@ -4,7 +4,6 @@ using Staketracker.Core.Models.ApiRequestBody;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Staketracker.Core.Models.EventsFormValue;
 
 namespace Staketracker.Core
 {
@@ -33,9 +32,6 @@ namespace Staketracker.Core
 
         [Post("/uat/mobilev1.asmx/getAllCommunications")]
         Task<HttpResponseMessage> GetAllCommunications([Body] APIRequestBody aPIRequestBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
-
-        [Post("/uat/mobilev1.asmx/addEvent")]
-        Task<HttpResponseMessage> AddEvent([Body] EventFormValue eventFormValue, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
 
 
