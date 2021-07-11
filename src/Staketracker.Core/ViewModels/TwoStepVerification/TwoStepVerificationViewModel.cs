@@ -1,7 +1,7 @@
 
 namespace Staketracker.Core.ViewModels.TwoStepVerification
 {
-    using MvvmCross.Logging;
+    //using MvvmCross.Logging;
     using MvvmCross.Navigation;
     using Newtonsoft.Json;
     using Staketracker.Core.Models;
@@ -20,7 +20,7 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
 
         public ICommand OpenDashboardPageCommand { get; set; }
         public ICommand ResendCodeCommand { get; set; }
-        private readonly IMvxLog _logger;
+        // private readonly IMvxLog _logger;
         internal readonly IMvxNavigationService _navigationService;
         private int generatedCode;
         private string _email;
@@ -39,12 +39,12 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
             get => _email;
             set => SetField(ref _email, value);
         }
-        public TwoStepVerificationViewModel(IMvxNavigationService navigationService, IMvxLog logger)
+        public TwoStepVerificationViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
             OpenDashboardPageCommand = new Command(async () => await RunSafe(OpenDashboardPage()));
             ResendCodeCommand = new Command(async () => await RunSafe(ResendCode()));
-            _logger = logger;
+            //     _logger = logger;
         }
 
 
@@ -59,7 +59,7 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
             }
             catch (Exception e)
             {
-                _logger.Debug(e.Message);
+                //   _logger.Debug(e.Message);
             }
         }
 
