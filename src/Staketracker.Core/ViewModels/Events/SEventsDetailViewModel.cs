@@ -204,7 +204,7 @@ namespace Staketracker.Core.ViewModels.Events
             //await this.stkaeTrackerAPI.RemoveSEventAsync(this.targetSEvent);
             //if (Device.Idiom == TargetIdiom.Phone)
             //{
-            await navigationService.Close(this); 
+            await navigationService.Close(this);
 
             await navigationService.ChangePresentation(
                 new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
@@ -225,18 +225,42 @@ namespace Staketracker.Core.ViewModels.Events
             // await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsViewModel)));
         }
 
+        private List<KeyValuePair<string, string>> valueList;
+
         private bool isFormValid()
         {
             var isValid = true;
             foreach (KeyValuePair<string, ValidatableObject<string>> _formContent in FormContent)
+            {
                 if (_formContent.Value.Validate() == false)
+                {
                     isValid = false;
+
+                }
+
+
+            }
+
             return isValid;
         }
 
+        private void getFormValues()
+        {
+            valueList = new List<KeyValuePair<string, string>>(FormContent.Count);
+
+            foreach (KeyValuePair<string, ValidatableObject<string>> _formContent in FormContent)
+            {
+                KeyValuePair<string, string> kv = new KeyValuePair<string, string>(_formContent.Value.PrimaryKey, _formContent.Value.ToString());
+                valueList.Add(kv);
+            }
+
+
+        }
         private async Task OnCommitEditOrder()
         {
             isFormValid();
+
+            getFormValues();
 
             if (Mode == PresentationMode.Read)
                 return;
