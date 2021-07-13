@@ -91,5 +91,16 @@
       <HintPath>$(TelerikInstallationBinariesPath)\Portable\Telerik.Documents.Fixed.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Themes\DashboardStyles.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Themes\LoginStyles.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Themes\SharedStyles.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+  </ItemGroup>
 
 </Project>

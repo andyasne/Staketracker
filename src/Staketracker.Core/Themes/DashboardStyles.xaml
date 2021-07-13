@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="Staketracker.UI.Themes.DashboardStyles"
+                      xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+                    xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+                   xmlns:telerikDataGrid="clr-namespace:Telerik.XamarinForms.DataGrid;assembly=Telerik.XamarinForms.DataGrid"
+                    xmlns:telerikChart="clr-namespace:Telerik.XamarinForms.Chart;assembly=Telerik.XamarinForms.Chart">
+
+    <Color x:Key="DarkBlueColor">#052B59</Color>
+    <Color x:Key="MediumBlueColor">#124B8F</Color>
+    <Color x:Key="LightBlueColor">#4B78AE</Color>
+    <Color x:Key="LightColor">#FFFFFF</Color>
+    <Color x:Key="DarkTextColor">#001023</Color>
+    <Color x:Key="EntryBackgroundColor">#E8E9EA</Color>
+    <Color x:Key="LightTextColor">#757575</Color>
+    <Color x:Key="NavigationPageHighlightColor">#319CF3</Color>
+    <telerikDataGrid:DataGridColumnHeaderStyle x:Key="cellHeaderStyle" TextColor="#acacac" BorderThickness="0,0,0,1" BorderColor="#d7d7d7" BackgroundColor="White" OptionsButtonTextColor="White" />
+    <telerikDataGrid:DataGridBorderStyle x:Key="rowStyle" BorderColor="#d7d7d7" BorderThickness="0,0,0,1" />
+
+    <Style x:Key="TitleLabelStyle" TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="#757575" />
+    </Style>
+
+    <Style x:Key="SubtitleLabelStyle" TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="Small" />
+        <Setter Property="TextColor" Value="#a1a1a1" />
+    </Style>
+
+
+    <Style TargetType="{x:Type Label}" x:Key="FormSubtitleLabelStyle">
+
+        <Setter Property="TextColor" Value="LightSlateGray" />
+        <Setter Property="Margin"
+                Value="0,1,0,1" />
+        <Setter Property="FontSize"
+                Value="Subtitle" />
+    </Style>
+
+    <Style x:Key="FormEntryStyle"
+           TargetType="telerikInput:RadEntry">
+        <Setter Property="TextColor"
+                Value="{StaticResource DarkTextColor}" />
+
+        <Setter Property="WatermarkTextColor"
+                Value="#C0C0C0" />
+        <Setter Property="BackgroundColor"
+                Value="White" />
+
+        <Setter Property="FontSize"
+                Value="18" />
+        <Setter Property="HeightRequest"
+                Value="48" />
+        <Setter Property="Margin"
+                Value="0,0,0,3" />
+        <Setter Property="Padding"
+                Value="10,5,5,10" />
+        <Setter Property="BorderStyle">
+            <Setter.Value>
+                <telerikInput:BorderStyle BorderColor="#808080"  CornerRadius="5"
+                                          BorderThickness="0.5" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="DataGridStyle" TargetType="{x:Type telerikDataGrid:RadDataGrid}">
+        <Setter Property="UserEditMode" Value="None" />
+        <Setter Property="UserFilterMode" Value="Disabled" />
+        <Setter Property="UserGroupMode" Value="Disabled" />
+        <Setter Property="RowBackgroundStyle" Value="{StaticResource rowStyle}" />
+    </Style>
+
+    <Style x:Key="LegendStyle" TargetType="{x:Type telerikChart:RadLegend}">
+        <Setter Property="LegendItemFontColor" Value="#626262" />
+        <Setter Property="LegendItemFontSize" Value="14" />
+    </Style>
+
+</ResourceDictionary>
