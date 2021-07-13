@@ -44,7 +44,7 @@ namespace Staketracker.Core.Validators
         public List<Models.FormAndDropDownField.DropdownValue> DropdownValues { get; set; } = new List<Models.FormAndDropDownField.DropdownValue>();
         public List<Models.FormAndDropDownField.DropdownValue> SelectedItems { get; set; } = new List<Models.FormAndDropDownField.DropdownValue>();
         public Models.FormAndDropDownField.DropdownValue SelectedItem { get; set; } = new Models.FormAndDropDownField.DropdownValue();
-        public string Label { get; set; }
+        public string PrimaryKey { get; set; }
 
         public Models.FormAndDropDownField.D FormAndDropDownField { get; set; }
 
