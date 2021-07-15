@@ -254,6 +254,7 @@ namespace Staketracker.Core.ViewModels.Events
                 valueList.Add(kv);
             }
 
+            string jsonData = JsonConvert.SerializeObject(valueList);
 
         }
         private async Task OnCommitEditOrder()
