@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Staketracker.Core.Models.EventsFormValue
 {
@@ -25,19 +27,52 @@ namespace Staketracker.Core.Models.EventsFormValue
 
     public class LinkTo
     {
-        public IList<LandParcelStakeholder> LandParcelStakeholders { get; set; }
-        public IList<Team> Team { get; set; }
+        public List<LandParcelStakeholder> LandParcelStakeholders { get; set; }
+        public List<Team> Team { get; set; }
     }
 
     public class EventFormValue
     {
+        public EventFormValue()
+        {
+            InputFieldValues = new List<InputFieldValue>();
+            LinkTo = new LinkTo() { LandParcelStakeholders = new List<LandParcelStakeholder>(), Team = new List<Team>() };
+        }
+
         public string PrimaryKey { get; set; }
         public int ProjectId { get; set; }
         public int UserId { get; set; }
         public string Type { get; set; }
-        public IList<InputFieldValue> InputFieldValues { get; set; }
+        public List<InputFieldValue> InputFieldValues { get; set; }
         public LinkTo LinkTo { get; set; }
+
+
     }
 
+    public class EventFormValueString
+    {
+        private EventFormValue eventFormValue;
 
+        public EventFormValueString(EventFormValue eventFormValue)
+        {
+            this.eventFormValue = eventFormValue;
+
+            jsonText = GetStringFormat(eventFormValue);
+
+        }
+
+        public EventFormValueString()
+        {
+
+        }
+
+        public string jsonText;
+
+        private string GetStringFormat(EventFormValue eventFormValue)
+        {
+            String json = JsonConvert.SerializeObject(eventFormValue);
+            return json;
+        }
+
+    }
 }
