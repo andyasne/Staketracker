@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Staketracker.Core.Models.AddEventsReply;
+using Staketracker.Core.Models.EventsFormValue;
 using Xamarin.Forms;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
 
@@ -227,7 +229,7 @@ namespace Staketracker.Core.ViewModels.Events
             // await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsViewModel)));
         }
 
-        private List<KeyValuePair<string, string>> valueList;
+        private List<Staketracker.Core.Models.EventsFormValue.InputFieldValue> valueList;
 
         private bool isFormValid()
         {
@@ -246,24 +248,70 @@ namespace Staketracker.Core.ViewModels.Events
             return isValid;
         }
 
+        private EventFormValue eventFormValue;
+
         private void getFormValues()
         {
-            valueList = new List<KeyValuePair<string, string>>(FormContent.Count);
+            eventFormValue = new EventFormValue();
+            eventFormValue.InputFieldValues = new List<InputFieldValue>(FormContent.Count);
+            eventFormValue.UserId = authReply.d.userId;
+            eventFormValue.PrimaryKey = primaryKey.ToString();
+            eventFormValue.ProjectId = authReply.d.projectId;
+            eventFormValue.Type = "Event";
+
 
             foreach (KeyValuePair<string, ValidatableObject<string>> _formContent in FormContent)
             {
-                KeyValuePair<string, string> kv = new KeyValuePair<string, string>(_formContent.Value.PrimaryKey, _formContent.Value.ToString());
-                valueList.Add(kv);
+                Staketracker.Core.Models.EventsFormValue.InputFieldValue inputValue = new InputFieldValue() { Value = _formContent.Value.ToString(), PrimaryKey = _formContent.Value.PrimaryKey };
+                eventFormValue.InputFieldValues.Add(inputValue);
             }
 
-            string jsonData = JsonConvert.SerializeObject(valueList);
 
+
+
+
+        }
+
+
+        internal async Task saveEvent()
+        {
+
+            AddEventsReply eventsReply;
+            EventFormValueString eventFormValueString = new EventFormValueString(eventFormValue);
+            HttpResponseMessage events = await ApiManager.AddEvent(eventFormValueString, authReply.d.sessionId);
+
+            if (events.IsSuccessStatusCode)
+            {
+                var response = await events.Content.ReadAsStringAsync();
+                eventsReply = await Task.Run(() => JsonConvert.DeserializeObject<AddEventsReply>(response));
+
+
+                if (eventsReply.d.successful == true)
+                {
+                    await PageDialog.AlertAsync("Event Saved Successfully", "Event Saved", "Ok");
+
+                }
+                else
+                {
+                    await PageDialog.AlertAsync(eventsReply.d.message, "Error Saving Event", "Ok");
+
+                }
+
+            }
+            else
+                await PageDialog.AlertAsync("API Error While Saving Event", "API Response Error", "Ok");
+            //  return null;
         }
         private async Task OnCommitEditOrder()
         {
-            isFormValid();
+            //  isFormValid();
 
             getFormValues();
+
+            saveEvent();
+
+            //Redirect
+
 
             if (Mode == PresentationMode.Read)
                 return;

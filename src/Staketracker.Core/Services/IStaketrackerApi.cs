@@ -35,7 +35,7 @@ namespace Staketracker.Core
         Task<HttpResponseMessage> GetAllCommunications([Body] APIRequestBody aPIRequestBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
         [Post("/uat/mobilev1.asmx/addEvent")]
-        Task<HttpResponseMessage> AddEvent([Body] EventFormValue eventFormValue, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
+        Task<HttpResponseMessage> AddEvent([Body] EventFormValueString eventFormValueString, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
 
 
