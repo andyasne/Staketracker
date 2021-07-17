@@ -170,10 +170,10 @@ namespace Staketracker.Core.Services
 
         }
 
-        public async Task<HttpResponseMessage> AddEvent(EventFormValueString eventFormValueString, string sessionId)
+        public async Task<HttpResponseMessage> AddEvent(jsonTextObj jsonTextObj, string sessionId)
         {
             var cts = new CancellationTokenSource();
-            var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).AddEvent(eventFormValueString, sessionId, cts.Token));
+            var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).AddEvent(jsonTextObj, sessionId, cts.Token));
             return await AddToRunningTasks(cts, task);
 
         }

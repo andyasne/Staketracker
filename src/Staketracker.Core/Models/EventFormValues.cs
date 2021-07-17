@@ -49,28 +49,26 @@ namespace Staketracker.Core.Models.EventsFormValue
 
     }
 
-    public class EventFormValueString
+    public class jsonTextObj
     {
-        private EventFormValue eventFormValue;
 
-        public EventFormValueString(EventFormValue eventFormValue)
+        public jsonTextObj(Object Obj)
         {
-            this.eventFormValue = eventFormValue;
 
-            jsonText = GetStringFormat(eventFormValue);
+            jsonText = GetStringFormat(Obj);
 
         }
 
-        public EventFormValueString()
+        public jsonTextObj()
         {
 
         }
 
-        public string jsonText;
+        public string jsonText { get; set; }
 
-        private string GetStringFormat(EventFormValue eventFormValue)
+        private string GetStringFormat(Object obj)
         {
-            String json = JsonConvert.SerializeObject(eventFormValue);
+            String json = JsonConvert.SerializeObject(obj);
             return json;
         }
 

@@ -24,7 +24,7 @@ namespace Staketracker.Core.Services
 
         Task<HttpResponseMessage> GetAllCommunications(APIRequestBody apiRequestBody, string sessionId);
 
-        Task<HttpResponseMessage> AddEvent(EventFormValueString eventFormValueString, string sessionId);
+        Task<HttpResponseMessage> AddEvent(jsonTextObj jsonTextObj, string sessionId);
 
 
 

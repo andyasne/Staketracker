@@ -239,10 +239,7 @@ namespace Staketracker.Core.ViewModels.Events
                 if (_formContent.Value.Validate() == false)
                 {
                     isValid = false;
-
                 }
-
-
             }
 
             return isValid;
@@ -266,10 +263,6 @@ namespace Staketracker.Core.ViewModels.Events
                 eventFormValue.InputFieldValues.Add(inputValue);
             }
 
-
-
-
-
         }
 
 
@@ -277,8 +270,8 @@ namespace Staketracker.Core.ViewModels.Events
         {
 
             AddEventsReply eventsReply;
-            EventFormValueString eventFormValueString = new EventFormValueString(eventFormValue);
-            HttpResponseMessage events = await ApiManager.AddEvent(eventFormValueString, authReply.d.sessionId);
+            jsonTextObj jsonTextObj = new jsonTextObj(eventFormValue);
+            HttpResponseMessage events = await ApiManager.AddEvent(jsonTextObj, authReply.d.sessionId);
 
             if (events.IsSuccessStatusCode)
             {
@@ -289,7 +282,6 @@ namespace Staketracker.Core.ViewModels.Events
                 if (eventsReply.d.successful == true)
                 {
                     await PageDialog.AlertAsync("Event Saved Successfully", "Event Saved", "Ok");
-
                 }
                 else
                 {

@@ -78,7 +78,7 @@ namespace Staketracker.Core.ViewModels
                     validatableObj.FormAndDropDownField = d;
                     validatableObj.DropdownValues = d.DropdownValues;
                     validatableObj.PrimaryKey = d.PrimaryKey.ToString();
-                  
+
                     if (d.MandatoryField == true)
                     {
                         if (d.InputType == "DropDownList")
@@ -89,19 +89,14 @@ namespace Staketracker.Core.ViewModels
                         else if (d.InputType == "ListBoxMulti")
                         {
                             validatableObj.ValidationsList.Add(new IsDropdownSelectedRule { ValidationMessage = d.Label + " is Required" });
-
                         }
-
-
-
                         else
                         {
                             validatableObj.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = d.Label + " is Required" });
-
                         }
                     }
 
-                    _formContent.Add(d.Label, validatableObj);
+                    _formContent.Add(d.PrimaryKey.ToString() + "-" + d.Label, validatableObj);
 
                 }
                 FormContent = _formContent;

@@ -85,7 +85,7 @@
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
 
                         <telerikInput:RadComboBox      DisplayMemberPath="Label" 
-                                                       SelectedItem="{Binding  Value.SelectedItem}"
+                                                       SelectedItem="{Binding  Value.SelectedItem , Mode=TwoWay}"
                                                        ItemsSource="{ Binding Value.DropdownValues }"  
                                                        Style="{StaticResource ComboEntryStyle}" 
                                                        DropDownHeight="200"

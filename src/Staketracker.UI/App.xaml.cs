@@ -34,7 +34,7 @@ namespace Staketracker.UI
             else
 
                 return DropDownListTemplate;
-            // return ((Person)item).DateOfBirth.Year >= 1980 ? ValidTemplate : InvalidTemplate;
+
         }
     }
 
