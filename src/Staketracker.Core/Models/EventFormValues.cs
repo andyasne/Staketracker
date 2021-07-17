@@ -66,7 +66,7 @@ namespace Staketracker.Core.Models.EventsFormValue
 
         }
 
-        public string jsonText;
+        public string jsonText { get; set; }
 
         private string GetStringFormat(EventFormValue eventFormValue)
         {

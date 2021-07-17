@@ -78,7 +78,7 @@ namespace Staketracker.Core.ViewModels
                     validatableObj.FormAndDropDownField = d;
                     validatableObj.DropdownValues = d.DropdownValues;
                     validatableObj.PrimaryKey = d.PrimaryKey.ToString();
-                  
+
                     if (d.MandatoryField == true)
                     {
                         if (d.InputType == "DropDownList")
@@ -101,7 +101,7 @@ namespace Staketracker.Core.ViewModels
                         }
                     }
 
-                    _formContent.Add(d.Label, validatableObj);
+                    _formContent.Add(d.PrimaryKey.ToString() + "-" + d.Label, validatableObj);
 
                 }
                 FormContent = _formContent;

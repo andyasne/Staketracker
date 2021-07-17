@@ -239,10 +239,7 @@ namespace Staketracker.Core.ViewModels.Events
                 if (_formContent.Value.Validate() == false)
                 {
                     isValid = false;
-
                 }
-
-
             }
 
             return isValid;
@@ -266,10 +263,6 @@ namespace Staketracker.Core.ViewModels.Events
                 eventFormValue.InputFieldValues.Add(inputValue);
             }
 
-
-
-
-
         }
 
 
@@ -289,7 +282,6 @@ namespace Staketracker.Core.ViewModels.Events
                 if (eventsReply.d.successful == true)
                 {
                     await PageDialog.AlertAsync("Event Saved Successfully", "Event Saved", "Ok");
-
                 }
                 else
                 {
@@ -305,12 +297,12 @@ namespace Staketracker.Core.ViewModels.Events
         private async Task OnCommitEditOrder()
         {
             if (isFormValid())
-            {
+            { }
 
-                getFormValues();
+            getFormValues();
 
-                saveEvent();
-            }
+            saveEvent();
+
             //Redirect
 
 
