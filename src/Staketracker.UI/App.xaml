@@ -177,16 +177,19 @@
                     <StackLayout  Margin="0,2,0,2">
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
 
-                        <telerikInput:RadComboBox    DisplayMemberPath="Label"  
-                                                      SelectedItem="{Binding Value.SelectedItems, Mode=TwoWay}"
-                                                     Style="{StaticResource ComboEntryStyle}"    
-                                                     ItemsSource="{ Binding Value.DropdownValues }"
-                                                      SearchMode="Contains"
+
+                        <telerikInput:RadComboBox      DisplayMemberPath="Label" 
+                                                       SelectedItem="{Binding Value.SelectedItems, Mode=TwoWay}"
+                                                       ItemsSource="{ Binding Value.DropdownValues }"  
+                                                       Style="{StaticResource ComboEntryStyle}" 
+                                                       SearchMode="Contains"
                                                        SearchTextPath="Label"
                                                        IsDropDownClosedOnSelection="True"
                                                        DropDownHeight="200"
                                                        IsEditable="False" 
-                                                     SelectionMode="Multiple" >
+                                                       SelectionMode="Multiple" >
+
+
 
                         </telerikInput:RadComboBox>
 
