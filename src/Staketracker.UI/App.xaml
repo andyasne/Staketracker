@@ -85,9 +85,12 @@
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
 
                         <telerikInput:RadComboBox      DisplayMemberPath="Label" 
-                                                       SelectedItem="{Binding  Value.SelectedItem , Mode=TwoWay}"
+                                                       SelectedItem="{Binding Value.SelectedItem, Mode=TwoWay}"
                                                        ItemsSource="{ Binding Value.DropdownValues }"  
                                                        Style="{StaticResource ComboEntryStyle}" 
+                                                       SearchMode="Contains"
+                                                       SearchTextPath="Label"
+                                                       IsDropDownClosedOnSelection="True"
                                                        DropDownHeight="200"
                                                        IsEditable="False" 
                                                        SelectionMode="Single" >

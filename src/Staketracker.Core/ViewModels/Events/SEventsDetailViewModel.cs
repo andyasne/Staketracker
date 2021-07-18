@@ -297,11 +297,13 @@ namespace Staketracker.Core.ViewModels.Events
         private async Task OnCommitEditOrder()
         {
             if (isFormValid())
-            { }
+            {
 
-            getFormValues();
+                getFormValues();
 
-            saveEvent();
+                saveEvent();
+
+            }
 
             //Redirect
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -43,8 +44,11 @@ namespace Staketracker.Core.Validators
 
         public List<Models.FormAndDropDownField.DropdownValue> DropdownValues { get; set; } = new List<Models.FormAndDropDownField.DropdownValue>();
         public List<Models.FormAndDropDownField.DropdownValue> SelectedItems { get; set; } = new List<Models.FormAndDropDownField.DropdownValue>();
-        private Models.FormAndDropDownField.DropdownValue selectedItem = new Models.FormAndDropDownField.DropdownValue();
 
+        private Models.FormAndDropDownField.DropdownValue selectedItem;//= new Models.FormAndDropDownField.DropdownValue();
+
+        public Boolean isSelectOne { get; set; }
+        public Boolean isSelectMultiple { get; set; }
         public Models.FormAndDropDownField.DropdownValue SelectedItem
         {
             get
@@ -98,10 +102,17 @@ namespace Staketracker.Core.Validators
             Errors.Clear();
             IEnumerable<string> errors;
 
-            if (DropdownValues != null && DropdownValues.Count > 0)
+            if (isSelectMultiple)
             {
                 errors = ValidationsList.Where(v => !v.Check(SelectedItems))
-                .Select(v => v.ValidationMessage);
+                    .Select(v => v.ValidationMessage);
+            }
+
+            if (isSelectOne)
+            {
+                errors = ValidationsList.Where(v => !v.Check(SelectedItem))
+                    .Select(v => v.ValidationMessage);
+
             }
             else
             {

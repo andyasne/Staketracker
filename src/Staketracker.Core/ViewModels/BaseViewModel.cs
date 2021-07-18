@@ -78,6 +78,17 @@ namespace Staketracker.Core.ViewModels
                     validatableObj.FormAndDropDownField = d;
                     validatableObj.DropdownValues = d.DropdownValues;
                     validatableObj.PrimaryKey = d.PrimaryKey.ToString();
+                    if (d.InputType == "DropDownList")
+                    {
+                        validatableObj.isSelectOne = true;
+
+                    }
+                    else if (d.InputType == "ListBoxMulti")
+                    {
+                        validatableObj.isSelectMultiple = true;
+
+                    }
+
 
                     if (d.MandatoryField == true)
                     {

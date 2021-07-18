@@ -19,5 +19,17 @@ namespace Staketracker.Core.Validators.Rules
                 return false;
             }
         }
+
+        public bool Check(DropdownValue selectedValue)
+        {
+            if (selectedValue != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

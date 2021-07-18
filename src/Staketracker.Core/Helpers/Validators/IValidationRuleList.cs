@@ -7,5 +7,6 @@ namespace Staketracker.Core.Validators
     {
         string ValidationMessage { get; set; }
         bool Check(List<Models.FormAndDropDownField.DropdownValue> selectedValues);
+        bool Check(Models.FormAndDropDownField.DropdownValue selectedValue);
     }
 }
