@@ -1,3 +1,4 @@
+using System;
 using Staketracker.Core.Validators;
 using System.Collections.Generic;
 using Xamarin.Forms;
@@ -43,6 +44,11 @@ namespace Staketracker.UI
         public App()
         {
             InitializeComponent();
+        }
+
+        private void RadDateTimePicker_SelectionChanged(object sender, EventArgs e)
+        {
+            // implement your logic here
         }
     }
 }

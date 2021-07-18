@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Staketracker.Core.Models.FormAndDropDownField;
 
 namespace Staketracker.Core.Validators
 {
@@ -43,9 +45,67 @@ namespace Staketracker.Core.Validators
         public List<IValidationRuleList> ValidationsList { get; } = new List<IValidationRuleList>();
 
         public List<Models.FormAndDropDownField.DropdownValue> DropdownValues { get; set; } = new List<Models.FormAndDropDownField.DropdownValue>();
-        public List<Models.FormAndDropDownField.DropdownValue> SelectedItems { get; set; } = new List<Models.FormAndDropDownField.DropdownValue>();
+
+        //private List<Models.FormAndDropDownField.DropdownValue> selectedItems;//  = new List<Models.FormAndDropDownField.DropdownValue>();
+        //public List<Models.FormAndDropDownField.DropdownValue> SelectedItems
+        //{
+        //    get { return this.selectedItems; }
+        //    set
+        //    {
+        //        if (this.selectedItems != value)
+        //        {
+        //            this.selectedItems = value;
+        //            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedItems)));
+
+
+        //        }
+        //    }
+        //}
+
+
+
+        private ObservableCollection<Models.FormAndDropDownField.DropdownValue> selectedItems = new ObservableCollection<DropdownValue>();
+
+        public ObservableCollection<Models.FormAndDropDownField.DropdownValue> SelectedItems
+        {
+            get
+            {
+                return this.selectedItems;
+            }
+            set
+            {
+                if (this.selectedItems != value)
+                {
+                    this.selectedItems = value;
+
+                    //this.selectedItems.Add(this.[0]);
+                    //this.selectedItems.Add(this.Items[1]);
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedItems)));
+                }
+            }
+        }
+        private int selectedIndex;
+        public int SelectedIndex
+        {
+            get
+            {
+                return this.selectedIndex;
+            }
+            set
+            {
+                if (this.selectedIndex != value)
+                {
+                    this.selectedIndex = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedIndex)));
+
+                }
+            }
+        }
+
 
         private Models.FormAndDropDownField.DropdownValue selectedItem;//= new Models.FormAndDropDownField.DropdownValue();
+
+
 
         public Boolean isSelectOne { get; set; }
         public Boolean isSelectMultiple { get; set; }

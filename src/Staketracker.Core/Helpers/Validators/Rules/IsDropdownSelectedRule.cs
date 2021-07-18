@@ -1,5 +1,6 @@
 using Staketracker.Core.Models.FormAndDropDownField;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Staketracker.Core.Validators.Rules
 {
@@ -8,7 +9,7 @@ namespace Staketracker.Core.Validators.Rules
         public string ValidationMessage { get; set; }
 
 
-        public bool Check(List<DropdownValue> selectedValues)
+        public bool Check(ObservableCollection<Models.FormAndDropDownField.DropdownValue> selectedValues)
         {
             if (selectedValues != null && selectedValues.Count > 0)
             {

@@ -86,7 +86,6 @@ namespace Staketracker.Core.ViewModels
                     else if (d.InputType == "ListBoxMulti")
                     {
                         validatableObj.isSelectMultiple = true;
-
                     }
 
 

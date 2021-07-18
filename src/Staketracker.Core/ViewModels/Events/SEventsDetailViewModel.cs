@@ -373,7 +373,8 @@ namespace Staketracker.Core.ViewModels.Events
                                 if (valObj.FormAndDropDownField.InputType == "DropDownList")
                                     valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
                                 else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
-                                    valObj.SelectedItems.AddRange(valObj.DropdownValues);
+                                {
+                                } //  valObj.SelectedItems.AddRange(valObj.DropdownValues);
                                 else if (valObj.FormAndDropDownField.InputType == "CheckBox")
                                 {
                                     if (field.Value != null && field.Value.ToString() == "on")
