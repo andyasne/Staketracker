@@ -216,7 +216,13 @@ namespace Staketracker.Core.ViewModels.Events
         }
 
         private async Task OnCancel()
+
         {
+
+            //  await this.navigationService.Close(this);
+            await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
+            return;
+
             if (mode == PresentationMode.Read)
                 return;
 
@@ -304,6 +310,8 @@ namespace Staketracker.Core.ViewModels.Events
                 saveEvent();
 
             }
+            await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
+
 
             //Redirect
 
