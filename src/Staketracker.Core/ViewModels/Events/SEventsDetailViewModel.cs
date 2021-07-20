@@ -310,7 +310,8 @@ namespace Staketracker.Core.ViewModels.Events
                 saveEvent();
 
             }
-            await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
+
+            //   await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
 
 
             //Redirect
