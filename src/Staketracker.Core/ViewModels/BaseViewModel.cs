@@ -88,7 +88,11 @@ namespace Staketracker.Core.ViewModels
                         validatableObj.isSelectMultiple = true;
                     }
 
+                    if (d.InputType == "DateTime")
+                    {
+                        validatableObj.Value = "Date(1464711387818)";
 
+                    }
                     if (d.MandatoryField == true)
                     {
                         if (d.InputType == "DropDownList")
