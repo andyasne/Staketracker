@@ -31,10 +31,10 @@ namespace Staketracker.UI.Pages.Events
                 checkToolbarItem.IconImageSource = new FileImageSource() { File = "check" };
                 checkToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("CommitCommand"));
 
-                deleteToolbarItem = new ToolbarItem();
-                deleteToolbarItem.Text = "Delete";
-                deleteToolbarItem.IconImageSource = new FileImageSource() { File = "check" };
-                deleteToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("DeleteCommand"));
+                //deleteToolbarItem = new ToolbarItem();
+                //deleteToolbarItem.Text = "Delete";
+                //deleteToolbarItem.IconImageSource = new FileImageSource() { File = "check" };
+                //deleteToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("DeleteCommand"));
 
             }
             else
@@ -44,7 +44,7 @@ namespace Staketracker.UI.Pages.Events
                 NavigationPage.SetHasNavigationBar(this, false);
             }
             this.ToolbarItems.Add(checkToolbarItem);
-            this.ToolbarItems.Add(deleteToolbarItem);
+            //   this.ToolbarItems.Add(deleteToolbarItem);
 
             this.editView.IsVisible = false;
             var trigger = new DataTrigger(editView.GetType());
