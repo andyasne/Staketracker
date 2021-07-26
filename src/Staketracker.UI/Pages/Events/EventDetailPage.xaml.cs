@@ -7,7 +7,6 @@ using Xamarin.Forms;
 namespace Staketracker.UI.Pages.Events
 {
 
-
     [MvxContentPagePresentation(WrapInNavigationPage = true)]
     public partial class EventDetailPage : MvxContentPage<SEventDetailViewModel>
     {
@@ -30,11 +29,6 @@ namespace Staketracker.UI.Pages.Events
                 checkToolbarItem.Text = "Save";
                 checkToolbarItem.IconImageSource = new FileImageSource() { File = "check" };
                 checkToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("CommitCommand"));
-
-                //deleteToolbarItem = new ToolbarItem();
-                //deleteToolbarItem.Text = "Delete";
-                //deleteToolbarItem.IconImageSource = new FileImageSource() { File = "check" };
-                //deleteToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("DeleteCommand"));
 
             }
             else
