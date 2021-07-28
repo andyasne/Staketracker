@@ -25,8 +25,6 @@ namespace Staketracker.UI.Pages
         {
             InitializeComponent();
 
-            CultureInfo info = new CultureInfo("fr");
-            Thread.CurrentThread.CurrentUICulture = info;
 
 
         }
