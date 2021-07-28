@@ -1,3 +1,4 @@
+using Java.Lang;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using MvvmCross.Presenters;
@@ -6,6 +7,15 @@ using MvvmCross.ViewModels;
 using Staketracker.Core.ViewModels.Dashboard;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Resources;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+using Thread = System.Threading.Thread;
 
 namespace Staketracker.UI.Pages
 {
@@ -14,6 +24,10 @@ namespace Staketracker.UI.Pages
         public DashboardPage()
         {
             InitializeComponent();
+
+            CultureInfo info = new CultureInfo("fr");
+            Thread.CurrentThread.CurrentUICulture = info;
+
 
         }
 

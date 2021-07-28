@@ -5,10 +5,13 @@ using Staketracker.Core.ViewModels.Login;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MvvmCross.ViewModels;
+using Staketracker.Core.Resources;
 using Staketracker.Core.ViewModels.Menu;
 using Xamarin.Forms;
 
@@ -28,7 +31,11 @@ namespace Staketracker.Core.ViewModels.Dashboard
             SignOutCommand = new Command(async () => await SignOut());
 
 
-            this.HeaderTitle = "Dashboard";
+            CultureInfo info = new CultureInfo("am");
+            Thread.CurrentThread.CurrentUICulture = info;
+            AppResource.Culture = info;
+
+            this.HeaderTitle = AppResource.Dashboard;
 
         }
 

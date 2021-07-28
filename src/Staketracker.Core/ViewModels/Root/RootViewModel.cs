@@ -1,3 +1,6 @@
+using System.Globalization;
+using System.Threading;
+using Staketracker.Core.Resources;
 using Staketracker.Core.ViewModels.Menu;
 
 namespace Staketracker.Core.ViewModels.Root
@@ -18,6 +21,10 @@ namespace Staketracker.Core.ViewModels.Root
         public RootViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
+            CultureInfo info = new CultureInfo("am");
+            Thread.CurrentThread.CurrentUICulture = info;
+
+            AppResources.Culture = info;
         }
 
         public override void Prepare(AuthReply authReply)
