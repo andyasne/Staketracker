@@ -25,6 +25,10 @@ namespace Staketracker.Core
         [Post("/uat/mobilev1.asmx/getEvents")]
         Task<HttpResponseMessage> GetEvents([Body] APIRequestBody aPIRequestBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
+
+        [Post("/uat/mobilev1.asmx/addEvent")]
+        Task<HttpResponseMessage> AddEvent([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
+
         [Post("/uat/mobilev1.asmx/getFormAndDropDownFieldValues")]
         Task<HttpResponseMessage> GetFormAndDropDownFieldValues([Body] FormFieldBody formFieldBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
@@ -34,9 +38,14 @@ namespace Staketracker.Core
         [Post("/uat/mobilev1.asmx/getAllCommunications")]
         Task<HttpResponseMessage> GetAllCommunications([Body] APIRequestBody aPIRequestBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
-        [Post("/uat/mobilev1.asmx/addEvent")]
-        Task<HttpResponseMessage> AddEvent([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
+        [Post("/uat/mobilev1.asmx/getGroupStakeholderDetails")]
+        Task<HttpResponseMessage> GetGroupStakeholderDetails([Body] APIRequestBody aPIRequestBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
+        [Post("/uat/mobilev1.asmx/getIndividualStakeholderDetails")]
+        Task<HttpResponseMessage> GetIndividualStakeholderDetails([Body] APIRequestBody aPIRequestBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
+
+        [Post("/uat/mobilev1.asmx/getLandParcelStakeholderDetails")]
+        Task<HttpResponseMessage> GetLandParcelStakeholderDetails([Body] APIRequestBody aPIRequestBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
 
 

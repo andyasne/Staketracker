@@ -178,6 +178,26 @@ namespace Staketracker.Core.Services
 
         }
 
+        public async Task<HttpResponseMessage> GetGroupStakeholderDetails(APIRequestBody aPIRequestBody, string sessionId)
+        {
+            var cts = new CancellationTokenSource();
+            var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).GetGroupStakeholderDetails(aPIRequestBody, sessionId, cts.Token));
+            return await AddToRunningTasks(cts, task);
 
+        }
+        public async Task<HttpResponseMessage> GetIndividualStakeholderDetails(APIRequestBody aPIRequestBody, string sessionId)
+        {
+            var cts = new CancellationTokenSource();
+            var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).GetIndividualStakeholderDetails(aPIRequestBody, sessionId, cts.Token));
+            return await AddToRunningTasks(cts, task);
+
+        }
+        public async Task<HttpResponseMessage> GetLandParcelStakeholderDetails(APIRequestBody aPIRequestBody, string sessionId)
+        {
+            var cts = new CancellationTokenSource();
+            var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).GetLandParcelStakeholderDetails(aPIRequestBody, sessionId, cts.Token));
+            return await AddToRunningTasks(cts, task);
+
+        }
     }
 }

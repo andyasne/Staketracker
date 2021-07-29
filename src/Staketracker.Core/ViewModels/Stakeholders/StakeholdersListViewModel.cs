@@ -38,7 +38,9 @@ namespace Staketracker.Core.ViewModels.Stakeholders
             this.IsBusy = true;
             this.authReply = parameter;
             //this.Mode = parameter.Mode;
-            RunSafe(GetCommunication(authReply), true, "Loading Communication");
+            RunSafe(GetGroupStakeholderDetails(authReply), true, "Loading Group Stakeholders");
+            RunSafe(GetIndividualStakeholderDetails(authReply), true, "Loading Individual Stakeholders");
+            RunSafe(GetLandParcelStakeholderDetails(authReply), true, "Loading Land Parcel");
             this.IsBusy = false;
 
         }
@@ -60,11 +62,11 @@ namespace Staketracker.Core.ViewModels.Stakeholders
             private set => SetField(ref communicationReply, value);
         }
 
-        internal async Task GetCommunication(AuthReply authReply)
+        internal async Task GetGroupStakeholderDetails(AuthReply authReply)
         {
 
             var apiReq = new APIRequestBody(authReply);
-            HttpResponseMessage communications = await ApiManager.GetAllCommunications(apiReq, authReply.d.sessionId);
+            HttpResponseMessage communications = await ApiManager.GetGroupStakeholderDetails(apiReq, authReply.d.sessionId);
 
             if (communications.IsSuccessStatusCode)
             {
@@ -74,11 +76,44 @@ namespace Staketracker.Core.ViewModels.Stakeholders
 
             }
             else
-                await PageDialog.AlertAsync("API Error While retrieving Communication", "API Response Error", "Ok");
+                await PageDialog.AlertAsync("API Error While retrieving", "API Response Error", "Ok");
 
         }
 
+        internal async Task GetIndividualStakeholderDetails(AuthReply authReply)
+        {
 
+            var apiReq = new APIRequestBody(authReply);
+            HttpResponseMessage communications = await ApiManager.GetIndividualStakeholderDetails(apiReq, authReply.d.sessionId);
+
+            if (communications.IsSuccessStatusCode)
+            {
+                var response = await communications.Content.ReadAsStringAsync();
+                communicationReply_ = await Task.Run(() => JsonConvert.DeserializeObject<CommunicationReply>(response));
+
+
+            }
+            else
+                await PageDialog.AlertAsync("API Error While retrieving", "API Response Error", "Ok");
+
+        }
+        internal async Task GetLandParcelStakeholderDetails(AuthReply authReply)
+        {
+
+            var apiReq = new APIRequestBody(authReply);
+            HttpResponseMessage communications = await ApiManager.GetLandParcelStakeholderDetails(apiReq, authReply.d.sessionId);
+
+            if (communications.IsSuccessStatusCode)
+            {
+                var response = await communications.Content.ReadAsStringAsync();
+                communicationReply_ = await Task.Run(() => JsonConvert.DeserializeObject<CommunicationReply>(response));
+
+
+            }
+            else
+                await PageDialog.AlertAsync("API Error While retrieving", "API Response Error", "Ok");
+
+        }
 
 
         public async Task Refresh()

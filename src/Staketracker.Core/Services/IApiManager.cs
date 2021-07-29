@@ -26,6 +26,16 @@ namespace Staketracker.Core.Services
 
         Task<HttpResponseMessage> AddEvent(jsonTextObj jsonTextObj, string sessionId);
 
+        Task<HttpResponseMessage> GetGroupStakeholderDetails(APIRequestBody aPIRequestBody, string sessionId);
+
+
+        Task<HttpResponseMessage> GetIndividualStakeholderDetails(APIRequestBody aPIRequestBody, string sessionId);
+
+
+        Task<HttpResponseMessage> GetLandParcelStakeholderDetails(APIRequestBody aPIRequestBody, string sessionId);
+
+
+
 
 
 
