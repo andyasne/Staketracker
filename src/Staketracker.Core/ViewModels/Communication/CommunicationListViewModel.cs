@@ -12,7 +12,9 @@ using Staketracker.Core.Models.Communication;
 using Staketracker.Core.Models.Events;
 using Xamarin.Forms;
 using System.Linq;
+using Staketracker.Core.ViewModels.Events;
 using D = Staketracker.Core.Models.Events.D;
+using PresentationMode = Staketracker.Core.Models.PresentationMode;
 
 
 namespace Staketracker.Core.ViewModels.CommunicationList
@@ -31,6 +33,7 @@ namespace Staketracker.Core.ViewModels.CommunicationList
     public class CommunicationListViewModel : BaseViewModel<AuthReply>
 
     {
+        public IMvxCommand AddCommunicationCommand { get; }
 
 
         private readonly IMvxNavigationService _navigationService;
@@ -43,7 +46,14 @@ namespace Staketracker.Core.ViewModels.CommunicationList
             _navigationService = navigationService;
 
             this.SearchCommand = new MvxAsyncCommand(OnSearch);
+            AddCommunicationCommand = new MvxCommand(OnCreateCommunication);
+
         }
+
+        private void OnCreateCommunication() =>
+            _navigationService.Navigate<CommunicationDetailViewModel, PresentationContext<AuthReply>>(
+                new PresentationContext<AuthReply>(authReply, PresentationMode.Create));
+
         public AuthReply authReply;
 
 
