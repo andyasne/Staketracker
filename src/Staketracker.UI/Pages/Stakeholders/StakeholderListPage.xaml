@@ -70,9 +70,9 @@
                                             </OnIdiom>
                                         </BoxView.CornerRadius>
                                     </BoxView>
-                       
 
-                                    <telerikDataControls:RadListView ItemsSource="{Binding communicationReply_.d, Mode=OneWay}" SelectionMode="Single"
+
+                                    <telerikDataControls:RadListView ItemsSource="{Binding allStakeholders.d.GroupedStakeholders, Mode=OneWay}" SelectionMode="Single"
                                                 IsPullToRefreshEnabled="true" Grid.Row="1"
                                                 RefreshRequested="Handle_RefreshRequested"
                                                 SelectedItem="{Binding SelectedCommunication, Mode=TwoWay}">
@@ -89,8 +89,9 @@
                                                             </Grid.ColumnDefinitions>
                                                             <StackLayout  Grid.Column="1" Spacing="1" >
 
-                                                                <Label Text="{Binding CommunicationSubject}" TextColor="Black" MaxLines="2" VerticalOptions="Start" />
-                                                                <Label Text="{Binding GetDateString}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+                                                                <Label Text="{Binding GroupName}" TextColor="Black" MaxLines="2" VerticalOptions="Start" />
+                                                                <Label Text="{Binding MainPhone}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+                                                                <Label Text="{Binding Email}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
 
                                                             </StackLayout>
 
@@ -117,7 +118,7 @@
                                         </telerikDataControls:RadListView.LayoutDefinition>
                                     </telerikDataControls:RadListView>
 
-                                 
+
                                 </Grid>
 
                             </Grid>
@@ -150,7 +151,7 @@
                                     </BoxView>
 
 
-                                    <telerikDataControls:RadListView ItemsSource="{Binding communicationReply_.d, Mode=OneWay}" SelectionMode="Single"
+                                    <telerikDataControls:RadListView ItemsSource="{Binding allStakeholders.d.IndividualStakeholders, Mode=OneWay}" SelectionMode="Single"
                                                 IsPullToRefreshEnabled="true" Grid.Row="1"
                                                 RefreshRequested="Handle_RefreshRequested"
                                                 SelectedItem="{Binding SelectedCommunication, Mode=TwoWay}">
@@ -167,8 +168,9 @@
                                                             </Grid.ColumnDefinitions>
                                                             <StackLayout  Grid.Column="1" Spacing="1" >
 
-                                                                <Label Text="{Binding CommunicationSubject}" TextColor="Black" MaxLines="2" VerticalOptions="Start" />
-                                                                <Label Text="{Binding GetDateString}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+                                                                <Label Text="{Binding FirstName}" TextColor="Black" MaxLines="2" VerticalOptions="Start" />
+                                                                <Label Text="{Binding WorkPhone}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+                                                                <Label Text="{Binding Email}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
 
                                                             </StackLayout>
 
@@ -228,7 +230,7 @@
                                     </BoxView>
 
 
-                                    <telerikDataControls:RadListView ItemsSource="{Binding communicationReply_.d, Mode=OneWay}" SelectionMode="Single"
+                                    <telerikDataControls:RadListView ItemsSource="{Binding  allStakeholders.d.LandParcelStakeholders, Mode=OneWay}" SelectionMode="Single"
                                                 IsPullToRefreshEnabled="true" Grid.Row="1"
                                                 RefreshRequested="Handle_RefreshRequested"
                                                 SelectedItem="{Binding SelectedCommunication, Mode=TwoWay}">
@@ -245,8 +247,10 @@
                                                             </Grid.ColumnDefinitions>
                                                             <StackLayout  Grid.Column="1" Spacing="1" >
 
-                                                                <Label Text="{Binding CommunicationSubject}" TextColor="Black" MaxLines="2" VerticalOptions="Start" />
-                                                                <Label Text="{Binding GetDateString}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+                                                                <Label Text="{Binding LegalDescription}" TextColor="Black" MaxLines="2" VerticalOptions="Start" />
+                                                                <Label Text="{Binding LandCategory}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+                                                                <Label Text="{Binding AddressLine1}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+
 
                                                             </StackLayout>
 
@@ -282,7 +286,7 @@
                     </telerikBusyIndicator:TabViewItem>
                 </telerikBusyIndicator:RadTabView.Items>
             </telerikBusyIndicator:RadTabView>
- 
+
 
             <telerikInput:RadButton Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" Margin="0, 0, 18, 18"
                                     FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-plus}"
@@ -293,6 +297,6 @@
     </Grid>
 
 
-    
-    
+
+
 </views:MvxContentPage>

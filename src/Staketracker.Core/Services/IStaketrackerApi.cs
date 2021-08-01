@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Staketracker.Core.Models.EventsFormValue;
+using Staketracker.Core.Models.Stakeholders;
 
 namespace Staketracker.Core
 {
@@ -46,6 +47,10 @@ namespace Staketracker.Core
 
         [Post("/uat/mobilev1.asmx/getLandParcelStakeholderDetails")]
         Task<HttpResponseMessage> GetLandParcelStakeholderDetails([Body] APIRequestBody aPIRequestBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
+
+
+        [Post("/uat/mobilev1.asmx/getAllStakeholders")]
+        Task<HttpResponseMessage> GetAllStakeholders([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
 
 

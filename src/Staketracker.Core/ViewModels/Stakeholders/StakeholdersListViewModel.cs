@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Staketracker.Core.Models.ApiRequestBody;
 using Staketracker.Core.Models.Communication;
+using Staketracker.Core.Models.EventsFormValue;
+using Staketracker.Core.Models.Stakeholders;
 using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels.Stakeholders
@@ -38,9 +40,7 @@ namespace Staketracker.Core.ViewModels.Stakeholders
             this.IsBusy = true;
             this.authReply = parameter;
             //this.Mode = parameter.Mode;
-            RunSafe(GetGroupStakeholderDetails(authReply), true, "Loading Group Stakeholders");
-            RunSafe(GetIndividualStakeholderDetails(authReply), true, "Loading Individual Stakeholders");
-            RunSafe(GetLandParcelStakeholderDetails(authReply), true, "Loading Land Parcel");
+            RunSafe(GetLandParcelStakeholderDetails(authReply), true, "Loading Stakeholders");
             this.IsBusy = false;
 
         }
@@ -55,58 +55,31 @@ namespace Staketracker.Core.ViewModels.Stakeholders
 
         }
 
-        private CommunicationReply communicationReply;
-        public CommunicationReply communicationReply_
+        private Models.Stakeholders.Stakeholders _allStakeholders;
+        public Models.Stakeholders.Stakeholders allStakeholders
         {
-            get => communicationReply;
-            private set => SetField(ref communicationReply, value);
+            get => _allStakeholders;
+            private set => SetField(ref _allStakeholders, value);
         }
 
-        internal async Task GetGroupStakeholderDetails(AuthReply authReply)
-        {
-
-            var apiReq = new APIRequestBody(authReply);
-            HttpResponseMessage communications = await ApiManager.GetGroupStakeholderDetails(apiReq, authReply.d.sessionId);
-
-            if (communications.IsSuccessStatusCode)
-            {
-                var response = await communications.Content.ReadAsStringAsync();
-                communicationReply_ = await Task.Run(() => JsonConvert.DeserializeObject<CommunicationReply>(response));
 
 
-            }
-            else
-                await PageDialog.AlertAsync("API Error While retrieving", "API Response Error", "Ok");
-
-        }
-
-        internal async Task GetIndividualStakeholderDetails(AuthReply authReply)
-        {
-
-            var apiReq = new APIRequestBody(authReply);
-            HttpResponseMessage communications = await ApiManager.GetIndividualStakeholderDetails(apiReq, authReply.d.sessionId);
-
-            if (communications.IsSuccessStatusCode)
-            {
-                var response = await communications.Content.ReadAsStringAsync();
-                communicationReply_ = await Task.Run(() => JsonConvert.DeserializeObject<CommunicationReply>(response));
-
-
-            }
-            else
-                await PageDialog.AlertAsync("API Error While retrieving", "API Response Error", "Ok");
-
-        }
+        private Models.Stakeholders.Stakeholders stakeholders;
         internal async Task GetLandParcelStakeholderDetails(AuthReply authReply)
         {
 
-            var apiReq = new APIRequestBody(authReply);
-            HttpResponseMessage communications = await ApiManager.GetLandParcelStakeholderDetails(apiReq, authReply.d.sessionId);
 
-            if (communications.IsSuccessStatusCode)
+            StakeholderBody body = new StakeholderBody();
+            body.projectId = authReply.d.projectId;
+            body.userId = authReply.d.userId;
+
+            var apiReq = new jsonTextObj(body);
+            HttpResponseMessage stakeholders = await ApiManager.GetAllStakeholders(apiReq, authReply.d.sessionId);
+
+            if (stakeholders.IsSuccessStatusCode)
             {
-                var response = await communications.Content.ReadAsStringAsync();
-                communicationReply_ = await Task.Run(() => JsonConvert.DeserializeObject<CommunicationReply>(response));
+                var response = await stakeholders.Content.ReadAsStringAsync();
+                allStakeholders = await Task.Run(() => JsonConvert.DeserializeObject<Models.Stakeholders.Stakeholders>(response));
 
 
             }

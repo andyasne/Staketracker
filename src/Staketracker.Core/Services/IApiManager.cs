@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Refit;
 using Staketracker.Core.Models.EventsFormValue;
+using Staketracker.Core.Models.Stakeholders;
 
 namespace Staketracker.Core.Services
 {
@@ -35,6 +36,7 @@ namespace Staketracker.Core.Services
         Task<HttpResponseMessage> GetLandParcelStakeholderDetails(APIRequestBody aPIRequestBody, string sessionId);
 
 
+        Task<HttpResponseMessage> GetAllStakeholders(jsonTextObj jsonTextObj, string sessionId);
 
 
 

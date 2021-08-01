@@ -14,6 +14,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Staketracker.Core.Models.EventsFormValue;
+using Staketracker.Core.Models.Stakeholders;
 
 namespace Staketracker.Core.Services
 {
@@ -199,5 +200,14 @@ namespace Staketracker.Core.Services
             return await AddToRunningTasks(cts, task);
 
         }
+
+        public async Task<HttpResponseMessage> GetAllStakeholders(jsonTextObj jsonTextObj, string sessionId)
+        {
+            var cts = new CancellationTokenSource();
+            var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).GetAllStakeholders(jsonTextObj, sessionId, cts.Token));
+            return await AddToRunningTasks(cts, task);
+
+        }
+
     }
 }
