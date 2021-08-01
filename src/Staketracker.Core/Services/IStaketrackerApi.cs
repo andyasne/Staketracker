@@ -48,6 +48,10 @@ namespace Staketracker.Core
         Task<HttpResponseMessage> GetLandParcelStakeholderDetails([Body] APIRequestBody aPIRequestBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
 
+        [Post("/uat/mobilev1.asmx/getAllStakeholders")]
+        Task<HttpResponseMessage> GetAllStakeholders([Body] APIRequestBody aPIRequestBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
+
+
 
 
     }
