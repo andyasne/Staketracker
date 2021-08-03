@@ -87,9 +87,22 @@ namespace Staketracker.Core.ViewModels.CommunicationList
             set
             {
                 if (SetProperty(ref selectedCommunication, value) && value != null)
-                { }
+                {
+
+                    OnSelectedEventChanged(selectedCommunication);
+                }
 
             }
+        }
+
+        private void OnSelectedEventChanged(Staketracker.Core.Models.Communication.D communication)
+        {
+            if (Device.Idiom != TargetIdiom.Phone)
+                return;
+
+            _navigationService.Navigate<CommunicationDetailViewModel, PresentationContext<AuthReply>>(
+                new PresentationContext<AuthReply>(authReply, PresentationMode.Edit, int.Parse(communication.PrimaryKey)));
+
         }
 
 

@@ -38,7 +38,7 @@ namespace Staketracker.UI.Pages.CommunicationsDetail
 
                 // NavigationPage.SetHasNavigationBar(this, false);
             }
-            //   this.ToolbarItems.Add(checkToolbarItem);
+            this.ToolbarItems.Add(checkToolbarItem);
             //   this.ToolbarItems.Add(deleteToolbarItem);
 
             this.editView.IsVisible = false;
