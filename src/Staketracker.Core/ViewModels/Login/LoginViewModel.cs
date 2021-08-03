@@ -79,7 +79,7 @@ namespace Staketracker.Core.ViewModels.Login
             if (isDevelopmentMode)
             {
                 Username.Value = "alem";
-                Password.Value = "Biniye@99";
+                Password.Value = "Biniye@98";
             }
 
             IsSandboxChecked = false;

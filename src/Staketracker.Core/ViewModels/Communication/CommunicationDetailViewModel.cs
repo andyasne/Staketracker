@@ -18,13 +18,13 @@ using Staketracker.Core.ViewModels.CommunicationList;
 using Xamarin.Forms;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
 
-namespace Staketracker.Core.ViewModels.Events
+namespace Staketracker.Core.ViewModels.Communication
 {
     public class CommunicationDetailViewModel : BaseViewModel<PresentationContext<AuthReply>>
     {
         public CommunicationDetailViewModel(IMvxNavigationService navigationService)
         {
-            //this.stkaeTrackerAPI = stkaeTrackerAPI;
+
             this.navigationService = navigationService;
             BeginEditCommand = new Command(OnBeginEditCommunication);
             CommitCommand = new MvxAsyncCommand(OnCommitEditOrder);
@@ -33,18 +33,28 @@ namespace Staketracker.Core.ViewModels.Events
         }
 
         private IMvxNavigationService navigationService;
-        private Communication targetCommunication, draftCommunication;
+        private CommunicationList.Communication targetCommunication, draftCommunication;
         private string targetCommunicationId;
         public PresentationMode mode;
         private string title;
-        private Communication _sEvent;
+        private CommunicationList.Communication _communication;
 
-        public Communication sEvent
+        public Command BeginEditCommand { get; }
+        public IMvxCommand CommitCommand { get; }
+        public IMvxCommand CancelCommand { get; }
+        public IMvxCommand DeleteCommand { get; }
+
+        public AuthReply authReply;
+
+        public int primaryKey;
+
+        private bool isBusy;
+        public CommunicationList.Communication Communication
         {
-            get => _sEvent;
+            get => _communication;
             private set
             {
-                if (SetProperty(ref _sEvent, value))
+                if (SetProperty(ref _communication, value))
                 {
                     RaisePropertyChanged(() => IsEditing);
                     RaisePropertyChanged(() => IsReading);
@@ -52,7 +62,7 @@ namespace Staketracker.Core.ViewModels.Events
             }
         }
 
-        public Communication DraftCommunication
+        public CommunicationList.Communication DraftCommunication
         {
             get => draftCommunication;
             private set
@@ -90,15 +100,6 @@ namespace Staketracker.Core.ViewModels.Events
         }
 
 
-        public Command BeginEditCommand { get; }
-        public IMvxCommand CommitCommand { get; }
-        public IMvxCommand CancelCommand { get; }
-        public IMvxCommand DeleteCommand { get; }
-
-
-        public AuthReply authReply;
-        public int primaryKey;
-        private bool isBusy;
         public bool IsBusy
         {
             get => isBusy;
@@ -130,6 +131,7 @@ namespace Staketracker.Core.ViewModels.Events
             await base.Initialize();
 
             SelectedIndex = 1;
+
             RunSafe(GetFormandDropDownFields(authReply, FormType.Communications), true, "Building Form Controls");
 
 
@@ -144,13 +146,13 @@ namespace Staketracker.Core.ViewModels.Events
             switch (mode)
             {
                 case PresentationMode.Read:
-                    Title = sEvent.Name;
+                    Title = Communication.Name;
                     break;
                 case PresentationMode.Edit:
-                    Title = $"Edit Event";
+                    Title = $"Edit Communication";
                     break;
                 case PresentationMode.Create:
-                    Title = "Add New Event";
+                    Title = "Add New Communication";
                     break;
             }
         }
@@ -160,52 +162,29 @@ namespace Staketracker.Core.ViewModels.Events
             if (!IsReading)
                 return;
 
-            //Communication sEvent = targetCommunication.Copy();
-            //Mode = PresentationMode.Edit;
-            //UpdateTitle();
-            //InitializeEditData(sEvent);
-            //DraftCommunication = sEvent;
+
         }
 
         private async Task OnDeleteCommunication()
         {
-            var result = await PageDialog.ConfirmAsync($"Are you sure you want to delete the Event?",
-                "Delete Event", "Yes", "No");
+            var result = await PageDialog.ConfirmAsync($"Are you sure you want to delete the Communication?",
+                "Delete Communication", "Yes", "No");
 
             if (!result)
                 return;
 
-            //await this.stkaeTrackerAPI.RemoveCommunicationAsync(this.targetCommunication);
-            //if (Device.Idiom == TargetIdiom.Phone)
-            //{
             await navigationService.Close(this);
 
-            //await navigationService.ChangePresentation(
-            //   new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(CommunicationsListViewModel)));
-            //}
+
         }
 
         private async Task OnCancel()
 
         {
 
-            //  await this.navigationService.Close(this);
-            // await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(CommunicationsListViewModel)));
-            return;
 
-            if (mode == PresentationMode.Read)
-                return;
-
-            DraftCommunication = null;
-            UpdateTitle();
-
-            if (mode == PresentationMode.Edit)
-                Mode = PresentationMode.Read;
-
-            // await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(CommunicationsViewModel)));
         }
 
-        private List<Staketracker.Core.Models.EventsFormValue.InputFieldValue> valueList;
 
         private bool isFormValid()
         {
@@ -221,53 +200,53 @@ namespace Staketracker.Core.ViewModels.Events
             return isValid;
         }
 
-        private EventFormValue eventFormValue;
+        private EventFormValue pageFormValue;
 
-        private void getFormValues()
+        private void getFormValues(string type)
         {
-            eventFormValue = new EventFormValue();
-            eventFormValue.InputFieldValues = new List<InputFieldValue>(FormContent.Count);
-            eventFormValue.UserId = authReply.d.userId;
-            eventFormValue.PrimaryKey = primaryKey.ToString();
-            eventFormValue.ProjectId = authReply.d.projectId;
-            eventFormValue.Type = "Event";
+            pageFormValue = new EventFormValue();
+            pageFormValue.InputFieldValues = new List<InputFieldValue>(FormContent.Count);
+            pageFormValue.UserId = authReply.d.userId;
+            pageFormValue.PrimaryKey = primaryKey.ToString();
+            pageFormValue.ProjectId = authReply.d.projectId;
+            pageFormValue.Type = type;
 
 
             foreach (KeyValuePair<string, ValidatableObject<string>> _formContent in FormContent)
             {
                 Staketracker.Core.Models.EventsFormValue.InputFieldValue inputValue = new InputFieldValue() { Value = _formContent.Value.ToString(), PrimaryKey = _formContent.Value.PrimaryKey };
-                eventFormValue.InputFieldValues.Add(inputValue);
+                pageFormValue.InputFieldValues.Add(inputValue);
             }
 
         }
 
 
-        internal async Task saveEvent()
+        internal async Task save()
         {
 
-            AddEventsReply eventsReply;
-            jsonTextObj jsonTextObj = new jsonTextObj(eventFormValue);
+            AddEventsReply responseReply;
+            jsonTextObj jsonTextObj = new jsonTextObj(pageFormValue);
             HttpResponseMessage events = await ApiManager.AddEvent(jsonTextObj, authReply.d.sessionId);
 
             if (events.IsSuccessStatusCode)
             {
                 var response = await events.Content.ReadAsStringAsync();
-                eventsReply = await Task.Run(() => JsonConvert.DeserializeObject<AddEventsReply>(response));
+                responseReply = await Task.Run(() => JsonConvert.DeserializeObject<AddEventsReply>(response));
 
 
-                if (eventsReply.d.successful == true)
+                if (responseReply.d.successful == true)
                 {
-                    await PageDialog.AlertAsync("Event Saved Successfully", "Event Saved", "Ok");
+                    await PageDialog.AlertAsync("Communication Saved Successfully", "Communication Saved", "Ok");
                 }
                 else
                 {
-                    await PageDialog.AlertAsync(eventsReply.d.message, "Error Saving Event", "Ok");
+                    await PageDialog.AlertAsync(responseReply.d.message, "Error Saving Communication", "Ok");
 
                 }
 
             }
             else
-                await PageDialog.AlertAsync("API Error While Saving Event", "API Response Error", "Ok");
+                await PageDialog.AlertAsync("API Error While Saving Communication", "API Response Error", "Ok");
             //  return null;
         }
         private async Task OnCommitEditOrder()
@@ -275,46 +254,14 @@ namespace Staketracker.Core.ViewModels.Events
             if (isFormValid())
             {
 
-                getFormValues();
+                getFormValues("Communication");
 
-                saveEvent();
+                save();
 
             }
 
-            //   await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(CommunicationsListViewModel)));
-
-
-            //Redirect
-
-
-            if (Mode == PresentationMode.Read)
-                return;
-
-            //if (!this.draftCommunication.Validate(out IList<string> errors))
-            //{
-            //    await App.Current.MainPage.DisplayAlert("Validation failed", "Please check your data and try again" + Environment.NewLine + String.Join(Environment.NewLine, errors), "OK");
-            //    return;
-            //}
-
-            //   var updatedCommunication = await this.stkaeTrackerAPI.SaveCommunicationAsync(this.draftCommunication);
-
-            DraftCommunication = null;
-            targetCommunication = null;
-
-
-            //   this.Communication = updatedCommunication;
-            //      this.Mode = PresentationMode.Read;
-
-            //        this.UpdateTitle();
-
-            //    if (Device.Idiom != TargetIdiom.Phone)
-            //      await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(CommunicationsViewModel)));
         }
 
-
-        private void InitializeEditData(Communication sEvent)
-        {
-        }
 
         private int selectedIndex;
 
@@ -336,11 +283,11 @@ namespace Staketracker.Core.ViewModels.Events
         {
             FieldsValue fieldsValue;
             var apiReqExtra = new APIRequestExtraBody(authReply, "PrimaryKey", primaryKey.ToString());
-            HttpResponseMessage events = await ApiManager.GetEventDetails(apiReqExtra, authReply.d.sessionId);
+            HttpResponseMessage responseMessage = await ApiManager.GetEventDetails(apiReqExtra, authReply.d.sessionId);
 
-            if (events.IsSuccessStatusCode)
+            if (responseMessage.IsSuccessStatusCode)
             {
-                var response = await events.Content.ReadAsStringAsync();
+                var response = await responseMessage.Content.ReadAsStringAsync();
                 fieldsValue = await Task.Run(() => JsonConvert.DeserializeObject<FieldsValue>(response));
 
 
@@ -353,7 +300,7 @@ namespace Staketracker.Core.ViewModels.Events
                                     valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
                                 else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
                                 {
-                                } //  valObj.SelectedItems.AddRange(valObj.DropdownValues);
+                                }
                                 else if (valObj.FormAndDropDownField.InputType == "CheckBox")
                                 {
                                     if (field.Value != null && field.Value.ToString() == "on")

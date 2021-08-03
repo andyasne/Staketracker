@@ -206,7 +206,7 @@
 
             </DataTemplate>
 
-            <ui:PersonDataTemplateSelector x:Key="personDataTemplateSelector"
+            <ui:formDataTemplateSelector x:Key="formDataTemplateSelector"
                 TextBoxTemplate="{StaticResource TextBoxTemplate}"
                 DropDownListTemplate="{StaticResource DropDownListTemplate}"
                 MultiLineTemplate="{StaticResource MultiLineTemplate}" 

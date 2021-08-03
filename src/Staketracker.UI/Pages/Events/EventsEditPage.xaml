@@ -16,7 +16,7 @@
                 x:Name="listView" HasUnevenRows="True" 
                 VerticalScrollBarVisibility="Never"  
              
-                ItemTemplate="{StaticResource personDataTemplateSelector}"  
+                ItemTemplate="{StaticResource formDataTemplateSelector}"  
                 ItemsSource="{Binding FormContent}" 
                 SelectionMode="None" >
 

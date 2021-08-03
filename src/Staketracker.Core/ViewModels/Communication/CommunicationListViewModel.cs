@@ -12,6 +12,7 @@ using Staketracker.Core.Models.Communication;
 using Staketracker.Core.Models.Events;
 using Xamarin.Forms;
 using System.Linq;
+using Staketracker.Core.ViewModels.Communication;
 using Staketracker.Core.ViewModels.Events;
 using D = Staketracker.Core.Models.Events.D;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
@@ -87,16 +88,11 @@ namespace Staketracker.Core.ViewModels.CommunicationList
             {
                 if (SetProperty(ref selectedCommunication, value) && value != null)
                 { }
-                //   OnSelectedEventChanged(value);
+
             }
         }
 
-        //public override Task Initialize()
-        //{
-        //    //  base.Initialize();
 
-
-        //}
 
         private CommunicationReply communicationReply;
         public CommunicationReply communicationReply_
