@@ -18,13 +18,13 @@ using Staketracker.Core.ViewModels.CommunicationList;
 using Xamarin.Forms;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
 
-namespace Staketracker.Core.ViewModels.Events
+namespace Staketracker.Core.ViewModels.Communication
 {
     public class CommunicationDetailViewModel : BaseViewModel<PresentationContext<AuthReply>>
     {
         public CommunicationDetailViewModel(IMvxNavigationService navigationService)
         {
-            //this.stkaeTrackerAPI = stkaeTrackerAPI;
+
             this.navigationService = navigationService;
             BeginEditCommand = new Command(OnBeginEditCommunication);
             CommitCommand = new MvxAsyncCommand(OnCommitEditOrder);
@@ -33,13 +33,13 @@ namespace Staketracker.Core.ViewModels.Events
         }
 
         private IMvxNavigationService navigationService;
-        private Communication targetCommunication, draftCommunication;
+        private CommunicationList.Communication targetCommunication, draftCommunication;
         private string targetCommunicationId;
         public PresentationMode mode;
         private string title;
-        private Communication _sEvent;
+        private CommunicationList.Communication _sEvent;
 
-        public Communication sEvent
+        public CommunicationList.Communication sEvent
         {
             get => _sEvent;
             private set
@@ -52,7 +52,7 @@ namespace Staketracker.Core.ViewModels.Events
             }
         }
 
-        public Communication DraftCommunication
+        public CommunicationList.Communication DraftCommunication
         {
             get => draftCommunication;
             private set
@@ -160,11 +160,7 @@ namespace Staketracker.Core.ViewModels.Events
             if (!IsReading)
                 return;
 
-            //Communication sEvent = targetCommunication.Copy();
-            //Mode = PresentationMode.Edit;
-            //UpdateTitle();
-            //InitializeEditData(sEvent);
-            //DraftCommunication = sEvent;
+
         }
 
         private async Task OnDeleteCommunication()
@@ -175,37 +171,18 @@ namespace Staketracker.Core.ViewModels.Events
             if (!result)
                 return;
 
-            //await this.stkaeTrackerAPI.RemoveCommunicationAsync(this.targetCommunication);
-            //if (Device.Idiom == TargetIdiom.Phone)
-            //{
             await navigationService.Close(this);
 
-            //await navigationService.ChangePresentation(
-            //   new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(CommunicationsListViewModel)));
-            //}
+
         }
 
         private async Task OnCancel()
 
         {
 
-            //  await this.navigationService.Close(this);
-            // await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(CommunicationsListViewModel)));
-            return;
 
-            if (mode == PresentationMode.Read)
-                return;
-
-            DraftCommunication = null;
-            UpdateTitle();
-
-            if (mode == PresentationMode.Edit)
-                Mode = PresentationMode.Read;
-
-            // await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(CommunicationsViewModel)));
         }
 
-        private List<Staketracker.Core.Models.EventsFormValue.InputFieldValue> valueList;
 
         private bool isFormValid()
         {
@@ -281,38 +258,10 @@ namespace Staketracker.Core.ViewModels.Events
 
             }
 
-            //   await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(CommunicationsListViewModel)));
-
-
-            //Redirect
-
-
-            if (Mode == PresentationMode.Read)
-                return;
-
-            //if (!this.draftCommunication.Validate(out IList<string> errors))
-            //{
-            //    await App.Current.MainPage.DisplayAlert("Validation failed", "Please check your data and try again" + Environment.NewLine + String.Join(Environment.NewLine, errors), "OK");
-            //    return;
-            //}
-
-            //   var updatedCommunication = await this.stkaeTrackerAPI.SaveCommunicationAsync(this.draftCommunication);
-
-            DraftCommunication = null;
-            targetCommunication = null;
-
-
-            //   this.Communication = updatedCommunication;
-            //      this.Mode = PresentationMode.Read;
-
-            //        this.UpdateTitle();
-
-            //    if (Device.Idiom != TargetIdiom.Phone)
-            //      await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(CommunicationsViewModel)));
         }
 
 
-        private void InitializeEditData(Communication sEvent)
+        private void InitializeEditData(CommunicationList.Communication sEvent)
         {
         }
 
@@ -353,7 +302,7 @@ namespace Staketracker.Core.ViewModels.Events
                                     valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
                                 else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
                                 {
-                                } //  valObj.SelectedItems.AddRange(valObj.DropdownValues);
+                                }
                                 else if (valObj.FormAndDropDownField.InputType == "CheckBox")
                                 {
                                     if (field.Value != null && field.Value.ToString() == "on")

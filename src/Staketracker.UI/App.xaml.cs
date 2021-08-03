@@ -6,7 +6,7 @@ using Xamarin.Forms;
 namespace Staketracker.UI
 {
 
-    public class PersonDataTemplateSelector : DataTemplateSelector
+    public class formDataTemplateSelector : DataTemplateSelector
     {
         public DataTemplate TextBoxTemplate { get; set; }
         public DataTemplate DropDownListTemplate { get; set; }

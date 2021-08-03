@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+                      xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:rating="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             x:Class="Staketracker.UI.Pages.Communication.CommunicationDetailView" BackgroundColor="White">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Color x:Key="TitleLabelColor">#bcbcbc</Color>
+            <Color x:Key="LineColor">#d7d7d7</Color>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+        <ScrollView >
+            <StackLayout Margin="20">
+                <ListView   
+               SeparatorVisibility="None" 
+                x:Name="listView" HasUnevenRows="True" 
+                VerticalScrollBarVisibility="Never"  
+                ItemTemplate="{StaticResource formDataTemplateSelector}"  
+                ItemsSource="{Binding FormContent}" 
+                SelectionMode="None" />
+            </StackLayout>
+
+
+        </ScrollView>
+    </ContentView.Content>
+
+
+</ContentView>

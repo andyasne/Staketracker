@@ -99,7 +99,7 @@
 
             <telerikInput:RadButton Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" Margin="0, 0, 18, 18"
                                         FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-plus}"
-                                        Command="{Binding AddEventsCommand, Mode=OneWay}"
+                                        Command="{Binding AddCommunicationCommand, Mode=OneWay}"
                                         Style="{StaticResource FloatingActionButton}" />
         </Grid>
 
