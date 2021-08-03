@@ -110,7 +110,7 @@ namespace Staketracker.Core.ViewModels
                         }
                     }
 
-                    _formContent.Add(d.PrimaryKey.ToString() + "-" + d.Label, validatableObj);
+                    _formContent.Add(d.Label, validatableObj);
 
                 }
                 FormContent = _formContent;
