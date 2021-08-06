@@ -30,14 +30,12 @@ namespace Staketracker.Core.ViewModels.Events
         public string Status { get; set; }
         public string Description { get; set; }
 
-
         public SEvent Copy()
         {
             var newS = new SEvent();
             return newS;
         }
     }
-
 
     public class EventUpdatedMessage : MvxMessage
     {
@@ -65,7 +63,6 @@ namespace Staketracker.Core.ViewModels.Events
     {
         private readonly MvxSubscriptionToken eventUpdatedMessageToken, eventDeletedMessageToken;
 
-
         private readonly IMvxNavigationService navigationService;
 
         internal AuthReply authReply;
@@ -76,7 +73,6 @@ namespace Staketracker.Core.ViewModels.Events
 
         private ObservableCollection<SEvent> eventsomers;
         private bool isSearchEmpty, isBusy;
-
 
         //------------------------------------
         //public async override void Prepare()
@@ -206,11 +202,9 @@ namespace Staketracker.Core.ViewModels.Events
 
         }
 
-
         public async Task Refresh()
         {
         }
-
 
         private async Task FetchData()
         {

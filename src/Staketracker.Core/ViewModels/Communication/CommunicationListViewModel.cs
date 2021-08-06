@@ -17,10 +17,8 @@ using Staketracker.Core.ViewModels.Events;
 using D = Staketracker.Core.Models.Events.D;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
 
-
 namespace Staketracker.Core.ViewModels.CommunicationList
 {
-
 
     public class Communication
     {
@@ -30,12 +28,10 @@ namespace Staketracker.Core.ViewModels.CommunicationList
         public string Status { get; set; }
     }
 
-
     public class CommunicationListViewModel : BaseViewModel<AuthReply>
 
     {
         public IMvxCommand AddCommunicationCommand { get; }
-
 
         private readonly IMvxNavigationService _navigationService;
         public IMvxCommand SearchCommand { get; }
@@ -56,7 +52,6 @@ namespace Staketracker.Core.ViewModels.CommunicationList
                 new PresentationContext<AuthReply>(authReply, PresentationMode.Create));
 
         public AuthReply authReply;
-
 
         public override void Prepare(AuthReply parameter)
         {
@@ -79,7 +74,6 @@ namespace Staketracker.Core.ViewModels.CommunicationList
         public event PropertyChangedEventHandler PropertyChanged;
 
         private Staketracker.Core.Models.Communication.D selectedCommunication;
-
 
         public Staketracker.Core.Models.Communication.D SelectedCommunication
         {
@@ -105,8 +99,6 @@ namespace Staketracker.Core.ViewModels.CommunicationList
 
         }
 
-
-
         private CommunicationReply communicationReply;
         public CommunicationReply communicationReply_
         {
@@ -125,18 +117,15 @@ namespace Staketracker.Core.ViewModels.CommunicationList
                 var response = await communications.Content.ReadAsStringAsync();
                 communicationReply_ = await Task.Run(() => JsonConvert.DeserializeObject<CommunicationReply>(response));
 
-
             }
             else
                 await PageDialog.AlertAsync("API Error While retrieving Communication", "API Response Error", "Ok");
 
         }
 
-
         public async Task Refresh()
         {
         }
-
 
         private async Task OnSearch()
         {

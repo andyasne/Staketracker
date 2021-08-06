@@ -99,7 +99,6 @@ namespace Staketracker.Core.ViewModels.Communication
             private set => SetProperty(ref title, value);
         }
 
-
         public bool IsBusy
         {
             get => isBusy;
@@ -112,7 +111,6 @@ namespace Staketracker.Core.ViewModels.Communication
             Mode = parameter.Mode;
             primaryKey = parameter.PrimaryKey;
         }
-
 
         public override void ViewAppearing()
         {
@@ -133,7 +131,6 @@ namespace Staketracker.Core.ViewModels.Communication
             SelectedIndex = 1;
 
             RunSafe(GetFormandDropDownFields(authReply, FormType.Communications), true, "Building Form Controls");
-
 
             UpdateTitle();
 
@@ -162,7 +159,6 @@ namespace Staketracker.Core.ViewModels.Communication
             if (!IsReading)
                 return;
 
-
         }
 
         private async Task OnDeleteCommunication()
@@ -175,16 +171,13 @@ namespace Staketracker.Core.ViewModels.Communication
 
             await navigationService.Close(this);
 
-
         }
 
         private async Task OnCancel()
 
         {
 
-
         }
-
 
         private bool isFormValid()
         {
@@ -211,7 +204,6 @@ namespace Staketracker.Core.ViewModels.Communication
             pageFormValue.ProjectId = authReply.d.projectId;
             pageFormValue.Type = type;
 
-
             foreach (KeyValuePair<string, ValidatableObject<string>> _formContent in FormContent)
             {
                 Staketracker.Core.Models.EventsFormValue.InputFieldValue inputValue = new InputFieldValue() { Value = _formContent.Value.ToString(), PrimaryKey = _formContent.Value.PrimaryKey };
@@ -219,7 +211,6 @@ namespace Staketracker.Core.ViewModels.Communication
             }
 
         }
-
 
         internal async Task save()
         {
@@ -232,7 +223,6 @@ namespace Staketracker.Core.ViewModels.Communication
             {
                 var response = await events.Content.ReadAsStringAsync();
                 responseReply = await Task.Run(() => JsonConvert.DeserializeObject<AddEventsReply>(response));
-
 
                 if (responseReply.d.successful == true)
                 {
@@ -262,7 +252,6 @@ namespace Staketracker.Core.ViewModels.Communication
 
         }
 
-
         private int selectedIndex;
 
         public int SelectedIndex
@@ -278,7 +267,6 @@ namespace Staketracker.Core.ViewModels.Communication
             }
         }
 
-
         internal async Task PopulateControls(AuthReply authReply, int primaryKey)
         {
             FieldsValue fieldsValue;
@@ -289,7 +277,6 @@ namespace Staketracker.Core.ViewModels.Communication
             {
                 var response = await responseMessage.Content.ReadAsStringAsync();
                 fieldsValue = await Task.Run(() => JsonConvert.DeserializeObject<FieldsValue>(response));
-
 
                 foreach (Field field in fieldsValue.d.Fields)
                     foreach (ValidatableObject<string> valObj in FormContent.Values)
@@ -318,7 +305,6 @@ namespace Staketracker.Core.ViewModels.Communication
                             catch (Exception ex)
                             {
                             }
-
 
             }
             else

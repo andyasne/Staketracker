@@ -88,12 +88,10 @@ namespace Staketracker.Core.ViewModels.Events
             private set => SetProperty(ref title, value);
         }
 
-
         public Command BeginEditCommand { get; }
         public IMvxCommand CommitCommand { get; }
         public IMvxCommand CancelCommand { get; }
         public IMvxCommand DeleteCommand { get; }
-
 
         public AuthReply authReply;
         public int primaryKey;
@@ -110,7 +108,6 @@ namespace Staketracker.Core.ViewModels.Events
             Mode = parameter.Mode;
             primaryKey = parameter.PrimaryKey;
         }
-
 
         public override void ViewAppearing()
         {
@@ -130,7 +127,6 @@ namespace Staketracker.Core.ViewModels.Events
 
             SelectedIndex = 1;
             RunSafe(GetFormandDropDownFields(authReply, FormType.Events), true, "Building Form Controls");
-
 
             UpdateTitle();
 
@@ -262,7 +258,6 @@ namespace Staketracker.Core.ViewModels.Events
             eventFormValue.ProjectId = authReply.d.projectId;
             eventFormValue.Type = "Event";
 
-
             foreach (KeyValuePair<string, ValidatableObject<string>> _formContent in FormContent)
             {
                 Staketracker.Core.Models.EventsFormValue.InputFieldValue inputValue = new InputFieldValue() { Value = _formContent.Value.ToString(), PrimaryKey = _formContent.Value.PrimaryKey };
@@ -270,7 +265,6 @@ namespace Staketracker.Core.ViewModels.Events
             }
 
         }
-
 
         internal async Task saveEvent()
         {
@@ -283,7 +277,6 @@ namespace Staketracker.Core.ViewModels.Events
             {
                 var response = await events.Content.ReadAsStringAsync();
                 eventsReply = await Task.Run(() => JsonConvert.DeserializeObject<AddEventsReply>(response));
-
 
                 if (eventsReply.d.successful == true)
                 {
@@ -313,9 +306,7 @@ namespace Staketracker.Core.ViewModels.Events
 
             //   await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
 
-
             //Redirect
-
 
             if (Mode == PresentationMode.Read)
                 return;
@@ -331,7 +322,6 @@ namespace Staketracker.Core.ViewModels.Events
             DraftSEvent = null;
             targetSEvent = null;
 
-
             //   this.SEvent = updatedSEvent;
             //      this.Mode = PresentationMode.Read;
 
@@ -340,7 +330,6 @@ namespace Staketracker.Core.ViewModels.Events
             //    if (Device.Idiom != TargetIdiom.Phone)
             //      await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsViewModel)));
         }
-
 
         private void InitializeEditData(SEvent sEvent)
         {
@@ -361,7 +350,6 @@ namespace Staketracker.Core.ViewModels.Events
             }
         }
 
-
         internal async Task PopulateControls(AuthReply authReply, int primaryKey)
         {
             FieldsValue fieldsValue;
@@ -372,7 +360,6 @@ namespace Staketracker.Core.ViewModels.Events
             {
                 var response = await events.Content.ReadAsStringAsync();
                 fieldsValue = await Task.Run(() => JsonConvert.DeserializeObject<FieldsValue>(response));
-
 
                 foreach (Field field in fieldsValue.d.Fields)
                     foreach (ValidatableObject<string> valObj in FormContent.Values)
@@ -401,7 +388,6 @@ namespace Staketracker.Core.ViewModels.Events
                             catch (Exception ex)
                             {
                             }
-
 
             }
             else
