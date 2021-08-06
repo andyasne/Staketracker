@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace Staketracker.UI.Pages.StakeholderList
 {
-    public partial class StakeholderListPage : MvxContentPage<StakeholdersListViewModel>, IMvxOverridePresentationAttribute
+    public partial class StakeholderListPage : MvxContentPage<StakeholderListViewModel>, IMvxOverridePresentationAttribute
     {
         public StakeholderListPage()
         {

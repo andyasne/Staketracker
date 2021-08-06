@@ -125,6 +125,12 @@
     <Compile Update="Pages\Events\EventDetailPage.xaml.cs">
       <DependentUpon>EventDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\Stakeholders\StakeholderDetailPage.xaml.cs">
+      <DependentUpon>StakeholderDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Stakeholders\StakeholderDetailView.xaml.cs">
+      <DependentUpon>StakeholderDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\Tasks\TasksListPage.xaml.cs">
       <DependentUpon>TasksListPage.xaml</DependentUpon>
     </Compile>
@@ -187,6 +193,12 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\SearchResultsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Stakeholders\StakeholderDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Stakeholders\StakeholderDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>

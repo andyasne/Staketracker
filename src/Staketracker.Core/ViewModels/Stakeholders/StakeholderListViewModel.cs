@@ -6,33 +6,41 @@ using Staketracker.Core.Models;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Staketracker.Core.Models.ApiRequestBody;
-using Staketracker.Core.Models.Communication;
 using Staketracker.Core.Models.EventsFormValue;
 using Staketracker.Core.Models.Stakeholders;
+using Staketracker.Core.ViewModels.Communication;
+using Staketracker.Core.ViewModels.Stakeholder;
 using Xamarin.Forms;
+using PresentationMode = Staketracker.Core.Models.PresentationMode;
 
 namespace Staketracker.Core.ViewModels.Stakeholders
 {
-    public class StakeholdersListViewModel : BaseViewModel<AuthReply>
+    public class StakeholderListViewModel : BaseViewModel<AuthReply>
 
     {
 
+        public IMvxCommand AddStakeholderCommand { get; }
 
 
         private readonly IMvxNavigationService _navigationService;
         public IMvxCommand SearchCommand { get; }
 
-        public StakeholdersListViewModel(IMvxNavigationService navigationService)
+        public StakeholderListViewModel(IMvxNavigationService navigationService)
         {
             this.HeaderTitle = "Stakeholder";
 
             _navigationService = navigationService;
 
             this.SearchCommand = new MvxAsyncCommand(OnSearch);
+
+            AddStakeholderCommand = new MvxCommand(OnCreateStakeholder);
+
         }
 
         public AuthReply authReply;
-
+        private void OnCreateStakeholder() =>
+            _navigationService.Navigate<StakeholderDetailViewModel, PresentationContext<AuthReply>>(
+                new PresentationContext<AuthReply>(authReply, PresentationMode.Create));
         public override void Prepare(AuthReply parameter)
         {
             base.Prepare();

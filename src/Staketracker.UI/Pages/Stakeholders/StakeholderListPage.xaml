@@ -9,7 +9,7 @@
                       xmlns:telerikBusyIndicator="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-                      x:Class="Staketracker.UI.Pages.StakeholderList.StakeholderListPage"
+                      x:Class="Staketracker.UI.Pages.Models.Stakeholders.Stakeholders ListPage"
                       Title="StakeTracker" Icon="Stakeholder" ios:Page.UseSafeArea="true"
                       x:TypeArguments="viewModels:StakeholdersListViewModel">
 
@@ -290,7 +290,7 @@
 
             <telerikInput:RadButton Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" Margin="0, 0, 18, 18"
                                     FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-plus}"
-                                    Command="{Binding AddEventsCommand, Mode=OneWay}"
+                                    Command="{Binding AddStakeholderCommand, Mode=OneWay}"
                                     Style="{StaticResource FloatingActionButton}" />
         </Grid>
 
