@@ -74,6 +74,16 @@ namespace Staketracker.Core.Models.Stakeholders
         public int projectId { get; set; }
         public LinkedTo LinkedTo { get; set; }
     }
+    public class StakeholderDetailReq
+    {
+        public StakeholderDetailReq()
+        {
+
+        }
+        public int userId { get; set; }
+        public int projectId { get; set; }
+        public int StakeholderPrimaryKey { get; set; }
+    }
 
 
 

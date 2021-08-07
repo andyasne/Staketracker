@@ -18,6 +18,7 @@ using Staketracker.Core.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
+using Staketracker.Core.Models.Stakeholders;
 
 namespace Staketracker.Core.ViewModels.Stakeholder
 {
@@ -113,17 +114,7 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             primaryKey = parameter.PrimaryKey;
         }
 
-        public override void ViewAppearing()
-        {
-            IsBusy = true;
-            if (mode == PresentationMode.Edit)
-            {
-                PopulateControls(authReply, primaryKey);
-            }
 
-            IsBusy = false;
-
-        }
 
         public override async Task Initialize()
         {
@@ -280,19 +271,42 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             }
         }
 
-        internal async Task PopulateControls(AuthReply authReply, int primaryKey)
+        public override void ViewAppearing()
+        {
+            IsBusy = true;
+            if (mode == PresentationMode.Edit)
+            {
+                StakeholderDetailReq body = new StakeholderDetailReq()
+                {
+                    projectId = authReply.d.projectId,
+                    userId = authReply.d.userId,
+                    StakeholderPrimaryKey = primaryKey
+
+
+                };
+                jsonTextObj jto = new jsonTextObj(body);
+                PopulateControls(authReply, jto);
+
+
+            }
+
+            IsBusy = false;
+
+        }
+
+
+        internal async Task PopulateControls(AuthReply authReply, jsonTextObj jto)
         {
             FieldsValue fieldsValue;
             HttpResponseMessage responseMessage;
-            var apiReqExtra = new APIRequestBody(authReply);
 
             if (authReply.attachment.ToString() == "Groups")
-                responseMessage = await ApiManager.GetGroupStakeholderDetails(apiReqExtra, authReply.d.sessionId);
+                responseMessage = await ApiManager.GetGroupStakeholderDetails(jto, authReply.d.sessionId);
             else if (authReply.attachment.ToString() == "Individuals")
-                responseMessage = await ApiManager.GetIndividualStakeholderDetails(apiReqExtra, authReply.d.sessionId);
+                responseMessage = await ApiManager.GetIndividualStakeholderDetails(jto, authReply.d.sessionId);
 
             else
-                responseMessage = await ApiManager.GetLandParcelStakeholderDetails(apiReqExtra, authReply.d.sessionId);
+                responseMessage = await ApiManager.GetLandParcelStakeholderDetails(jto, authReply.d.sessionId);
 
 
             if (responseMessage.IsSuccessStatusCode)
@@ -330,8 +344,12 @@ namespace Staketracker.Core.ViewModels.Stakeholder
 
             }
             else
-                await PageDialog.AlertAsync("API Error While Assigning Value", "API Response Error", "Ok");
+                await PageDialog.AlertAsync("API Error While Assigning Value to UI Controls", "API Response Error", "Ok");
             //  return null;
         }
+
+
+
+
     }
 }

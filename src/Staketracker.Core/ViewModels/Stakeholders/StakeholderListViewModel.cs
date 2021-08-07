@@ -80,12 +80,12 @@ namespace Staketracker.Core.ViewModels.Stakeholders
             }
         }
 
-        private void OnSelectedEventChanged(Staketracker.Core.Models.Stakeholders.GroupedStakeholder _event)
+        private void OnSelectedEventChanged(Staketracker.Core.Models.Stakeholders.GroupedStakeholder groupStakeh)
         {
             authReply.attachment = "Groups";
 
             _navigationService.Navigate<StakeholderDetailViewModel, PresentationContext<AuthReply>>(
-                new PresentationContext<AuthReply>(authReply, PresentationMode.Edit));
+                new PresentationContext<AuthReply>(authReply, PresentationMode.Edit, int.Parse(groupStakeh.PrimaryKey)));
 
 
         }
@@ -110,7 +110,7 @@ namespace Staketracker.Core.ViewModels.Stakeholders
             authReply.attachment = "Individuals";
 
             _navigationService.Navigate<StakeholderDetailViewModel, PresentationContext<AuthReply>>(
-                new PresentationContext<AuthReply>(authReply, PresentationMode.Edit));
+                new PresentationContext<AuthReply>(authReply, PresentationMode.Edit, int.Parse(individual.PrimaryKey)));
 
 
         }
@@ -134,7 +134,7 @@ namespace Staketracker.Core.ViewModels.Stakeholders
             authReply.attachment = "LandParcel";
 
             _navigationService.Navigate<StakeholderDetailViewModel, PresentationContext<AuthReply>>(
-                new PresentationContext<AuthReply>(authReply, PresentationMode.Edit));
+                new PresentationContext<AuthReply>(authReply, PresentationMode.Edit, int.Parse(landp.PrimaryKey)));
 
 
         }
