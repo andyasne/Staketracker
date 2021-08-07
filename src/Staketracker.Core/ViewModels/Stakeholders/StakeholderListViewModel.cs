@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json;
 using Staketracker.Core.Models.ApiRequestBody;
-using Staketracker.Core.Models.EventsFormValue;
 using Staketracker.Core.Models.Stakeholders;
 using Staketracker.Core.ViewModels.Communication;
 using Staketracker.Core.ViewModels.Stakeholder;
 using Telerik.XamarinForms.Primitives;
 using Xamarin.Forms;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
+using Staketracker.Core.Models.EventsFormValue;
 
 namespace Staketracker.Core.ViewModels.Stakeholders
 {
@@ -44,7 +44,7 @@ namespace Staketracker.Core.ViewModels.Stakeholders
                     {
                         TabViewItem selectedTab = view.SelectedItem as TabViewItem;
                         selectedHeaderTitle = selectedTab.HeaderText;
-                        authReply.attachment = selectedHeaderTitle
+                        authReply.attachment = selectedHeaderTitle;
                         _navigationService.Navigate<StakeholderDetailViewModel, PresentationContext<AuthReply>>(
                             new PresentationContext<AuthReply>(authReply, PresentationMode.Create));
 
@@ -65,23 +65,73 @@ namespace Staketracker.Core.ViewModels.Stakeholders
         //        new PresentationContext<AuthReply>(authReply, PresentationMode.Create));
         //}
 
-        private Staketracker.Core.Models.Events.D selectedStakeholder;
+        private Staketracker.Core.Models.Stakeholders.GroupedStakeholder _selectedStakeholder;
 
-        public Staketracker.Core.Models.Events.D SelectedStakeholder
+        public Staketracker.Core.Models.Stakeholders.GroupedStakeholder SelectedStakeholder
         {
-            get => selectedStakeholder;
+            get => _selectedStakeholder;
             set
             {
-                if (SetProperty(ref selectedStakeholder, value) && value != null)
+                if (SetField(ref _selectedStakeholder, value))
+                {
+
                     OnSelectedEventChanged(value);
+                }
             }
         }
 
-        private void OnSelectedEventChanged(Staketracker.Core.Models.Events.D _event)
+        private void OnSelectedEventChanged(Staketracker.Core.Models.Stakeholders.GroupedStakeholder _event)
         {
-            if (Device.Idiom != TargetIdiom.Phone)
-                return;
+            authReply.attachment = "Groups";
 
+            _navigationService.Navigate<StakeholderDetailViewModel, PresentationContext<AuthReply>>(
+                new PresentationContext<AuthReply>(authReply, PresentationMode.Edit));
+
+
+        }
+
+        private Staketracker.Core.Models.Stakeholders.IndividualStakeholder _selectedIndividual;
+
+        public Staketracker.Core.Models.Stakeholders.IndividualStakeholder SelectedIndividual
+        {
+            get => _selectedIndividual;
+            set
+            {
+                if (SetField(ref _selectedIndividual, value))
+                {
+
+                    OnSelectedEventChangedIndividual(value);
+                }
+            }
+        }
+
+        private void OnSelectedEventChangedIndividual(Staketracker.Core.Models.Stakeholders.IndividualStakeholder individual)
+        {
+            authReply.attachment = "Individuals";
+
+            _navigationService.Navigate<StakeholderDetailViewModel, PresentationContext<AuthReply>>(
+                new PresentationContext<AuthReply>(authReply, PresentationMode.Edit));
+
+
+        }
+
+        private Staketracker.Core.Models.Stakeholders.LandParcelStakeholder _selectedLandParcel;
+        public Staketracker.Core.Models.Stakeholders.LandParcelStakeholder SelectedLandParcel
+        {
+            get => _selectedLandParcel;
+            set
+            {
+                if (SetField(ref _selectedLandParcel, value))
+                {
+
+                    OnSelectedEventChangedLandParcel(value);
+                }
+            }
+        }
+
+        private void OnSelectedEventChangedLandParcel(Staketracker.Core.Models.Stakeholders.LandParcelStakeholder landp)
+        {
+            authReply.attachment = "LandParcel";
 
             _navigationService.Navigate<StakeholderDetailViewModel, PresentationContext<AuthReply>>(
                 new PresentationContext<AuthReply>(authReply, PresentationMode.Edit));

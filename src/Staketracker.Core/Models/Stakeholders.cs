@@ -52,7 +52,7 @@ namespace Staketracker.Core.Models.Stakeholders
 
     public class Stakeholders
     {
-        public D d { get; set; }
+        public Staketracker.Core.Models.Stakeholders.D d { get; set; }
     }
 
     public class LinkedTo

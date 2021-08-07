@@ -154,7 +154,7 @@
                                     <telerikDataControls:RadListView ItemsSource="{Binding allStakeholders.d.IndividualStakeholders, Mode=OneWay}" SelectionMode="Single"
                                                 IsPullToRefreshEnabled="true" Grid.Row="1"
                                                 RefreshRequested="Handle_RefreshRequested"
-                                                SelectedItem="{Binding SelectedStakeholder, Mode=TwoWay}">
+                                                SelectedItem="{Binding SelectedIndividual, Mode=TwoWay}">
                                         <telerikDataControls:RadListView.ItemTemplate>
                                             <DataTemplate>
                                                 <telerikListView:ListViewTemplateCell>
@@ -233,7 +233,7 @@
                                     <telerikDataControls:RadListView ItemsSource="{Binding  allStakeholders.d.LandParcelStakeholders, Mode=OneWay}" SelectionMode="Single"
                                                 IsPullToRefreshEnabled="true" Grid.Row="1"
                                                 RefreshRequested="Handle_RefreshRequested"
-                                                SelectedItem="{Binding SelectedStakeholder, Mode=TwoWay}">
+                                                SelectedItem="{Binding SelectedLandParcel, Mode=TwoWay}">
                                         <telerikDataControls:RadListView.ItemTemplate>
                                             <DataTemplate>
                                                 <telerikListView:ListViewTemplateCell>
