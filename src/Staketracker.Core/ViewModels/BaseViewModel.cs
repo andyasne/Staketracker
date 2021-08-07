@@ -3,6 +3,7 @@ using MvvmCross.ViewModels;
 using Newtonsoft.Json;
 using Staketracker.Core.Models;
 using Staketracker.Core.Models.ApiRequestBody;
+using Staketracker.Core.Models.FieldsValue;
 using Staketracker.Core.Models.FormAndDropDownField;
 using Staketracker.Core.Services;
 using Staketracker.Core.Validators;
@@ -56,7 +57,48 @@ namespace Staketracker.Core.ViewModels
 
             }
         }
+        internal async Task PopulateControls(AuthReply authReply, HttpResponseMessage responseMessage)
+        {
+            FieldsValue fieldsValue;
 
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var response = await responseMessage.Content.ReadAsStringAsync();
+                fieldsValue = await Task.Run(() => JsonConvert.DeserializeObject<FieldsValue>(response));
+
+                foreach (Field field in fieldsValue.d.Fields)
+                    foreach (ValidatableObject<string> valObj in FormContent.Values)
+                        if (valObj.FormAndDropDownField.PrimaryKey == field.PrimaryKey)
+                            try
+                            {
+                                if (valObj.FormAndDropDownField.InputType == "DropDownList")
+                                    valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
+                                else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
+                                {
+                                }
+                                else if (valObj.FormAndDropDownField.InputType == "CheckBox")
+                                {
+                                    if (field.Value != null && field.Value.ToString() == "on")
+                                        valObj.Value = true.ToString();
+                                    else
+                                        valObj.Value = false.ToString();
+                                }
+
+                                else
+                                {
+                                    if (field.Value != null)
+                                        valObj.Value = field.Value.ToString();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                            }
+
+            }
+            else
+                await PageDialog.AlertAsync("API Error While Assigning Value to UI Controls", "API Response Error", "Ok");
+            //  return null;
+        }
         public async Task GetFormandDropDownFields(AuthReply authReply, string type)
         {
 
@@ -117,7 +159,7 @@ namespace Staketracker.Core.ViewModels
             }
             else
             {
-                await PageDialog.AlertAsync("API Error while Geting Form Fields", "API Response Error", "Ok");
+                await PageDialog.AlertAsync("API Error while Getting Form Fields", "API Response Error", "Ok");
                 //  return null;
             }
         }

@@ -18,6 +18,7 @@ using Staketracker.Core.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
+using Staketracker.Core.Models.Stakeholders;
 
 namespace Staketracker.Core.ViewModels.Stakeholder
 {
@@ -113,17 +114,7 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             primaryKey = parameter.PrimaryKey;
         }
 
-        public override void ViewAppearing()
-        {
-            IsBusy = true;
-            if (mode == PresentationMode.Edit)
-            {
-                PopulateControls(authReply, primaryKey);
-            }
 
-            IsBusy = false;
-
-        }
 
         public override async Task Initialize()
         {
@@ -280,58 +271,49 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             }
         }
 
-        internal async Task PopulateControls(AuthReply authReply, int primaryKey)
+        public override void ViewAppearing()
         {
-            FieldsValue fieldsValue;
-            HttpResponseMessage responseMessage;
-            var apiReqExtra = new APIRequestBody(authReply);
-
-            if (authReply.attachment.ToString() == "Groups")
-                responseMessage = await ApiManager.GetGroupStakeholderDetails(apiReqExtra, authReply.d.sessionId);
-            else if (authReply.attachment.ToString() == "Individuals")
-                responseMessage = await ApiManager.GetIndividualStakeholderDetails(apiReqExtra, authReply.d.sessionId);
-
-            else
-                responseMessage = await ApiManager.GetLandParcelStakeholderDetails(apiReqExtra, authReply.d.sessionId);
-
-
-            if (responseMessage.IsSuccessStatusCode)
+            IsBusy = true;
+            if (mode == PresentationMode.Edit)
             {
-                var response = await responseMessage.Content.ReadAsStringAsync();
-                fieldsValue = await Task.Run(() => JsonConvert.DeserializeObject<FieldsValue>(response));
+                getReqBody().ContinueWith(f =>
+                {
+                    PopulateControls(authReply, f.Result);
+                }
 
-                foreach (Field field in fieldsValue.d.Fields)
-                    foreach (ValidatableObject<string> valObj in FormContent.Values)
-                        if (valObj.FormAndDropDownField.PrimaryKey == field.PrimaryKey)
-                            try
-                            {
-                                if (valObj.FormAndDropDownField.InputType == "DropDownList")
-                                    valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
-                                else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
-                                {
-                                }
-                                else if (valObj.FormAndDropDownField.InputType == "CheckBox")
-                                {
-                                    if (field.Value != null && field.Value.ToString() == "on")
-                                        valObj.Value = true.ToString();
-                                    else
-                                        valObj.Value = false.ToString();
-                                }
-
-                                else
-                                {
-                                    if (field.Value != null)
-                                        valObj.Value = field.Value.ToString();
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                            }
+               );
 
             }
-            else
-                await PageDialog.AlertAsync("API Error While Assigning Value", "API Response Error", "Ok");
-            //  return null;
+
+            IsBusy = false;
+
         }
+
+        private async Task<HttpResponseMessage> getReqBody()
+        {
+            StakeholderDetailReq body = new StakeholderDetailReq()
+            {
+                projectId = authReply.d.projectId,
+                userId = authReply.d.userId,
+                StakeholderPrimaryKey = primaryKey
+
+
+            };
+            jsonTextObj jto = new jsonTextObj(body);
+            HttpResponseMessage responseMessage;
+
+            if (authReply.attachment.ToString() == "Groups")
+                responseMessage = await ApiManager.GetGroupStakeholderDetails(jto, authReply.d.sessionId);
+            else if (authReply.attachment.ToString() == "Individuals")
+                responseMessage = await ApiManager.GetIndividualStakeholderDetails(jto, authReply.d.sessionId);
+
+            else
+                responseMessage = await ApiManager.GetLandParcelStakeholderDetails(jto, authReply.d.sessionId);
+
+
+            return responseMessage;
+        }
+
+
     }
 }
