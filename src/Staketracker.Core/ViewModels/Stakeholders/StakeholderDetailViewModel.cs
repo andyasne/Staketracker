@@ -130,8 +130,7 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             await base.Initialize();
 
             SelectedIndex = 1;
-
-            //  RunSafe(GetFormandDropDownFields(authReply, FormType.Stakeholders), true, "Building Form Controls");
+            RunSafe(GetFormandDropDownFields(authReply, FormType.GroupedStakeholders), true, "Building Form Controls");
 
             UpdateTitle();
 
@@ -245,7 +244,7 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             if (isFormValid())
             {
 
-                getFormValues("Stakeholder");
+                getFormValues("IndividualStakeholders");
 
                 save();
 
