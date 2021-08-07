@@ -4,6 +4,16 @@ using System.Text;
 
 namespace Staketracker.Core.Models.Communication
 {
+    public class CommunicationDetailReq
+    {
+        public CommunicationDetailReq()
+        {
+
+        }
+        public int userId { get; set; }
+        public int projectId { get; set; }
+        public int ID { get; set; }
+    }
     public class GroupedStakeholder
     {
         public object PrimaryKey { get; set; }

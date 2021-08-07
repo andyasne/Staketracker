@@ -209,10 +209,10 @@ namespace Staketracker.Core.Services
 
         }
 
-        public async Task<HttpResponseMessage> GetCommunicationDetails(APIRequestExtraBody aPIRequestExtraBody, string sessionId)
+        public async Task<HttpResponseMessage> GetCommunicationDetails(jsonTextObj jsonTextObj, string sessionId)
         {
             var cts = new CancellationTokenSource();
-            var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).GetCommunicationDetails(aPIRequestExtraBody, sessionId, cts.Token));
+            var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).GetCommunicationDetails(jsonTextObj, sessionId, cts.Token));
             return await AddToRunningTasks(cts, task);
 
         }

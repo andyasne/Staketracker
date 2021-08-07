@@ -17,6 +17,8 @@ using Staketracker.Core.Models.EventsFormValue;
 using Staketracker.Core.ViewModels.CommunicationList;
 using Xamarin.Forms;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
+using Staketracker.Core.Models.Stakeholders;
+using Staketracker.Core.Models.Communication;
 
 namespace Staketracker.Core.ViewModels.Communication
 {
@@ -270,8 +272,16 @@ namespace Staketracker.Core.ViewModels.Communication
         internal async Task PopulateControls(AuthReply authReply, int primaryKey)
         {
             FieldsValue fieldsValue;
-            var apiReqExtra = new APIRequestExtraBody(authReply, "PrimaryKey", primaryKey.ToString());
-            HttpResponseMessage responseMessage = await ApiManager.GetCommunicationDetails(apiReqExtra, authReply.d.sessionId);
+            CommunicationDetailReq body = new CommunicationDetailReq()
+            {
+                projectId = authReply.d.projectId,
+                userId = authReply.d.userId,
+                ID = primaryKey
+
+
+            };
+            jsonTextObj jto = new jsonTextObj(body);
+            HttpResponseMessage responseMessage = await ApiManager.GetCommunicationDetails(jto, authReply.d.sessionId);
 
             if (responseMessage.IsSuccessStatusCode)
             {
