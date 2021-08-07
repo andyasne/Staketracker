@@ -391,7 +391,7 @@ namespace Staketracker.Core.ViewModels.Events
 
             }
             else
-                await PageDialog.AlertAsync("API Error While Assigning Value", "API Response Error", "Ok");
+                await PageDialog.AlertAsync("API Error While Assigning Value to UI Controls", "API Response Error", "Ok");
             //  return null;
         }
     }

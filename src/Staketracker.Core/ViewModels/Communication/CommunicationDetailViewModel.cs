@@ -271,7 +271,7 @@ namespace Staketracker.Core.ViewModels.Communication
         {
             FieldsValue fieldsValue;
             var apiReqExtra = new APIRequestExtraBody(authReply, "PrimaryKey", primaryKey.ToString());
-            HttpResponseMessage responseMessage = await ApiManager.GetEventDetails(apiReqExtra, authReply.d.sessionId);
+            HttpResponseMessage responseMessage = await ApiManager.GetCommunicationDetails(apiReqExtra, authReply.d.sessionId);
 
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -308,7 +308,7 @@ namespace Staketracker.Core.ViewModels.Communication
 
             }
             else
-                await PageDialog.AlertAsync("API Error While Assigning Value", "API Response Error", "Ok");
+                await PageDialog.AlertAsync("API Error While Assigning Value to UI Controls", "API Response Error", "Ok");
             //  return null;
         }
     }

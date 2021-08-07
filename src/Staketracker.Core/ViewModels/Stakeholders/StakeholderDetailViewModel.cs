@@ -283,8 +283,17 @@ namespace Staketracker.Core.ViewModels.Stakeholder
         internal async Task PopulateControls(AuthReply authReply, int primaryKey)
         {
             FieldsValue fieldsValue;
-            var apiReqExtra = new APIRequestExtraBody(authReply, "PrimaryKey", primaryKey.ToString());
-            HttpResponseMessage responseMessage = await ApiManager.GetEventDetails(apiReqExtra, authReply.d.sessionId);
+            HttpResponseMessage responseMessage;
+            var apiReqExtra = new APIRequestBody(authReply);
+
+            if (authReply.attachment.ToString() == "Groups")
+                responseMessage = await ApiManager.GetGroupStakeholderDetails(apiReqExtra, authReply.d.sessionId);
+            else if (authReply.attachment.ToString() == "Individuals")
+                responseMessage = await ApiManager.GetIndividualStakeholderDetails(apiReqExtra, authReply.d.sessionId);
+
+            else
+                responseMessage = await ApiManager.GetLandParcelStakeholderDetails(apiReqExtra, authReply.d.sessionId);
+
 
             if (responseMessage.IsSuccessStatusCode)
             {

@@ -53,6 +53,8 @@ namespace Staketracker.Core
         Task<HttpResponseMessage> GetAllStakeholders([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
 
+        [Post("/uat/mobilev1.asmx/getCommunicationDetails")]
+        Task<HttpResponseMessage> GetCommunicationDetails([Body] APIRequestExtraBody aPIRequestExtraBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
 
     }

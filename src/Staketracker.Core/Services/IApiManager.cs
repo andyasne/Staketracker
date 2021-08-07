@@ -38,9 +38,6 @@ namespace Staketracker.Core.Services
 
         Task<HttpResponseMessage> GetAllStakeholders(jsonTextObj jsonTextObj, string sessionId);
 
-
-
-
-
+        Task<HttpResponseMessage> GetCommunicationDetails(APIRequestExtraBody aPIRequestExtraBody, string sessionId);
     }
 }
