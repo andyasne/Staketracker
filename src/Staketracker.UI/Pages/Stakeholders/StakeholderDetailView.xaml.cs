@@ -1,10 +1,10 @@
 using Xamarin.Forms;
 
-namespace Staketracker.UI.Pages.Communication
+namespace Staketracker.UI.Pages.stakeholders
 {
-    public partial class CommunicationDetailView : ContentView
+    public partial class StakeholderDetailView : ContentView
     {
-        public CommunicationDetailView()
+        public StakeholderDetailView()
         {
             InitializeComponent();
         }

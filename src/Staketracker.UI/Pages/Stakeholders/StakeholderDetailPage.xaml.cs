@@ -2,7 +2,9 @@ using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Staketracker.Core.ViewModels.Stakeholders;
 using System;
+using Staketracker.Core.ViewModels.Stakeholder;
 using Staketracker.UI.Pages.StakeholderList;
+using Staketracker.UI.Pages.stakeholders;
 using Xamarin.Forms;
 
 namespace Staketracker.UI.Pages.StakeholdersDetail

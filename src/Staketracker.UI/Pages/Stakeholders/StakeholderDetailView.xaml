@@ -2,9 +2,9 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
-                      xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
              xmlns:rating="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
-             x:Class="Staketracker.UI.Pages.Communication.CommunicationDetailView" BackgroundColor="White">
+             x:Class="Staketracker.UI.Pages.stakeholders.StakeholderDetailView" BackgroundColor="White">
     <ContentView.Resources>
         <ResourceDictionary>
             <Color x:Key="TitleLabelColor">#bcbcbc</Color>
