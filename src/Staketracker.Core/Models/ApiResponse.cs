@@ -1,3 +1,5 @@
+using System;
+
 namespace Staketracker.Core.Models
 {
     public class D
@@ -22,5 +24,6 @@ namespace Staketracker.Core.Models
 
         public D d { get; set; }
         public LoginAPIBody loginAPIBody { get; set; }
+        public Object attachment { get; set; }
     }
 }

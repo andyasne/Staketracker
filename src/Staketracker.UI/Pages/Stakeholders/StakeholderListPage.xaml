@@ -44,9 +44,9 @@
             </Label>
 
 
-            <telerikBusyIndicator:RadTabView x:Name="tabView"  Grid.Row="1">
+            <telerikBusyIndicator:RadTabView x:Name="tabView"  Grid.Row="1"  >
                 <telerikBusyIndicator:RadTabView.Items>
-                    <telerikBusyIndicator:TabViewItem HeaderText="Groups">
+                    <telerikBusyIndicator:TabViewItem  HeaderText="Groups">
                         <telerikPrimitives:TabViewItem.Content>
                             <Grid RowSpacing="0">
                                 <Grid.RowDefinitions>
@@ -75,7 +75,7 @@
                                     <telerikDataControls:RadListView ItemsSource="{Binding allStakeholders.d.GroupedStakeholders, Mode=OneWay}" SelectionMode="Single"
                                                 IsPullToRefreshEnabled="true" Grid.Row="1"
                                                 RefreshRequested="Handle_RefreshRequested"
-                                                SelectedItem="{Binding SelectedCommunication, Mode=TwoWay}">
+                                                SelectedItem="{Binding SelectedStakeholder, Mode=TwoWay}">
                                         <telerikDataControls:RadListView.ItemTemplate>
                                             <DataTemplate>
                                                 <telerikListView:ListViewTemplateCell>
@@ -154,7 +154,7 @@
                                     <telerikDataControls:RadListView ItemsSource="{Binding allStakeholders.d.IndividualStakeholders, Mode=OneWay}" SelectionMode="Single"
                                                 IsPullToRefreshEnabled="true" Grid.Row="1"
                                                 RefreshRequested="Handle_RefreshRequested"
-                                                SelectedItem="{Binding SelectedCommunication, Mode=TwoWay}">
+                                                SelectedItem="{Binding SelectedStakeholder, Mode=TwoWay}">
                                         <telerikDataControls:RadListView.ItemTemplate>
                                             <DataTemplate>
                                                 <telerikListView:ListViewTemplateCell>
@@ -233,7 +233,7 @@
                                     <telerikDataControls:RadListView ItemsSource="{Binding  allStakeholders.d.LandParcelStakeholders, Mode=OneWay}" SelectionMode="Single"
                                                 IsPullToRefreshEnabled="true" Grid.Row="1"
                                                 RefreshRequested="Handle_RefreshRequested"
-                                                SelectedItem="{Binding SelectedCommunication, Mode=TwoWay}">
+                                                SelectedItem="{Binding SelectedStakeholder, Mode=TwoWay}">
                                         <telerikDataControls:RadListView.ItemTemplate>
                                             <DataTemplate>
                                                 <telerikListView:ListViewTemplateCell>
@@ -289,7 +289,7 @@
 
 
             <telerikInput:RadButton Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" Margin="0, 0, 18, 18"
-                                    FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-plus}"
+                                    FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-plus}" CommandParameter="{x:Reference tabView}"
                                     Command="{Binding AddStakeholderCommand, Mode=OneWay}"
                                     Style="{StaticResource FloatingActionButton}" />
         </Grid>

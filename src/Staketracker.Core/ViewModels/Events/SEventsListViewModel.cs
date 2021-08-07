@@ -88,7 +88,7 @@ namespace Staketracker.Core.ViewModels.Events
         //    this.IsBusy = false;
         //}
         //private IErpService service;
-        private Staketracker.Core.Models.Events.D selectedEvents, selectedEventsDetail;
+        private Staketracker.Core.Models.Events.D selectedStakeholders, selectedStakeholdersDetail;
 
         public SEventsListViewModel(IMvxNavigationService navigationService)
         {
@@ -110,14 +110,14 @@ namespace Staketracker.Core.ViewModels.Events
             private set => SetField(ref eventsomers, value);
         }
 
-        private Staketracker.Core.Models.Events.D selectedEvent;
+        private Staketracker.Core.Models.Events.D selectedStakeholder;
 
         public Staketracker.Core.Models.Events.D SelectedEvent
         {
-            get => selectedEvent;
+            get => selectedStakeholder;
             set
             {
-                if (SetProperty(ref selectedEvent, value) && value != null)
+                if (SetProperty(ref selectedStakeholder, value) && value != null)
                     OnSelectedEventChanged(value);
             }
         }

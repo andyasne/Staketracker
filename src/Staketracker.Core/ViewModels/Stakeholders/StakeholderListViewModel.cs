@@ -1,15 +1,18 @@
+using System;
 using System.Net.Http;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Staketracker.Core.Helpers;
 using Staketracker.Core.Models;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Newtonsoft.Json;
 using Staketracker.Core.Models.ApiRequestBody;
 using Staketracker.Core.Models.EventsFormValue;
 using Staketracker.Core.Models.Stakeholders;
 using Staketracker.Core.ViewModels.Communication;
 using Staketracker.Core.ViewModels.Stakeholder;
+using Telerik.XamarinForms.Primitives;
 using Xamarin.Forms;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
 
@@ -19,7 +22,7 @@ namespace Staketracker.Core.ViewModels.Stakeholders
 
     {
 
-        public IMvxCommand AddStakeholderCommand { get; }
+        public ICommand AddStakeholderCommand { get; }
 
 
         private readonly IMvxNavigationService _navigationService;
@@ -32,21 +35,68 @@ namespace Staketracker.Core.ViewModels.Stakeholders
             _navigationService = navigationService;
 
             this.SearchCommand = new MvxAsyncCommand(OnSearch);
+            AddStakeholderCommand = new Command(
+                (parameter) =>
+                {
+                    RadTabView view = parameter as RadTabView;
 
-            AddStakeholderCommand = new MvxCommand(OnCreateStakeholder);
+                    if (view != null)
+                    {
+                        TabViewItem selectedTab = view.SelectedItem as TabViewItem;
+                        selectedHeaderTitle = selectedTab.HeaderText;
+                        authReply.attachment = selectedHeaderTitle
+                        _navigationService.Navigate<StakeholderDetailViewModel, PresentationContext<AuthReply>>(
+                            new PresentationContext<AuthReply>(authReply, PresentationMode.Create));
+
+                    }
+                });
+
+
 
         }
 
+
+        public ICommand ButtonClickCommand { get; private set; }
         public AuthReply authReply;
-        private void OnCreateStakeholder() =>
+
+        //private async void OnCreateStakeholder((object sender)
+        //{
+        //    _navigationService.Navigate<StakeholderDetailViewModel, PresentationContext<AuthReply>>(
+        //        new PresentationContext<AuthReply>(authReply, PresentationMode.Create));
+        //}
+
+        private Staketracker.Core.Models.Events.D selectedStakeholder;
+
+        public Staketracker.Core.Models.Events.D SelectedStakeholder
+        {
+            get => selectedStakeholder;
+            set
+            {
+                if (SetProperty(ref selectedStakeholder, value) && value != null)
+                    OnSelectedEventChanged(value);
+            }
+        }
+
+        private void OnSelectedEventChanged(Staketracker.Core.Models.Events.D _event)
+        {
+            if (Device.Idiom != TargetIdiom.Phone)
+                return;
+
+
             _navigationService.Navigate<StakeholderDetailViewModel, PresentationContext<AuthReply>>(
-                new PresentationContext<AuthReply>(authReply, PresentationMode.Create));
+                new PresentationContext<AuthReply>(authReply, PresentationMode.Edit));
+
+
+        }
+
+        private string selectedHeaderTitle;
         public override void Prepare(AuthReply parameter)
         {
             base.Prepare();
 
             this.IsBusy = true;
             this.authReply = parameter;
+
             //this.Mode = parameter.Mode;
             RunSafe(GetLandParcelStakeholderDetails(authReply), true, "Loading Stakeholders");
             this.IsBusy = false;

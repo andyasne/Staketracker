@@ -130,7 +130,13 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             await base.Initialize();
 
             SelectedIndex = 1;
-            RunSafe(GetFormandDropDownFields(authReply, FormType.GroupedStakeholders), true, "Building Form Controls");
+            if (authReply.attachment.ToString() == "Groups")
+                RunSafe(GetFormandDropDownFields(authReply, FormType.GroupedStakeholders), true, "Building Group Form Controls");
+            else if (authReply.attachment.ToString() == "Individuals")
+                RunSafe(GetFormandDropDownFields(authReply, FormType.IndividualStakeholders), true, "Building Individual Form Controls");
+            else
+                RunSafe(GetFormandDropDownFields(authReply, FormType.LandParcelStakeholders), true, "Building Land Parcel Form Controls");
+
 
             UpdateTitle();
 
@@ -146,10 +152,10 @@ namespace Staketracker.Core.ViewModels.Stakeholder
                     //       Title = Stakeholder.Name;
                     break;
                 case PresentationMode.Edit:
-                    Title = $"Edit Stakeholder";
+                    Title = $"Edit " + authReply.attachment.ToString();
                     break;
                 case PresentationMode.Create:
-                    Title = "Add New Stakeholder";
+                    Title = "Add New " + authReply.attachment.ToString();
                     break;
             }
         }
@@ -160,6 +166,7 @@ namespace Staketracker.Core.ViewModels.Stakeholder
                 return;
 
         }
+
 
         private async Task OnDeleteStakeholder()
         {
@@ -244,7 +251,13 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             if (isFormValid())
             {
 
-                getFormValues("IndividualStakeholders");
+                if (authReply.attachment.ToString() == "Groups")
+                    getFormValues(FormType.GroupedStakeholders);
+                else if (authReply.attachment.ToString() == "Individuals")
+                    getFormValues(FormType.IndividualStakeholders);
+                else
+                    getFormValues(FormType.LandParcelStakeholders);
+
 
                 save();
 
