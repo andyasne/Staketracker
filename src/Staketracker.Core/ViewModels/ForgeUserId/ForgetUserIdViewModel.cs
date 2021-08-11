@@ -1,4 +1,4 @@
-namespace Staketracker.Core.ViewModels.Login
+namespace Staketracker.Core.ViewModels.ForgetUserId
 {
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
@@ -6,7 +6,6 @@ namespace Staketracker.Core.ViewModels.Login
     using Staketracker.Core.Models;
     using Staketracker.Core.Validators;
     using Staketracker.Core.Validators.Rules;
-    using Staketracker.Core.ViewModels.ForgetUserId;
     using Staketracker.Core.ViewModels.Root;
     using Staketracker.Core.ViewModels.TwoStepVerification;
     using System;
@@ -16,7 +15,7 @@ namespace Staketracker.Core.ViewModels.Login
     using System.Windows.Input;
     using Xamarin.Forms;
 
-    public class LoginViewModel : BaseViewModel
+    public class ForgetUserIdViewModel : BaseViewModel
     {
         private const string sandboxTitle = "Sandbox";
         private const string productionTitle = "Production";
@@ -68,12 +67,10 @@ namespace Staketracker.Core.ViewModels.Login
         public LoginAPIBody loginApiBody { get; set; }
         public ICommand AuthenticateUserCommand { get; set; }
         public ICommand OnDevelopmentCommand { get; set; }
-        public ICommand ForgetUserIdCommand { get; set; }
-
 
         public AuthReply authReply { get; set; }
 
-        public LoginViewModel(IMvxNavigationService navigationService)
+        public ForgetUserIdViewModel(IMvxNavigationService navigationService)
         {
             AddValidationRules();
 
@@ -92,15 +89,8 @@ namespace Staketracker.Core.ViewModels.Login
            {
                OnDevelopment().Start();
            });
-
-            ForgetUserIdCommand = new Command(OpenForgetUserId);
         }
 
-        private async void OpenForgetUserId()
-        {
-            await _navigationService.Navigate<ForgetUserIdViewModel>();
-
-        }
 
         public void AddValidationRules()
         {
