@@ -11,6 +11,7 @@ namespace Staketracker.UI.Pages
         public ForgetUserIdRootPage()
         {
 
+
             // if (Device.Idiom == TargetIdiom.Phone)
             {
                 // Maximum number of items supported by BottomNavigationView is 5.

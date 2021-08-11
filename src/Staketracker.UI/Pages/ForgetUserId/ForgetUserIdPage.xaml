@@ -34,13 +34,13 @@
                     <Label  TextColor="{StaticResource DarkBlueColor}"   Style="{StaticResource TitleLabelStyle}"    VerticalTextAlignment="Start" VerticalOptions="Start"  Text="Request Your User Id" HorizontalTextAlignment="End"  HorizontalOptions="StartAndExpand" />
                     <Label    Style="{StaticResource SubtitleLabelStyle}"     VerticalTextAlignment="Start" VerticalOptions="Start"  Text="Email" HorizontalTextAlignment="End"  HorizontalOptions="StartAndExpand" />
 
-                    <telerikInput:RadEntry x:Name="production" Text="{Binding IsSandboxDiksplay}" IsReadOnly="True"   Style="{StaticResource LoginEntryStyle}"  Margin="0,0,0,5"      />
+                    <telerikInput:RadEntry x:Name="production" Text="{Binding Email}"   Style="{StaticResource LoginEntryStyle}"  Margin="0,0,0,5"      />
                     <telerikInput:RadButton VerticalContentAlignment="End" HorizontalContentAlignment="Start"  HeightRequest="20" Text="Return to Sign in Page"   Grid.Row="1" Grid.Column="1"
                                      Style="{StaticResource SecondaryActionButtonStyle}" Command="{Binding OnDevelopmentCommand}"
                                     FontAttributes="None" />
 
                     <telerikInput:RadButton Text="Submit"   Grid.Row="0"  Grid.Column="0" Margin="0,40,0,20" Grid.ColumnSpan="4" WidthRequest="200" HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"
-                                            Command="{Binding OnDevelopmentCommand}"
+                                            Command="{Binding SubmitForgetUserIdCommand}"
                                             Style="{StaticResource ActionButtonStyle}" />
 
 
