@@ -101,7 +101,7 @@
                                     FontAttributes="None" />
 
                     <telerikInput:RadButton Text="Forget Your Password?" HeightRequest="20"  HorizontalContentAlignment="End" VerticalContentAlignment="End" Grid.Row="1" Grid.Column="3"
-                                     Style="{StaticResource SecondaryActionButtonStyle}"  Command="{Binding OnDevelopmentCommand}"
+                                     Style="{StaticResource SecondaryActionButtonStyle}"  Command="{Binding ForgetPasswordCommand}"
                                     FontAttributes="None" />
                 </Grid>
                 <Label  TextColor="{StaticResource DarkTextColor}"  VerticalTextAlignment="End"  VerticalOptions="End"  Text="(c) SustaiNet Software International Inc." HorizontalTextAlignment="Center"  HorizontalOptions="CenterAndExpand" />

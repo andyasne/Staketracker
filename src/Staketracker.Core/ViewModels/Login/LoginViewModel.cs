@@ -69,6 +69,7 @@ namespace Staketracker.Core.ViewModels.Login
         public ICommand AuthenticateUserCommand { get; set; }
         public ICommand OnDevelopmentCommand { get; set; }
         public ICommand ForgetUserIdCommand { get; set; }
+        public ICommand ForgetPasswordCommand { get; set; }
 
 
         public AuthReply authReply { get; set; }
@@ -93,6 +94,7 @@ namespace Staketracker.Core.ViewModels.Login
                OnDevelopment().Start();
            });
 
+            ForgetPasswordCommand = new Command(OpenForgetPassword);
             ForgetUserIdCommand = new Command(OpenForgetUserId);
         }
 
@@ -101,6 +103,12 @@ namespace Staketracker.Core.ViewModels.Login
             await _navigationService.Navigate<ForgetUserIdRootViewModel>();
 
         }
+        private async void OpenForgetPassword()
+        {
+            await _navigationService.Navigate<ForgetPasswordRootViewModel>();
+
+        }
+
 
         public void AddValidationRules()
         {

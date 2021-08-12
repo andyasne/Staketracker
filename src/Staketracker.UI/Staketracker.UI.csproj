@@ -125,6 +125,9 @@
     <Compile Update="Pages\Events\EventDetailPage.xaml.cs">
       <DependentUpon>EventDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\ForgetPassword\ForgetPasswordPage.xaml.cs">
+      <DependentUpon>ForgetPasswordPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\ForgetUserId\ForgetUserIdPage.xaml.cs">
       <DependentUpon>ForgetUserIdPage.xaml</DependentUpon>
     </Compile>
