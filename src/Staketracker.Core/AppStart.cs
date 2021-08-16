@@ -5,6 +5,7 @@ using Staketracker.Core.ViewModels.Root;
 using System;
 using System.Threading.Tasks;
 using Staketracker.Core.ViewModels.Menu;
+using Staketracker.Core.ViewModels.Login;
 
 namespace Staketracker.Core
 {

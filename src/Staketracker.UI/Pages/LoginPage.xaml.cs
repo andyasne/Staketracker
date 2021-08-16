@@ -5,35 +5,28 @@ using MvvmCross.Presenters.Attributes;
 using MvvmCross.ViewModels;
 using Staketracker.Core.ViewModels.Login;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Staketracker.UI.Pages
 {
-    public partial class LoginPage : MvxContentPage<LoginViewModel>, IMvxOverridePresentationAttribute
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    [MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Detail, NoHistory = true)]
+
+    public partial class LoginPage : MvxContentPage<LoginViewModel>
     {
         public LoginPage()
         {
             InitializeComponent();
-
-
-
         }
 
-
-        private void isSandbox_IsCheckedChanged(object sender, Telerik.XamarinForms.Primitives.CheckBox.IsCheckedChangedEventArgs e)
+        protected override void OnAppearing()
         {
+            base.OnAppearing();
 
-        }
-
-
-        public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
-        {
-            if (Device.Idiom == TargetIdiom.Phone)
+            if (Application.Current.MainPage is NavigationPage navigationPage)
             {
-                return new MvxTabbedPagePresentationAttribute(TabbedPosition.Tab) { WrapInNavigationPage = true };
-            }
-            else
-            {
-                return new MvxTabbedPagePresentationAttribute(TabbedPosition.Root) { WrapInNavigationPage = false };
+                navigationPage.BarTextColor = Color.White;
+                //   navigationPage.BarBackgroundColor = (Color)Application.Current.Resources["PrimaryColor"];
             }
         }
 

@@ -6,6 +6,7 @@ namespace Staketracker.Core.ViewModels.Login
     using Staketracker.Core.Models;
     using Staketracker.Core.Validators;
     using Staketracker.Core.Validators.Rules;
+    using Staketracker.Core.ViewModels.ForgetPassword;
     using Staketracker.Core.ViewModels.ForgetUserId;
     using Staketracker.Core.ViewModels.Root;
     using Staketracker.Core.ViewModels.TwoStepVerification;
@@ -105,7 +106,7 @@ namespace Staketracker.Core.ViewModels.Login
         }
         private async void OpenForgetPassword()
         {
-            await _navigationService.Navigate<ForgetPasswordRootViewModel>();
+            await _navigationService.Navigate<ForgetPasswordViewModel>();
 
         }
 
