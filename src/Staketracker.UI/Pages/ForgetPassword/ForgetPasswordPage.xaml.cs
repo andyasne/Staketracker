@@ -10,33 +10,14 @@ using Xamarin.Forms;
 
 namespace Staketracker.UI.Pages
 {
-    public partial class ForgetPasswordPage : MvxContentPage<ForgetPasswordViewModel>, IMvxOverridePresentationAttribute
+    [MvxContentPagePresentation(WrapInNavigationPage = true)]
+
+    public partial class ForgetPasswordPage : MvxContentPage<ForgetPasswordViewModel>
     {
         public ForgetPasswordPage()
         {
             InitializeComponent();
 
-
-
-        }
-
-
-        private void isSandbox_IsCheckedChanged(object sender, Telerik.XamarinForms.Primitives.CheckBox.IsCheckedChangedEventArgs e)
-        {
-
-        }
-
-
-        public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
-        {
-            if (Device.Idiom == TargetIdiom.Phone)
-            {
-                return new MvxTabbedPagePresentationAttribute(TabbedPosition.Tab) { WrapInNavigationPage = true };
-            }
-            else
-            {
-                return new MvxTabbedPagePresentationAttribute(TabbedPosition.Root) { WrapInNavigationPage = false };
-            }
         }
 
     }

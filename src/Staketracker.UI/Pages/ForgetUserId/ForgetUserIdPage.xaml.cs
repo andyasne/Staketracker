@@ -9,7 +9,8 @@ using Xamarin.Forms;
 
 namespace Staketracker.UI.Pages
 {
-    public partial class ForgetUserIdPage : MvxContentPage<ForgetUserIdViewModel>, IMvxOverridePresentationAttribute
+    [MvxContentPagePresentation(WrapInNavigationPage = true)]
+    public partial class ForgetUserIdPage : MvxContentPage<ForgetUserIdViewModel>
     {
         public ForgetUserIdPage()
         {
@@ -20,23 +21,6 @@ namespace Staketracker.UI.Pages
         }
 
 
-        private void isSandbox_IsCheckedChanged(object sender, Telerik.XamarinForms.Primitives.CheckBox.IsCheckedChangedEventArgs e)
-        {
-
-        }
-
-
-        public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
-        {
-            if (Device.Idiom == TargetIdiom.Phone)
-            {
-                return new MvxTabbedPagePresentationAttribute(TabbedPosition.Tab) { WrapInNavigationPage = true };
-            }
-            else
-            {
-                return new MvxTabbedPagePresentationAttribute(TabbedPosition.Root) { WrapInNavigationPage = false };
-            }
-        }
 
     }
 }
