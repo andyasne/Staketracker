@@ -14,9 +14,6 @@ namespace Staketracker.Core.ViewModels.Menu
 {
     public class MenuViewModel : BaseViewModel
     {
-        readonly IMvxNavigationService _navigationService;
-
-        public IMvxAsyncCommand ShowDetailPageAsyncCommand { get; private set; }
 
         public MenuViewModel(IMvxNavigationService navigationService)
         {
@@ -30,6 +27,10 @@ namespace Staketracker.Core.ViewModels.Menu
 
             ShowDetailPageAsyncCommand = new MvxAsyncCommand(ShowDetailPageAsync);
         }
+
+        readonly IMvxNavigationService _navigationService;
+
+        public IMvxAsyncCommand ShowDetailPageAsyncCommand { get; private set; }
 
         private ObservableCollection<string> _menuItemList;
         public ObservableCollection<string> MenuItemList

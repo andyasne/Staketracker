@@ -10,7 +10,7 @@
                       x:Class="Staketracker.UI.Pages.ForgetUserIdPage"
                       Title="Forget Your User Id"
                       
-                        NavigationPage.HasBackButton="True"
+                       NavigationPage.HasBackButton="True"
                       NavigationPage.HasNavigationBar="True"
              x:TypeArguments="viewModels:ForgetUserIdViewModel">
 
