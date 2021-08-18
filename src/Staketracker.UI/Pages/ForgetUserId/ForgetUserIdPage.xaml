@@ -9,7 +9,9 @@
                       xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       x:Class="Staketracker.UI.Pages.ForgetUserIdPage"
                       Title="Forget Your User Id"
-                      NavigationPage.HasNavigationBar="True" 
+                      
+                        NavigationPage.HasBackButton="True"
+                      NavigationPage.HasNavigationBar="True"
              x:TypeArguments="viewModels:ForgetUserIdViewModel">
 
     <ContentPage.Resources>
@@ -30,13 +32,13 @@
             </Grid.RowDefinitions>
 
             <ScrollView Grid.Row="1">
-                <StackLayout Orientation="Vertical" Padding="30,0,30,0" VerticalOptions="CenterAndExpand" Spacing="10">
+                <StackLayout Orientation="Vertical" Padding="30,0,30,0" VerticalOptions="CenterAndExpand" Spacing="1">
                     <Label  TextColor="{StaticResource DarkBlueColor}"   Style="{StaticResource TitleLabelStyle}"    VerticalTextAlignment="Start" VerticalOptions="Start"  Text="Request Your User Id" HorizontalTextAlignment="End"  HorizontalOptions="StartAndExpand" />
                     <Label    Style="{StaticResource SubtitleLabelStyle}"     VerticalTextAlignment="Start" VerticalOptions="Start"  Text="Email" HorizontalTextAlignment="End"  HorizontalOptions="StartAndExpand" />
 
                     <telerikInput:RadEntry x:Name="production" Text="{Binding Email}"   Style="{StaticResource LoginEntryStyle}"  Margin="0,0,0,5"      />
                     <telerikInput:RadButton VerticalContentAlignment="End" HorizontalContentAlignment="Start"  HeightRequest="20" Text="Return to Sign in Page"   Grid.Row="1" Grid.Column="1"
-                                     Style="{StaticResource SecondaryActionButtonStyle}" Command="{Binding OnDevelopmentCommand}"
+                                     Style="{StaticResource SecondaryActionButtonStyle}" IsVisible="false" Command="{Binding OnDevelopmentCommand}"
                                     FontAttributes="None" />
 
                     <telerikInput:RadButton Text="Submit"   Grid.Row="0"  Grid.Column="0" Margin="0,40,0,20" Grid.ColumnSpan="4" WidthRequest="200" HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"

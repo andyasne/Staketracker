@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Staketracker.UI.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    [MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Detail, NoHistory = true)]
+    [MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Detail)]
 
-    public partial class LoginPage : MvxContentPage<LoginViewModel>
+    public partial class LoginPage : MvxContentPage<LoginViewModel>, IMvxOverridePresentationAttribute
     {
         public LoginPage()
         {
@@ -26,8 +26,13 @@ namespace Staketracker.UI.Pages
             if (Application.Current.MainPage is NavigationPage navigationPage)
             {
                 navigationPage.BarTextColor = Color.White;
-                //   navigationPage.BarBackgroundColor = (Color)Application.Current.Resources["PrimaryColor"];
             }
+        }
+        public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
+        {
+
+            return new MvxMasterDetailPagePresentationAttribute() { WrapInNavigationPage = true, NoHistory = true };
+
         }
 
     }
