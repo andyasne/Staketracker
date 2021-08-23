@@ -135,9 +135,7 @@ namespace Staketracker.Core.ViewModels.Events
             if (mode == PresentationMode.Create)
             {
                 sEvent = new SEvent();
-                //sEvent.ImageURL = Constants.EmptySEventImage;
-                //sEvent.LastOrderDate = DateTime.Today;
-                //sEvent.SalesAmount = 500;
+
                 DraftSEvent = sEvent;
                 UpdateTitle();
                 InitializeEditData(sEvent);

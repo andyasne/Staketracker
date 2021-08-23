@@ -74,20 +74,7 @@ namespace Staketracker.Core.ViewModels.Events
         private ObservableCollection<SEvent> eventsomers;
         private bool isSearchEmpty, isBusy;
 
-        //------------------------------------
-        //public async override void Prepare()
-        //{
-        //    base.Prepare();
 
-        //    this.IsBusy = true;
-        //    await FetchData();
-        //    //if (await this.service.SyncIfNeededAsync())
-        //    //{
-        //    //    await FetchData();
-        //    //}
-        //    this.IsBusy = false;
-        //}
-        //private IErpService service;
         private Staketracker.Core.Models.Events.D selectedStakeholders, selectedStakeholdersDetail;
 
         public SEventsListViewModel(IMvxNavigationService navigationService)
@@ -208,9 +195,7 @@ namespace Staketracker.Core.ViewModels.Events
 
         private async Task FetchData()
         {
-            //var target = await this.service.GetEventsAsync();
-            //ApplyEventIndexing(target);
-            //this.Events = target;
+
         }
 
         private void OnSelectedEventChanged(Staketracker.Core.Models.Events.D _event)
@@ -230,32 +215,17 @@ namespace Staketracker.Core.ViewModels.Events
         private async Task DoSeach(string term)
         {
             ObservableCollection<SEvent> newEvents;
-            //if (string.IsNullOrEmpty(term))
-            //    newEvents = await this.service.GetEventsAsync();
-            //else
-            //    newEvents = (await this.service.GetEventsAsync(term));
-            //ApplyEventIndexing(newEvents);
-            //this.Events = newEvents;
-            //ListDescription = string.IsNullOrEmpty(term) ? "All Events" : term;
-            //this.IsSearchEmpty = newEvents == null || !newEvents.Any();
+
         }
 
         private async void OnEventUpdated(EventUpdatedMessage message)
         {
-            //    var updatedEvents = (await this.service.GetEventsAsync());
-            //    ApplyEventIndexing(updatedEvents);
-            //    Device.BeginInvokeOnMainThread(() => this.Events = updatedEvents);
+
         }
 
         private void OnEventDeleted(EventDeletedMessage message)
         {
-            //var found = this.events.SingleOrDefault(c => c.Id == message.SEvent.Id);
-            //if (found != null)
-            //{
-            //    this.events.Remove(found);
-            //    this.IsSearchEmpty = !this.events.Any();
-            //    ApplyEventIndexing(this.events);
-            //}
+
         }
 
         private void OnCreateEvent() =>
@@ -270,10 +240,6 @@ namespace Staketracker.Core.ViewModels.Events
                 new PresentationContext<AuthReply>(authReply, PresentationMode.Edit, int.Parse(_event.Id)));
         }
 
-        //private void ShowAboutPage()
-        //{
-        //    this.navigationService.Navigate<AboutPageViewModel>();
-        //}
 
         private async Task OnSearch()
         {
@@ -289,11 +255,7 @@ namespace Staketracker.Core.ViewModels.Events
             if (_event == null)
                 return;
 
-            //bool result = await  DisplayAlert("Delete product", $"Are you sure you want to delete SEvent {SEvent.Name}?", "Yes", "No");
-            //if (!result)
-            //    return;
 
-            //     await this.service.RemoveEventAsync(SEvent);
         }
 
         private static void ApplyEventIndexing(IEnumerable<SEvent> events)
