@@ -84,7 +84,6 @@ namespace Staketracker.Core.ViewModels.Commitments
         {
         }
 
-
         private async Task OnSearch()
         {
             if (Device.Idiom != TargetIdiom.Phone)

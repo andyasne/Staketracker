@@ -125,18 +125,15 @@ namespace Staketracker.Core.ViewModels.Communication
                     userId = authReply.d.userId,
                     ID = primaryKey
 
-
                 };
                 jsonTextObj jto = new jsonTextObj(body);
                 PopulateControls(authReply, jto);
-
 
             }
 
             IsBusy = false;
 
         }
-
 
         internal async Task PopulateControls(AuthReply authReply, jsonTextObj jto)
         {
@@ -323,7 +320,6 @@ namespace Staketracker.Core.ViewModels.Communication
                 }
             }
         }
-
 
     }
 }

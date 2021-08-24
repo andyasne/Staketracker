@@ -25,7 +25,6 @@ namespace Staketracker.Core.ViewModels
     {
         public Boolean isDevelopmentMode = true;
 
-
         public IUserDialogs PageDialog = UserDialogs.Instance;
         public IApiManager ApiManager;
         private IApiService<IStaketrackerApi> staketrackerApi = new ApiService<IStaketrackerApi>(Config.StaketrackerApiUrl);
@@ -163,8 +162,6 @@ namespace Staketracker.Core.ViewModels
                 //  return null;
             }
         }
-
-
 
         protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {

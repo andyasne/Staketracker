@@ -74,7 +74,6 @@ namespace Staketracker.Core.ViewModels.Events
         private ObservableCollection<SEvent> eventsomers;
         private bool isSearchEmpty, isBusy;
 
-
         private Staketracker.Core.Models.Events.D selectedStakeholders, selectedStakeholdersDetail;
 
         public SEventsListViewModel(IMvxNavigationService navigationService)
@@ -240,7 +239,6 @@ namespace Staketracker.Core.ViewModels.Events
                 new PresentationContext<AuthReply>(authReply, PresentationMode.Edit, int.Parse(_event.Id)));
         }
 
-
         private async Task OnSearch()
         {
             if (Device.Idiom != TargetIdiom.Phone)
@@ -254,7 +252,6 @@ namespace Staketracker.Core.ViewModels.Events
         {
             if (_event == null)
                 return;
-
 
         }
 
