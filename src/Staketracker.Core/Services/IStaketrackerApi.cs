@@ -30,6 +30,9 @@ namespace Staketracker.Core
         [Post("/uat/mobilev1.asmx/addEvent")]
         Task<HttpResponseMessage> AddEvent([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
+        [Post("/uat/mobilev1.asmx/addCommunication")]
+        Task<HttpResponseMessage> AddCommunication([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
+
         [Post("/uat/mobilev1.asmx/getFormAndDropDownFieldValues")]
         Task<HttpResponseMessage> GetFormAndDropDownFieldValues([Body] FormFieldBody formFieldBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 

@@ -271,11 +271,11 @@ namespace Staketracker.Core.ViewModels.Communication
 
             AddEventsReply responseReply;
             jsonTextObj jsonTextObj = new jsonTextObj(pageFormValue);
-            HttpResponseMessage events = await ApiManager.AddEvent(jsonTextObj, authReply.d.sessionId);
+            HttpResponseMessage communication = await ApiManager.AddCommunication(jsonTextObj, authReply.d.sessionId);
 
-            if (events.IsSuccessStatusCode)
+            if (communication.IsSuccessStatusCode)
             {
-                var response = await events.Content.ReadAsStringAsync();
+                var response = await communication.Content.ReadAsStringAsync();
                 responseReply = await Task.Run(() => JsonConvert.DeserializeObject<AddEventsReply>(response));
 
                 if (responseReply.d.successful == true)
@@ -291,7 +291,7 @@ namespace Staketracker.Core.ViewModels.Communication
             }
             else
                 await PageDialog.AlertAsync("API Error While Saving Communication", "API Response Error", "Ok");
-            //  return null;
+
         }
         private async Task OnCommitEditOrder()
         {
