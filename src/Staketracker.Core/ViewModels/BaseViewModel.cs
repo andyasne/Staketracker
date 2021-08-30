@@ -131,7 +131,7 @@ namespace Staketracker.Core.ViewModels
 
                     if (d.InputType == "DateTime")
                     {
-                        validatableObj.Value = "Date(1464711387818)";
+                        validatableObj.Value = "/Date(1464711387818)/";
 
                     }
                     if (d.MandatoryField == true)
@@ -151,7 +151,7 @@ namespace Staketracker.Core.ViewModels
                         }
                     }
 
-                    _formContent.Add(d.Label, validatableObj);
+                    _formContent.Add(d.PrimaryKey.ToString() + "-" + d.Label, validatableObj);
 
                 }
                 FormContent = _formContent;
