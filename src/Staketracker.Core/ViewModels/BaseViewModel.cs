@@ -131,7 +131,7 @@ namespace Staketracker.Core.ViewModels
 
                     if (d.InputType == "DateTime")
                     {
-                        validatableObj.Value = "/Date(1464711387818)/";
+                        validatableObj.Value = "/Date(1619758800000)/";
 
                     }
                     if (d.MandatoryField == true)
