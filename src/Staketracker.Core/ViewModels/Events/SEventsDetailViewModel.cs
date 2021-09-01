@@ -114,37 +114,7 @@ namespace Staketracker.Core.ViewModels.Events
 
             UpdateTitle();
 
-            return;
-            // SEvent sEvent = null;
-            if (mode == PresentationMode.Create)
-            {
-                sEvent = new SEvent();
 
-                DraftSEvent = sEvent;
-                UpdateTitle();
-                InitializeEditData(sEvent);
-                return;
-            }
-
-            if (!string.IsNullOrEmpty(targetSEventId))
-            {
-                //     sEvent = await this.stkaeTrackerAPI.GetSEventAsync(this.targetSEventId);
-            }
-
-            if (sEvent == null)
-                return;
-
-            if (mode == PresentationMode.Edit)
-            {
-                targetSEvent = sEvent;
-                SEvent copy = sEvent.Copy();
-                DraftSEvent = copy;
-                InitializeEditData(copy);
-            }
-            else
-                sEvent = sEvent;
-
-            UpdateTitle();
         }
 
         private void UpdateTitle()

@@ -115,9 +115,6 @@
     <Compile Update="Pages\Dashboard\Top10TopicsDiscussedCard.xaml.cs">
       <DependentUpon>Top10TopicsDiscussedCard.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Pages\Events\EventsEditPage.xaml.cs">
-      <DependentUpon>EventsEditPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Pages\Events\EventDetailView.xaml.cs">
       <DependentUpon>EventDetailView.xaml</DependentUpon>
     </Compile>

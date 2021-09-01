@@ -16,9 +16,8 @@ namespace Staketracker.UI.Pages.Events
 
             if (Device.Idiom == TargetIdiom.Phone)
             {
-                this.detailView.PropertyChanged += this.HandleVendorDetailViewPropertyChanged;
-                this.editView = new EventsEditPage();
-                this.editView.PropertyChanged += this.HandleVendorEditViewPropertyChanged;
+                this.editView = new EventDetailView();
+
 
                 optionsToolbarItem = new ToolbarItem();
                 optionsToolbarItem.Text = "Layout";
@@ -52,68 +51,13 @@ namespace Staketracker.UI.Pages.Events
         private ContentView editView;
         private ToolbarItem optionsToolbarItem, checkToolbarItem, deleteToolbarItem;
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            return;
-
-            if (Device.Idiom != TargetIdiom.Phone)
-                return;
-
-            if (this.detailView.IsVisible)
-            {
-                if (!this.ToolbarItems.Contains(optionsToolbarItem))
-                    this.ToolbarItems.Add(optionsToolbarItem);
-            }
-
-            if (this.editView.IsVisible)
-            {
-                if (!this.ToolbarItems.Contains(checkToolbarItem))
-                    this.ToolbarItems.Add(checkToolbarItem);
-            }
-        }
 
         private void OptionsToolbarItem_Clicked(object sender, EventArgs e)
         {
             this.detailView.OpenPopup();
         }
 
-        private void HandleVendorDetailViewPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            return;
-            if (e.PropertyName == IsVisibleProperty.PropertyName)
-            {
-                if (this.detailView.IsVisible)
-                {
-                    if (!this.ToolbarItems.Contains(optionsToolbarItem))
-                        this.ToolbarItems.Add(optionsToolbarItem);
-                }
-                else
-                {
-                    if (this.ToolbarItems.Contains(optionsToolbarItem))
-                        this.ToolbarItems.Remove(optionsToolbarItem);
-                }
-            }
-        }
 
-        private void HandleVendorEditViewPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            return;
-            if (e.PropertyName == IsVisibleProperty.PropertyName)
-            {
-                if (this.editView?.IsVisible == true)
-                {
-                    this.detailView.ClosePopup();
-                    if (!this.ToolbarItems.Contains(checkToolbarItem))
-                        this.ToolbarItems.Add(checkToolbarItem);
-                }
-                else
-                {
-                    if (this.ToolbarItems.Contains(checkToolbarItem))
-                        this.ToolbarItems.Remove(checkToolbarItem);
-                }
-            }
-        }
     }
 
 }
