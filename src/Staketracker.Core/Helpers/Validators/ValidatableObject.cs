@@ -108,6 +108,8 @@ namespace Staketracker.Core.Validators
 
 
         public Boolean isSelectOne { get; set; }
+
+
         public Boolean isSelectMultiple { get; set; }
         public Models.FormAndDropDownField.DropdownValue SelectedItem
         {

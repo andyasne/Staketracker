@@ -282,6 +282,12 @@ namespace Staketracker.Core.ViewModels.Communication
                 {
                     inputValue.Value = _formContent.Value.ToString();
                 }
+
+                if (_formContent.Value.FormAndDropDownField.InputType == "DateTime")
+                {
+                    inputValue.Value = "/Date(1619758800000)/";
+                }
+
                 pageFormValue.InputFieldValues.Add(inputValue);
             }
 
