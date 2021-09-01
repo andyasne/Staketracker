@@ -34,7 +34,7 @@ namespace Staketracker.Core.ViewModels.Events
         private IMvxNavigationService navigationService;
         private SEvent targetSEvent, draftSEvent;
         private string targetSEventId;
-        public PresentationMode mode;
+
         private string title;
         private SEvent _sEvent;
 
@@ -64,23 +64,8 @@ namespace Staketracker.Core.ViewModels.Events
             }
         }
 
-        public PresentationMode Mode
-        {
-            get => mode;
-            private set
-            {
-                if (SetProperty(ref mode, value))
-                {
-                    RaisePropertyChanged(() => IsEditing);
-                    RaisePropertyChanged(() => IsReading);
-                }
-            }
-        }
 
-        public bool IsReading => targetSEvent != null && mode == PresentationMode.Read;
 
-        public bool IsEditing => draftSEvent != null &&
-                                 (mode == PresentationMode.Edit || mode == PresentationMode.Create);
 
         public string Title
         {
@@ -93,8 +78,7 @@ namespace Staketracker.Core.ViewModels.Events
         public IMvxCommand CancelCommand { get; }
         public IMvxCommand DeleteCommand { get; }
 
-        public AuthReply authReply;
-        public int primaryKey;
+
         private bool isBusy;
         public bool IsBusy
         {
@@ -245,87 +229,12 @@ namespace Staketracker.Core.ViewModels.Events
             return isValid;
         }
 
-        private EventFormValue eventFormValue;
-
-        //private void getFormValues()
-        //{
-        //    eventFormValue = new EventFormValue();
-        //    eventFormValue.InputFieldValues = new List<InputFieldValue>(FormContent.Count);
-        //    eventFormValue.UserId = authReply.d.userId;
-        //    eventFormValue.PrimaryKey = primaryKey.ToString();
-        //    eventFormValue.ProjectId = authReply.d.projectId;
-        //    eventFormValue.Type = "Event";
-
-        //    foreach (KeyValuePair<string, ValidatableObject<string>> _formContent in FormContent)
-        //    {
-        //        Staketracker.Core.Models.EventsFormValue.InputFieldValue inputValue = new InputFieldValue() { Value = _formContent.Value.ToString(), PrimaryKey = _formContent.Value.PrimaryKey };
-        //        eventFormValue.InputFieldValues.Add(inputValue);
-        //    }
-
-        //}
-
-        private void getFormValues(string type)
-        {
-            eventFormValue = new EventFormValue();
-            eventFormValue.InputFieldValues = new List<InputFieldValue>(FormContent.Count);
-            eventFormValue.UserId = authReply.d.userId;
-            if (mode == PresentationMode.Create)
-            {
-                eventFormValue.PrimaryKey = "";
-
-            }
-            else
-            {
-                eventFormValue.PrimaryKey = primaryKey.ToString();
-
-            }
-            eventFormValue.ProjectId = authReply.d.projectId;
-            eventFormValue.Type = type;
-
-            foreach (KeyValuePair<string, ValidatableObject<string>> _formContent in FormContent)
-            {
-                Staketracker.Core.Models.EventsFormValue.InputFieldValue inputValue = new InputFieldValue();
-                inputValue.PrimaryKey = _formContent.Value.PrimaryKey;
-
-                try
-                {
-                    if (_formContent.Value.isSelectOne)
-                    {
-                        if (_formContent.Value.SelectedItem == null)
-                        {
-                            inputValue.Value = null;
-                        }
-                        else
-                        {
-                            inputValue.Value = _formContent.Value.SelectedItem.PrimaryKey.ToString();
-
-                        }
-
-                    }
-                    else
-                    {
-                        inputValue.Value = _formContent.Value.ToString();
-                    }
-
-                    if (_formContent.Value.FormAndDropDownField.InputType == "DateTime")
-                    {
-                        inputValue.Value = "/Date(1619758800000)/";
-                    }
-                }
-                catch (Exception ex)
-                { }
-                eventFormValue.InputFieldValues.Add(inputValue);
-            }
-
-        }
-
-
 
         internal async Task saveEvent()
         {
 
             AddEventsReply eventsReply;
-            jsonTextObj jsonTextObj = new jsonTextObj(eventFormValue);
+            jsonTextObj jsonTextObj = new jsonTextObj(pageFormValue);
             HttpResponseMessage events = await ApiManager.AddEvent(jsonTextObj, authReply.d.sessionId);
 
             if (events.IsSuccessStatusCode)

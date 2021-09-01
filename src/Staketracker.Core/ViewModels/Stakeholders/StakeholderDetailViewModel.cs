@@ -37,7 +37,6 @@ namespace Staketracker.Core.ViewModels.Stakeholder
         private IMvxNavigationService navigationService;
         private Models.Stakeholders.Stakeholders targetStakeholder, draftStakeholder;
         private string targetStakeholderId;
-        public PresentationMode mode;
         private string title;
         private Models.Stakeholders.Stakeholders _stakeholder;
 
@@ -46,9 +45,7 @@ namespace Staketracker.Core.ViewModels.Stakeholder
         public IMvxCommand CancelCommand { get; }
         public IMvxCommand DeleteCommand { get; }
 
-        public AuthReply authReply;
 
-        public int primaryKey;
 
         private bool isBusy;
         public Models.Stakeholders.Stakeholders Stakeholder
@@ -77,18 +74,7 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             }
         }
 
-        public PresentationMode Mode
-        {
-            get => mode;
-            private set
-            {
-                if (SetProperty(ref mode, value))
-                {
-                    RaisePropertyChanged(() => IsEditing);
-                    RaisePropertyChanged(() => IsReading);
-                }
-            }
-        }
+
 
         public bool IsReading => targetStakeholder != null && mode == PresentationMode.Read;
 
@@ -191,66 +177,9 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             return isValid;
         }
 
-        private EventFormValue pageFormValue;
-
-        private void getFormValues(string type)
-        {
-            pageFormValue = new EventFormValue();
-            pageFormValue.InputFieldValues = new List<InputFieldValue>(FormContent.Count);
-            pageFormValue.UserId = authReply.d.userId;
-            if (mode == PresentationMode.Create)
-            {
-                pageFormValue.PrimaryKey = "";
-
-            }
-            else
-            {
-                pageFormValue.PrimaryKey = primaryKey.ToString();
-
-            }
-            pageFormValue.ProjectId = authReply.d.projectId;
-            pageFormValue.Type = type;
-
-            foreach (KeyValuePair<string, ValidatableObject<string>> _formContent in FormContent)
-            {
-                Staketracker.Core.Models.EventsFormValue.InputFieldValue inputValue = new InputFieldValue();
-                inputValue.PrimaryKey = _formContent.Value.PrimaryKey;
-
-                try
-                {
-
-                    if (_formContent.Value.isSelectOne)
-                    {
-                        if (_formContent.Value.SelectedItem == null)
-                        {
-                            inputValue.Value = null;
-                        }
-                        else
-                        {
-                            inputValue.Value = _formContent.Value.SelectedItem.PrimaryKey.ToString();
-
-                        }
-
-                    }
-                    else if (_formContent.Value.FormAndDropDownField.InputType == "DateTime")
-                    {
-                        inputValue.Value = "/Date(1619758800000)/";
-                    }
-                    else
-                    {
-                        inputValue.Value = _formContent.Value.ToString();
-                    }
 
 
-                }
-                catch (Exception ex)
-                {
 
-                }
-                pageFormValue.InputFieldValues.Add(inputValue);
-            }
-
-        }
 
         internal async Task save()
         {

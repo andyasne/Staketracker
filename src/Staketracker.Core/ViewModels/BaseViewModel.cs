@@ -3,6 +3,7 @@ using MvvmCross.ViewModels;
 using Newtonsoft.Json;
 using Staketracker.Core.Models;
 using Staketracker.Core.Models.ApiRequestBody;
+using Staketracker.Core.Models.EventsFormValue;
 using Staketracker.Core.Models.FieldsValue;
 using Staketracker.Core.Models.FormAndDropDownField;
 using Staketracker.Core.Services;
@@ -18,6 +19,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using PresentationMode = Staketracker.Core.Models.PresentationMode;
 
 namespace Staketracker.Core.ViewModels
 {
@@ -98,6 +100,88 @@ namespace Staketracker.Core.ViewModels
                 await PageDialog.AlertAsync("API Error While Assigning Value to UI Controls", "API Response Error", "Ok");
             //  return null;
         }
+        public EventFormValue pageFormValue;
+        public AuthReply authReply;
+
+        public int primaryKey;
+        public PresentationMode mode;
+        public bool IsReading => mode == PresentationMode.Read;
+
+        public bool IsEditing =>
+                                 (mode == PresentationMode.Edit || mode == PresentationMode.Create);
+        public PresentationMode Mode
+        {
+            get => mode;
+            set
+            {
+                if (SetProperty(ref mode, value))
+                {
+                    RaisePropertyChanged(() => IsEditing);
+                    RaisePropertyChanged(() => IsReading);
+                }
+            }
+        }
+
+        public void getFormValues(string type)
+        {
+            pageFormValue = new EventFormValue();
+            pageFormValue.InputFieldValues = new List<InputFieldValue>(FormContent.Count);
+            pageFormValue.UserId = authReply.d.userId;
+            if (mode == PresentationMode.Create)
+            {
+                pageFormValue.PrimaryKey = "";
+
+            }
+            else
+            {
+                pageFormValue.PrimaryKey = primaryKey.ToString();
+
+            }
+            pageFormValue.ProjectId = authReply.d.projectId;
+            pageFormValue.Type = type;
+
+            foreach (KeyValuePair<string, ValidatableObject<string>> _formContent in FormContent)
+            {
+                Staketracker.Core.Models.EventsFormValue.InputFieldValue inputValue = new InputFieldValue();
+                inputValue.PrimaryKey = _formContent.Value.PrimaryKey;
+
+                try
+                {
+
+                    if (_formContent.Value.isSelectOne)
+                    {
+                        if (_formContent.Value.SelectedItem == null)
+                        {
+                            inputValue.Value = null;
+                        }
+                        else
+                        {
+                            inputValue.Value = _formContent.Value.SelectedItem.PrimaryKey.ToString();
+
+                        }
+
+                    }
+                    else if (_formContent.Value.FormAndDropDownField.InputType == "DateTime")
+                    {
+                        inputValue.Value = "/Date(1619758800000)/";
+                    }
+                    else
+                    {
+                        inputValue.Value = _formContent.Value.ToString();
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+                pageFormValue.InputFieldValues.Add(inputValue);
+            }
+
+        }
+
+
         public async Task GetFormandDropDownFields(AuthReply authReply, string type)
         {
 
