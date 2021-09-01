@@ -26,6 +26,7 @@ namespace Staketracker.Core.Services
         Task<HttpResponseMessage> GetAllCommunications(APIRequestBody apiRequestBody, string sessionId);
 
         Task<HttpResponseMessage> AddEvent(jsonTextObj jsonTextObj, string sessionId);
+        Task<HttpResponseMessage> AddStakeholder(jsonTextObj jsonTextObj, string sessionId);
         Task<HttpResponseMessage> AddCommunication(jsonTextObj jsonTextObj, string sessionId);
 
         Task<HttpResponseMessage> GetGroupStakeholderDetails(jsonTextObj jsonTextObj, string sessionId);

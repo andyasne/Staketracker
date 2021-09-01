@@ -179,6 +179,14 @@ namespace Staketracker.Core.Services
 
         }
 
+        public async Task<HttpResponseMessage> AddStakeholder(jsonTextObj jsonTextObj, string sessionId)
+        {
+            var cts = new CancellationTokenSource();
+            var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).AddStakeholder(jsonTextObj, sessionId, cts.Token));
+            return await AddToRunningTasks(cts, task);
+
+        }
+
         public async Task<HttpResponseMessage> AddCommunication(jsonTextObj jsonTextObj, string sessionId)
         {
             var cts = new CancellationTokenSource();

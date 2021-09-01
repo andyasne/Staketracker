@@ -198,13 +198,55 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             pageFormValue = new EventFormValue();
             pageFormValue.InputFieldValues = new List<InputFieldValue>(FormContent.Count);
             pageFormValue.UserId = authReply.d.userId;
-            pageFormValue.PrimaryKey = primaryKey.ToString();
+            if (mode == PresentationMode.Create)
+            {
+                pageFormValue.PrimaryKey = "";
+
+            }
+            else
+            {
+                pageFormValue.PrimaryKey = primaryKey.ToString();
+
+            }
             pageFormValue.ProjectId = authReply.d.projectId;
             pageFormValue.Type = type;
 
             foreach (KeyValuePair<string, ValidatableObject<string>> _formContent in FormContent)
             {
-                Staketracker.Core.Models.EventsFormValue.InputFieldValue inputValue = new InputFieldValue() { Value = _formContent.Value.ToString(), PrimaryKey = _formContent.Value.PrimaryKey };
+                Staketracker.Core.Models.EventsFormValue.InputFieldValue inputValue = new InputFieldValue();
+                inputValue.PrimaryKey = _formContent.Value.PrimaryKey;
+
+                try
+                {
+
+                    if (_formContent.Value.isSelectOne)
+                    {
+                        if (_formContent.Value.SelectedItem == null)
+                        {
+                            inputValue.Value = null;
+                        }
+                        else
+                        {
+                            inputValue.Value = _formContent.Value.SelectedItem.PrimaryKey.ToString();
+
+                        }
+
+                    }
+                    else if (_formContent.Value.FormAndDropDownField.InputType == "DateTime")
+                    {
+                        inputValue.Value = "/Date(1619758800000)/";
+                    }
+                    else
+                    {
+                        inputValue.Value = _formContent.Value.ToString();
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+
+                }
                 pageFormValue.InputFieldValues.Add(inputValue);
             }
 
@@ -215,16 +257,16 @@ namespace Staketracker.Core.ViewModels.Stakeholder
 
             AddEventsReply responseReply;
             jsonTextObj jsonTextObj = new jsonTextObj(pageFormValue);
-            HttpResponseMessage events = await ApiManager.AddEvent(jsonTextObj, authReply.d.sessionId);
+            HttpResponseMessage stakeholder = await ApiManager.AddStakeholder(jsonTextObj, authReply.d.sessionId);
 
-            if (events.IsSuccessStatusCode)
+            if (stakeholder.IsSuccessStatusCode)
             {
-                var response = await events.Content.ReadAsStringAsync();
+                var response = await stakeholder.Content.ReadAsStringAsync();
                 responseReply = await Task.Run(() => JsonConvert.DeserializeObject<AddEventsReply>(response));
 
                 if (responseReply.d.successful == true)
                 {
-                    await PageDialog.AlertAsync("Stakeholder Saved Successfully", "Stakeholder Saved", "Ok");
+                    await PageDialog.AlertAsync(authReply.attachment.ToString() + " Saved Successfully", "Stakeholder Saved", "Ok");
                 }
                 else
                 {
@@ -243,11 +285,11 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             {
 
                 if (authReply.attachment.ToString() == "Groups")
-                    getFormValues(FormType.GroupedStakeholders);
+                    getFormValues("group");
                 else if (authReply.attachment.ToString() == "Individuals")
-                    getFormValues(FormType.IndividualStakeholders);
+                    getFormValues("individual");
                 else
-                    getFormValues(FormType.LandParcelStakeholders);
+                    getFormValues("landparcel");
 
 
                 save();
