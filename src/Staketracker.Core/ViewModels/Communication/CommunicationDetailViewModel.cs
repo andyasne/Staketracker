@@ -254,7 +254,7 @@ namespace Staketracker.Core.ViewModels.Communication
             pageFormValue = new EventFormValue();
             pageFormValue.InputFieldValues = new List<InputFieldValue>(FormContent.Count);
             pageFormValue.UserId = authReply.d.userId;
-            if (mode == PresentationMode.Read)
+            if (mode == PresentationMode.Create)
             {
                 pageFormValue.PrimaryKey = "";
 
