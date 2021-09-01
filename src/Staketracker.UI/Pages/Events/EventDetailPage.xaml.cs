@@ -28,7 +28,7 @@ namespace Staketracker.UI.Pages.Events
                 checkToolbarItem = new ToolbarItem();
                 checkToolbarItem.Text = "Save";
                 checkToolbarItem.IconImageSource = new FileImageSource() { File = "check" };
-                checkToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("OnDevelopmentCommand"));
+                checkToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("CommitCommand"));
 
             }
             else
