@@ -14,15 +14,7 @@
                       NavigationPage.HasNavigationBar="True"
              x:TypeArguments="viewModels:ForgetUserIdViewModel">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
-            <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
+
     <StackLayout  >
         <Grid>
             <Grid.RowDefinitions>
