@@ -272,26 +272,43 @@ namespace Staketracker.Core.ViewModels.Communication
                 Staketracker.Core.Models.EventsFormValue.InputFieldValue inputValue = new InputFieldValue();
                 inputValue.PrimaryKey = _formContent.Value.PrimaryKey;
 
-
-                if (_formContent.Value.isSelectOne)
+                try
                 {
-                    inputValue.Value = _formContent.Value.SelectedItem.PrimaryKey.ToString();
+
+                    if (_formContent.Value.isSelectOne)
+                    {
+                        if (_formContent.Value.SelectedItem == null)
+                        {
+                            inputValue.Value = null;
+                        }
+                        else
+                        {
+                            inputValue.Value = _formContent.Value.SelectedItem.PrimaryKey.ToString();
+
+                        }
+
+                    }
+                    else if (_formContent.Value.FormAndDropDownField.InputType == "DateTime")
+                    {
+                        inputValue.Value = "/Date(1619758800000)/";
+                    }
+                    else
+                    {
+                        inputValue.Value = _formContent.Value.ToString();
+                    }
+
 
                 }
-                else
+                catch (Exception ex)
                 {
-                    inputValue.Value = _formContent.Value.ToString();
-                }
 
-                if (_formContent.Value.FormAndDropDownField.InputType == "DateTime")
-                {
-                    inputValue.Value = "/Date(1619758800000)/";
                 }
-
                 pageFormValue.InputFieldValues.Add(inputValue);
             }
 
         }
+
+
 
         internal async Task save()
         {

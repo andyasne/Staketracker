@@ -247,22 +247,79 @@ namespace Staketracker.Core.ViewModels.Events
 
         private EventFormValue eventFormValue;
 
-        private void getFormValues()
+        //private void getFormValues()
+        //{
+        //    eventFormValue = new EventFormValue();
+        //    eventFormValue.InputFieldValues = new List<InputFieldValue>(FormContent.Count);
+        //    eventFormValue.UserId = authReply.d.userId;
+        //    eventFormValue.PrimaryKey = primaryKey.ToString();
+        //    eventFormValue.ProjectId = authReply.d.projectId;
+        //    eventFormValue.Type = "Event";
+
+        //    foreach (KeyValuePair<string, ValidatableObject<string>> _formContent in FormContent)
+        //    {
+        //        Staketracker.Core.Models.EventsFormValue.InputFieldValue inputValue = new InputFieldValue() { Value = _formContent.Value.ToString(), PrimaryKey = _formContent.Value.PrimaryKey };
+        //        eventFormValue.InputFieldValues.Add(inputValue);
+        //    }
+
+        //}
+
+        private void getFormValues(string type)
         {
             eventFormValue = new EventFormValue();
             eventFormValue.InputFieldValues = new List<InputFieldValue>(FormContent.Count);
             eventFormValue.UserId = authReply.d.userId;
-            eventFormValue.PrimaryKey = primaryKey.ToString();
+            if (mode == PresentationMode.Create)
+            {
+                eventFormValue.PrimaryKey = "";
+
+            }
+            else
+            {
+                eventFormValue.PrimaryKey = primaryKey.ToString();
+
+            }
             eventFormValue.ProjectId = authReply.d.projectId;
-            eventFormValue.Type = "Event";
+            eventFormValue.Type = type;
 
             foreach (KeyValuePair<string, ValidatableObject<string>> _formContent in FormContent)
             {
-                Staketracker.Core.Models.EventsFormValue.InputFieldValue inputValue = new InputFieldValue() { Value = _formContent.Value.ToString(), PrimaryKey = _formContent.Value.PrimaryKey };
+                Staketracker.Core.Models.EventsFormValue.InputFieldValue inputValue = new InputFieldValue();
+                inputValue.PrimaryKey = _formContent.Value.PrimaryKey;
+
+                try
+                {
+                    if (_formContent.Value.isSelectOne)
+                    {
+                        if (_formContent.Value.SelectedItem == null)
+                        {
+                            inputValue.Value = null;
+                        }
+                        else
+                        {
+                            inputValue.Value = _formContent.Value.SelectedItem.PrimaryKey.ToString();
+
+                        }
+
+                    }
+                    else
+                    {
+                        inputValue.Value = _formContent.Value.ToString();
+                    }
+
+                    if (_formContent.Value.FormAndDropDownField.InputType == "DateTime")
+                    {
+                        inputValue.Value = "/Date(1619758800000)/";
+                    }
+                }
+                catch (Exception ex)
+                { }
                 eventFormValue.InputFieldValues.Add(inputValue);
             }
 
         }
+
+
 
         internal async Task saveEvent()
         {
@@ -296,7 +353,7 @@ namespace Staketracker.Core.ViewModels.Events
             if (isFormValid())
             {
 
-                getFormValues();
+                getFormValues("Event");
 
                 saveEvent();
 
