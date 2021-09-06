@@ -19,11 +19,6 @@ namespace Staketracker.UI.Pages
         {
             base.OnAppearing();
 
-            if (Application.Current.MainPage is NavigationPage navigationPage)
-            {
-                navigationPage.BarTextColor = Color.White;
-                navigationPage.BarBackgroundColor = (Color)Application.Current.Resources["PrimaryColor"];
-            }
         }
     }
 }

@@ -127,6 +127,9 @@
     <Compile Update="Pages\ForgetUserId\ForgetUserIdPage.xaml.cs">
       <DependentUpon>ForgetUserIdPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\RV.xaml.cs">
+      <DependentUpon>RV.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\LoginRootPage.xaml.cs">
       <DependentUpon>LoginRootPage.xaml</DependentUpon>
     </Compile>
@@ -192,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Events\EventDetailView.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\RV.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\LoginRootPage.xaml">
       <Generator>MSBuild:Compile</Generator>

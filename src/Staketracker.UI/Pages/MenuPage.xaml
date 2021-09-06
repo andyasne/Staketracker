@@ -10,7 +10,7 @@
              Icon="hamburger.png">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout HeightRequest="40">
+            <StackLayout HeightRequest="60" Margin="10">
                 <StackLayout.IsVisible>
                     <OnPlatform x:TypeArguments="x:Boolean">
                         <On Platform="Android, iOS" Value="True" />
@@ -22,7 +22,18 @@
                         <On Platform="iOS" Value="0,20,0,0" />
                     </OnPlatform>
                 </StackLayout.Margin>
-                <Label Text="NavigationMenu" Margin="10" VerticalOptions="Center" FontSize="Large"></Label>
+                <Grid  >
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="Communication.png"  VerticalOptions="Start" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Start"  WidthRequest="50" HeightRequest="130" Margin="10"   />
+                    <Label Text="Alem Alemayehu" Margin="10" VerticalOptions="Center"  Grid.Row="0" Grid.Column="1" FontSize="Large"  ></Label>
+                </Grid>
             </StackLayout>
             <ListView x:Name="MenuList" ItemsSource="{Binding MenuItemList}" 
                       SelectedItem="{Binding SelectedMenuItem, Mode=TwoWay}">
@@ -34,7 +45,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout HeightRequest="50">
+                            <StackLayout HeightRequest="350">
                                 <Label Text="{Binding}" Margin="20,0,0,0" 
                                        VerticalOptions="CenterAndExpand"></Label>
                             </StackLayout>

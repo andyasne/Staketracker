@@ -9,6 +9,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                          xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
                     Title="StakeTracker" Icon="Dashboard" ios:Page.UseSafeArea="true" 
                         xmlns:cards="clr-namespace:Staketracker.UI.Pages.Dashboard"
+                     
                       x:TypeArguments="viewModels:DashboardViewModel">
     <ContentPage.Content>
 

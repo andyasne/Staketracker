@@ -1,8 +1,10 @@
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Staketracker.Core.Models;
 using Staketracker.Core.ViewModels.Dashboard;
 using Staketracker.Core.ViewModels.Events;
+using Staketracker.Core.ViewModels.Home;
 using Staketracker.Core.ViewModels.Login;
 using Staketracker.Core.ViewModels.TwoStepVerification;
 using System;
@@ -20,9 +22,13 @@ namespace Staketracker.Core.ViewModels.Menu
             _navigationService = navigationService;
             MenuItemList = new MvxObservableCollection<string>()
             {
-                "Dashboard",
-                "Events",
-                "Login"
+                "Project Team",
+                "Topics",
+                "Settings",
+                "Help",
+                "Sign Out",
+                "Test",
+
             };
 
             ShowDetailPageAsyncCommand = new MvxAsyncCommand(ShowDetailPageAsync);
@@ -44,18 +50,22 @@ namespace Staketracker.Core.ViewModels.Menu
             // Implement your logic here.
             switch (SelectedMenuItem)
             {
-                case "Dashboard":
-                    await _navigationService.Navigate<DashboardViewModel>();
+                case "Project Team":
+                    await _navigationService.Navigate<HomeViewModel>();
                     break;
-                case "Login":
+                case "Sign Out":
                     await _navigationService.Navigate<LoginViewModel>();
                     break;
-                case "Events":
+                case "Topics":
                     await _navigationService.Navigate<SEventsListViewModel>();
                     break;
-                case "Two Step Verification":
-                    await _navigationService.Navigate<TwoStepVerificationViewModel>();
+                case "Test":
+                    {
+                        _navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(
+                   new PresentationContext<AuthReply>(new AuthReply() { }, Models.PresentationMode.Create));
+                    }
                     break;
+
                 default:
                     break;
             }
