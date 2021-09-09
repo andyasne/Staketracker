@@ -4,8 +4,10 @@ using MvvmCross.ViewModels;
 using Staketracker.Core.Models;
 using Staketracker.Core.ViewModels.Dashboard;
 using Staketracker.Core.ViewModels.Events;
+using Staketracker.Core.ViewModels.ForgetPassword;
 using Staketracker.Core.ViewModels.Home;
 using Staketracker.Core.ViewModels.Login;
+using Staketracker.Core.ViewModels.Settings;
 using Staketracker.Core.ViewModels.TwoStepVerification;
 using System;
 using System.Collections.ObjectModel;
@@ -56,8 +58,8 @@ namespace Staketracker.Core.ViewModels.Menu
                 case "Sign Out":
                     await _navigationService.Navigate<LoginViewModel>();
                     break;
-                case "Topics":
-                    await _navigationService.Navigate<SEventsListViewModel>();
+                case "Settings":
+                    await _navigationService.Navigate<SettingsViewModel>();
                     break;
                 case "Test":
                     {
