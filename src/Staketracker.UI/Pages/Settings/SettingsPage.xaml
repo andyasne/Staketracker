@@ -26,9 +26,19 @@
 
             <ScrollView Grid.Row="1">
                 <StackLayout Orientation="Vertical" Padding="30,0,30,0" VerticalOptions="CenterAndExpand" Spacing="1">
+                    <Label Text="Settings" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
+                    </Label>
+                   
+                    <ListView x:Name="MenuList"  >
+                        <ListView.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Swith Project</x:String>
+                                <x:String>Change Password</x:String>
+                                <x:String>Language</x:String>
 
-                    <Label Text="Settings"/>
-
+                            </x:Array>
+                        </ListView.ItemsSource>
+                    </ListView>
 
                 </StackLayout>
             </ScrollView>
