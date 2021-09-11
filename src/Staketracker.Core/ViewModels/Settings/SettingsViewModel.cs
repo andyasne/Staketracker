@@ -26,6 +26,7 @@ namespace Staketracker.Core.ViewModels.Settings
 
 
         public ICommand SubmitForgetPasswordCommand { get; set; }
+        public ICommand OnDevelopmentCommand { get; set; }
 
         public SettingsViewModel(IMvxNavigationService navigationService)
         {
@@ -33,6 +34,11 @@ namespace Staketracker.Core.ViewModels.Settings
             authReply = new AuthReply();
             _navigationService = navigationService;
             SubmitForgetPasswordCommand = new Command(SubmitForgetUserId);
+            OnDevelopmentCommand = new Command(() =>
+            {
+                OnDevelopment().Start();
+            });
+
 
         }
 
