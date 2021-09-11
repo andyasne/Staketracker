@@ -1,4 +1,4 @@
-namespace Staketracker.Core.ViewModels.Settings
+namespace Staketracker.Core.ViewModels.Language
 {
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
@@ -6,7 +6,6 @@ namespace Staketracker.Core.ViewModels.Settings
     using Staketracker.Core.Models;
     using Staketracker.Core.Validators;
     using Staketracker.Core.Validators.Rules;
-    using Staketracker.Core.ViewModels.Language;
     using Staketracker.Core.ViewModels.Root;
     using Staketracker.Core.ViewModels.TwoStepVerification;
     using System;
@@ -16,7 +15,7 @@ namespace Staketracker.Core.ViewModels.Settings
     using System.Windows.Input;
     using Xamarin.Forms;
 
-    public class SettingsViewModel : BaseViewModel
+    public class LanguageViewModel : BaseViewModel
     {
         private string email;
         private AuthReply authReply;
@@ -27,25 +26,12 @@ namespace Staketracker.Core.ViewModels.Settings
 
 
         public ICommand SubmitForgetPasswordCommand { get; set; }
-        public ICommand OnDevelopmentCommand { get; set; }
-        public ICommand ChangeLanguageCommand { get; set; }
 
-        public SettingsViewModel(IMvxNavigationService navigationService)
+        public LanguageViewModel(IMvxNavigationService navigationService)
         {
             AddValidationRules();
             authReply = new AuthReply();
             _navigationService = navigationService;
-            SubmitForgetPasswordCommand = new Command(SubmitForgetUserId);
-            ChangeLanguageCommand = new Command(() =>
-            {
-                _navigationService.Navigate<LanguageViewModel>();
-
-            });
-
-            OnDevelopmentCommand = new Command(() =>
-            {
-                OnDevelopment().Start();
-            });
 
 
         }
