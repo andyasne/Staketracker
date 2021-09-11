@@ -26,19 +26,30 @@
 
             <ScrollView Grid.Row="1">
                 <StackLayout Orientation="Vertical" Padding="30,0,30,0" VerticalOptions="CenterAndExpand" Spacing="1">
-                    <Label Text="Settings" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
+                    <Label Text="Settings" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold"  >
                     </Label>
-                   
-                    <ListView x:Name="MenuList"  >
-                        <ListView.ItemsSource>
-                            <x:Array Type="{x:Type x:String}">
-                                <x:String>Swith Project</x:String>
-                                <x:String>Change Password</x:String>
-                                <x:String>Language</x:String>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="switch_project.png"     Grid.Row="0" Grid.Column="0"  WidthRequest="25" HeightRequest="25"  Margin="10,10,10,0"   />
+                        <telerikInput:RadButton   HorizontalContentAlignment="Start"  HeightRequest="25" Text="Swith Projnect"   Grid.Row="0" Grid.Column="1"  Command="{Binding OnDevelopmentCommand}" Style="{StaticResource SecondaryActionButtonStyle}" FontAttributes="None" />
+                        <Image Source="change_password.png"     Grid.Row="1" Grid.Column="0"  WidthRequest="25" HeightRequest="25"  Margin="10,10,10,0"   />
+                        <telerikInput:RadButton   HorizontalContentAlignment="Start"  HeightRequest="25" Text="Change Password"   Grid.Row="1" Grid.Column="1"  Command="{Binding OnDevelopmentCommand}" Style="{StaticResource SecondaryActionButtonStyle}" FontAttributes="None" />
+                        <Image Source="lang.png"     Grid.Row="2" Grid.Column="0"  WidthRequest="25" HeightRequest="25"  Margin="10,10,10,0"   />
+                        <telerikInput:RadButton   HorizontalContentAlignment="Start"  VerticalOptions="CenterAndExpand" HeightRequest="25" Text="Language"   Grid.Row="2" Grid.Column="1"  Command="{Binding OnDevelopmentCommand}" Style="{StaticResource SecondaryActionButtonStyle}" FontAttributes="None" />
 
-                            </x:Array>
-                        </ListView.ItemsSource>
-                    </ListView>
+
+                    </Grid>
+
+
 
                 </StackLayout>
             </ScrollView>

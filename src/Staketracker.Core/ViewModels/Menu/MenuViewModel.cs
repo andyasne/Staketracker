@@ -7,6 +7,7 @@ using Staketracker.Core.ViewModels.Events;
 using Staketracker.Core.ViewModels.ForgetPassword;
 using Staketracker.Core.ViewModels.Home;
 using Staketracker.Core.ViewModels.Login;
+using Staketracker.Core.ViewModels.Root;
 using Staketracker.Core.ViewModels.Settings;
 using Staketracker.Core.ViewModels.TwoStepVerification;
 using System;
@@ -59,6 +60,8 @@ namespace Staketracker.Core.ViewModels.Menu
                     await _navigationService.Navigate<LoginViewModel>();
                     break;
                 case "Settings":
+
+                    //await _navigationService.Navigate<ForgetPasswordRootViewModel>();
                     await _navigationService.Navigate<SettingsViewModel>();
                     break;
                 case "Test":
