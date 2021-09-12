@@ -61,6 +61,12 @@ namespace Staketracker.Core.ViewModels.Menu
                 case "Settings":
                     await _navigationService.Navigate<SettingsViewModel>();
                     break;
+                case "Test":
+                    {
+                        _navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(
+                   new PresentationContext<AuthReply>(new AuthReply() { }, Models.PresentationMode.Create));
+                    }
+                    break;
 
                 default:
                     break;
