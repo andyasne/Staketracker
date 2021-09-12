@@ -1,4 +1,4 @@
-namespace Staketracker.Core.ViewModels.Settings
+namespace Staketracker.Core.ViewModels.ChangePassword
 {
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
@@ -6,10 +6,7 @@ namespace Staketracker.Core.ViewModels.Settings
     using Staketracker.Core.Models;
     using Staketracker.Core.Validators;
     using Staketracker.Core.Validators.Rules;
-    using Staketracker.Core.ViewModels.ChangePassword;
-    using Staketracker.Core.ViewModels.Language;
     using Staketracker.Core.ViewModels.Root;
-    using Staketracker.Core.ViewModels.SwitchProject;
     using Staketracker.Core.ViewModels.TwoStepVerification;
     using System;
     using System.Collections.Generic;
@@ -18,7 +15,7 @@ namespace Staketracker.Core.ViewModels.Settings
     using System.Windows.Input;
     using Xamarin.Forms;
 
-    public class SettingsViewModel : BaseViewModel
+    public class ChangePasswordViewModel : BaseViewModel
     {
         private string email;
         private AuthReply authReply;
@@ -29,38 +26,12 @@ namespace Staketracker.Core.ViewModels.Settings
 
 
         public ICommand SubmitForgetPasswordCommand { get; set; }
-        public ICommand OnDevelopmentCommand { get; set; }
-        public ICommand ChangeLanguageCommand { get; set; }
-        public ICommand SwitchProjectCommand { get; set; }
-        public ICommand ChangePasswordCommand { get; set; }
 
-        public SettingsViewModel(IMvxNavigationService navigationService)
+        public ChangePasswordViewModel(IMvxNavigationService navigationService)
         {
             AddValidationRules();
             authReply = new AuthReply();
             _navigationService = navigationService;
-            SubmitForgetPasswordCommand = new Command(SubmitForgetUserId);
-            ChangePasswordCommand = new Command(() =>
-            {
-                _navigationService.Navigate<ChangePasswordViewModel>();
-
-            });
-            ChangeLanguageCommand = new Command(() =>
-            {
-                _navigationService.Navigate<LanguageViewModel>();
-
-            });
-
-            SwitchProjectCommand = new Command(() =>
-            {
-                _navigationService.Navigate<SwitchProjectViewModel>();
-
-            });
-
-            OnDevelopmentCommand = new Command(() =>
-            {
-                OnDevelopment().Start();
-            });
 
 
         }
