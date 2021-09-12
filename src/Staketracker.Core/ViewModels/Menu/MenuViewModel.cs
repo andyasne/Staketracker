@@ -29,8 +29,7 @@ namespace Staketracker.Core.ViewModels.Menu
                 "Topics",
                 "Settings",
                 "Help",
-                "Sign Out",
-                "Test",
+                "Sign Out"
 
             };
 
@@ -60,15 +59,7 @@ namespace Staketracker.Core.ViewModels.Menu
                     await _navigationService.Navigate<LoginViewModel>();
                     break;
                 case "Settings":
-
-                    //await _navigationService.Navigate<ForgetPasswordRootViewModel>();
                     await _navigationService.Navigate<SettingsViewModel>();
-                    break;
-                case "Test":
-                    {
-                        _navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(
-                   new PresentationContext<AuthReply>(new AuthReply() { }, Models.PresentationMode.Create));
-                    }
                     break;
 
                 default:

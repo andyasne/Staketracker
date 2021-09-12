@@ -35,6 +35,7 @@
                                                      SelectionMode="Single" >
 
                     </telerikInput:RadComboBox>
+
                     <Label    Style="{StaticResource SubtitleLabelStyle}"     VerticalTextAlignment="Start" VerticalOptions="Start"  Text="Project" HorizontalTextAlignment="End"  HorizontalOptions="StartAndExpand" />
 
                     <telerikInput:RadComboBox
