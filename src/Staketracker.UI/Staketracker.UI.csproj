@@ -127,6 +127,9 @@
     <Compile Update="Pages\ForgetUserId\ForgetUserIdPage.xaml.cs">
       <DependentUpon>ForgetUserIdPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\SwitchProject\SwitchProject.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
     <Compile Update="Pages\Language\Language.xaml.cs">
       <DependentUpon>Lanugage</DependentUpon>
     </Compile>
