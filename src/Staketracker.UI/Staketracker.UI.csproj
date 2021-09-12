@@ -130,6 +130,9 @@
     <Compile Update="Pages\ChangePassword\ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\UserProfile\UserProfile.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
     <Compile Update="Pages\SwitchProject\SwitchProject.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>

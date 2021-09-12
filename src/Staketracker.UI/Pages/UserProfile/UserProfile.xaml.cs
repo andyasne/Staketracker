@@ -5,18 +5,17 @@ using MvvmCross.Presenters.Attributes;
 using MvvmCross.ViewModels;
 using Staketracker.Core.ViewModels.ForgetPassword;
 using Staketracker.Core.ViewModels.ForgetUserId;
-using Staketracker.Core.ViewModels.Language;
-using Staketracker.Core.ViewModels.Login;
 using Staketracker.Core.ViewModels.UserProfile;
+using Staketracker.Core.ViewModels.Login;
 using Xamarin.Forms;
 
 namespace Staketracker.UI.Pages
 {
     [MvxContentPagePresentation(WrapInNavigationPage = true)]
 
-    public partial class LanguagePage : MvxContentPage<LanguageViewModel>
+    public partial class UserProfilePage : MvxContentPage<UserProfileViewModel>
     {
-        public LanguagePage()
+        public UserProfilePage()
         {
             InitializeComponent();
 

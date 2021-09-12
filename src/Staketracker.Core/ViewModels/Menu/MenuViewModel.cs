@@ -10,15 +10,19 @@ using Staketracker.Core.ViewModels.Login;
 using Staketracker.Core.ViewModels.Root;
 using Staketracker.Core.ViewModels.Settings;
 using Staketracker.Core.ViewModels.TwoStepVerification;
+using Staketracker.Core.ViewModels.UserProfile;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels.Menu
 {
     public class MenuViewModel : BaseViewModel
     {
+        public ICommand UserProfileCommand { get; set; }
+
 
         public MenuViewModel(IMvxNavigationService navigationService)
         {
@@ -34,6 +38,19 @@ namespace Staketracker.Core.ViewModels.Menu
             };
 
             ShowDetailPageAsyncCommand = new MvxAsyncCommand(ShowDetailPageAsync);
+            UserProfileCommand = new Command(OpenUserProfile);
+
+
+        }
+
+        private async void OpenUserProfile()
+        {
+            MasterDetailPage masterDetailRootPage = (MasterDetailPage)Application.Current.MainPage;
+            masterDetailRootPage.IsPresented = false;
+
+            await _navigationService.Navigate<UserProfileViewModel>();
+
+
         }
 
         readonly IMvxNavigationService _navigationService;
@@ -60,6 +77,12 @@ namespace Staketracker.Core.ViewModels.Menu
                     break;
                 case "Settings":
                     await _navigationService.Navigate<SettingsViewModel>();
+                    break;
+                case "Test":
+                    {
+                        _navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(
+                   new PresentationContext<AuthReply>(new AuthReply() { }, Models.PresentationMode.Create));
+                    }
                     break;
 
                 default:

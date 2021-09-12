@@ -40,7 +40,7 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Image Source="switch_project.png"     Grid.Row="0" Grid.Column="0"  WidthRequest="25" HeightRequest="25"  Margin="10,10,10,0"   />
-                        <telerikInput:RadButton   HorizontalContentAlignment="Start"  HeightRequest="25" Text="Swith Project"   Grid.Row="0" Grid.Column="1"  Command="{Binding SwitchProjectCommand}" Style="{StaticResource SecondaryActionButtonStyle}" FontAttributes="None" />
+                        <telerikInput:RadButton   HorizontalContentAlignment="  Start"  HeightRequest="25" Text="Swith Project"   Grid.Row="0" Grid.Column="1"  Command="{Binding SwitchProjectCommand}" Style="{StaticResource SecondaryActionButtonStyle}" FontAttributes="None" />
                         <Image Source="change_password.png"     Grid.Row="1" Grid.Column="0"  WidthRequest="25" HeightRequest="25"  Margin="10,10,10,0"   />
                         <telerikInput:RadButton   HorizontalContentAlignment="Start"  HeightRequest="25" Text="Change Password"   Grid.Row="1" Grid.Column="1"  Command="{Binding ChangePasswordCommand}" Style="{StaticResource SecondaryActionButtonStyle}" FontAttributes="None" />
                         <Image Source="lang.png"     Grid.Row="2" Grid.Column="0"  WidthRequest="25" HeightRequest="25"  Margin="10,10,10,0"   />

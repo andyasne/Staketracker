@@ -6,8 +6,8 @@
              xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Menu;assembly=Staketracker.Core"
              x:TypeArguments="viewModels:MenuViewModel"
              x:Name="MainContent"
-             xmlns:behaviors="clr-namespace:Staketracker.Core.Behaviors;assembly=Staketracker.Core"
-             Icon="hamburger.png">
+             xmlns:behaviors="clr-namespace:Staketracker.Core.Behaviors;assembly=Staketracker.Core" xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+                      Icon="hamburger.png">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout HeightRequest="60" Margin="10">
@@ -32,7 +32,8 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Image Source="Communication.png"  VerticalOptions="Start" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Start"  WidthRequest="50" HeightRequest="130" Margin="10"   />
-                    <Label Text="Alem Alemayehu" Margin="10" VerticalOptions="Center"  Grid.Row="0" Grid.Column="1" FontSize="Large"  ></Label>
+                    <telerikInput:RadButton   HorizontalContentAlignment="Start"    Text="Alem Ayele"  Margin="10" VerticalOptions="Center"  Grid.Row="0" Grid.Column="1" FontSize="Large" Command="{Binding UserProfileCommand}" Style="{StaticResource SecondaryActionButtonStyle}" FontAttributes="None" />
+
                 </Grid>
             </StackLayout>
             <ListView x:Name="MenuList" ItemsSource="{Binding MenuItemList}" 
