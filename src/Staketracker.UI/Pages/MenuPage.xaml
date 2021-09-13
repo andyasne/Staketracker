@@ -31,7 +31,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image Source="Communication.png"  VerticalOptions="Start" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Start"  WidthRequest="50" HeightRequest="130" Margin="10"   />
+                    <Image Source="man.png"  VerticalOptions="Start" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Start"  WidthRequest="70" HeightRequest="130" Margin="10"   />
                     <telerikInput:RadButton   HorizontalContentAlignment="Start"    Text="Alem Ayele"  Margin="10" VerticalOptions="Center"  Grid.Row="0" Grid.Column="1" FontSize="Large" Command="{Binding UserProfileCommand}" Style="{StaticResource SecondaryActionButtonStyle}" FontAttributes="None" />
 
                 </Grid>
