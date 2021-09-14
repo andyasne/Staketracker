@@ -10,50 +10,44 @@
                       Icon="hamburger.png">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout HeightRequest="60" Margin="10">
-                <StackLayout.IsVisible>
-                    <OnPlatform x:TypeArguments="x:Boolean">
-                        <On Platform="Android, iOS" Value="True" />
-                        <On Platform="UWP" Value="False" />
-                    </OnPlatform>
-                </StackLayout.IsVisible>
-                <StackLayout.Margin>
-                    <OnPlatform x:TypeArguments="Thickness">
-                        <On Platform="iOS" Value="0,20,0,0" />
-                    </OnPlatform>
-                </StackLayout.Margin>
-                <Grid  >
+            <StackLayout  Margin="10">
 
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50" />
+
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Image Source="man.png"  VerticalOptions="Start" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Start"  WidthRequest="70" HeightRequest="130" Margin="10"   />
                     <telerikInput:RadButton   HorizontalContentAlignment="Start"    Text="Alem Ayele"  Margin="10" VerticalOptions="Center"  Grid.Row="0" Grid.Column="1" FontSize="Large" Command="{Binding UserProfileCommand}" Style="{StaticResource SecondaryActionButtonStyle}" FontAttributes="None" />
+                    <!--<telerikInput:RadButton   HorizontalContentAlignment="Start"    Text="Alem"  Margin="10" VerticalOptions="Center"  Grid.Row="0" Grid.Column="1" FontSize="Large" Command="{Binding UserProfileCommand}" Style="{StaticResource SecondaryActionButtonStyle}" FontAttributes="None" />-->
+
+                    <Image Source="projectTeam.png"     Grid.Row="1" Grid.Column="0"  WidthRequest="25" HeightRequest="25"  Margin="10,10,10,0"   />
+                    <telerikInput:RadButton   HorizontalContentAlignment="  Start"  HeightRequest="25" Text= "Project Team"  Grid.Row="1" Grid.Column="1"  Command="{Binding ProjectTeamCommand}" Style="{StaticResource SecondaryActionButtonStyle}" FontAttributes="None" />
+                    <Image Source="topics.png"     Grid.Row="2" Grid.Column="0"  WidthRequest="25" HeightRequest="25"  Margin="10,10,10,0"   />
+                    <telerikInput:RadButton   HorizontalContentAlignment="Start"  HeightRequest="25" Text="Topics"  Grid.Row="2" Grid.Column="1"  Command="{Binding TopicsCommand}" Style="{StaticResource SecondaryActionButtonStyle}" FontAttributes="None" />
+                    <Image Source="settings.png"     Grid.Row="3" Grid.Column="0"  WidthRequest="25" HeightRequest="25"  Margin="10,10,10,0"   />
+                    <telerikInput:RadButton   HorizontalContentAlignment="Start"  VerticalOptions="Center" HeightRequest="25" Text=  "Settings"  Grid.Row="3" Grid.Column="1"  Command="{Binding SettingsCommand}" Style="{StaticResource SecondaryActionButtonStyle}"  FontAttributes="None" />
+                    <Image Source="help.png"     Grid.Row="4" Grid.Column="0"  WidthRequest="25" HeightRequest="25"  Margin="10,10,10,0"   />
+                    <telerikInput:RadButton   HorizontalContentAlignment="Start"  VerticalOptions="CenterAndExpand" HeightRequest="25" Text=  "Help"  Grid.Row="4" Grid.Column="1"  Command="{Binding HelpCommand}" Style="{StaticResource SecondaryActionButtonStyle}" FontAttributes="None" />
+                    <Image Source="signOut.png"     Grid.Row="5" Grid.Column="0"  WidthRequest="25" HeightRequest="25"  Margin="10,10,10,0"   />
+                    <telerikInput:RadButton   HorizontalContentAlignment="Start"  VerticalOptions="CenterAndExpand" HeightRequest="25" Text= "Sign Out"  Grid.Row="5" Grid.Column="1"  Command="{Binding SignOutCommand}" Style="{StaticResource SecondaryActionButtonStyle}" FontAttributes="None" />
+
 
                 </Grid>
             </StackLayout>
-            <ListView x:Name="MenuList" ItemsSource="{Binding MenuItemList}" 
-                      SelectedItem="{Binding SelectedMenuItem, Mode=TwoWay}">
-                <ListView.Behaviors>
-                    <behaviors:EventToCommandBehavior EventName="ItemSelected" Command="{Binding BindingContext.DataContext.ShowDetailPageAsyncCommand, 
-                            Source={x:Reference MainContent}}">
-                    </behaviors:EventToCommandBehavior>
-                </ListView.Behaviors>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout HeightRequest="350">
-                                <Label Text="{Binding}" Margin="20,0,0,0" 
-                                       VerticalOptions="CenterAndExpand"></Label>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+
+
+
         </StackLayout>
     </ContentPage.Content>
 </views:MvxContentPage>

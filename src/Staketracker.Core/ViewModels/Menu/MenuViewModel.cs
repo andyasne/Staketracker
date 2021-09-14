@@ -23,22 +23,41 @@ namespace Staketracker.Core.ViewModels.Menu
     {
         public ICommand UserProfileCommand { get; set; }
 
-
+        public ICommand ProjectTeamCommand { get; set; }
+        public ICommand TopicsCommand { get; set; }
+        public ICommand SettingsCommand { get; set; }
+        public ICommand HelpCommand { get; set; }
+        public ICommand SignOutCommand { get; set; }
         public MenuViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
-            MenuItemList = new MvxObservableCollection<string>()
-            {
-                "Project Team",
-                "Topics",
-                "Settings",
-                "Help",
-                "Sign Out"
+            SettingsCommand = new Command(OpenSettingsPage);
 
-            };
-
-            ShowDetailPageAsyncCommand = new MvxAsyncCommand(ShowDetailPageAsync);
             UserProfileCommand = new Command(OpenUserProfile);
+
+            ProjectTeamCommand = new Command(() =>
+            {
+                OnDevelopment().Start();
+
+
+            });
+            TopicsCommand = new Command(() =>
+            {
+                OnDevelopment().Start();
+
+
+            });
+
+            SettingsCommand = new Command(OpenSettingsPage);
+
+            HelpCommand = new Command(() =>
+            {
+                OnDevelopment().Start();
+
+
+            });
+            SignOutCommand = new Command(SignOut);
+
 
 
         }
@@ -55,39 +74,15 @@ namespace Staketracker.Core.ViewModels.Menu
 
         readonly IMvxNavigationService _navigationService;
 
-        public IMvxAsyncCommand ShowDetailPageAsyncCommand { get; private set; }
 
-        private ObservableCollection<string> _menuItemList;
-        public ObservableCollection<string> MenuItemList
+
+        private async void OpenSettingsPage()
         {
-            get => _menuItemList;
-            set => SetProperty(ref _menuItemList, value);
-        }
+            //MasterDetailPage masterDetailRootPage = (MasterDetailPage)Application.Current.MainPage;
+            //masterDetailRootPage.IsPresented = false;
 
-        private async Task ShowDetailPageAsync()
-        {
-            // Implement your logic here.
-            switch (SelectedMenuItem)
-            {
-                case "Project Team":
-                    await _navigationService.Navigate<HomeViewModel>();
-                    break;
-                case "Sign Out":
-                    await _navigationService.Navigate<LoginViewModel>();
-                    break;
-                case "Settings":
-                    await _navigationService.Navigate<SettingsViewModel>();
-                    break;
-                case "Test":
-                    {
-                        _navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(
-                   new PresentationContext<AuthReply>(new AuthReply() { }, Models.PresentationMode.Create));
-                    }
-                    break;
+            await _navigationService.Navigate<SettingsViewModel>();
 
-                default:
-                    break;
-            }
 
             if (Application.Current.MainPage is MasterDetailPage masterDetailPage)
             {
@@ -100,11 +95,25 @@ namespace Staketracker.Core.ViewModels.Menu
             }
         }
 
-        private string _selectedMenuItem;
-        public string SelectedMenuItem
+        private async void SignOut()
         {
-            get => _selectedMenuItem;
-            set => SetProperty(ref _selectedMenuItem, value);
+            MasterDetailPage masterDetailRootPage = (MasterDetailPage)Application.Current.MainPage;
+            masterDetailRootPage.IsPresented = false;
+
+            await _navigationService.Navigate<LoginViewModel>();
+
+
+            //if (Application.Current.MainPage is MasterDetailPage masterDetailPage)
+            //{
+            //    masterDetailPage.IsPresented = false;
+            //}
+            //else if (Application.Current.MainPage is NavigationPage navigationPage
+            //         && navigationPage.CurrentPage is MasterDetailPage nestedMasterDetail)
+            //{
+            //    nestedMasterDetail.IsPresented = false;
+            //}
         }
+
     }
+
 }
