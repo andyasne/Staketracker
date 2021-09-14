@@ -22,15 +22,14 @@
             <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ScrollView Padding="10" >
     <StackLayout  >
         <Grid RowSpacing="2">
             <Grid.RowDefinitions >
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="500" />
-                <RowDefinition Height="*" />
+               
 
 
             </Grid.RowDefinitions>
@@ -40,7 +39,7 @@
                 <ColumnDefinition Width="*"/>
 
             </Grid.ColumnDefinitions>
-            <Image Source="switch_project.png" BackgroundColor="Black" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"   />
+            <Image Source="user.png"  Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"   />
 
             <StackLayout    Grid.Row="0" Grid.Column="1"  Grid.ColumnSpan="2" >
                 <Label  Text="Social Title" Style="{StaticResource FormSubtitleLabelStyle}"  Margin="{StaticResource itemSpacing}" />
@@ -59,7 +58,7 @@
             </StackLayout>
             <StackLayout   Grid.Row="1" Grid.Column="1"  Grid.ColumnSpan="2" >
                 <Label  Text="Full Name" Style="{StaticResource FormSubtitleLabelStyle}"    />
-                <telerikInput:RadEntry    Style="{StaticResource LoginEntryStyle}"    > </telerikInput:RadEntry>
+                <telerikInput:RadEntry    Style="{StaticResource LoginEntryStyle}"    ></telerikInput:RadEntry>
             </StackLayout>
 
             <StackLayout    Grid.Row="2" Grid.Column="1"  Grid.ColumnSpan="2"  >
@@ -73,8 +72,8 @@
                 </Frame>
 
             </StackLayout>
-
-            <ScrollView Grid.Row="4"  Grid.Column="0" Grid.ColumnSpan="3"  >
+        </Grid>
+        <!--<ScrollView  HeightRequest="500"  >-->
                 <StackLayout >
                     <StackLayout   Margin="{StaticResource itemSpacing}" >
                         <Label  Text="Organization Name" Style="{StaticResource FormSubtitleLabelStyle}"  Margin="{StaticResource itemSpacing}" />
@@ -131,10 +130,11 @@
 
                 </StackLayout>
 
-            </ScrollView>
-            <telerikInput:RadButton Text="Change UserProfile"   Grid.Row="5"  Grid.Column="1" Margin="0,200,0,20"  WidthRequest="200" HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"
-                                            Style="{StaticResource ActionButtonStyle}" />
-        </Grid>
+            <!--</ScrollView>-->
+            <!--<telerikInput:RadButton Text="Change UserProfile"   Margin="0,200,0,20"  WidthRequest="200" HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"
+                                            Style="{StaticResource ActionButtonStyle}" />-->
+       
 
     </StackLayout>
+    </ScrollView>
 </views:MvxContentPage>
