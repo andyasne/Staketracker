@@ -22,30 +22,29 @@
             <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout  >
-        <Grid RowSpacing="2">
-            <Grid.RowDefinitions >
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="500" />
-                <RowDefinition Height="*" />
+    <ScrollView Padding="10" >
+        <StackLayout  >
+            <Grid RowSpacing="1">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
 
 
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
 
-            </Grid.ColumnDefinitions>
-            <Image Source="switch_project.png" BackgroundColor="Black" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"   />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
 
-            <StackLayout    Grid.Row="0" Grid.Column="1"  Grid.ColumnSpan="2" >
-                <Label  Text="Social Title" Style="{StaticResource FormSubtitleLabelStyle}"  Margin="{StaticResource itemSpacing}" />
+                </Grid.ColumnDefinitions>
+                <Image Source="user.png"  Grid.Row="0" Grid.RowSpan="3" Grid.Column="0"   />
 
-                <telerikInput:RadComboBox   HeightRequest="40" Margin="0" Padding="0"
+                <StackLayout    Grid.Row="0" Grid.Column="1"  Grid.ColumnSpan="2" >
+                    <Label  Text="Social Title" Style="{StaticResource FormSubtitleLabelStyle}"  Margin="{StaticResource itemSpacing}" />
+
+                    <telerikInput:RadComboBox   HeightRequest="40" Margin="0" Padding="0"
                                                      Style="{StaticResource ComboEntryStyle}"
                                                      SearchMode="Contains"
                                                      SearchTextPath="Label"
@@ -54,32 +53,32 @@
                                                      IsEditable="False"
                                                      SelectionMode="Single" >
 
-                </telerikInput:RadComboBox>
+                    </telerikInput:RadComboBox>
 
-            </StackLayout>
-            <StackLayout   Grid.Row="1" Grid.Column="1"  Grid.ColumnSpan="2" >
-                <Label  Text="Full Name" Style="{StaticResource FormSubtitleLabelStyle}"    />
-                <telerikInput:RadEntry    Style="{StaticResource LoginEntryStyle}"    > </telerikInput:RadEntry>
-            </StackLayout>
+                </StackLayout>
+                <StackLayout   Grid.Row="1" Grid.Column="1"  Grid.ColumnSpan="2" >
+                    <Label  Text="Full Name" Style="{StaticResource FormSubtitleLabelStyle}"    />
+                    <telerikInput:RadEntry    Style="{StaticResource LoginEntryStyle}"    ></telerikInput:RadEntry>
+                </StackLayout>
 
-            <StackLayout    Grid.Row="2" Grid.Column="1"  Grid.ColumnSpan="2"  >
-                <Label  Text="Job Title" Style="{StaticResource FormSubtitleLabelStyle}"   />
+                <StackLayout    Grid.Row="2" Grid.Column="1"  Grid.ColumnSpan="2"  >
+                    <Label  Text="Job Title" Style="{StaticResource FormSubtitleLabelStyle}"   />
 
-                <Frame BorderColor="LightGray" HasShadow="False" Padding="2">
+                    <Frame BorderColor="LightGray" HasShadow="False" Padding="2">
 
-                    <Editor  HeightRequest="70"       >
+                        <Editor  HeightRequest="70"       >
 
-                    </Editor>
-                </Frame>
+                        </Editor>
+                    </Frame>
 
-            </StackLayout>
+                </StackLayout>
+            </Grid>
+            <!--<ScrollView  HeightRequest="500"  >-->
+            <StackLayout Spacing="1" >
+                <StackLayout   Margin="{StaticResource itemSpacing}" >
+                    <Label  Text="Organization Name" Style="{StaticResource FormSubtitleLabelStyle}"  Margin="{StaticResource itemSpacing}" />
 
-            <ScrollView Grid.Row="4"  Grid.Column="0" Grid.ColumnSpan="3"  >
-                <StackLayout >
-                    <StackLayout   Margin="{StaticResource itemSpacing}" >
-                        <Label  Text="Organization Name" Style="{StaticResource FormSubtitleLabelStyle}"  Margin="{StaticResource itemSpacing}" />
-
-                        <telerikInput:RadComboBox   
+                    <telerikInput:RadComboBox   
                                                      Style="{StaticResource ComboEntryStyle}"
                                                      SearchMode="Contains"
                                                      SearchTextPath="Label"
@@ -88,14 +87,14 @@
                                                      IsEditable="False"
                                                      SelectionMode="Single" >
 
-                        </telerikInput:RadComboBox>
+                    </telerikInput:RadComboBox>
 
 
-                    </StackLayout>
-                    <StackLayout   Margin="{StaticResource itemSpacing}" >
-                        <Label  Text="Department" Style="{StaticResource FormSubtitleLabelStyle}"  Margin="{StaticResource itemSpacing}" />
+                </StackLayout>
+                <StackLayout   Margin="{StaticResource itemSpacing}" >
+                    <Label  Text="Department" Style="{StaticResource FormSubtitleLabelStyle}"  Margin="{StaticResource itemSpacing}" />
 
-                        <telerikInput:RadComboBox   
+                    <telerikInput:RadComboBox   
                                                      Style="{StaticResource ComboEntryStyle}"
                                                      SearchMode="Contains"
                                                      SearchTextPath="Label"
@@ -104,14 +103,14 @@
                                                      IsEditable="False"
                                                      SelectionMode="Single" >
 
-                        </telerikInput:RadComboBox>
+                    </telerikInput:RadComboBox>
 
 
-                    </StackLayout>
-                    <StackLayout   Margin="{StaticResource itemSpacing}" >
-                        <Label  Text="Is Teaam Member" Style="{StaticResource FormSubtitleLabelStyle}"  Margin="{StaticResource itemSpacing}" />
+                </StackLayout>
+                <StackLayout   Margin="{StaticResource itemSpacing}" >
+                    <Label  Text="Is Teaam Member" Style="{StaticResource FormSubtitleLabelStyle}"  Margin="{StaticResource itemSpacing}" />
 
-                        <telerikInput:RadComboBox   
+                    <telerikInput:RadComboBox   
                                                      Style="{StaticResource ComboEntryStyle}"
                                                      SearchMode="Contains"
                                                      SearchTextPath="Label"
@@ -120,21 +119,47 @@
                                                      IsEditable="False"
                                                      SelectionMode="Single" >
 
-                        </telerikInput:RadComboBox>
+                    </telerikInput:RadComboBox>
 
 
-                    </StackLayout>
-                    <StackLayout    >
-                        <Label  Text="Business Phone Number" Style="{StaticResource FormSubtitleLabelStyle}"    />
-                        <telerikInput:RadEntry    Style="{StaticResource LoginEntryStyle}"    ></telerikInput:RadEntry>
-                    </StackLayout>
+                </StackLayout>
+                <StackLayout    >
+                    <Label  Text="Business Phone Number" Style="{StaticResource FormSubtitleLabelStyle}"    />
+                    <telerikInput:RadEntry    Style="{StaticResource LoginEntryStyle}"    ></telerikInput:RadEntry>
+                </StackLayout>
+                <StackLayout    >
+                    <Label  Text="Business Email " Style="{StaticResource FormSubtitleLabelStyle}"    />
+                    <telerikInput:RadEntry    Style="{StaticResource LoginEntryStyle}"    ></telerikInput:RadEntry>
+                </StackLayout>
+                <StackLayout    >
+                    <Label  Text="Data Access Level" Style="{StaticResource FormSubtitleLabelStyle}"    />
+                    <telerikInput:RadEntry    Style="{StaticResource LoginEntryStyle}"    ></telerikInput:RadEntry>
+                </StackLayout>
+                <StackLayout   Margin="{StaticResource itemSpacing}" >
+                    <Label  Text="Allow Drafts" Style="{StaticResource FormSubtitleLabelStyle}"  Margin="{StaticResource itemSpacing}" />
+
+                    <telerikInput:RadComboBox   
+                                                     Style="{StaticResource ComboEntryStyle}"
+                                                     SearchMode="Contains"
+                                                     SearchTextPath="Label"
+                                                     IsDropDownClosedOnSelection="True"
+                                                     DropDownHeight="200"
+                                                     IsEditable="False"
+                                                     SelectionMode="Single" >
+
+                    </telerikInput:RadComboBox>
+
 
                 </StackLayout>
 
-            </ScrollView>
-            <telerikInput:RadButton Text="Change UserProfile"   Grid.Row="5"  Grid.Column="1" Margin="0,200,0,20"  WidthRequest="200" HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"
-                                            Style="{StaticResource ActionButtonStyle}" />
-        </Grid>
 
-    </StackLayout>
+            </StackLayout>
+
+            <!--</ScrollView>-->
+            <!--<telerikInput:RadButton Text="Change UserProfile"   Margin="0,200,0,20"  WidthRequest="200" HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"
+                                            Style="{StaticResource ActionButtonStyle}" />-->
+
+
+        </StackLayout>
+    </ScrollView>
 </views:MvxContentPage>
