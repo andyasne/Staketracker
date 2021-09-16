@@ -30,8 +30,6 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
 
-
-
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
@@ -73,7 +71,6 @@
 
                 </StackLayout>
             </Grid>
-            <!--<ScrollView  HeightRequest="500"  >-->
             <StackLayout Spacing="1" >
                 <StackLayout   Margin="{StaticResource itemSpacing}" >
                     <Label  Text="Organization Name" Style="{StaticResource FormSubtitleLabelStyle}"  Margin="{StaticResource itemSpacing}" />
@@ -153,11 +150,11 @@
                 </StackLayout>
 
 
+                <telerikInput:RadButton Text="Change UserProfile"   Margin="0,200,0,20"  WidthRequest="200" HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"
+                                            Style="{StaticResource ActionButtonStyle}" />
+
             </StackLayout>
 
-            <!--</ScrollView>-->
-            <!--<telerikInput:RadButton Text="Change UserProfile"   Margin="0,200,0,20"  WidthRequest="200" HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"
-                                            Style="{StaticResource ActionButtonStyle}" />-->
 
 
         </StackLayout>
