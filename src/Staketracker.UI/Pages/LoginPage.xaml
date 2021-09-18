@@ -81,6 +81,7 @@
             </ScrollView>
         </Grid>
         <RelativeLayout VerticalOptions="EndAndExpand"  HorizontalOptions="Fill"    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
+
             <StackLayout Spacing="0" Margin="20,0,20,0">
                 <Grid >
                     <Grid.RowDefinitions>
@@ -109,6 +110,7 @@
                     <Label  TextColor="{StaticResource DarkTextColor}"     VerticalTextAlignment="Start" VerticalOptions="Start"  Text="All Rights Reserved |" HorizontalTextAlignment="End"  HorizontalOptions="EndAndExpand" />
                     <Label  TextColor="{StaticResource LightBlueColor}"     VerticalTextAlignment="Start" VerticalOptions="Start"  Text="Privacy" HorizontalTextAlignment="Start"  HorizontalOptions="StartAndExpand" />
                 </StackLayout>
+
             </StackLayout>
         </RelativeLayout>
     </StackLayout>

@@ -1,7 +1,7 @@
 using System;
 namespace Staketracker.Core.Validators.Rules
 {
-    public class HasValidAgeRule<T> : IValidationRule<T>
+    public class IsDateSelectedRule<T> : IValidationRule<T>
     {
         public string ValidationMessage { get; set; }
 
@@ -9,9 +9,7 @@ namespace Staketracker.Core.Validators.Rules
         {
             if (value is DateTime bday)
             {
-                DateTime today = DateTime.Today;
-                int age = today.Year - bday.Year;
-                return (age >= 18);
+                return bday == null;
             }
 
             return false;

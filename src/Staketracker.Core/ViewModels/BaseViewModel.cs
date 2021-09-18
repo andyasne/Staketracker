@@ -74,10 +74,26 @@ namespace Staketracker.Core.ViewModels
                             try
                             {
                                 if (valObj.FormAndDropDownField.InputType == "DropDownList")
-                                    valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
-                                else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
                                 {
+                                    valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
                                 }
+                                //else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
+                                //{
+
+                                //    List<string> selectedValues = new List<string>();
+                                //    if (valObj.SelectedItems.Count > 0)
+                                //    {
+                                //        foreach (Models.FormAndDropDownField.DropdownValue selected in valObj.SelectedItems)
+                                //        {
+                                //         valObj.selectedValues.Add(valObj.DropdownValues.Find(a=>a.PrimaryKey= selected.PrimaryKey));
+
+                                //        }
+
+                                //    }
+                                //    valObj.DropdownValues
+
+
+                                //}
                                 else if (valObj.FormAndDropDownField.InputType == "CheckBox")
                                 {
                                     if (field.Value != null && field.Value.ToString() == "on")
@@ -133,7 +149,7 @@ namespace Staketracker.Core.ViewModels
             }
         }
 
-        public void getFormValues(string type)
+        public void GetFormValues(string type)
         {
             pageFormValue = new EventFormValue();
             pageFormValue.InputFieldValues = new List<InputFieldValue>(FormContent.Count);
@@ -180,6 +196,23 @@ namespace Staketracker.Core.ViewModels
                             inputValue.Value = string.Format("/Date({0})/", selectedDate);
 
                         }
+                    }
+                    else if (_formContent.Value.FormAndDropDownField.InputType == "ListBoxMulti")
+                    {
+                        List<string> selectedValues = new List<string>();
+                        if (_formContent.Value.SelectedItems.Count > 0)
+                        {
+                            foreach (Models.FormAndDropDownField.DropdownValue selected in _formContent.Value.SelectedItems)
+                            {
+                                selectedValues.Add(selected.PrimaryKey);
+
+                            }
+
+                        }
+
+                        inputValue.Value = selectedValues;
+
+
                     }
                     else
                     {
@@ -232,7 +265,8 @@ namespace Staketracker.Core.ViewModels
 
                     if (d.InputType == "DateTime")
                     {
-                        validatableObj.Value = "/Date(1619758800000)/";
+                        validatableObj.isDateType = true;
+                        validatableObj.ValidationsDateTime.Add(new IsDateSelectedRule<DateTime> { ValidationMessage = d.Label + " is Required" });
 
                     }
                     if (d.MandatoryField == true)

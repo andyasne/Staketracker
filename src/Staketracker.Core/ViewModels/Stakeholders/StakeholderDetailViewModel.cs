@@ -214,11 +214,11 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             {
 
                 if (authReply.attachment.ToString() == "Groups")
-                    getFormValues("group");
+                    GetFormValues("group");
                 else if (authReply.attachment.ToString() == "Individuals")
-                    getFormValues("individual");
+                    GetFormValues("individual");
                 else
-                    getFormValues("landparcel");
+                    GetFormValues("landparcel");
 
 
                 save();

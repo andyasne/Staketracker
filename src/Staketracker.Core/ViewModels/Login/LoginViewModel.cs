@@ -91,9 +91,9 @@ namespace Staketracker.Core.ViewModels.Login
 
             AuthenticateUserCommand = new Command(async () => await RunSafe(AuthenticateUser(loginApiBody), true, "Signing In"));
             OnDevelopmentCommand = new Command(() =>
-           {
-               OnDevelopment().Start();
-           });
+            {
+                OnDevelopment().Start();
+            });
 
             ForgetPasswordCommand = new Command(OpenForgetPassword);
             ForgetUserIdCommand = new Command(OpenForgetUserId);

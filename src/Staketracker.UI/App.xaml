@@ -130,13 +130,9 @@
                         <telerikInput:RadDateTimePicker SpinnerHeaderStyle="{StaticResource spinnerHeaderStyle}"
                                 SpinnerStyle="{StaticResource spinnerStyle}"
                                 SelectionHighlightStyle="{StaticResource selectionHighlightStyle}"
-                                  Date = "{Binding  Value.SelectedDate, Mode=TwoWay }"
-
-
-                                
-                                SpinnerFormat="d" Margin="0" 
-                                                        Placeholder="Select a Date"
-                                
+                              Date = "{Binding  Value.SelectedDate, Mode=TwoWay }"
+                                 SpinnerFormat="d" Margin="0" 
+                                 Placeholder="Select a Date"
                                 SelectionChanged="RadDateTimePicker_SelectionChanged"
                                 AreSpinnerHeadersVisible="True"
                                 DisplayLabelStyle="{StaticResource displayLabelStyle}"

@@ -232,7 +232,7 @@ namespace Staketracker.Core.ViewModels.Events
             if (isFormValid())
             {
 
-                getFormValues("Event");
+                GetFormValues("Event");
 
                 saveEvent();
 
