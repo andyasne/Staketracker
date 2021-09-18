@@ -16,6 +16,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -84,7 +85,17 @@ namespace Staketracker.Core.ViewModels
                                     else
                                         valObj.Value = false.ToString();
                                 }
+                                else if (valObj.FormAndDropDownField.InputType == "DateTime")
+                                {
+                                    string dateval;
+                                    if (field.Value != null)
+                                    {
+                                        dateval = field.Value.ToString();
+                                        string date = Regex.Match(dateval, @"Date((.+))", RegexOptions.Singleline).Groups[1].Value;
+                                        valObj.SelectedDate = new DateTime(long.Parse(date));
+                                    }
 
+                                }
                                 else
                                 {
                                     if (field.Value != null)
@@ -163,7 +174,12 @@ namespace Staketracker.Core.ViewModels
                     }
                     else if (_formContent.Value.FormAndDropDownField.InputType == "DateTime")
                     {
-                        inputValue.Value = "/Date(1619758800000)/";
+                        if (_formContent.Value.SelectedDate != null)
+                        {
+                            long selectedDate = _formContent.Value.SelectedDate.Value.Ticks;
+                            inputValue.Value = string.Format("/Date({0})/", selectedDate);
+
+                        }
                     }
                     else
                     {

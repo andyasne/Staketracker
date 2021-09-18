@@ -62,6 +62,7 @@ namespace Staketracker.Core.Validators
         //    }
         //}
 
+        public DateTime? SelectedDate { get; set; }
 
 
         private ObservableCollection<Models.FormAndDropDownField.DropdownValue> selectedItems = new ObservableCollection<DropdownValue>();
