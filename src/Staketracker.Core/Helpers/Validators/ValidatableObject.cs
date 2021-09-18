@@ -68,7 +68,7 @@ namespace Staketracker.Core.Validators
                 }
             }
         }
-        public DateTime? SelectedDate { get; set; }
+        public DateTime? SelectedDate { get; set; } = null;
 
 
         private int selectedIndex;

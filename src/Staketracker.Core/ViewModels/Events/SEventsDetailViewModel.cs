@@ -16,6 +16,7 @@ using Staketracker.Core.Models.AddEventsReply;
 using Staketracker.Core.Models.EventsFormValue;
 using Xamarin.Forms;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
+using System.Text.RegularExpressions;
 
 namespace Staketracker.Core.ViewModels.Events
 {
@@ -301,10 +302,10 @@ namespace Staketracker.Core.ViewModels.Events
                             try
                             {
                                 if (valObj.FormAndDropDownField.InputType == "DropDownList")
-                                    valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
-                                else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
                                 {
-                                } //  valObj.SelectedItems.AddRange(valObj.DropdownValues);
+                                    valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
+                                }
+
                                 else if (valObj.FormAndDropDownField.InputType == "CheckBox")
                                 {
                                     if (field.Value != null && field.Value.ToString() == "on")
@@ -312,7 +313,17 @@ namespace Staketracker.Core.ViewModels.Events
                                     else
                                         valObj.Value = false.ToString();
                                 }
+                                else if (valObj.FormAndDropDownField.InputType == "DateTime")
+                                {
+                                    string dateval;
+                                    if (field.Value != null)
+                                    {
+                                        dateval = field.Value.ToString();
+                                        //    string date = Regex.Match(dateval, @"Date((.+))", RegexOptions.Singleline).Groups[1].Value;
+                                        valObj.SelectedDate = DateTime.Parse(dateval);
+                                    }
 
+                                }
                                 else
                                 {
                                     if (field.Value != null)

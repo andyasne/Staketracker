@@ -9,7 +9,7 @@ namespace Staketracker.Core.Validators.Rules
         {
             if (value is DateTime bday)
             {
-                return bday == null;
+                return bday != null;
             }
 
             return false;

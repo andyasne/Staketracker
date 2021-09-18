@@ -77,23 +77,7 @@ namespace Staketracker.Core.ViewModels
                                 {
                                     valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
                                 }
-                                //else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
-                                //{
 
-                                //    List<string> selectedValues = new List<string>();
-                                //    if (valObj.SelectedItems.Count > 0)
-                                //    {
-                                //        foreach (Models.FormAndDropDownField.DropdownValue selected in valObj.SelectedItems)
-                                //        {
-                                //         valObj.selectedValues.Add(valObj.DropdownValues.Find(a=>a.PrimaryKey= selected.PrimaryKey));
-
-                                //        }
-
-                                //    }
-                                //    valObj.DropdownValues
-
-
-                                //}
                                 else if (valObj.FormAndDropDownField.InputType == "CheckBox")
                                 {
                                     if (field.Value != null && field.Value.ToString() == "on")
