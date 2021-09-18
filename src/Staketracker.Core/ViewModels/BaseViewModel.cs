@@ -59,58 +59,6 @@ namespace Staketracker.Core.ViewModels
 
             }
         }
-        internal async Task PopulateControls(AuthReply authReply, HttpResponseMessage responseMessage)
-        {
-            FieldsValue fieldsValue;
-
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var response = await responseMessage.Content.ReadAsStringAsync();
-                fieldsValue = await Task.Run(() => JsonConvert.DeserializeObject<FieldsValue>(response));
-
-                foreach (Field field in fieldsValue.d.Fields)
-                    foreach (ValidatableObject<string> valObj in FormContent.Values)
-                        if (valObj.FormAndDropDownField.PrimaryKey == field.PrimaryKey)
-                            try
-                            {
-                                if (valObj.FormAndDropDownField.InputType == "DropDownList")
-                                {
-                                    valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
-                                }
-
-                                else if (valObj.FormAndDropDownField.InputType == "CheckBox")
-                                {
-                                    if (field.Value != null && field.Value.ToString() == "on")
-                                        valObj.Value = true.ToString();
-                                    else
-                                        valObj.Value = false.ToString();
-                                }
-                                else if (valObj.FormAndDropDownField.InputType == "DateTime")
-                                {
-                                    string dateval;
-                                    if (field.Value != null)
-                                    {
-                                        dateval = field.Value.ToString();
-                                        string date = Regex.Match(dateval, @"Date((.+))", RegexOptions.Singleline).Groups[1].Value;
-                                        valObj.SelectedDate = new DateTime(long.Parse(date));
-                                    }
-
-                                }
-                                else
-                                {
-                                    if (field.Value != null)
-                                        valObj.Value = field.Value.ToString();
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                            }
-
-            }
-            else
-                await PageDialog.AlertAsync("API Error While Assigning Value to UI Controls", "API Response Error", "Ok");
-            //  return null;
-        }
         public EventFormValue pageFormValue;
         public AuthReply authReply;
 
@@ -132,6 +80,7 @@ namespace Staketracker.Core.ViewModels
                 }
             }
         }
+
 
         public void GetFormValues(string type)
         {
