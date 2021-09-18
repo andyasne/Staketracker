@@ -41,6 +41,13 @@
                         <telerikPrimitives:RadCheckBox x:Name="isSandbox" Style="{StaticResource checkBoxButtonStyle}"  IsChecked="{Binding IsSandboxChecked}" />
                         <Label Text="Connect to Sandbox"  Style="{StaticResource NormalLabelStyle}" />
                     </StackLayout>
+                    <telerikInput:RadComboBox ItemsSource="{Binding Items}"
+                          SelectionMode="Multiple"
+                          DisplayMemberPath="Name"
+                          SelectedItems="{Binding SelectedItems}">
+
+
+                    </telerikInput:RadComboBox>
                     <!--User Id-->
                     <telerikInput:RadEntry   Margin="0,30,0,0"
                                    WatermarkText="User ID"
