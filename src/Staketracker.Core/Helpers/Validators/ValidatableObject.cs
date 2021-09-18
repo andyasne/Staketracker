@@ -42,7 +42,7 @@ namespace Staketracker.Core.Validators
         }
 
         public List<IValidationRule<T>> Validations { get; } = new List<IValidationRule<T>>();
-        public List<IValidationRule<DateTime>> ValidationsDateTime { get; } = new List<IValidationRule<DateTime>>();
+        public List<IDateValidationRule> ValidationsDateTime { get; set; } = new List<IDateValidationRule>();
         public List<IValidationRuleList> ValidationsList { get; } = new List<IValidationRuleList>();
 
         public List<Models.FormAndDropDownField.DropdownValue> DropdownValues { get; set; } = new List<Models.FormAndDropDownField.DropdownValue>();
@@ -68,7 +68,25 @@ namespace Staketracker.Core.Validators
                 }
             }
         }
-        public DateTime? SelectedDate { get; set; } = null;
+        public DateTime? selectedDate;
+        public DateTime? SelectedDate
+        {
+            get
+            {
+
+                return selectedDate;
+            }
+            set
+            {
+                if (this.selectedDate != value)
+                {
+                    this.selectedDate = value;
+
+                    SetField(ref selectedDate, value);
+
+                }
+            }
+        }
 
 
         private int selectedIndex;
@@ -164,7 +182,8 @@ namespace Staketracker.Core.Validators
             }
             if (isDateType)
             {
-                errors = ValidationsDateTime.Where(v => !v.Check(SelectedDate.Value))
+
+                errors = ValidationsDateTime.Where(v => !v.Check(SelectedDate))
                     .Select(v => v.ValidationMessage);
 
             }
