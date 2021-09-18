@@ -42,30 +42,14 @@ namespace Staketracker.Core.Validators
         }
 
         public List<IValidationRule<T>> Validations { get; } = new List<IValidationRule<T>>();
+        public List<IValidationRule<DateTime>> ValidationsDateTime { get; } = new List<IValidationRule<DateTime>>();
         public List<IValidationRuleList> ValidationsList { get; } = new List<IValidationRuleList>();
 
         public List<Models.FormAndDropDownField.DropdownValue> DropdownValues { get; set; } = new List<Models.FormAndDropDownField.DropdownValue>();
 
-        //private List<Models.FormAndDropDownField.DropdownValue> selectedItems;//  = new List<Models.FormAndDropDownField.DropdownValue>();
-        //public List<Models.FormAndDropDownField.DropdownValue> SelectedItems
-        //{
-        //    get { return this.selectedItems; }
-        //    set
-        //    {
-        //        if (this.selectedItems != value)
-        //        {
-        //            this.selectedItems = value;
-        //            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedItems)));
+        private ObservableCollection<Models.FormAndDropDownField.DropdownValue> selectedItems;
 
 
-        //        }
-        //    }
-        //}
-
-        public DateTime? SelectedDate { get; set; }
-
-
-        private ObservableCollection<Models.FormAndDropDownField.DropdownValue> selectedItems = new ObservableCollection<DropdownValue>();
 
         public ObservableCollection<Models.FormAndDropDownField.DropdownValue> SelectedItems
         {
@@ -79,12 +63,14 @@ namespace Staketracker.Core.Validators
                 {
                     this.selectedItems = value;
 
-                    //this.selectedItems.Add(this.[0]);
-                    //this.selectedItems.Add(this.Items[1]);
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedItems)));
+                    SetField(ref selectedItems, value);
+
                 }
             }
         }
+        public DateTime? SelectedDate { get; set; }
+
+
         private int selectedIndex;
         public int SelectedIndex
         {
@@ -109,9 +95,8 @@ namespace Staketracker.Core.Validators
 
 
         public Boolean isSelectOne { get; set; }
-
-
         public Boolean isSelectMultiple { get; set; }
+        public Boolean isDateType { get; set; }
         public Models.FormAndDropDownField.DropdownValue SelectedItem
         {
             get
@@ -174,6 +159,12 @@ namespace Staketracker.Core.Validators
             if (isSelectOne)
             {
                 errors = ValidationsList.Where(v => !v.Check(SelectedItem))
+                    .Select(v => v.ValidationMessage);
+
+            }
+            if (isDateType)
+            {
+                errors = ValidationsDateTime.Where(v => !v.Check(SelectedDate.Value))
                     .Select(v => v.ValidationMessage);
 
             }

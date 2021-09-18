@@ -262,7 +262,7 @@ namespace Staketracker.Core.ViewModels.Communication
             if (isFormValid())
             {
 
-                getFormValues("Communication");
+                GetFormValues("Communication");
 
                 save();
 
