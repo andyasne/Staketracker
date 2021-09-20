@@ -182,7 +182,7 @@
 
 
                         <telerikInput:RadComboBox      DisplayMemberPath="Label" 
-                                                       SelectedItems="{Binding Value.SelectedItems, Mode=TwoWay}"
+                                                       SelectedItems="{Binding Value.SelectedItems}"
                                                        ItemsSource="{ Binding Value.DropdownValues }"  
                                                        Style="{StaticResource ComboEntryStyle}" 
                                                        SearchMode="Contains"

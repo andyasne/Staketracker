@@ -47,7 +47,7 @@ namespace Staketracker.Core.Validators
 
         public List<Models.FormAndDropDownField.DropdownValue> DropdownValues { get; set; } = new List<Models.FormAndDropDownField.DropdownValue>();
 
-        private ObservableCollection<Models.FormAndDropDownField.DropdownValue> selectedItems;
+        private ObservableCollection<Models.FormAndDropDownField.DropdownValue> selectedItems = new ObservableCollection<DropdownValue>();
 
 
 
