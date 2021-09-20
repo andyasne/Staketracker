@@ -133,7 +133,7 @@ namespace Staketracker.Core.ViewModels
                     else if (_formContent.Value.FormAndDropDownField.InputType == "ListBoxMulti")
                     {
                         List<string> selectedValues = new List<string>();
-                        if (_formContent.Value.SelectedItems.Count > 0)
+                        if (_formContent.Value.SelectedItems != null && _formContent.Value.SelectedItems.Count > 0)
                         {
                             foreach (Models.FormAndDropDownField.DropdownValue selected in _formContent.Value.SelectedItems)
                             {

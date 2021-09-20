@@ -306,6 +306,15 @@ namespace Staketracker.Core.ViewModels.Events
                                     valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
                                 }
 
+                                else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
+                                {
+                                    foreach (Models.FormAndDropDownField.DropdownValue dv in field.DropdownValues)
+                                    {
+                                        valObj.SelectedItems.Add(dv);
+
+                                    }
+                                }
+
                                 else if (valObj.FormAndDropDownField.InputType == "CheckBox")
                                 {
                                     if (field.Value != null && field.Value.ToString() == "on")
@@ -319,7 +328,6 @@ namespace Staketracker.Core.ViewModels.Events
                                     if (field.Value != null)
                                     {
                                         dateval = field.Value.ToString();
-                                        //    string date = Regex.Match(dateval, @"Date((.+))", RegexOptions.Singleline).Groups[1].Value;
                                         valObj.SelectedDate = DateTime.Parse(dateval);
                                     }
 
