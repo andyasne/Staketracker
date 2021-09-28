@@ -311,7 +311,6 @@ namespace Staketracker.Core.ViewModels.Events
                                     foreach (Models.FormAndDropDownField.DropdownValue dv in field.DropdownValues)
                                     {
                                         valObj.SelectedItems.Add(dv);
-
                                     }
                                 }
 

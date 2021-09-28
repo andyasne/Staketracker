@@ -9,8 +9,8 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                          xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
                     Title="StakeTracker" Icon="Dashboard" ios:Page.UseSafeArea="true" 
                         xmlns:cards="clr-namespace:Staketracker.UI.Pages.Dashboard"
-                     
-                      x:TypeArguments="viewModels:DashboardViewModel">
+                   
+    x:TypeArguments="viewModels:DashboardViewModel">
     <ContentPage.Content>
 
         <Grid x:Name="ContentRoot">
@@ -32,7 +32,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                 </BoxView.CornerRadius>
             </BoxView>
 
-            <Label Text="{Binding HeaderTitle}" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
+            <Label Text="{x:Static resources:AppResources.Dashboard}" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
             </Label>
             <ScrollView Grid.Row="1">
                 <StackLayout Orientation="Vertical" Spacing="10" Margin="20,0" >

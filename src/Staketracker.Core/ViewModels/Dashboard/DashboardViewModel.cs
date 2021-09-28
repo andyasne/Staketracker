@@ -31,11 +31,11 @@ namespace Staketracker.Core.ViewModels.Dashboard
             SignOutCommand = new Command(async () => await SignOut());
 
 
-            CultureInfo info = new CultureInfo("am");
-            Thread.CurrentThread.CurrentUICulture = info;
-            AppResource.Culture = info;
+            //CultureInfo info = new CultureInfo("am");
+            //Thread.CurrentThread.CurrentUICulture = info;
+            //AppResource.Culture = info;
 
-            this.HeaderTitle = AppResource.Dashboard;
+            //this.HeaderTitle = AppResource.Dashboard;
 
         }
 

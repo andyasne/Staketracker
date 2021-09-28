@@ -133,8 +133,7 @@
                                  Date = "{Binding  Value.SelectedDate, Mode=TwoWay }"
                                  DisplayStringFormat=""
                                  SpinnerFormat="d" Margin="0" 
-                                 Placeholder="Select a Date"
-                                SelectionChanged="RadDateTimePicker_SelectionChanged"
+                                 Placeholder="Select a Date" 
                                 AreSpinnerHeadersVisible="True"
                                 DisplayLabelStyle="{StaticResource displayLabelStyle}"
                                 PlaceholderLabelStyle="{StaticResource placeholderLabelStyle}"
@@ -182,7 +181,8 @@
 
 
                         <telerikInput:RadComboBox      DisplayMemberPath="Label" 
-                                                       SelectedItems="{Binding Value.SelectedItems}"
+                                                       
+                                                       SelectedItems="{Binding Value.SelectedItems , Mode=TwoWay}"
                                                        ItemsSource="{ Binding Value.DropdownValues }"  
                                                        Style="{StaticResource ComboEntryStyle}" 
                                                        SearchMode="Contains"

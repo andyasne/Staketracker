@@ -34,7 +34,15 @@ namespace Staketracker.Core.ViewModels
         public ICommand OnDevelopmentNotifyCommand { get; }
 
         private string headerTitle;
-        public string HeaderTitle { get => headerTitle; set => SetProperty(ref headerTitle, value); }
+        public string HeaderTitle
+        {
+            get { return headerTitle; }
+            set
+            {
+                this.headerTitle = value;
+                SetField(ref headerTitle, value);
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
@@ -125,7 +133,9 @@ namespace Staketracker.Core.ViewModels
                     {
                         if (_formContent.Value.SelectedDate != null)
                         {
-                            long selectedDate = _formContent.Value.SelectedDate.Value.Ticks;
+                            long selectedDate = ((int)_formContent.Value.SelectedDate.Value.Date.Ticks);
+                            int unixTimestamp = (int)(DateTime.UtcNow.Subtract(_formContent.Value.SelectedDate.Value)).TotalSeconds;
+                            //selectedDate = _formContent.Value.SelectedDate.Value.ToUniversalTime;
                             inputValue.Value = string.Format("/Date({0})/", selectedDate);
 
                         }

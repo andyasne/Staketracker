@@ -47,7 +47,7 @@ namespace Staketracker.Core.Validators
 
         public List<Models.FormAndDropDownField.DropdownValue> DropdownValues { get; set; } = new List<Models.FormAndDropDownField.DropdownValue>();
 
-        private ObservableCollection<Models.FormAndDropDownField.DropdownValue> selectedItems = new ObservableCollection<DropdownValue>();
+        private ObservableCollection<Models.FormAndDropDownField.DropdownValue> selectedItems;// = new ObservableCollection<DropdownValue>();
 
 
 
@@ -55,15 +55,20 @@ namespace Staketracker.Core.Validators
         {
             get
             {
+
+
                 return this.selectedItems;
             }
             set
             {
-                if (this.selectedItems != value)
+                //       if (this.selectedItems != value)
                 {
                     this.selectedItems = value;
 
+                    this.selectedItems.Add(this.DropdownValues[0]);
+
                     SetField(ref selectedItems, value);
+
 
                 }
             }
@@ -78,11 +83,14 @@ namespace Staketracker.Core.Validators
             }
             set
             {
-                if (this.selectedDate != value)
+                //if (this.selectedDate != value)
                 {
                     this.selectedDate = value;
 
                     SetField(ref selectedDate, value);
+
+                    OnPropertyChanged("selectedDate");
+
 
                 }
             }
@@ -101,7 +109,6 @@ namespace Staketracker.Core.Validators
                 if (this.selectedIndex != value)
                 {
                     this.selectedIndex = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedIndex)));
 
                 }
             }

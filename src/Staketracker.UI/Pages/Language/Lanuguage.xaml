@@ -36,7 +36,7 @@
 
                     </telerikInput:RadComboBox>
 
-                    <telerikInput:RadButton Text="Change Language"   Grid.Row="0"  Grid.Column="0" Margin="0,200,0,20" Grid.ColumnSpan="4" WidthRequest="200" HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"
+                    <telerikInput:RadButton Text="Change Language"   Grid.Row="0"  Grid.Column="0" Margin="0,200,0,20"   Command="{Binding ChangeLanguage}" Grid.ColumnSpan="4" WidthRequest="200" HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"
                                             Style="{StaticResource ActionButtonStyle}" />
 
                 </StackLayout>

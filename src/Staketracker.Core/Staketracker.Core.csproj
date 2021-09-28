@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <None Include="Resources\AppResources.am.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
@@ -104,11 +104,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Resources\AppResource.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>AppResource.resx</DependentUpon>
-    </Compile>
     <Compile Update="Resources\AppResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -125,9 +120,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Resources\AppResource.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
+    <EmbeddedResource Update="Resources\AppResource.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
 

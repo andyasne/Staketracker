@@ -24,6 +24,7 @@ namespace Staketracker.Core.ViewModels.Language
 
         public ValidatableObject<string> Email { get; set; } = new ValidatableObject<string>();
 
+        public ICommand ChangeLanguage { get; set; }
 
         public ICommand SubmitForgetPasswordCommand { get; set; }
 
@@ -33,6 +34,11 @@ namespace Staketracker.Core.ViewModels.Language
             authReply = new AuthReply();
             _navigationService = navigationService;
 
+            ChangeLanguage = new Command(() =>
+            {
+
+
+            });
 
         }
 
