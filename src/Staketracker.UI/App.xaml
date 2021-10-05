@@ -110,7 +110,7 @@
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
                         <Frame BorderColor="LightGray" HasShadow="False" Padding="3">
 
-                            <Editor  HeightRequest="100"     Text="{Binding  Value.Value, Mode=TwoWay }" >
+                            <Editor  HeightRequest="70"     Text="{Binding  Value.Value, Mode=TwoWay }" >
 
                             </Editor>
                         </Frame>
