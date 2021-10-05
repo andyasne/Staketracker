@@ -32,7 +32,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                 </BoxView.CornerRadius>
             </BoxView>
 
-            <Label Text="{x:Static resources:AppResources.Dashboard}" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
+            <Label Text="Dashboard" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
             </Label>
             <ScrollView Grid.Row="1">
                 <StackLayout Orientation="Vertical" Spacing="10" Margin="20,0" >

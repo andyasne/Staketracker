@@ -15,9 +15,9 @@ namespace Staketracker.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            CultureInfo info = new CultureInfo("am");
-            Thread.CurrentThread.CurrentUICulture = info;
-            AppResource.Culture = info;
+            //CultureInfo info = new CultureInfo("am");
+            //Thread.CurrentThread.CurrentUICulture = info;
+            //AppResource.Culture = info;
 
             RegisterCustomAppStart<AppStart>();
         }
