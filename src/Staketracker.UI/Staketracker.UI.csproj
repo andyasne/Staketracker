@@ -17,6 +17,7 @@
   <ItemGroup>
     <PackageReference Include="MvvmCross" Version="7.1.2" />
     <PackageReference Include="MvvmCross.Forms" Version="7.1.2" />
+    <PackageReference Include="PhantomLib" Version="2.0.7" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
 
   </ItemGroup>
