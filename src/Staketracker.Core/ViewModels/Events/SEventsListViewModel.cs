@@ -83,7 +83,7 @@ namespace Staketracker.Core.ViewModels.Events
             SearchCommand = new MvxAsyncCommand(OnSearch);
             AddEventsCommand = new MvxCommand(OnCreateEvent);
 
-            HeaderTitle = "Event";
+            PageTitle = "Event";
         }
 
         public IMvxCommand SearchCommand { get; }

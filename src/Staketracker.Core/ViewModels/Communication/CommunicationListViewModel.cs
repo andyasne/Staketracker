@@ -38,7 +38,7 @@ namespace Staketracker.Core.ViewModels.CommunicationList
 
         public CommunicationListViewModel(IMvxNavigationService navigationService)
         {
-            this.HeaderTitle = "Communication";
+            this.PageTitle = "Communication";
 
             _navigationService = navigationService;
 

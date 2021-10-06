@@ -30,7 +30,7 @@ namespace Staketracker.Core.ViewModels.Stakeholders
 
         public StakeholderListViewModel(IMvxNavigationService navigationService)
         {
-            this.HeaderTitle = "Stakeholder";
+            this.PageTitle = "Stakeholder";
 
             _navigationService = navigationService;
 

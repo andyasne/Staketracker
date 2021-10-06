@@ -59,7 +59,7 @@
                     <!--/User Id-->
 
                     <telerikInput:RadEntry
-                                   IsPassword="True"
+                                   IsPassword="True" 
                         
                                    WatermarkText="Password"
                         Text="{Binding Password.Value, Mode=TwoWay}"

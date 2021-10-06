@@ -25,7 +25,7 @@ namespace Staketracker.Core.ViewModels.Tasks
 
         public TasksListViewModel(IMvxNavigationService navigationService)
         {
-            this.HeaderTitle = "Tasks";
+            this.PageTitle = "Tasks";
 
             _navigationService = navigationService;
 

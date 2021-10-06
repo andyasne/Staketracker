@@ -47,30 +47,15 @@ namespace Staketracker.Core.ViewModels.Login
                 }
 
                 if (this.isSandboxChecked == true)
-                    IsSandboxDisplay = sandboxTitle;
+                    DomainSelected = sandboxTitle;
                 else
-                    IsSandboxDisplay = productionTitle;
+                    DomainSelected = productionTitle;
 
 
             }
         }
 
-        private string? isSandboxDisplay;
 
-        public string? IsSandboxDisplay
-        {
-            get { return this.isSandboxDisplay; }
-            set
-            {
-
-                if (this.isSandboxDisplay != value)
-                {
-                    SetField(ref isSandboxDisplay, value);
-                    this.isSandboxDisplay = value;
-                }
-
-            }
-        }
         public LoginAPIBody loginApiBody { get; set; }
         public ICommand AuthenticateUserCommand { get; set; }
         public ICommand OnDevelopmentCommand { get; set; }

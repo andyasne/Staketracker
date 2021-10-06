@@ -25,7 +25,7 @@ namespace Staketracker.Core.ViewModels.Commitments
 
         public CommitmentsViewModel(IMvxNavigationService navigationService)
         {
-            this.HeaderTitle = "Commitments";
+            this.PageTitle = "Commitments";
 
             _navigationService = navigationService;
 

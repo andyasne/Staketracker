@@ -159,7 +159,7 @@ namespace Staketracker.Core
                 {
                     page = CreateNavigationPage(page).Build(tp =>
                     {
-                        tp.Title = ((Staketracker.Core.ViewModels.BaseViewModel)((MvvmCross.Forms.Views.MvxContentPage)page).ViewModel).HeaderTitle;
+                        tp.Title = ((Staketracker.Core.ViewModels.BaseViewModel)((MvvmCross.Forms.Views.MvxContentPage)page).ViewModel).PageTitle;
                         //        tp.Title = page.Title;
                         tp.IconImageSource = page.IconImageSource;
                     });

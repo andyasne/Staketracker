@@ -32,15 +32,42 @@ namespace Staketracker.Core.ViewModels
         public IApiManager ApiManager;
         private IApiService<IStaketrackerApi> staketrackerApi = new ApiService<IStaketrackerApi>(Config.StaketrackerApiUrl);
         public ICommand OnDevelopmentNotifyCommand { get; }
+        private static string? domainSelected;
+
+        public static string? DomainSelected
+        {
+            get { return domainSelected; }
+            set
+            {
+
+                if (domainSelected != value)
+                {
+                    domainSelected = value;
+                }
+
+            }
+        }
 
         private string headerTitle;
         public string HeaderTitle
         {
-            get { return headerTitle; }
+            get
+            {
+                return DomainSelected;
+            }
+
+        }
+
+        private string pageTitle;
+        public string PageTitle
+        {
+            get { return pageTitle; }
             set
             {
-                this.headerTitle = value;
-                SetField(ref headerTitle, value);
+                SetField(ref pageTitle, value);
+
+                pageTitle = value;
+
             }
         }
 
