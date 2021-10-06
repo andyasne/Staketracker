@@ -44,6 +44,7 @@ namespace Staketracker.Droid
 
             base.OnCreate(bundle);
             Xamarin.Essentials.Platform.Init(this, bundle);
+            PhantomLib.Droid.Effects.Effects.Init();
         }
 
 

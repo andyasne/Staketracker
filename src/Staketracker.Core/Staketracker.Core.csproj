@@ -28,6 +28,7 @@
     <PackageReference Include="MvvmCross.Forms" Version="7.1.2" />
     <PackageReference Include="MvvmCross.Plugin.Messenger" Version="7.1.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="PhantomLib" Version="2.0.7" />
     <PackageReference Include="Plugin.Fingerprint" Version="1.4.7" />
     <PackageReference Include="Polly" Version="7.2.1" />
     <PackageReference Include="Refit" Version="6.0.38" />
