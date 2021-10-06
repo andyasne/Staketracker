@@ -91,9 +91,38 @@
                                                        SearchMode="Contains"
                                                        SearchTextPath="Label"
                                                        IsDropDownClosedOnSelection="True"
-                                                       DropDownHeight="200"
+                                                      
                                                        IsEditable="False" 
                                                        SelectionMode="Single" >
+                            <telerikInput:RadComboBox.DropDownHeight>
+                                <OnPlatform x:TypeArguments="x:Double">
+                                    <On Platform="iOS">238</On>
+
+                                    <On Platform="Android">248</On>
+                                </OnPlatform>
+                            </telerikInput:RadComboBox.DropDownHeight>
+
+                            <telerikInput:RadComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <telerikPrimitives:RadBorder BackgroundColor="LightBlue"
+                                         CornerRadius="4" BorderColor="WhiteSmoke" BorderThickness="1"
+                                         >
+                                        <StackLayout BackgroundColor="White" VerticalOptions="Center">
+                                            <Label Text="{Binding Label}"  Style="{StaticResource FormSubtitleLabelStyle}"     Margin="2"    Padding="5"                   />
+                                        </StackLayout>
+                                    </telerikPrimitives:RadBorder>
+                                </DataTemplate>
+                            </telerikInput:RadComboBox.ItemTemplate>
+                            <telerikInput:RadComboBox.SelectedItemTemplate>
+                                <DataTemplate>
+                                    <telerikPrimitives:RadBorder BackgroundColor="LightBlue" >
+
+                                        <StackLayout BackgroundColor="WhiteSmoke">
+                                            <Label Text="{Binding Label}"  Style="{StaticResource FormSubtitleLabelStyle}"    Margin="2"    Padding="5"                      />
+                                        </StackLayout>
+                                    </telerikPrimitives:RadBorder>
+                                </DataTemplate>
+                            </telerikInput:RadComboBox.SelectedItemTemplate>
 
                         </telerikInput:RadComboBox>
 
@@ -187,12 +216,33 @@
                                                        Style="{StaticResource ComboEntryStyle}" 
                                                        SearchMode="Contains"
                                                        SearchTextPath="Label"
-                                                       IsDropDownClosedOnSelection="True"
-                                                       DropDownHeight="200"
+                                                       IsDropDownClosedOnSelection="True" 
                                                        IsEditable="False" 
                                                        SelectionMode="Multiple" >
 
 
+
+                            <telerikInput:RadComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <telerikPrimitives:RadBorder BackgroundColor="LightBlue"
+                                           CornerRadius="4" BorderColor="WhiteSmoke" BorderThickness="1"
+                                         >
+                                        <StackLayout BackgroundColor="White" VerticalOptions="Center">
+                                            <Label Text="{Binding Label}"  Style="{StaticResource FormSubtitleLabelStyle}"     Margin="2"    Padding="5"    />
+                                        </StackLayout>
+                                    </telerikPrimitives:RadBorder>
+                                </DataTemplate>
+                            </telerikInput:RadComboBox.ItemTemplate>
+                            <telerikInput:RadComboBox.SelectedItemTemplate>
+                                <DataTemplate>
+                                    <telerikPrimitives:RadBorder BackgroundColor="LightBlue">
+
+                                        <StackLayout BackgroundColor="WhiteSmoke">
+                                            <Label Text="{Binding Label}"  Style="{StaticResource FormSubtitleLabelStyle}"    Margin="2"    Padding="5"   />
+                                        </StackLayout>
+                                    </telerikPrimitives:RadBorder>
+                                </DataTemplate>
+                            </telerikInput:RadComboBox.SelectedItemTemplate>
 
                         </telerikInput:RadComboBox>
 
