@@ -28,6 +28,14 @@ namespace Staketracker.UI.Pages
                 navigationPage.BarTextColor = Color.White;
             }
         }
+
+        void UltimateEntry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (sender is PhantomLib.CustomControls.UltimateEntry entry)
+            {
+                //    entry.ShowError = e.NewTextValue.Length > 4;
+            }
+        }
         public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
         {
 

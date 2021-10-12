@@ -8,7 +8,7 @@
                       xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
                       xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       x:Class="Staketracker.UI.Pages.LoginPage"
-                         xmlns:controls="clr-namespace:PhantomLib.CustomControls;assembly=PhantomLib"
+                      xmlns:controls="clr-namespace:PhantomLib.CustomControls;assembly=PhantomLib"
                       NavigationPage.HasNavigationBar="False"
              x:TypeArguments="viewModels:LoginViewModel">
 
@@ -109,19 +109,20 @@
                     <!--/User Id-->
 
                     <!--<Label Text="Show/hide password with the lock icon" Style="{StaticResource Item}" Margin="0,20,0,0" />-->
-                    <controls:FloatingLabel x:Name="PasswordFloatingLabel" PlaceholderText="Password"   BackgroundColor="White"  PlaceholderColor="Black"
+                    <controls:FloatingLabel x:Name="PasswordFloatingLabel" PlaceholderText="Password"   BackgroundColor="White"  PlaceholderColor="Black" 
                                                 UltimateEntry="{x:Reference FloatingPasswordEntry}">
-                        <controls:UltimateEntry x:Name="FloatingPasswordEntry"   BorderColor="Wheat"     Text="{Binding Password.Value, Mode=TwoWay}"  BackgroundColor="White" Placeholder="Password" Style="{StaticResource MaterialEntry}"
+                        <controls:UltimateEntry x:Name="FloatingPasswordEntry" BindingContext="viewModels.LoginViewModel"  BorderColor="Wheat"    Text="{Binding Password.Value}"  BackgroundColor="White" Placeholder="Password" Style="{StaticResource MaterialEntry}"
                                   Margin="0,0,0,0"
-                                            ImageSource="icon_lock_open" 
+                                            ImageSource="icon_lock_open"  
                                             HidePasswordImageSource="icon_lock_close" 
+                                                TextChanged="UltimateEntry_TextChanged" 
                                             ImageButton="Password"
                                             ReturnButton="Done" />
                     </controls:FloatingLabel>
 
 
 
-                    <telerikInput:RadEntry
+                    <!--<telerikInput:RadEntry
                                    IsPassword="True" 
                         
                                    WatermarkText="Password"
@@ -130,7 +131,7 @@
                         <telerikInput:RadEntry.Behaviors>
                             <behaviour:EntryLineValidationBehaviour IsValid="{Binding Password.IsValid}" />
                         </telerikInput:RadEntry.Behaviors>
-                    </telerikInput:RadEntry>
+                    </telerikInput:RadEntry>-->
                     <Label Text="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Password.IsValid, Converter={StaticResource InverseBoolConverter}}"
                         Style="{StaticResource ErrorTextStyle}" />
