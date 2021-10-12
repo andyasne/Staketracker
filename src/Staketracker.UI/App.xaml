@@ -66,7 +66,7 @@
                     <StackLayout   Margin="0,2,0,2">
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
 
-                        <telerikInput:RadEntry    Text="{Binding  Value.Value, Mode=TwoWay }"
+                        <telerikInput:RadEntry    Text="{Binding  Value.Value, Mode=TwoWay }"  
                              Style="{StaticResource LoginEntryStyle}">
                             <telerikInput:RadEntry.Behaviors>
                                 <behaviour:EntryLineValidationBehaviour IsValid="{Binding Value.IsValid}" />
@@ -256,8 +256,38 @@
 
             </DataTemplate>
 
+
+            <DataTemplate x:Key="TextBoxTemplateRO"  >
+                <ViewCell >
+
+                    <StackLayout   Margin="0,2,0,2">
+                        <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
+
+                        <telerikInput:RadEntry    Text="{Binding  Value.Value, Mode=TwoWay }" IsEnabled="False"
+                             Style="{StaticResource LoginEntryStyle}">
+                            <telerikInput:RadEntry.Behaviors>
+                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding Value.IsValid}" />
+                            </telerikInput:RadEntry.Behaviors>
+                        </telerikInput:RadEntry>
+
+                        <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                        IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                         Style="{StaticResource ErrorTextStyle}" />
+                    </StackLayout>
+                </ViewCell>
+
+            </DataTemplate>
+
             <ui:formDataTemplateSelector x:Key="formDataTemplateSelector"
                 TextBoxTemplate="{StaticResource TextBoxTemplate}"
+                DropDownListTemplate="{StaticResource DropDownListTemplate}"
+                MultiLineTemplate="{StaticResource MultiLineTemplate}" 
+                DateTimeTemplate="{StaticResource DateTimeTemplate}" 
+                ListBoxMultiTemplate="{StaticResource ListBoxMultiTemplate}" 
+                CheckBoxTemplate="{StaticResource CheckBoxTemplate}"  />
+
+            <ui:formDataTemplateSelectorView x:Key="formDataTemplateSelectorView"
+                TextBoxTemplate="{StaticResource TextBoxTemplateRO}"
                 DropDownListTemplate="{StaticResource DropDownListTemplate}"
                 MultiLineTemplate="{StaticResource MultiLineTemplate}" 
                 DateTimeTemplate="{StaticResource DateTimeTemplate}" 

@@ -19,10 +19,13 @@
 
     <mcf:MvxContentPage.Content>
         <Grid x:Name="LayoutRoot">
-            <EventsList:EventDetailView x:Name="detailView" IsVisible="True">
-
+            <EventsList:EventDetailView x:Name="detailView" IsVisible="False">
+                <EventsList:EventDetailView.Triggers>
+                    <DataTrigger TargetType="EventsList:EventDetailView" Binding="{Binding IsReading}" Value="True">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </EventsList:EventDetailView.Triggers>
             </EventsList:EventDetailView>
-
 
         </Grid>
 

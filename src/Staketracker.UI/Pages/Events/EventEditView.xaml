@@ -4,7 +4,7 @@
              xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
              xmlns:rating="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
-             x:Class="Staketracker.UI.Pages.Events.EventDetailView" BackgroundColor="White">
+             x:Class="Staketracker.UI.Pages.Events.EventEditView" BackgroundColor="White">
     <ContentView.Resources>
         <ResourceDictionary>
             <Color x:Key="TitleLabelColor">#bcbcbc</Color>
@@ -19,7 +19,7 @@
                SeparatorVisibility="None" 
                 x:Name="listView" HasUnevenRows="True" 
                 VerticalScrollBarVisibility="Never"  
-                ItemTemplate="{StaticResource formDataTemplateSelectorView}"  
+                ItemTemplate="{StaticResource formDataTemplateSelector}"  
                 ItemsSource="{Binding FormContent}" 
                 SelectionMode="None" />
             </StackLayout>
