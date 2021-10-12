@@ -7,6 +7,7 @@
                       xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Login;assembly=Staketracker.Core"
                       xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
                       xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+                    xmlns:local="clr-namespace:Staketracker.UI.Pages"
                       x:Class="Staketracker.UI.Pages.LoginPage"
                       xmlns:controls="clr-namespace:PhantomLib.CustomControls;assembly=PhantomLib"
                       NavigationPage.HasNavigationBar="False"
@@ -71,6 +72,10 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
+
+
+
+
     <StackLayout  >
         <Grid>
             <Grid.RowDefinitions>
@@ -120,6 +125,21 @@
                                             ReturnButton="Done" />
                     </controls:FloatingLabel>
 
+                    <ImageButton VerticalOptions="Center"
+               HeightRequest="20"
+               HorizontalOptions="End"
+               Source="icon_lock_open">
+                        <ImageButton.Triggers>
+                            <EventTrigger Event="Clicked">
+                                <local:ShowPasswordTriggerAction ShowIcon="icon_lock_open"
+                                                              HideIcon="icon_lock_close"
+                                                              x:Name="ShowPasswordActualTrigger"/>
+                            </EventTrigger>
+                        </ImageButton.Triggers>
+                    </ImageButton>
+
+                    <Entry Placeholder="Password"   Text="{Binding Password.Value, Mode=TwoWay}"
+       IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, Path=HidePassword}"/>
 
 
                     <!--<telerikInput:RadEntry
