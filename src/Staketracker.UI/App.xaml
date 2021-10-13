@@ -255,19 +255,192 @@
 
             </DataTemplate>
 
-
             <DataTemplate x:Key="TextBoxTemplateRO"  >
                 <ViewCell >
 
                     <StackLayout   Margin="0,2,0,2">
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
 
-                        <telerikInput:RadEntry    Text="{Binding  Value.Value, Mode=TwoWay }" IsEnabled="False"
+                        <telerikInput:RadEntry    Text="{Binding  Value.Value, Mode=TwoWay }"  IsReadOnly="True"
                              Style="{StaticResource LoginEntryStyle}">
                             <telerikInput:RadEntry.Behaviors>
                                 <behaviour:EntryLineValidationBehaviour IsValid="{Binding Value.IsValid}" />
                             </telerikInput:RadEntry.Behaviors>
                         </telerikInput:RadEntry>
+
+                        <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                        IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                         Style="{StaticResource ErrorTextStyle}" />
+                    </StackLayout>
+                </ViewCell>
+
+            </DataTemplate>
+            <DataTemplate x:Key="DropDownListTemplateRO">
+                <ViewCell>
+
+                    <StackLayout  Margin="0,2,0,2">
+                        <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
+
+                        <telerikInput:RadComboBox      DisplayMemberPath="Label"  IsEditable="False"
+                                                       SelectedItem="{Binding Value.SelectedItem, Mode=TwoWay}"
+                                                       ItemsSource="{ Binding Value.DropdownValues }"  
+                                                       Style="{StaticResource ComboEntryStyle}" 
+                                                       SearchMode="Contains"
+                                                       SearchTextPath="Label"
+                                                       IsDropDownClosedOnSelection="True"
+                                                      IsEnabled="False"
+                                                        
+                                                       SelectionMode="Single" >
+                            <telerikInput:RadComboBox.DropDownHeight>
+                                <OnPlatform x:TypeArguments="x:Double">
+                                    <On Platform="iOS">238</On>
+
+                                    <On Platform="Android">248</On>
+                                </OnPlatform>
+                            </telerikInput:RadComboBox.DropDownHeight>
+
+                            <telerikInput:RadComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <telerikPrimitives:RadBorder BackgroundColor="LightBlue"
+                                         CornerRadius="4" BorderColor="WhiteSmoke" BorderThickness="1"
+                                         >
+                                        <StackLayout BackgroundColor="White" VerticalOptions="Center">
+                                            <Label Text="{Binding Label}"  Style="{StaticResource FormSubtitleLabelStyle}"     Margin="2"    Padding="5"                   />
+                                        </StackLayout>
+                                    </telerikPrimitives:RadBorder>
+                                </DataTemplate>
+                            </telerikInput:RadComboBox.ItemTemplate>
+                            <telerikInput:RadComboBox.SelectedItemTemplate>
+                                <DataTemplate>
+                                    <telerikPrimitives:RadBorder BackgroundColor="LightBlue" >
+
+                                        <StackLayout BackgroundColor="WhiteSmoke">
+                                            <Label Text="{Binding Label}"  Style="{StaticResource FormSubtitleLabelStyle}"    Margin="2"    Padding="5"                      />
+                                        </StackLayout>
+                                    </telerikPrimitives:RadBorder>
+                                </DataTemplate>
+                            </telerikInput:RadComboBox.SelectedItemTemplate>
+
+                        </telerikInput:RadComboBox>
+
+                        <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                        IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                         Style="{StaticResource ErrorTextStyle}" />
+                    </StackLayout>
+                </ViewCell>
+
+            </DataTemplate>
+            <DataTemplate x:Key="MultiLineTemplateRO">
+                <ViewCell>
+                    <StackLayout  Margin="0,2,0,2" >
+                        <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
+                        <Frame BorderColor="LightGray" HasShadow="False" Padding="3">
+
+                            <Editor  HeightRequest="70"      IsReadOnly="True" IsEnabled="False" Text="{Binding  Value.Value, Mode=TwoWay }" >
+
+                            </Editor>
+                        </Frame>
+                        <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                        IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                         Style="{StaticResource ErrorTextStyle}" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="DateTimeTemplateRO">
+                <ViewCell>
+                    <StackLayout   Margin="0,2,0,2">
+
+                        <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"    
+                                Margin="{StaticResource itemSpacing}" />
+
+                        <telerikInput:RadDateTimePicker SpinnerHeaderStyle="{StaticResource spinnerHeaderStyle}"
+                                SpinnerStyle="{StaticResource spinnerStyle}"
+                                SelectionHighlightStyle="{StaticResource selectionHighlightStyle}"
+                                 Date = "{Binding  Value.SelectedDate, Mode=TwoWay }"
+                                 DisplayStringFormat=""  
+                                 SpinnerFormat="d" Margin="0"  IsEnabled="False"
+                                 Placeholder="Select a Date" 
+                                AreSpinnerHeadersVisible="True"
+                                DisplayLabelStyle="{StaticResource displayLabelStyle}"
+                                PlaceholderLabelStyle="{StaticResource placeholderLabelStyle}"
+                                BorderColor="{StaticResource LightBlueColor}" Padding="4,1,4,1" 
+                                BackgroundColor="{StaticResource EntryBackgroundColor}" 
+                                CornerRadius="6"  BorderThickness="0.3" HeightRequest="45"  >
+                            <telerikInput:RadDateTimePicker.SelectorSettings>
+                                <telerikInput:PickerPopupSelectorSettings PopupOutsideBackgroundColor="#D9D9D9CC"
+                                                  PopupViewStyle="{StaticResource popupViewStyle}"
+                                                  HeaderStyle="{StaticResource headerStyle}"
+                                                  HeaderLabelText="Date Picker"
+                                                  HeaderLabelStyle="{StaticResource headerLabelStyle}"
+                                                  FooterStyle="{StaticResource footerStyle}"
+                                                  AcceptButtonStyle="{StaticResource acceptButtonStyle}"
+                                                  CancelButtonStyle="{StaticResource cancelButtonStyle}"/>
+                            </telerikInput:RadDateTimePicker.SelectorSettings>
+                        </telerikInput:RadDateTimePicker>
+
+                        <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                        IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                         Style="{StaticResource ErrorTextStyle}" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="CheckBoxTemplateRO">
+                <ViewCell>
+                    <StackLayout   Margin="0,5,0,10">
+
+                        <StackLayout Orientation="Horizontal">
+
+                            <telerikPrimitives:RadCheckBox Style="{StaticResource checkBoxButtonStyle}" IsChecked="{Binding  Value.Value, Mode=TwoWay }"  IsEnabled="False"  />
+                            <Label Text="{Binding  Key, Mode=TwoWay }"/>
+                        </StackLayout>
+                        <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                        IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                         Style="{StaticResource ErrorTextStyle}" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="ListBoxMultiTemplateRO">
+                <ViewCell>
+
+                    <StackLayout  Margin="0,2,0,2">
+                        <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
+
+
+                        <telerikInput:RadComboBox      DisplayMemberPath="Label"  IsEditable="False"
+                                                       SelectedItems="{Binding Value.SelectedItems , Mode=TwoWay}"
+                                                       ItemsSource="{ Binding Value.DropdownValues }"  
+                                                       Style="{StaticResource ComboEntryStyle}" 
+                                                       SearchMode="Contains"
+                                                       SearchTextPath="Label"
+                                                       IsDropDownClosedOnSelection="True" 
+                                                        IsEnabled="False"
+                                                       SelectionMode="Multiple" >
+
+
+
+                            <telerikInput:RadComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <telerikPrimitives:RadBorder BackgroundColor="LightBlue"
+                                           CornerRadius="4" BorderColor="WhiteSmoke" BorderThickness="1"
+                                         >
+                                        <StackLayout BackgroundColor="White" VerticalOptions="Center">
+                                            <Label Text="{Binding Label}"  Style="{StaticResource FormSubtitleLabelStyle}"     Margin="2"    Padding="5"    />
+                                        </StackLayout>
+                                    </telerikPrimitives:RadBorder>
+                                </DataTemplate>
+                            </telerikInput:RadComboBox.ItemTemplate>
+                            <telerikInput:RadComboBox.SelectedItemTemplate>
+                                <DataTemplate>
+                                    <telerikPrimitives:RadBorder BackgroundColor="LightBlue">
+
+                                        <StackLayout BackgroundColor="WhiteSmoke">
+                                            <Label Text="{Binding Label}"  Style="{StaticResource FormSubtitleLabelStyle}"    Margin="2"    Padding="5"   />
+                                        </StackLayout>
+                                    </telerikPrimitives:RadBorder>
+                                </DataTemplate>
+                            </telerikInput:RadComboBox.SelectedItemTemplate>
+
+                        </telerikInput:RadComboBox>
 
                         <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
@@ -287,11 +460,11 @@
 
             <ui:formDataTemplateSelectorView x:Key="formDataTemplateSelectorView"
                 TextBoxTemplate="{StaticResource TextBoxTemplateRO}"
-                DropDownListTemplate="{StaticResource DropDownListTemplate}"
-                MultiLineTemplate="{StaticResource MultiLineTemplate}" 
-                DateTimeTemplate="{StaticResource DateTimeTemplate}" 
-                ListBoxMultiTemplate="{StaticResource ListBoxMultiTemplate}" 
-                CheckBoxTemplate="{StaticResource CheckBoxTemplate}"  />
+                DropDownListTemplate="{StaticResource DropDownListTemplateRO}"
+                MultiLineTemplate="{StaticResource MultiLineTemplateRO}" 
+                DateTimeTemplate="{StaticResource DateTimeTemplateRO}" 
+                ListBoxMultiTemplate="{StaticResource ListBoxMultiTemplateRO}" 
+                CheckBoxTemplate="{StaticResource CheckBoxTemplateRO}"  />
 
 
         </ResourceDictionary>

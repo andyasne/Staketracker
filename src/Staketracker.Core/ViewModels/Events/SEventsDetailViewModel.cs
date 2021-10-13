@@ -65,6 +65,10 @@ namespace Staketracker.Core.ViewModels.Events
             }
         }
 
+        public bool IsReading = true;
+        public bool IsEditing = false;
+
+
 
 
 
@@ -230,6 +234,12 @@ namespace Staketracker.Core.ViewModels.Events
         }
         private async Task OnCommitEditOrder()
         {
+
+            this.IsReading = !IsReading;
+            IsEditing = !IsEditing;
+            RE
+
+            return;
             if (isFormValid())
             {
 
