@@ -65,17 +65,27 @@ namespace Staketracker.Core.ViewModels.Events
             }
         }
 
-        public bool IsReading = true;
-        public bool IsEditing = false;
+        private bool isReading = true;
+        private bool isEditing = false;
 
 
+        public bool IsReading
+        {
+            get => isReading;
+            private set => SetField(ref isReading, value);
+        }
 
+        public bool IsEditing
+        {
+            get => isEditing;
+            private set => SetField(ref isEditing, value);
+        }
 
 
         public string Title
         {
             get => title;
-            private set => SetProperty(ref title, value);
+            private set => SetField(ref title, value);
         }
 
         public Command BeginEditCommand { get; }
@@ -137,17 +147,37 @@ namespace Staketracker.Core.ViewModels.Events
                     break;
             }
         }
+        void changeView()
+        {
+            IsReading = !IsReading;
+            IsEditing = !IsEditing;
+            RaisePropertyChanged(() => IsEditing);
+            RaisePropertyChanged(() => IsReading);
+            if (IsReading)
+            {
+                Title = "View Event";
+            }
+            else
+            {
+                Title = "Edit Event";
+            }
 
+
+
+        }
         private void OnBeginEditSEvent()
         {
-            if (!IsReading)
-                return;
+            changeView();
 
-            SEvent sEvent = targetSEvent.Copy();
-            Mode = PresentationMode.Edit;
-            UpdateTitle();
-            InitializeEditData(sEvent);
-            DraftSEvent = sEvent;
+            //if (!IsReading)
+            //    return;
+
+            //SEvent sEvent = targetSEvent.Copy();
+            //Mode = PresentationMode.Edit;
+            //UpdateTitle();
+            //InitializeEditData(sEvent);
+            //DraftSEvent = sEvent;
+
         }
 
         private async Task OnDeleteSEvent()
@@ -235,9 +265,7 @@ namespace Staketracker.Core.ViewModels.Events
         private async Task OnCommitEditOrder()
         {
 
-            this.IsReading = !IsReading;
-            IsEditing = !IsEditing;
-            
+            changeView();
 
             return;
             if (isFormValid())
