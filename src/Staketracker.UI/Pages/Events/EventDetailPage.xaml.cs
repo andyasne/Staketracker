@@ -1,5 +1,8 @@
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
+using MvvmCross.Presenters.Attributes;
+using MvvmCross.ViewModels;
+using Staketracker.Core;
 using Staketracker.Core.ViewModels.Events;
 using System;
 using Xamarin.Forms;
@@ -16,7 +19,11 @@ namespace Staketracker.UI.Pages.Events
 
             if (Device.Idiom == TargetIdiom.Phone)
             {
-                this.editView = new EventDetailView();
+                this.editView = new EventEditView();
+                this.detailView.PropertyChanged += this.HandleCustomerDetailViewPropertyChanged;
+
+
+                this.editView.PropertyChanged += this.HandleCustomerEditViewPropertyChanged;
 
 
                 optionsToolbarItem = new ToolbarItem();
@@ -52,11 +59,78 @@ namespace Staketracker.UI.Pages.Events
         private ToolbarItem optionsToolbarItem, checkToolbarItem, deleteToolbarItem;
 
 
-        private void OptionsToolbarItem_Clicked(object sender, EventArgs e)
+
+        protected override void OnAppearing()
         {
-            this.detailView.OpenPopup();
+            base.OnAppearing();
+
+            if (Device.Idiom != TargetIdiom.Phone)
+                return;
+
+            if (this.detailView.IsVisible)
+            {
+                if (!this.ToolbarItems.Contains(optionsToolbarItem))
+                    this.ToolbarItems.Add(optionsToolbarItem);
+            }
+
+            if (this.editView.IsVisible)
+            {
+                if (!this.ToolbarItems.Contains(checkToolbarItem))
+                    this.ToolbarItems.Add(checkToolbarItem);
+            }
         }
 
+        private void OptionsToolbarItem_Clicked(object sender, System.EventArgs e)
+        {
+            if (this.detailView.IsVisible)
+                this.detailView.OpenPopup();
+        }
+
+        private void HandleCustomerDetailViewPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == IsVisibleProperty.PropertyName)
+            {
+                if (this.detailView.IsVisible)
+                {
+                    if (!this.ToolbarItems.Contains(optionsToolbarItem))
+                        this.ToolbarItems.Add(optionsToolbarItem);
+                }
+                else
+                {
+                    if (this.ToolbarItems.Contains(optionsToolbarItem))
+                        this.ToolbarItems.Remove(optionsToolbarItem);
+                }
+            }
+        }
+
+        private void HandleCustomerEditViewPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == IsVisibleProperty.PropertyName)
+            {
+                if (this.editView?.IsVisible == true)
+                {
+                    this.detailView.ClosePopup();
+                    if (!this.ToolbarItems.Contains(checkToolbarItem))
+                        this.ToolbarItems.Add(checkToolbarItem);
+                }
+                else
+                {
+                    if (this.ToolbarItems.Contains(checkToolbarItem))
+                        this.ToolbarItems.Remove(checkToolbarItem);
+                }
+            }
+        }
+        public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
+        {
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+                return new MvxContentPagePresentationAttribute() { WrapInNavigationPage = true };
+            }
+            else
+            {
+                return new MvxCustomMasterDetailPagePresentationAttribute(MasterDetailPosition.Detail) { NoHistory = true, MasterHostViewType = typeof(EventDetailPage) };
+            }
+        }
 
     }
 

@@ -65,11 +65,21 @@ namespace Staketracker.Core.ViewModels.Events
             }
         }
 
-        public bool IsReading = true;
-        public bool IsEditing = false;
+        private bool isReading = false;
+        private bool isEditing = true;
 
 
+        public bool IsReading
+        {
+            get => isReading;
+            private set => SetField(ref isReading, value);
+        }
 
+        public bool IsEditing
+        {
+            get => isEditing;
+            private set => SetField(ref isEditing, value);
+        }
 
 
         public string Title
@@ -140,14 +150,19 @@ namespace Staketracker.Core.ViewModels.Events
 
         private void OnBeginEditSEvent()
         {
-            if (!IsReading)
-                return;
+            IsReading = !IsReading;
+            IsEditing = !IsEditing;
+            RaisePropertyChanged(() => IsEditing);
+            RaisePropertyChanged(() => IsReading);
+            //if (!IsReading)
+            //    return;
 
-            SEvent sEvent = targetSEvent.Copy();
-            Mode = PresentationMode.Edit;
-            UpdateTitle();
-            InitializeEditData(sEvent);
-            DraftSEvent = sEvent;
+            //SEvent sEvent = targetSEvent.Copy();
+            //Mode = PresentationMode.Edit;
+            //UpdateTitle();
+            //InitializeEditData(sEvent);
+            //DraftSEvent = sEvent;
+
         }
 
         private async Task OnDeleteSEvent()
@@ -235,9 +250,10 @@ namespace Staketracker.Core.ViewModels.Events
         private async Task OnCommitEditOrder()
         {
 
-            this.IsReading = !IsReading;
+            IsReading = !IsReading;
             IsEditing = !IsEditing;
-            
+            RaisePropertyChanged(() => IsEditing);
+            RaisePropertyChanged(() => IsReading);
 
             return;
             if (isFormValid())
