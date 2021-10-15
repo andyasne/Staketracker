@@ -96,7 +96,7 @@ namespace Staketracker.Core.ViewModels
         }
         public EventFormValue pageFormValue;
         public AuthReply authReply;
-
+        public string name;
         public int primaryKey;
         public PresentationMode mode;
         public bool IsReading => mode == PresentationMode.Read;

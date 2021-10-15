@@ -17,9 +17,19 @@ namespace Staketracker.Core.Models
             _mode = mode;
             _primaryKey = primaryKey;
         }
+
+
+        public PresentationContext(T model, PresentationMode mode, int primaryKey, String name)
+        {
+            _model = model;
+            _mode = mode;
+            _primaryKey = primaryKey;
+            this.Name = name;
+        }
         private T _model;
         private PresentationMode _mode;
         private int _primaryKey;
+        public String Name;
 
         public T Model => _model;
         public PresentationMode Mode => _mode;

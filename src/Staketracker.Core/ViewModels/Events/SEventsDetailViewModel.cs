@@ -106,12 +106,13 @@ namespace Staketracker.Core.ViewModels.Events
             authReply = parameter.Model;
             Mode = parameter.Mode;
             primaryKey = parameter.PrimaryKey;
+            name = parameter.Name;
         }
 
         public override void ViewAppearing()
         {
             IsBusy = true;
-            if (mode == PresentationMode.Edit)
+            if (mode == PresentationMode.Edit || mode == PresentationMode.Read)
             {
                 PopulateControls(authReply, primaryKey);
             }
@@ -137,7 +138,7 @@ namespace Staketracker.Core.ViewModels.Events
             switch (mode)
             {
                 case PresentationMode.Read:
-                    Title = sEvent.Name;
+                    Title = name;
                     break;
                 case PresentationMode.Edit:
                     Title = $"Edit Event";
@@ -155,6 +156,7 @@ namespace Staketracker.Core.ViewModels.Events
             RaisePropertyChanged(() => IsReading);
             if (IsReading)
             {
+
                 Title = "View Event";
             }
             else
@@ -265,15 +267,17 @@ namespace Staketracker.Core.ViewModels.Events
         private async Task OnCommitEditOrder()
         {
 
-            changeView();
 
-            return;
+            await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
+
             if (isFormValid())
             {
 
                 GetFormValues("Event");
 
                 saveEvent();
+
+                changeView();
 
             }
 

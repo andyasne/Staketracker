@@ -203,7 +203,7 @@ namespace Staketracker.Core.ViewModels.Events
                 return;
 
             navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(
-                new PresentationContext<AuthReply>(authReply, PresentationMode.Edit, int.Parse(_event.PrimaryKey)));
+                new PresentationContext<AuthReply>(authReply, PresentationMode.Read, int.Parse(_event.PrimaryKey), _event.Name));
 
             SelectedEvent = null;
         }
