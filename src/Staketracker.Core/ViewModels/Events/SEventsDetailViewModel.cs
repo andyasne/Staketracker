@@ -29,6 +29,7 @@ namespace Staketracker.Core.ViewModels.Events
             BeginEditCommand = new Command(OnBeginEditSEvent);
             CommitCommand = new MvxAsyncCommand(OnCommitEditOrder);
             DeleteCommand = new MvxAsyncCommand(OnDeleteSEvent);
+            SaveCommand = new MvxAsyncCommand(OnSaveEvent);
             CancelCommand = new MvxAsyncCommand(OnCancel);
         }
 
@@ -92,6 +93,7 @@ namespace Staketracker.Core.ViewModels.Events
         public IMvxCommand CommitCommand { get; }
         public IMvxCommand CancelCommand { get; }
         public IMvxCommand DeleteCommand { get; }
+        public IMvxCommand SaveCommand { get; }
 
 
         private bool isBusy;
@@ -182,6 +184,12 @@ namespace Staketracker.Core.ViewModels.Events
 
         }
 
+
+        private async Task OnSaveEvent()
+        {
+            changeView();
+
+        }
         private async Task OnDeleteSEvent()
         {
             var result = await PageDialog.ConfirmAsync($"Are you sure you want to delete the Event?",

@@ -21,10 +21,7 @@ namespace Staketracker.UI.Pages.Events
             {
                 this.editView = new EventEditView();
                 this.detailView.PropertyChanged += this.HandleCustomerDetailViewPropertyChanged;
-
-
                 this.editView.PropertyChanged += this.HandleCustomerEditViewPropertyChanged;
-
 
                 optionsToolbarItem = new ToolbarItem();
                 optionsToolbarItem.Text = "Edit";
@@ -32,10 +29,16 @@ namespace Staketracker.UI.Pages.Events
                 optionsToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("BeginEditCommand"));
 
 
-                checkToolbarItem = new ToolbarItem();
-                checkToolbarItem.Text = "Save";
-                checkToolbarItem.IconImageSource = new FileImageSource() { File = "check" };
-                checkToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("CommitCommand"));
+                saveToolbarItem = new ToolbarItem();
+                saveToolbarItem.Text = "Save";
+                saveToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("SaveCommand"));
+
+                deleteToolbarItem = new ToolbarItem();
+                deleteToolbarItem.Text = "Delete";
+                deleteToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("DeleteCommand"));
+
+                //  checkToolbarItem.Clicked += this.OptionsToolbarItem_Clicked;
+
 
             }
             else
@@ -44,8 +47,8 @@ namespace Staketracker.UI.Pages.Events
 
                 NavigationPage.SetHasNavigationBar(this, false);
             }
-            this.ToolbarItems.Add(checkToolbarItem);
-            //   this.ToolbarItems.Add(deleteToolbarItem);
+            this.ToolbarItems.Add(saveToolbarItem);
+            this.ToolbarItems.Add(deleteToolbarItem);
 
             this.editView.IsVisible = false;
             var trigger = new DataTrigger(editView.GetType());
@@ -57,7 +60,7 @@ namespace Staketracker.UI.Pages.Events
         }
 
         private ContentView editView;
-        private ToolbarItem optionsToolbarItem, checkToolbarItem, deleteToolbarItem;
+        private ToolbarItem optionsToolbarItem, checkToolbarItem, deleteToolbarItem, saveToolbarItem;
 
 
 
@@ -76,15 +79,18 @@ namespace Staketracker.UI.Pages.Events
 
             if (this.editView.IsVisible)
             {
-                if (!this.ToolbarItems.Contains(checkToolbarItem))
-                    this.ToolbarItems.Add(checkToolbarItem);
+                if (!this.ToolbarItems.Contains(saveToolbarItem))
+                {
+                    this.ToolbarItems.Add(saveToolbarItem);
+                    this.ToolbarItems.Add(deleteToolbarItem);
+                }
             }
         }
 
         private void OptionsToolbarItem_Clicked(object sender, System.EventArgs e)
         {
-            if (this.detailView.IsVisible)
-                this.detailView.OpenPopup();
+            if (this.editView.IsVisible)
+                ((IPopupHost)this.editView).OpenPopup();
         }
 
         private void HandleCustomerDetailViewPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -111,13 +117,19 @@ namespace Staketracker.UI.Pages.Events
                 if (this.editView?.IsVisible == true)
                 {
                     this.detailView.ClosePopup();
-                    if (!this.ToolbarItems.Contains(checkToolbarItem))
-                        this.ToolbarItems.Add(checkToolbarItem);
+                    if (!this.ToolbarItems.Contains(saveToolbarItem))
+                    {
+                        this.ToolbarItems.Add(saveToolbarItem);
+                        this.ToolbarItems.Add(deleteToolbarItem);
+                    }
                 }
                 else
                 {
-                    if (this.ToolbarItems.Contains(checkToolbarItem))
-                        this.ToolbarItems.Remove(checkToolbarItem);
+                    if (this.ToolbarItems.Contains(saveToolbarItem))
+                    {
+                        this.ToolbarItems.Remove(saveToolbarItem);
+                        this.ToolbarItems.Remove(deleteToolbarItem);
+                    }
                 }
             }
         }
