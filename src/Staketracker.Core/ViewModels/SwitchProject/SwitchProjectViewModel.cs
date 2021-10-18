@@ -64,9 +64,7 @@ namespace Staketracker.Core.ViewModels.SwitchProject
             DomainSelected = SelectedProject.Name;
 
             SetField(ref domainSelected, DomainSelected);
-
-
-            //   await this._navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(Dashboard.DashboardViewModel)));
+            await this._navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(Settings.SettingsViewModel)));
 
         }
         private async void SubmitForgetUserId()

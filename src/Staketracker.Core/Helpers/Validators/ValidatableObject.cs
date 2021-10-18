@@ -25,7 +25,8 @@ namespace Staketracker.Core.Validators
         {
             IsValid = true;
             Errors = new List<string>();
-
+            DefaultHighlightedDate = DateTime.Today;
+            //SelectedDate = DateTime.Today;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -73,6 +74,35 @@ namespace Staketracker.Core.Validators
                 }
             }
         }
+
+
+
+
+        public DateTime? defaultHighlightedDate;
+        public DateTime? DefaultHighlightedDate
+        {
+            get
+            {
+
+                return defaultHighlightedDate;
+            }
+            set
+            {
+                //if (this.selectedDate != value)
+                {
+                    this.defaultHighlightedDate = value;
+
+                    SetField(ref defaultHighlightedDate, value);
+
+
+
+                }
+            }
+        }
+
+
+
+
         public DateTime? selectedDate;
         public DateTime? SelectedDate
         {

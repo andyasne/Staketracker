@@ -36,7 +36,10 @@ namespace Staketracker.Core.ViewModels
 
         public static string? DomainSelected
         {
-            get { return domainSelected; }
+            get
+            {
+                return domainSelected;
+            }
             set
             {
 

@@ -162,6 +162,7 @@
                                 SpinnerStyle="{StaticResource spinnerStyle}"
                                 SelectionHighlightStyle="{StaticResource selectionHighlightStyle}"
                                  Date = "{Binding  Value.SelectedDate, Mode=TwoWay }"
+                                                          DefaultHighlightedDate= "{Binding  Value.DefaultHighlightedDate, Mode=TwoWay }"
                                  DisplayStringFormat=""
                                  SpinnerFormat="d" Margin="0" 
                                  Placeholder="Select a Date" 
