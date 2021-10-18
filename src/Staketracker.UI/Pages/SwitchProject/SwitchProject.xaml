@@ -28,6 +28,8 @@
                     <telerikInput:RadComboBox
                                                      Style="{StaticResource ComboEntryStyle}"
                                                      SearchMode="Contains"
+                        ItemsSource="{Binding BusinessUnit}"
+                        DisplayMemberPath="Name"
                                                      SearchTextPath="Label"
                                                      IsDropDownClosedOnSelection="True"
                                                      DropDownHeight="200"
@@ -42,6 +44,10 @@
                                                      Style="{StaticResource ComboEntryStyle}"
                                                      SearchMode="Contains"
                                                      SearchTextPath="Label"
+                        ItemsSource="{Binding Project}"
+                        DisplayMemberPath="Name"
+                          SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
+                        
                                                      IsDropDownClosedOnSelection="True"
                                                      DropDownHeight="200"
                                                      IsEditable="False"
@@ -50,7 +56,8 @@
                     </telerikInput:RadComboBox>
 
                     <telerikInput:RadButton Text="Open"   Grid.Row="0"  Grid.Column="0" Margin="0,200,0,20" Grid.ColumnSpan="4" WidthRequest="200" HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"
-                                            Style="{StaticResource ActionButtonStyle}" />
+                                            Command="{Binding SubmitForgetPasswordCommand}"
+                                            Style="{StaticResource OpenProjectCommand}" />
 
                 </StackLayout>
             </ScrollView>
