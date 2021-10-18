@@ -10,11 +10,16 @@ namespace Staketracker.Core.ViewModels.SwitchProject
     using Staketracker.Core.ViewModels.TwoStepVerification;
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Net.Http;
     using System.Threading.Tasks;
     using System.Windows.Input;
     using Xamarin.Forms;
 
+    public class ComboListModel
+    {
+        public string Name { get; set; }
+    }
     public class SwitchProjectViewModel : BaseViewModel
     {
         private string email;
@@ -24,18 +29,46 @@ namespace Staketracker.Core.ViewModels.SwitchProject
 
         public ValidatableObject<string> Email { get; set; } = new ValidatableObject<string>();
 
+        public ObservableCollection<ComboListModel> BusinessUnit { get; set; }
+        public ObservableCollection<ComboListModel> Project { get; set; }
+        public ComboListModel SelectedProject { get; set; }
+        public String DomainSelected { get; set; }
 
-        public ICommand SubmitForgetPasswordCommand { get; set; }
+
+        public ICommand OpenProjectCommand { get; set; }
 
         public SwitchProjectViewModel(IMvxNavigationService navigationService)
         {
             AddValidationRules();
             authReply = new AuthReply();
             _navigationService = navigationService;
+            this.BusinessUnit = new ObservableCollection<ComboListModel>()
+            {
+                new ComboListModel{Name = "Sustainet Commercial"},
+                new ComboListModel{Name = "Sustainet Resources"},
+                new ComboListModel{Name = "Sustainet Retail"}
+            };
+            this.Project = new ObservableCollection<ComboListModel>()
+            {
+                new ComboListModel{Name = "Sanlam/Santam"},
+                new ComboListModel{Name = "StakeTracker Express"}
+            };
+
+            OpenProjectCommand = new Command(OpenProject);
 
 
         }
 
+        private async void OpenProject()
+        {
+            DomainSelected = SelectedProject.Name;
+
+            SetField(ref domainSelected, DomainSelected);
+
+
+            //   await this._navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(Dashboard.DashboardViewModel)));
+
+        }
         private async void SubmitForgetUserId()
         {
 
@@ -59,6 +92,7 @@ namespace Staketracker.Core.ViewModels.SwitchProject
 
             }
         }
+
 
 
 

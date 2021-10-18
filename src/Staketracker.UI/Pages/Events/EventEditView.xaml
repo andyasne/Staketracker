@@ -33,13 +33,7 @@
                                     IsModal="false"
                                     Placement="Right" VerticalOffset="10"
                                     OutsideBackgroundColor="#6F000000">
-            <!--<telerikPrimitives:RadBorder CornerRadius="2" WidthRequest="110"
-                                         BackgroundColor="White">-->
-            <!--<telerikPrimitives:RadBorder.HeightRequest>
-                    <OnPlatform x:TypeArguments="x:Double" Default="110">
-                        <On Platform="iOS" Value="130" />
-                    </OnPlatform>
-                </telerikPrimitives:RadBorder.HeightRequest>-->
+
             <StackLayout Padding="20" HorizontalOptions="Center" VerticalOptions="Center">
                 <StackLayout.Spacing>
                     <OnPlatform x:TypeArguments="x:Double" Default="18">

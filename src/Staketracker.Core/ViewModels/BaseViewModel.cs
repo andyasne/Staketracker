@@ -32,7 +32,7 @@ namespace Staketracker.Core.ViewModels
         public IApiManager ApiManager;
         private IApiService<IStaketrackerApi> staketrackerApi = new ApiService<IStaketrackerApi>(Config.StaketrackerApiUrl);
         public ICommand OnDevelopmentNotifyCommand { get; }
-        private static string? domainSelected;
+        public static string? domainSelected;
 
         public static string? DomainSelected
         {
