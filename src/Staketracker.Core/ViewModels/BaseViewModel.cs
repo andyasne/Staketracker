@@ -1,6 +1,7 @@
 using Acr.UserDialogs;
 using MvvmCross.ViewModels;
 using Newtonsoft.Json;
+using Plugin.Settings;
 using Staketracker.Core.Models;
 using Staketracker.Core.Models.ApiRequestBody;
 using Staketracker.Core.Models.EventsFormValue;
@@ -38,10 +39,12 @@ namespace Staketracker.Core.ViewModels
         {
             get
             {
-                return domainSelected;
+                return CrossSettings.Current.GetValueOrDefault("ProjectName", "Production");
+
             }
             set
             {
+                CrossSettings.Current.AddOrUpdateValue("ProjectName", value);
 
                 if (domainSelected != value)
                 {

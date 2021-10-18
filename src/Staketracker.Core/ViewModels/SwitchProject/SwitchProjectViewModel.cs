@@ -3,6 +3,7 @@ namespace Staketracker.Core.ViewModels.SwitchProject
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Newtonsoft.Json;
+    using Plugin.Settings;
     using Staketracker.Core.Models;
     using Staketracker.Core.Validators;
     using Staketracker.Core.Validators.Rules;
@@ -14,6 +15,7 @@ namespace Staketracker.Core.ViewModels.SwitchProject
     using System.Net.Http;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using Xamarin.Essentials;
     using Xamarin.Forms;
 
     public class ComboListModel
@@ -61,9 +63,17 @@ namespace Staketracker.Core.ViewModels.SwitchProject
 
         private async void OpenProject()
         {
+
+
             DomainSelected = SelectedProject.Name;
 
+
+            CrossSettings.Current.AddOrUpdateValue("ProjectName", DomainSelected);
+
+
             SetField(ref domainSelected, DomainSelected);
+            await PageDialog.AlertAsync("Please Restart the Application", "Restart Application", "Ok");
+
             await this._navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(Settings.SettingsViewModel)));
 
         }

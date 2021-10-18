@@ -46,10 +46,10 @@ namespace Staketracker.Core.ViewModels.Login
 
                 }
 
-                if (this.isSandboxChecked == true)
-                    DomainSelected = sandboxTitle;
-                else
-                    DomainSelected = productionTitle;
+                //if (this.isSandboxChecked == true)
+                //    DomainSelected = sandboxTitle;
+                //else
+                //    DomainSelected = productionTitle;
 
 
             }
