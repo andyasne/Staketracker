@@ -27,9 +27,9 @@ namespace Staketracker.Core.ViewModels.Events
             //this.stkaeTrackerAPI = stkaeTrackerAPI;
             this.navigationService = navigationService;
             BeginEditCommand = new Command(OnBeginEditSEvent);
-            CommitCommand = new MvxAsyncCommand(OnCommitEditOrder);
+            //   CommitCommand = new MvxAsyncCommand(OnCommitEditOrder);
             DeleteCommand = new MvxAsyncCommand(OnDeleteSEvent);
-            SaveCommand = new MvxAsyncCommand(OnSaveEvent);
+            SaveCommand = new MvxAsyncCommand(OnCommitEditOrder);
             CancelCommand = new MvxAsyncCommand(OnCancel);
         }
 
@@ -66,8 +66,8 @@ namespace Staketracker.Core.ViewModels.Events
             }
         }
 
-        private bool isReading = false;
-        private bool isEditing = true;
+        private bool isReading = true;
+        private bool isEditing = false;
 
 
         public bool IsReading
@@ -276,7 +276,6 @@ namespace Staketracker.Core.ViewModels.Events
         {
 
 
-            await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
 
             if (isFormValid())
             {

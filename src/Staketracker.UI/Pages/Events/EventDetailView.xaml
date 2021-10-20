@@ -15,7 +15,7 @@
     <ContentView.Content>
         <ScrollView >
             <StackLayout Margin="20">
-                <Label Text="VIEW MODE"/>
+
 
                 <ListView   
                SeparatorVisibility="None" 
@@ -48,8 +48,8 @@
                         <On Platform="iOS" Value="0" />
                     </OnPlatform>
                 </StackLayout.Spacing>
-                <Button Text="&#xE813; Edit" FontFamily="{StaticResource IconsFont}" TextColor="Orange" Command="{Binding BeginEditCommand, Mode=OneWay}" HorizontalOptions="Start" />
-                <Button Text="&#xE809; Delete" FontFamily="{StaticResource IconsFont}" TextColor="#f33d4c" Clicked="Button_Clicked" Command="{Binding DeleteCommand, Mode=OneWay}" HorizontalOptions="Start" />
+                <Button Text="&#xE813; Save" FontFamily="{StaticResource IconsFont}" TextColor="Orange" Command="{Binding SaveCommand, Mode=OneWay}" HorizontalOptions="Start" />
+                <!--<Button Text="&#xE809; Delete" FontFamily="{StaticResource IconsFont}" TextColor="#f33d4c" Clicked="Button_Clicked" Command="{Binding DeleteCommand, Mode=OneWay}" HorizontalOptions="Start" />-->
             </StackLayout>
 
         </telerikPrimitives:RadPopup>

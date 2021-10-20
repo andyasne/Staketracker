@@ -23,21 +23,21 @@ namespace Staketracker.UI.Pages.Events
                 this.detailView.PropertyChanged += this.HandleCustomerDetailViewPropertyChanged;
                 this.editView.PropertyChanged += this.HandleCustomerEditViewPropertyChanged;
 
-                optionsToolbarItem = new ToolbarItem();
-                optionsToolbarItem.Text = "Edit";
-                optionsToolbarItem.IconImageSource = new FileImageSource() { File = "Edit" };
-                optionsToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("BeginEditCommand"));
+                editToolbarItem = new ToolbarItem();
+                editToolbarItem.Text = "Edit";
+                editToolbarItem.IconImageSource = new FileImageSource() { File = "Edit" };
+                editToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("BeginEditCommand"));
 
 
                 saveToolbarItem = new ToolbarItem();
                 saveToolbarItem.Text = "Save";
                 saveToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("SaveCommand"));
+                saveToolbarItem.Clicked += this.editToolbarItem_Clicked;
+
 
                 deleteToolbarItem = new ToolbarItem();
                 deleteToolbarItem.Text = "Delete";
                 deleteToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("DeleteCommand"));
-
-                //  checkToolbarItem.Clicked += this.OptionsToolbarItem_Clicked;
 
 
             }
@@ -48,7 +48,7 @@ namespace Staketracker.UI.Pages.Events
                 NavigationPage.SetHasNavigationBar(this, false);
             }
             this.ToolbarItems.Add(saveToolbarItem);
-            this.ToolbarItems.Add(deleteToolbarItem);
+            //  this.ToolbarItems.Add(deleteToolbarItem);
 
             this.editView.IsVisible = false;
             var trigger = new DataTrigger(editView.GetType());
@@ -60,7 +60,7 @@ namespace Staketracker.UI.Pages.Events
         }
 
         private ContentView editView;
-        private ToolbarItem optionsToolbarItem, checkToolbarItem, deleteToolbarItem, saveToolbarItem;
+        private ToolbarItem editToolbarItem, checkToolbarItem, deleteToolbarItem, saveToolbarItem;
 
 
 
@@ -73,8 +73,12 @@ namespace Staketracker.UI.Pages.Events
 
             if (this.detailView.IsVisible)
             {
-                if (!this.ToolbarItems.Contains(optionsToolbarItem))
-                    this.ToolbarItems.Add(optionsToolbarItem);
+                if (!this.ToolbarItems.Contains(editToolbarItem))
+                {
+                    this.ToolbarItems.Add(editToolbarItem);
+                    this.ToolbarItems.Add(deleteToolbarItem);
+                }
+
             }
 
             if (this.editView.IsVisible)
@@ -82,12 +86,11 @@ namespace Staketracker.UI.Pages.Events
                 if (!this.ToolbarItems.Contains(saveToolbarItem))
                 {
                     this.ToolbarItems.Add(saveToolbarItem);
-                    this.ToolbarItems.Add(deleteToolbarItem);
                 }
             }
         }
 
-        private void OptionsToolbarItem_Clicked(object sender, System.EventArgs e)
+        private void editToolbarItem_Clicked(object sender, System.EventArgs e)
         {
             if (this.editView.IsVisible)
                 ((IPopupHost)this.editView).OpenPopup();
@@ -99,13 +102,21 @@ namespace Staketracker.UI.Pages.Events
             {
                 if (this.detailView.IsVisible)
                 {
-                    if (!this.ToolbarItems.Contains(optionsToolbarItem))
-                        this.ToolbarItems.Add(optionsToolbarItem);
+                    if (!this.ToolbarItems.Contains(editToolbarItem))
+                    {
+                        this.ToolbarItems.Add(editToolbarItem);
+                        this.ToolbarItems.Add(deleteToolbarItem);
+                    }
+
                 }
                 else
                 {
-                    if (this.ToolbarItems.Contains(optionsToolbarItem))
-                        this.ToolbarItems.Remove(optionsToolbarItem);
+                    if (this.ToolbarItems.Contains(editToolbarItem))
+                    {
+                        this.ToolbarItems.Remove(editToolbarItem);
+                        this.ToolbarItems.Remove(deleteToolbarItem);
+                    }
+
                 }
             }
         }
@@ -120,7 +131,6 @@ namespace Staketracker.UI.Pages.Events
                     if (!this.ToolbarItems.Contains(saveToolbarItem))
                     {
                         this.ToolbarItems.Add(saveToolbarItem);
-                        this.ToolbarItems.Add(deleteToolbarItem);
                     }
                 }
                 else
@@ -128,7 +138,6 @@ namespace Staketracker.UI.Pages.Events
                     if (this.ToolbarItems.Contains(saveToolbarItem))
                     {
                         this.ToolbarItems.Remove(saveToolbarItem);
-                        this.ToolbarItems.Remove(deleteToolbarItem);
                     }
                 }
             }
