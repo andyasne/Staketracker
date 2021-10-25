@@ -4,6 +4,7 @@ namespace Staketracker.Core.ViewModels.ChangePassword
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Newtonsoft.Json;
+    using Plugin.Settings;
     using Staketracker.Core.Models;
     using Staketracker.Core.Models.AddEventsReply;
     using Staketracker.Core.Models.ApiRequestBody;
@@ -33,24 +34,21 @@ namespace Staketracker.Core.ViewModels.ChangePassword
 
         public ChangePasswordViewModel(IMvxNavigationService navigationService)
         {
-            AddValidationRules();
             authReply = new AuthReply();
             _navigationService = navigationService;
+            ChangePasswordBodyModel = new ChangePasswordBody();
             SubmitForgetPasswordCommand = new MvxAsyncCommand(OnSubmitForgetPasswordCommand);
 
         }
 
         private async Task OnSubmitForgetPasswordCommand()
         {
+            int userId = CrossSettings.Current.GetValueOrDefault("userId", 0);
+
+            ChangePasswordBodyModel.UserId = userId.ToString();
+
             ChangePassword(ChangePasswordBodyModel);
         }
-
-
-        public void AddValidationRules()
-        {
-            Email.Validations.Add(new IsValidEmailRule<string> { ValidationMessage = "Enter Valid Email Address" });
-        }
-
 
         internal async Task ChangePassword(ChangePasswordBody changePasswordBody)
         {

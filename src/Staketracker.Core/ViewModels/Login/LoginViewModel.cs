@@ -3,6 +3,7 @@ namespace Staketracker.Core.ViewModels.Login
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Newtonsoft.Json;
+    using Plugin.Settings;
     using Staketracker.Core.Models;
     using Staketracker.Core.Validators;
     using Staketracker.Core.Validators.Rules;
@@ -146,7 +147,10 @@ namespace Staketracker.Core.ViewModels.Login
                     }
                     else
                     {
+                        CrossSettings.Current.AddOrUpdateValue("userId", authReply.d.userId);
+
                         await _navigationService.Navigate<Rvm, AuthReply>(authReply);
+
                     }
 
 
