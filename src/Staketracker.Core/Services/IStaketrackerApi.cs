@@ -63,7 +63,7 @@ namespace Staketracker.Core
         Task<HttpResponseMessage> GetCommunicationDetails([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
         [Post("/uat/mobilev1.asmx/changePassword")]
-        Task<HttpResponseMessage> ChangePassword([Body] ChangePasswordBody changePasswordBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
+        Task<HttpResponseMessage> ChangePassword([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
 
     }

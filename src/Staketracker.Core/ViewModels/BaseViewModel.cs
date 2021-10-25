@@ -46,6 +46,8 @@ namespace Staketracker.Core.ViewModels
             {
                 CrossSettings.Current.AddOrUpdateValue("ProjectName", value);
 
+
+
                 if (domainSelected != value)
                 {
                     domainSelected = value;
