@@ -232,6 +232,13 @@ namespace Staketracker.Core.Services
             return await AddToRunningTasks(cts, task);
 
         }
+        public async Task<HttpResponseMessage> ChangePassword(ChangePasswordBody changePasswordBody, string sessionId)
+        {
+            var cts = new CancellationTokenSource();
+            var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).ChangePassword(changePasswordBody, sessionId, cts.Token));
+            return await AddToRunningTasks(cts, task);
+
+        }
 
     }
 }
