@@ -82,7 +82,7 @@
                                HeightRequest="30"
                                BackgroundColor="Transparent"
                                 HorizontalOptions="EndAndExpand"
-                               Source="show_password.png">
+                               Source="hide_password.png">
                             <ImageButton.Triggers>
                                 <EventTrigger Event="Clicked">
                                     <local:ShowPasswordTriggerAction ShowIcon="show_password.png"
