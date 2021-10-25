@@ -42,7 +42,7 @@ namespace Staketracker.Core.Services
 
         Task<HttpResponseMessage> GetCommunicationDetails(jsonTextObj jsonTextObj, string sessionId);
 
-        Task<HttpResponseMessage> ChangePassword(ChangePasswordBody changePasswordBody, string sessionId);
+        Task<HttpResponseMessage> ChangePassword(jsonTextObj jsonTextObj, string sessionId);
 
     }
 }

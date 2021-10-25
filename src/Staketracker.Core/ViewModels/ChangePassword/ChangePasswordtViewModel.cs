@@ -8,6 +8,8 @@ namespace Staketracker.Core.ViewModels.ChangePassword
     using Staketracker.Core.Models;
     using Staketracker.Core.Models.AddEventsReply;
     using Staketracker.Core.Models.ApiRequestBody;
+    using Staketracker.Core.Models.ChangePasswordReply;
+    using Staketracker.Core.Models.EventsFormValue;
     using Staketracker.Core.Validators;
     using Staketracker.Core.Validators.Rules;
     using Staketracker.Core.ViewModels.Root;
@@ -52,33 +54,29 @@ namespace Staketracker.Core.ViewModels.ChangePassword
 
         internal async Task ChangePassword(ChangePasswordBody changePasswordBody)
         {
-
-
-            AddEventsReply responseReply;
-            HttpResponseMessage changePasswordRespMessage = await ApiManager.ChangePassword(changePasswordBody, authReply.d.sessionId);
+            ChangePasswordReply responseReply;
+            jsonTextObj jto = new jsonTextObj(changePasswordBody);
+            string sessionId = CrossSettings.Current.GetValueOrDefault("sessionId", "");
+            HttpResponseMessage changePasswordRespMessage = await ApiManager.ChangePassword(jto, sessionId);
 
             if (changePasswordRespMessage.IsSuccessStatusCode)
             {
                 var response = await changePasswordRespMessage.Content.ReadAsStringAsync();
-                responseReply = await Task.Run(() => JsonConvert.DeserializeObject<AddEventsReply>(response));
+                responseReply = await Task.Run(() => JsonConvert.DeserializeObject<ChangePasswordReply>(response));
 
-                if (responseReply.d.successful == true)
+                if (responseReply.d.status.ToString() == "OK")
                 {
                     //TODO: navigate back
                     await PageDialog.AlertAsync("Password Changed Successfully", "Password Changed", "Ok");
                 }
                 else
                 {
-                    await PageDialog.AlertAsync(responseReply.d.message, "Error Saving Communication", "Ok");
-
+                    await PageDialog.AlertAsync(responseReply.d.message, "Error Changing Password", "Ok");
                 }
-
             }
             else
                 await PageDialog.AlertAsync("API Error While Trying to change password", "API Response Error", "Ok");
 
         }
-
-
     }
 }

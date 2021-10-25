@@ -137,17 +137,22 @@ namespace Staketracker.Core.ViewModels.Login
                     }
 
                     bool Is2FEnabled = await GetIs2FEnabled(loginApiBody);
+
+
+                    CrossSettings.Current.AddOrUpdateValue("userId", authReply.d.userId);
+                    CrossSettings.Current.AddOrUpdateValue("sessionId", authReply.d.sessionId);
+
+
                     if (Is2FEnabled)
                     {
                         var dic = new Dictionary<string, string> { { "jsonText", "loginApiBody.jsonText" } };
                         MvxBundle bundle = new MvxBundle(dic);
                         authReply.loginAPIBody = loginApiBody;
-
                         await this._navigationService.Navigate<TwoStepVerificationViewModel, AuthReply>(authReply);
                     }
                     else
                     {
-                        CrossSettings.Current.AddOrUpdateValue("userId", authReply.d.userId);
+
 
                         await _navigationService.Navigate<Rvm, AuthReply>(authReply);
 
