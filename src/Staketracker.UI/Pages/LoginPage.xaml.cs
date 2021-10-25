@@ -51,7 +51,7 @@ namespace Staketracker.UI.Pages
         public string ShowIcon { get; set; }
         public string HideIcon { get; set; }
 
-        bool _hidePassword = true;
+        bool _hidePassword = false;
 
         public bool HidePassword
         {

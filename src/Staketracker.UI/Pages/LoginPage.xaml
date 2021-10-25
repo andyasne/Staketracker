@@ -69,7 +69,8 @@
                     <StackLayout Orientation="Horizontal"  HorizontalOptions="StartAndExpand"  Margin="0,0,0,30">
 
                         <telerikInput:RadEntry
-                                   IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, Path=HidePassword}"
+                         IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, Path=HidePassword}"
+                            HorizontalOptions="StartAndExpand"
                         WatermarkText="Password" 
                         Text="{Binding Password.Value, Mode=TwoWay}"
                                    Style="{StaticResource LoginEntryStyle}" WidthRequest="320" >
@@ -77,14 +78,15 @@
                                 <behaviour:EntryLineValidationBehaviour IsValid="{Binding Password.IsValid}" />
                             </telerikInput:RadEntry.Behaviors>
                         </telerikInput:RadEntry>
-                        <ImageButton VerticalOptions="Center"
-                               HeightRequest="20"
-                               HorizontalOptions="End"
-                               Source="icon_lock_open">
+                        <ImageButton VerticalOptions="Center" 
+                               HeightRequest="30"
+                               BackgroundColor="Transparent"
+                                HorizontalOptions="EndAndExpand"
+                               Source="show_password.png">
                             <ImageButton.Triggers>
                                 <EventTrigger Event="Clicked">
-                                    <local:ShowPasswordTriggerAction ShowIcon="icon_lock_open"
-                                                              HideIcon="icon_lock_close"
+                                    <local:ShowPasswordTriggerAction ShowIcon="show_password.png"
+                                                              HideIcon="hide_password.png"
                                                               x:Name="ShowPasswordActualTrigger"/>
                                 </EventTrigger>
                             </ImageButton.Triggers>
@@ -94,7 +96,6 @@
                     <Label Text="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Password.IsValid, Converter={StaticResource InverseBoolConverter}}"
                         Style="{StaticResource ErrorTextStyle}" />
-
 
 
                     <StackLayout Orientation="Horizontal"  Margin="0,0,0,30">
