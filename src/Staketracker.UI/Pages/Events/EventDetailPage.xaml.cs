@@ -32,7 +32,7 @@ namespace Staketracker.UI.Pages.Events
                 saveToolbarItem = new ToolbarItem();
                 saveToolbarItem.Text = "Save";
                 saveToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("SaveCommand"));
-                saveToolbarItem.Clicked += this.editToolbarItem_Clicked;
+                //    saveToolbarItem.Clicked += this.editToolbarItem_Clicked;
 
 
                 deleteToolbarItem = new ToolbarItem();
@@ -47,7 +47,7 @@ namespace Staketracker.UI.Pages.Events
 
                 NavigationPage.SetHasNavigationBar(this, false);
             }
-            this.ToolbarItems.Add(saveToolbarItem);
+            //    this.ToolbarItems.Add(saveToolbarItem);
             //  this.ToolbarItems.Add(deleteToolbarItem);
 
             this.editView.IsVisible = false;
