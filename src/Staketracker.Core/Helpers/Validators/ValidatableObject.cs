@@ -45,19 +45,14 @@ namespace Staketracker.Core.Validators
         public List<IValidationRule<T>> Validations { get; } = new List<IValidationRule<T>>();
         public List<IDateValidationRule> ValidationsDateTime { get; set; } = new List<IDateValidationRule>();
         public List<IValidationRuleList> ValidationsList { get; } = new List<IValidationRuleList>();
-
         public List<Models.FormAndDropDownField.DropdownValue> DropdownValues { get; set; } = new List<Models.FormAndDropDownField.DropdownValue>();
 
-        private ObservableCollection<Models.FormAndDropDownField.DropdownValue> selectedItems;// = new ObservableCollection<DropdownValue>();
-
-
+        private ObservableCollection<Models.FormAndDropDownField.DropdownValue> selectedItems = new ObservableCollection<DropdownValue>();
 
         public ObservableCollection<Models.FormAndDropDownField.DropdownValue> SelectedItems
         {
             get
             {
-
-
                 return this.selectedItems;
             }
             set

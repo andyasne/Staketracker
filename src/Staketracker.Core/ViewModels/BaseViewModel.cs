@@ -168,8 +168,8 @@ namespace Staketracker.Core.ViewModels
                     {
                         if (_formContent.Value.SelectedDate != null)
                         {
-                            long selectedDate = ((int)_formContent.Value.SelectedDate.Value.Date.Ticks);
-                            int unixTimestamp = (int)(DateTime.UtcNow.Subtract(_formContent.Value.SelectedDate.Value)).TotalSeconds;
+                            long selectedDate = ((long)_formContent.Value.SelectedDate.Value.Date.Ticks);
+                            //int unixTimestamp = (int)_formContent.Value.SelectedDate.Value.Ticks;
                             //selectedDate = _formContent.Value.SelectedDate.Value.ToUniversalTime;
                             inputValue.Value = string.Format("/Date({0})/", selectedDate);
 
