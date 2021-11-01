@@ -15,10 +15,8 @@
     <ContentView.Content>
         <ScrollView >
             <StackLayout Margin="20">
-
-
                 <ListView   
-               SeparatorVisibility="None" 
+                SeparatorVisibility="None" 
                 x:Name="listView" HasUnevenRows="True" 
                 VerticalScrollBarVisibility="Never"  
                 ItemTemplate="{StaticResource formDataTemplateSelectorView}"  

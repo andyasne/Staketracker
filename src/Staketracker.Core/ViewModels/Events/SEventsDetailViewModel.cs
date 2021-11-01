@@ -377,6 +377,7 @@ namespace Staketracker.Core.ViewModels.Events
                                     {
                                         dateval = field.Value.ToString();
                                         valObj.SelectedDate = DateTime.Parse(dateval);
+                                        //valObj.SelectedDate = DateTime.Today;
                                     }
 
                                 }
