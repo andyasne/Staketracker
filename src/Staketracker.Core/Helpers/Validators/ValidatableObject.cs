@@ -45,30 +45,28 @@ namespace Staketracker.Core.Validators
         public List<IValidationRule<T>> Validations { get; } = new List<IValidationRule<T>>();
         public List<IDateValidationRule> ValidationsDateTime { get; set; } = new List<IDateValidationRule>();
         public List<IValidationRuleList> ValidationsList { get; } = new List<IValidationRuleList>();
-        public List<Models.FormAndDropDownField.DropdownValue> DropdownValues { get; set; } = new List<Models.FormAndDropDownField.DropdownValue>();
+        public ObservableCollection<Models.FormAndDropDownField.DropdownValue> DropdownValues { get; set; } = new ObservableCollection<Models.FormAndDropDownField.DropdownValue>();
 
-        private ObservableCollection<Models.FormAndDropDownField.DropdownValue> selectedItems = new ObservableCollection<DropdownValue>();
+        public ObservableCollection<Models.FormAndDropDownField.DropdownValue> SelectedItems { get; set; } = new ObservableCollection<DropdownValue>();
 
-        public ObservableCollection<Models.FormAndDropDownField.DropdownValue> SelectedItems
-        {
-            get
-            {
-                return this.selectedItems;
-            }
-            set
-            {
-                //       if (this.selectedItems != value)
-                {
-                    this.selectedItems = value;
+        //public ObservableCollection<Models.FormAndDropDownField.DropdownValue> SelectedItems
+        //{
+        //    get
+        //    {
+        //        return this.selectedItems;
+        //    }
+        //    set
+        //    {
 
-                    this.selectedItems.Add(this.DropdownValues[0]);
-
-                    SetField(ref selectedItems, value);
+        //        this.selectedItems = value;
 
 
-                }
-            }
-        }
+        //        SetField(ref selectedItems, value);
+
+
+
+        //    }
+        //}
 
 
 

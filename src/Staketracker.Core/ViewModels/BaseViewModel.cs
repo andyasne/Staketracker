@@ -228,7 +228,7 @@ namespace Staketracker.Core.ViewModels
 
                     ValidatableObject<string> validatableObj = new ValidatableObject<string>();
                     validatableObj.FormAndDropDownField = d;
-                    validatableObj.DropdownValues = d.DropdownValues;
+                    validatableObj.DropdownValues = new System.Collections.ObjectModel.ObservableCollection<DropdownValue>(d.DropdownValues);
                     validatableObj.PrimaryKey = d.PrimaryKey.ToString();
 
                     if (d.InputType == "DropDownList")
