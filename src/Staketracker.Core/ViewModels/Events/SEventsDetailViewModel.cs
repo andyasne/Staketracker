@@ -24,7 +24,6 @@ namespace Staketracker.Core.ViewModels.Events
     {
         public SEventDetailViewModel(IMvxNavigationService navigationService)
         {
-            //this.stkaeTrackerAPI = stkaeTrackerAPI;
             this.navigationService = navigationService;
             BeginEditCommand = new Command(OnBeginEditSEvent);
             //   CommitCommand = new MvxAsyncCommand(OnCommitEditOrder);
@@ -33,12 +32,24 @@ namespace Staketracker.Core.ViewModels.Events
             CancelCommand = new MvxAsyncCommand(OnCancel);
         }
 
+        private bool isReading = true;
+        private bool isEditing = false;
+        private bool isBusy;
+        private int selectedIndex;
+        private List<Staketracker.Core.Models.EventsFormValue.InputFieldValue> valueList;
         private IMvxNavigationService navigationService;
         private SEvent targetSEvent, draftSEvent;
         private string targetSEventId;
-
         private string title;
         private SEvent _sEvent;
+
+
+        public Command BeginEditCommand { get; }
+        public IMvxCommand CommitCommand { get; }
+        public IMvxCommand CancelCommand { get; }
+        public IMvxCommand DeleteCommand { get; }
+        public IMvxCommand SaveCommand { get; }
+
 
         public SEvent sEvent
         {
@@ -66,8 +77,6 @@ namespace Staketracker.Core.ViewModels.Events
             }
         }
 
-        private bool isReading = true;
-        private bool isEditing = false;
 
 
         public bool IsReading
@@ -89,14 +98,6 @@ namespace Staketracker.Core.ViewModels.Events
             private set => SetField(ref title, value);
         }
 
-        public Command BeginEditCommand { get; }
-        public IMvxCommand CommitCommand { get; }
-        public IMvxCommand CancelCommand { get; }
-        public IMvxCommand DeleteCommand { get; }
-        public IMvxCommand SaveCommand { get; }
-
-
-        private bool isBusy;
         public bool IsBusy
         {
             get => isBusy;
@@ -172,16 +173,6 @@ namespace Staketracker.Core.ViewModels.Events
         private void OnBeginEditSEvent()
         {
             changeView();
-
-            //if (!IsReading)
-            //    return;
-
-            //SEvent sEvent = targetSEvent.Copy();
-            //Mode = PresentationMode.Edit;
-            //UpdateTitle();
-            //InitializeEditData(sEvent);
-            //DraftSEvent = sEvent;
-
         }
 
 
@@ -196,23 +187,18 @@ namespace Staketracker.Core.ViewModels.Events
                 "Delete Event", "Yes", "No");
 
             if (!result)
+            {
+                await navigationService.ChangePresentation(
+                 new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
                 return;
 
-            //await this.stkaeTrackerAPI.RemoveSEventAsync(this.targetSEvent);
-            //if (Device.Idiom == TargetIdiom.Phone)
-            //{
-            await navigationService.Close(this);
+            }
 
-            await navigationService.ChangePresentation(
-                new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
-            //}
+
         }
 
         private async Task OnCancel()
-
         {
-
-            //  await this.navigationService.Close(this);
             await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
             return;
 
@@ -224,11 +210,8 @@ namespace Staketracker.Core.ViewModels.Events
 
             if (mode == PresentationMode.Edit)
                 Mode = PresentationMode.Read;
-
-            // await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsViewModel)));
         }
 
-        private List<Staketracker.Core.Models.EventsFormValue.InputFieldValue> valueList;
 
         private bool isFormValid()
         {
@@ -275,8 +258,6 @@ namespace Staketracker.Core.ViewModels.Events
         private async Task OnCommitEditOrder()
         {
 
-
-
             if (isFormValid())
             {
 
@@ -288,38 +269,12 @@ namespace Staketracker.Core.ViewModels.Events
 
             }
 
-            //   await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
-
-            //Redirect
-
             if (Mode == PresentationMode.Read)
                 return;
 
-            //if (!this.draftSEvent.Validate(out IList<string> errors))
-            //{
-            //    await App.Current.MainPage.DisplayAlert("Validation failed", "Please check your data and try again" + Environment.NewLine + String.Join(Environment.NewLine, errors), "OK");
-            //    return;
-            //}
-
-            //   var updatedSEvent = await this.stkaeTrackerAPI.SaveSEventAsync(this.draftSEvent);
-
-            DraftSEvent = null;
-            targetSEvent = null;
-
-            //   this.SEvent = updatedSEvent;
-            //      this.Mode = PresentationMode.Read;
-
-            //        this.UpdateTitle();
-
-            //    if (Device.Idiom != TargetIdiom.Phone)
-            //      await this.navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsViewModel)));
         }
 
-        private void InitializeEditData(SEvent sEvent)
-        {
-        }
 
-        private int selectedIndex;
 
         public int SelectedIndex
         {
@@ -394,7 +349,7 @@ namespace Staketracker.Core.ViewModels.Events
             }
             else
                 await PageDialog.AlertAsync("API Error While Assigning Value to UI Controls", "API Response Error", "Ok");
-            //  return null;
+
         }
     }
 }
