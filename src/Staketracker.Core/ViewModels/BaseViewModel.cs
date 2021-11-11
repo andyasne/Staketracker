@@ -34,6 +34,44 @@ namespace Staketracker.Core.ViewModels
         private IApiService<IStaketrackerApi> staketrackerApi = new ApiService<IStaketrackerApi>(Config.StaketrackerApiUrl);
         public ICommand OnDevelopmentNotifyCommand { get; }
         public static string? domainSelected;
+        private bool isReading = true;
+        private bool isEditing = false;
+        public string title;
+
+
+        public string Title
+        {
+            get => title;
+            set => SetField(ref title, value);
+        }
+        public void changeView()
+        {
+            IsReading = !IsReading;
+            IsEditing = !IsEditing;
+            RaisePropertyChanged(() => IsEditing);
+            RaisePropertyChanged(() => IsReading);
+            if (IsReading)
+            {
+
+                Title = "View " + PageTitle;
+            }
+            else
+            {
+                Title = "Edit " + PageTitle;
+            }
+
+        }
+        public bool IsReading
+        {
+            get => isReading;
+            private set => SetField(ref isReading, value);
+        }
+
+        public bool IsEditing
+        {
+            get => isEditing;
+            private set => SetField(ref isEditing, value);
+        }
 
         public static string? DomainSelected
         {
@@ -106,12 +144,39 @@ namespace Staketracker.Core.ViewModels
         public AuthReply authReply;
         public string name;
         public int primaryKey;
-        public PresentationMode mode;
-        public bool IsReading => mode == PresentationMode.Read;
+        protected PresentationMode mode;
 
-        public bool IsEditing =>
-                                 (mode == PresentationMode.Edit || mode == PresentationMode.Create);
-        public PresentationMode Mode
+        public void UpdateTitle()
+        {
+            switch (mode)
+            {
+                case PresentationMode.Read:
+                    Title = name;
+                    break;
+                case PresentationMode.Edit:
+                    Title = $"Edit " + PageTitle;
+                    break;
+                case PresentationMode.Create:
+                    Title = "Add New " + PageTitle;
+                    break;
+            }
+        }
+
+        public bool isFormValid()
+        {
+            var isValid = true;
+            foreach (KeyValuePair<string, ValidatableObject<string>> _formContent in FormContent)
+            {
+                if (_formContent.Value.Validate() == false)
+                {
+                    isValid = false;
+                }
+            }
+
+            return isValid;
+        }
+
+        protected PresentationMode Mode
         {
             get => mode;
             set

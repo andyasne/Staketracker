@@ -29,10 +29,11 @@ namespace Staketracker.Core.ViewModels.Communication
 
             this.navigationService = navigationService;
             BeginEditCommand = new Command(OnBeginEditCommunication);
-            CommitCommand = new MvxAsyncCommand(OnCommitEditOrder);
+            SaveCommand = new MvxAsyncCommand(OnCommitEditOrder);
             DeleteCommand = new MvxAsyncCommand(OnDeleteCommunication);
             CancelCommand = new MvxAsyncCommand(OnCancel);
         }
+        public IMvxCommand SaveCommand { get; }
 
         private IMvxNavigationService navigationService;
         private CommunicationList.Communication targetCommunication, draftCommunication;
@@ -49,31 +50,8 @@ namespace Staketracker.Core.ViewModels.Communication
 
 
         private bool isBusy;
-        public CommunicationList.Communication Communication
-        {
-            get => _communication;
-            private set
-            {
-                if (SetProperty(ref _communication, value))
-                {
-                    RaisePropertyChanged(() => IsEditing);
-                    RaisePropertyChanged(() => IsReading);
-                }
-            }
-        }
 
-        public CommunicationList.Communication DraftCommunication
-        {
-            get => draftCommunication;
-            private set
-            {
-                if (SetProperty(ref draftCommunication, value))
-                {
-                    RaisePropertyChanged(() => IsEditing);
-                    RaisePropertyChanged(() => IsReading);
-                }
-            }
-        }
+
 
 
         public string Title
@@ -93,12 +71,14 @@ namespace Staketracker.Core.ViewModels.Communication
             authReply = parameter.Model;
             Mode = parameter.Mode;
             primaryKey = parameter.PrimaryKey;
+            name = parameter.Name;
+
         }
 
         public override void ViewAppearing()
         {
             IsBusy = true;
-            if (mode == PresentationMode.Edit)
+            if (mode == PresentationMode.Edit || mode == PresentationMode.Read)
             {
                 CommunicationDetailReq body = new CommunicationDetailReq()
                 {
@@ -173,21 +153,6 @@ namespace Staketracker.Core.ViewModels.Communication
 
         }
 
-        private void UpdateTitle()
-        {
-            switch (mode)
-            {
-                case PresentationMode.Read:
-                    Title = Communication.Name;
-                    break;
-                case PresentationMode.Edit:
-                    Title = $"Edit Communication";
-                    break;
-                case PresentationMode.Create:
-                    Title = "Add New Communication";
-                    break;
-            }
-        }
 
         private void OnBeginEditCommunication()
         {

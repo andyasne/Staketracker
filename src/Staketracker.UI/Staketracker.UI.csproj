@@ -104,6 +104,9 @@
     <Compile Update="Pages\Communication\CommunicationDetailPage.xaml.cs">
       <DependentUpon>CommunicationDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\Communication\CommunicationEditView.xaml.cs">
+      <DependentUpon>CommunicationEditView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\Dashboard\IssuesStatusCard.xaml.cs">
       <DependentUpon>IssuesStatusCard.xaml</DependentUpon>
     </Compile>
@@ -189,6 +192,9 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Communication\CommunicationDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Communication\CommunicationEditView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\DashboardPage.xaml">
