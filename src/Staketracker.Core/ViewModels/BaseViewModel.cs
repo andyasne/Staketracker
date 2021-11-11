@@ -3,6 +3,7 @@ using MvvmCross.ViewModels;
 using Newtonsoft.Json;
 using Plugin.Settings;
 using Staketracker.Core.Models;
+using Staketracker.Core.Models.AddEventsReply;
 using Staketracker.Core.Models.ApiRequestBody;
 using Staketracker.Core.Models.EventsFormValue;
 using Staketracker.Core.Models.FieldsValue;
@@ -273,7 +274,93 @@ namespace Staketracker.Core.ViewModels
 
         }
 
+        public async Task<bool> ShowDeleteConfirmation() => await PageDialog.ConfirmAsync($"Are you sure you want to delete the Event?",
+                        "Delete Event", "Yes", "No");
 
+        public async Task Add(HttpResponseMessage events)
+        {
+            AddEventsReply reply;
+
+            if (events.IsSuccessStatusCode)
+            {
+                var response = await events.Content.ReadAsStringAsync();
+                reply = await Task.Run(() => JsonConvert.DeserializeObject<AddEventsReply>(response));
+
+                if (reply.d.successful == true)
+                {
+                    await PageDialog.AlertAsync("Saved Successfully", "Saved", "Ok");
+                }
+                else
+                {
+                    await PageDialog.AlertAsync(reply.d.message, "Error Saving", "Ok");
+
+                }
+
+            }
+            else
+                await PageDialog.AlertAsync("API Error While Saving", "API Response Error", "Ok");
+        }
+
+        public async Task PopulateControls(AuthReply authReply, int primaryKey, HttpResponseMessage resp)
+        {
+            FieldsValue fieldsValue;
+
+            if (resp.IsSuccessStatusCode)
+            {
+                var response = await resp.Content.ReadAsStringAsync();
+                fieldsValue = await Task.Run(() => JsonConvert.DeserializeObject<FieldsValue>(response));
+
+                foreach (Field field in fieldsValue.d.Fields)
+                    foreach (ValidatableObject<string> valObj in FormContent.Values)
+                        if (valObj.FormAndDropDownField.PrimaryKey == field.PrimaryKey)
+                            try
+                            {
+                                if (valObj.FormAndDropDownField.InputType == "DropDownList")
+                                {
+                                    valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
+                                }
+
+                                else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
+                                {
+                                    foreach (Models.FormAndDropDownField.DropdownValue dv in field.DropdownValues)
+                                    {
+                                        //       valObj.SelectedItems.Add(dv);
+                                    }
+                                }
+
+                                else if (valObj.FormAndDropDownField.InputType == "CheckBox")
+                                {
+                                    if (field.Value != null && field.Value.ToString() == "on")
+                                        valObj.Value = true.ToString();
+                                    else
+                                        valObj.Value = false.ToString();
+                                }
+                                else if (valObj.FormAndDropDownField.InputType == "DateTime")
+                                {
+                                    string dateval;
+                                    if (field.Value != null)
+                                    {
+                                        dateval = field.Value.ToString();
+                                        valObj.SelectedDate = DateTime.Parse(dateval);
+                                        //valObj.SelectedDate = DateTime.Today;
+                                    }
+
+                                }
+                                else
+                                {
+                                    if (field.Value != null)
+                                        valObj.Value = field.Value.ToString();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                            }
+
+            }
+            else
+                await PageDialog.AlertAsync("API Error While Assigning Value to UI Controls", "API Response Error", "Ok");
+
+        }
         public async Task GetFormandDropDownFields(AuthReply authReply, string type)
         {
 

@@ -31,7 +31,6 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             BeginEditCommand = new Command(OnBeginEditStakeholder);
             CommitCommand = new MvxAsyncCommand(OnCommitEditOrder);
             DeleteCommand = new MvxAsyncCommand(OnDeleteStakeholder);
-            CancelCommand = new MvxAsyncCommand(OnCancel);
         }
 
         private IMvxNavigationService navigationService;
