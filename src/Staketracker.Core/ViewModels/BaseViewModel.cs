@@ -191,7 +191,7 @@ namespace Staketracker.Core.ViewModels
         }
 
 
-        public void GetFormValues(string type)
+        public void FetchValuesFromFormControls(string type)
         {
             pageFormValue = new EventFormValue();
             pageFormValue.InputFieldValues = new List<InputFieldValue>(FormContent.Count);
@@ -211,7 +211,7 @@ namespace Staketracker.Core.ViewModels
 
             foreach (KeyValuePair<string, ValidatableObject<string>> _formContent in FormContent)
             {
-                Staketracker.Core.Models.EventsFormValue.InputFieldValue inputValue = new InputFieldValue();
+                InputFieldValue inputValue = new InputFieldValue();
                 inputValue.PrimaryKey = _formContent.Value.PrimaryKey;
 
                 try
@@ -301,7 +301,7 @@ namespace Staketracker.Core.ViewModels
                 await PageDialog.AlertAsync("API Error While Saving", "API Response Error", "Ok");
         }
 
-        public async Task PopulateControls(AuthReply authReply, int primaryKey, HttpResponseMessage resp)
+        public async Task PopulateControlsWithData(AuthReply authReply, int primaryKey, HttpResponseMessage resp)
         {
             FieldsValue fieldsValue;
 
@@ -361,7 +361,7 @@ namespace Staketracker.Core.ViewModels
                 await PageDialog.AlertAsync("API Error While Assigning Value to UI Controls", "API Response Error", "Ok");
 
         }
-        public async Task GetFormandDropDownFields(AuthReply authReply, string type)
+        public async Task GetFormUIControls(AuthReply authReply, string type)
         {
 
             FormFieldBody formFieldBody = new FormFieldBody(authReply, type);
@@ -380,7 +380,7 @@ namespace Staketracker.Core.ViewModels
 
                     ValidatableObject<string> validatableObj = new ValidatableObject<string>();
                     validatableObj.FormAndDropDownField = d;
-                    validatableObj.DropdownValues = new System.Collections.ObjectModel.ObservableCollection<DropdownValue>(d.DropdownValues);
+                    validatableObj.DropdownValues = new System.Collections.ObjectModel.ObservableCollection<DropdownValue>();
                     validatableObj.PrimaryKey = d.PrimaryKey.ToString();
 
                     if (d.InputType == "DropDownList")

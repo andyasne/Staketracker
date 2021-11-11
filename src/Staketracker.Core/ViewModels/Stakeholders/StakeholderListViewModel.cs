@@ -156,7 +156,7 @@ namespace Staketracker.Core.ViewModels.Stakeholders
         {
             await base.Initialize();
 
-            GetFormandDropDownFields(authReply, FormType.GroupedStakeholders);
+            GetFormUIControls(authReply, FormType.GroupedStakeholders);
 
 
 
