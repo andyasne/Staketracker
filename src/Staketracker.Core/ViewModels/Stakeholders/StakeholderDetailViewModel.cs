@@ -107,11 +107,11 @@ namespace Staketracker.Core.ViewModels.Stakeholder
 
             SelectedIndex = 1;
             if (authReply.attachment.ToString() == "Groups")
-                RunSafe(GetFormandDropDownFields(authReply, FormType.GroupedStakeholders), true, "Building Group Form Controls");
+                RunSafe(GetFormUIControls(authReply, FormType.GroupedStakeholders), true, "Building Group Form Controls");
             else if (authReply.attachment.ToString() == "Individuals")
-                RunSafe(GetFormandDropDownFields(authReply, FormType.IndividualStakeholders), true, "Building Individual Form Controls");
+                RunSafe(GetFormUIControls(authReply, FormType.IndividualStakeholders), true, "Building Individual Form Controls");
             else
-                RunSafe(GetFormandDropDownFields(authReply, FormType.LandParcelStakeholders), true, "Building Land Parcel Form Controls");
+                RunSafe(GetFormUIControls(authReply, FormType.LandParcelStakeholders), true, "Building Land Parcel Form Controls");
 
 
             UpdateTitle();
@@ -213,11 +213,11 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             {
 
                 if (authReply.attachment.ToString() == "Groups")
-                    GetFormValues("group");
+                    FetchValuesFromFormControls("group");
                 else if (authReply.attachment.ToString() == "Individuals")
-                    GetFormValues("individual");
+                    FetchValuesFromFormControls("individual");
                 else
-                    GetFormValues("landparcel");
+                    FetchValuesFromFormControls("landparcel");
 
 
                 save();

@@ -27,16 +27,10 @@ namespace Staketracker.Core.ViewModels.Events
             this.navigationService = navigationService;
             DeleteCommand = new MvxAsyncCommand(OnDeleteSEvent);
             SaveCommand = new MvxAsyncCommand(OnSave);
-            BeginEditCommand = new MvxAsyncCommand(OnBeginEditSEvent);
+            BeginEditCommand = new MvxAsyncCommand(OnBeginEdit);
         }
 
         private IMvxNavigationService navigationService;
-        private bool isBusy;
-        private int selectedIndex;
-        private List<InputFieldValue> valueList;
-        private SEvent targetSEvent;
-        private string targetSEventId;
-        private SEvent _sEvent;
         public IMvxCommand BeginEditCommand { get; }
         public IMvxCommand DeleteCommand { get; }
         public IMvxCommand SaveCommand { get; }
@@ -49,28 +43,27 @@ namespace Staketracker.Core.ViewModels.Events
         }
         public override async void ViewAppearing()
         {
-            IsBusy = true;
             if (mode == PresentationMode.Edit || mode == PresentationMode.Read)
             {
                 var apiReqExtra = new APIRequestExtraBody(authReply, "PrimaryKey", primaryKey.ToString());
 
                 HttpResponseMessage events = await ApiManager.GetEventDetails(apiReqExtra, authReply.d.sessionId);
 
-                PopulateControls(authReply, primaryKey, events);
+                PopulateControlsWithData(authReply, primaryKey, events);
             }
-
-            IsBusy = false;
 
         }
         public override async Task Initialize()
         {
             await base.Initialize();
-            RunSafe(GetFormandDropDownFields(authReply, FormType.Events), true, "Building Form Controls");
+
+            RunSafe(GetFormUIControls(authReply, FormType.Events), true, "Building Form Controls");
+
             UpdateTitle();
 
 
         }
-        private async Task OnBeginEditSEvent()
+        private async Task OnBeginEdit()
         {
             changeView();
         }
@@ -108,8 +101,7 @@ namespace Staketracker.Core.ViewModels.Events
         {
             if (isFormValid())
             {
-
-                GetFormValues("Event");
+                FetchValuesFromFormControls("Event");
                 AddEvent();
                 changeView();
 

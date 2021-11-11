@@ -145,7 +145,7 @@ namespace Staketracker.Core.ViewModels.Communication
 
             SelectedIndex = 1;
 
-            RunSafe(GetFormandDropDownFields(authReply, FormType.Communications), true, "Building Form Controls");
+            RunSafe(GetFormUIControls(authReply, FormType.Communications), true, "Building Form Controls");
 
             UpdateTitle();
 
@@ -227,7 +227,7 @@ namespace Staketracker.Core.ViewModels.Communication
             if (isFormValid())
             {
 
-                GetFormValues("Communication");
+                FetchValuesFromFormControls("Communication");
 
                 save();
 
