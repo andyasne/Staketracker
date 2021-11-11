@@ -42,8 +42,6 @@ namespace Staketracker.Core.ViewModels.Events
         private string targetSEventId;
         private string title;
         private SEvent _sEvent;
-
-
         public Command BeginEditCommand { get; }
         public IMvxCommand CommitCommand { get; }
         public IMvxCommand CancelCommand { get; }
