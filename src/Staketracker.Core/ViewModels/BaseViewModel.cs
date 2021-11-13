@@ -1,4 +1,6 @@
 using Acr.UserDialogs;
+using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Newtonsoft.Json;
 using Plugin.Settings;
@@ -34,17 +36,50 @@ namespace Staketracker.Core.ViewModels
         public IApiManager ApiManager;
         private IApiService<IStaketrackerApi> staketrackerApi = new ApiService<IStaketrackerApi>(Config.StaketrackerApiUrl);
         public ICommand OnDevelopmentNotifyCommand { get; }
+        private string headerTitle;
         public static string? domainSelected;
         private bool isReading = true;
         private bool isEditing = false;
         public string title;
-
-
+        public IMvxNavigationService navigationService;
+        private string pageTitle;
+        public IMvxCommand BeginEditCommand { get; }
+        public event PropertyChangedEventHandler PropertyChanged;
+        public IMvxCommand DeleteCommand { get; }
+        public IMvxCommand SaveCommand { get; }
+        public async Task OnBeginEdit()
+        {
+            changeView();
+        }
         public string Title
         {
             get => title;
             set => SetField(ref title, value);
         }
+        private Dictionary<string, ValidatableObject<string>> formContent = new Dictionary<string, ValidatableObject<string>>();
+        public Dictionary<string, ValidatableObject<string>> FormContent
+        {
+            get
+            {
+                return formContent;
+            }
+            set
+            {
+
+                if (this.formContent != value)
+                {
+                    SetField(ref formContent, value);
+                    this.formContent = value;
+                }
+
+            }
+        }
+        public bool IsBusy { get; set; }
+        public EventFormValue pageFormValue;
+        public AuthReply authReply;
+        public string name;
+        public int primaryKey;
+        protected PresentationMode mode;
         public void changeView()
         {
             IsReading = !IsReading;
@@ -67,13 +102,11 @@ namespace Staketracker.Core.ViewModels
             get => isReading;
             private set => SetField(ref isReading, value);
         }
-
         public bool IsEditing
         {
             get => isEditing;
             private set => SetField(ref isEditing, value);
         }
-
         public static string? DomainSelected
         {
             get
@@ -94,8 +127,6 @@ namespace Staketracker.Core.ViewModels
 
             }
         }
-
-        private string headerTitle;
         public string HeaderTitle
         {
             get
@@ -104,8 +135,6 @@ namespace Staketracker.Core.ViewModels
             }
 
         }
-
-        private string pageTitle;
         public string PageTitle
         {
             get { return pageTitle; }
@@ -117,36 +146,8 @@ namespace Staketracker.Core.ViewModels
 
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
              => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-        private Dictionary<string, ValidatableObject<string>> formContent = new Dictionary<string, ValidatableObject<string>>();
-
-        public Dictionary<string, ValidatableObject<string>> FormContent
-        {
-            get
-            {
-                return formContent;
-            }
-            set
-            {
-
-                if (this.formContent != value)
-                {
-                    SetField(ref formContent, value);
-                    this.formContent = value;
-                }
-
-            }
-        }
-        public EventFormValue pageFormValue;
-        public AuthReply authReply;
-        public string name;
-        public int primaryKey;
-        protected PresentationMode mode;
-
         public void UpdateTitle()
         {
             switch (mode)
@@ -162,7 +163,6 @@ namespace Staketracker.Core.ViewModels
                     break;
             }
         }
-
         public bool isFormValid()
         {
             var isValid = true;
@@ -176,7 +176,6 @@ namespace Staketracker.Core.ViewModels
 
             return isValid;
         }
-
         protected PresentationMode Mode
         {
             get => mode;
@@ -189,8 +188,6 @@ namespace Staketracker.Core.ViewModels
                 }
             }
         }
-
-
         public void FetchValuesFromFormControls(string type)
         {
             pageFormValue = new EventFormValue();
@@ -273,10 +270,8 @@ namespace Staketracker.Core.ViewModels
             }
 
         }
-
         public async Task<bool> ShowDeleteConfirmation() => await PageDialog.ConfirmAsync($"Are you sure you want to delete the Event?",
                         "Delete Event", "Yes", "No");
-
         public async Task Add(HttpResponseMessage events)
         {
             AddEventsReply reply;
@@ -300,7 +295,6 @@ namespace Staketracker.Core.ViewModels
             else
                 await PageDialog.AlertAsync("API Error While Saving", "API Response Error", "Ok");
         }
-
         public async Task PopulateControlsWithData(AuthReply authReply, int primaryKey, HttpResponseMessage resp)
         {
             FieldsValue fieldsValue;
@@ -437,7 +431,6 @@ namespace Staketracker.Core.ViewModels
                 //  return null;
             }
         }
-
         protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
@@ -446,9 +439,6 @@ namespace Staketracker.Core.ViewModels
             OnPropertyChanged(propertyName);
             return true;
         }
-
-        public bool IsBusy { get; set; }
-
         public BaseViewModel()
         {
             ApiManager = new ApiManager(staketrackerApi);

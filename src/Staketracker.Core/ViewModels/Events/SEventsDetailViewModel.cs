@@ -24,16 +24,12 @@ namespace Staketracker.Core.ViewModels.Events
     {
         public SEventDetailViewModel(IMvxNavigationService navigationService)
         {
-            this.navigationService = navigationService;
+            navigationService = navigationService;
             DeleteCommand = new MvxAsyncCommand(OnDeleteSEvent);
             SaveCommand = new MvxAsyncCommand(OnSave);
             BeginEditCommand = new MvxAsyncCommand(OnBeginEdit);
         }
 
-        private IMvxNavigationService navigationService;
-        public IMvxCommand BeginEditCommand { get; }
-        public IMvxCommand DeleteCommand { get; }
-        public IMvxCommand SaveCommand { get; }
         public override void Prepare(PresentationContext<AuthReply> parameter)
         {
             authReply = parameter.Model;
@@ -46,9 +42,7 @@ namespace Staketracker.Core.ViewModels.Events
             if (mode == PresentationMode.Edit || mode == PresentationMode.Read)
             {
                 var apiReqExtra = new APIRequestExtraBody(authReply, "PrimaryKey", primaryKey.ToString());
-
                 HttpResponseMessage events = await ApiManager.GetEventDetails(apiReqExtra, authReply.d.sessionId);
-
                 PopulateControlsWithData(authReply, primaryKey, events);
             }
 
@@ -56,47 +50,32 @@ namespace Staketracker.Core.ViewModels.Events
         public override async Task Initialize()
         {
             await base.Initialize();
-
             RunSafe(GetFormUIControls(authReply, FormType.Events), true, "Building Form Controls");
-
             UpdateTitle();
 
-
-        }
-        private async Task OnBeginEdit()
-        {
-            changeView();
         }
         private async Task OnDeleteSEvent()
         {
             var result = await ShowDeleteConfirmation();
-
             if (result)
             {
                 //TODO: Add Delete Logic here
 
                 NavigateToList();
-
             }
-
-
         }
         private async Task NavigateToList()
         {
             await navigationService.ChangePresentation(
-             new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
+            new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
             return;
         }
-
-
         internal async Task AddEvent()
         {
             jsonTextObj jsonTextObj = new jsonTextObj(pageFormValue);
             HttpResponseMessage events = await ApiManager.AddEvent(jsonTextObj, authReply.d.sessionId);
             await Add(events);
         }
-
-
         private async Task OnSave()
         {
             if (isFormValid())
