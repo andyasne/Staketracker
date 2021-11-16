@@ -24,12 +24,11 @@ namespace Staketracker.Core.ViewModels.Events
     {
         public SEventDetailViewModel(IMvxNavigationService navigationService)
         {
-            navigationService = navigationService;
+            this.navigationService = navigationService;
             DeleteCommand = new MvxAsyncCommand(OnDeleteSEvent);
             SaveCommand = new MvxAsyncCommand(OnSave);
             BeginEditCommand = new MvxAsyncCommand(OnBeginEdit);
         }
-
         public override void Prepare(PresentationContext<AuthReply> parameter)
         {
             authReply = parameter.Model;
@@ -52,7 +51,6 @@ namespace Staketracker.Core.ViewModels.Events
             await base.Initialize();
             RunSafe(GetFormUIControls(authReply, FormType.Events), true, "Building Form Controls");
             UpdateTitle();
-
         }
         private async Task OnDeleteSEvent()
         {

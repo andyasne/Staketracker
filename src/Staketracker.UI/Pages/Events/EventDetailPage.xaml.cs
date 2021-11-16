@@ -127,7 +127,6 @@ namespace Staketracker.UI.Pages.Events
             {
                 if (this.editView?.IsVisible == true)
                 {
-                    this.detailView.ClosePopup();
                     if (!this.ToolbarItems.Contains(saveToolbarItem))
                     {
                         this.ToolbarItems.Add(saveToolbarItem);

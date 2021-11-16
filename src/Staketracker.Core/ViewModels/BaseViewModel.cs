@@ -43,10 +43,16 @@ namespace Staketracker.Core.ViewModels
         public string title;
         public IMvxNavigationService navigationService;
         private string pageTitle;
-        public IMvxCommand BeginEditCommand { get; }
+        public bool IsBusy { get; set; }
+        public EventFormValue pageFormValue;
+        public AuthReply authReply;
+        public string name;
+        public int primaryKey;
+        protected PresentationMode mode;
+        public IMvxCommand BeginEditCommand { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
-        public IMvxCommand DeleteCommand { get; }
-        public IMvxCommand SaveCommand { get; }
+        public IMvxCommand DeleteCommand { get; set; }
+        public IMvxCommand SaveCommand { get; set; }
         public async Task OnBeginEdit()
         {
             changeView();
@@ -74,12 +80,7 @@ namespace Staketracker.Core.ViewModels
 
             }
         }
-        public bool IsBusy { get; set; }
-        public EventFormValue pageFormValue;
-        public AuthReply authReply;
-        public string name;
-        public int primaryKey;
-        protected PresentationMode mode;
+
         public void changeView()
         {
             IsReading = !IsReading;
