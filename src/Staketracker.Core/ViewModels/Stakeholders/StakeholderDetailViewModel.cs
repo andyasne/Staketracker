@@ -19,6 +19,7 @@ using Xamarin.Forms;
 using Xamarin.Forms;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
 using Staketracker.Core.Models.Stakeholders;
+using Staketracker.Core.ViewModels.Stakeholders;
 
 namespace Staketracker.Core.ViewModels.Stakeholder
 {
@@ -26,85 +27,48 @@ namespace Staketracker.Core.ViewModels.Stakeholder
     {
         public StakeholderDetailViewModel(IMvxNavigationService navigationService)
         {
-
             this.navigationService = navigationService;
-            BeginEditCommand = new Command(OnBeginEditStakeholder);
-            CommitCommand = new MvxAsyncCommand(OnCommitEditOrder);
-            DeleteCommand = new MvxAsyncCommand(OnDeleteStakeholder);
+            DeleteCommand = new MvxAsyncCommand(OnDeleteSEvent);
+            SaveCommand = new MvxAsyncCommand(OnSave);
+            BeginEditCommand = new MvxAsyncCommand(OnBeginEdit);
         }
-
-        private IMvxNavigationService navigationService;
-        private Models.Stakeholders.Stakeholders targetStakeholder, draftStakeholder;
-        private string targetStakeholderId;
-        private string title;
-        private Models.Stakeholders.Stakeholders _stakeholder;
-
-        public Command BeginEditCommand { get; }
-        public IMvxCommand CommitCommand { get; }
-        public IMvxCommand CancelCommand { get; }
-        public IMvxCommand DeleteCommand { get; }
-
-
-
-        private bool isBusy;
-        public Models.Stakeholders.Stakeholders Stakeholder
-        {
-            get => _stakeholder;
-            private set
-            {
-                if (SetProperty(ref _stakeholder, value))
-                {
-                    RaisePropertyChanged(() => IsEditing);
-                    RaisePropertyChanged(() => IsReading);
-                }
-            }
-        }
-
-        public Models.Stakeholders.Stakeholders DraftStakeholder
-        {
-            get => draftStakeholder;
-            private set
-            {
-                if (SetProperty(ref draftStakeholder, value))
-                {
-                    RaisePropertyChanged(() => IsEditing);
-                    RaisePropertyChanged(() => IsReading);
-                }
-            }
-        }
-
-
-
-        public bool IsReading => targetStakeholder != null && mode == PresentationMode.Read;
-
-        public bool IsEditing => draftStakeholder != null &&
-                                 (mode == PresentationMode.Edit || mode == PresentationMode.Create);
-
-        public string Title
-        {
-            get => title;
-            private set => SetProperty(ref title, value);
-        }
-
-        public bool IsBusy
-        {
-            get => isBusy;
-            set => SetProperty(ref isBusy, value);
-        }
-
         public override void Prepare(PresentationContext<AuthReply> parameter)
         {
             authReply = parameter.Model;
             Mode = parameter.Mode;
             primaryKey = parameter.PrimaryKey;
+            name = parameter.Name;
         }
+        public override async void ViewAppearing()
+        {
+            if (mode == PresentationMode.Edit || mode == PresentationMode.Read)
+            {
+                StakeholderDetailReq body = new StakeholderDetailReq()
+                {
+                    projectId = authReply.d.projectId,
+                    userId = authReply.d.userId,
+                    StakeholderPrimaryKey = primaryKey
 
 
+                };
+                jsonTextObj jto = new jsonTextObj(body);
+                HttpResponseMessage responseMessage;
+                if (authReply.attachment.ToString() == "Groups")
+                    responseMessage = await ApiManager.GetGroupStakeholderDetails(jto, authReply.d.sessionId);
+                else if (authReply.attachment.ToString() == "Individuals")
+                    responseMessage = await ApiManager.GetIndividualStakeholderDetails(jto, authReply.d.sessionId);
 
+                else
+                    responseMessage = await ApiManager.GetLandParcelStakeholderDetails(jto, authReply.d.sessionId);
+
+                PopulateControlsWithData(authReply, primaryKey, responseMessage);
+
+            }
+
+        }
         public override async Task Initialize()
         {
             await base.Initialize();
-
             SelectedIndex = 1;
             if (authReply.attachment.ToString() == "Groups")
                 RunSafe(GetFormUIControls(authReply, FormType.GroupedStakeholders), true, "Building Group Form Controls");
@@ -113,121 +77,48 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             else
                 RunSafe(GetFormUIControls(authReply, FormType.LandParcelStakeholders), true, "Building Land Parcel Form Controls");
 
-
             UpdateTitle();
+        }
+        private async Task OnDeleteSEvent()
+        {
+            var result = await ShowDeleteConfirmation();
+            if (result)
+            {
+                //TODO: Add Delete Logic here
 
+                NavigateToList();
+            }
+        }
+        private async Task NavigateToList()
+        {
+            await navigationService.ChangePresentation(
+            new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(StakeholderListViewModel)));
             return;
-
         }
-
-        private void UpdateTitle()
+        internal async Task AddEvent()
         {
-            switch (mode)
-            {
-                case PresentationMode.Read:
-                    //       Title = Stakeholder.Name;
-                    break;
-                case PresentationMode.Edit:
-                    Title = $"Edit " + authReply.attachment.ToString();
-                    break;
-                case PresentationMode.Create:
-                    Title = "Add New " + authReply.attachment.ToString();
-                    break;
-            }
-        }
-
-        private void OnBeginEditStakeholder()
-        {
-            if (!IsReading)
-                return;
-
-        }
-
-
-        private async Task OnDeleteStakeholder()
-        {
-            var result = await PageDialog.ConfirmAsync($"Are you sure you want to delete the Stakeholder?",
-                "Delete Stakeholder", "Yes", "No");
-
-            if (!result)
-                return;
-
-            await navigationService.Close(this);
-
-        }
-
-        private async Task OnCancel()
-
-        {
-
-        }
-
-        private bool isFormValid()
-        {
-            var isValid = true;
-            foreach (KeyValuePair<string, ValidatableObject<string>> _formContent in FormContent)
-            {
-                if (_formContent.Value.Validate() == false)
-                {
-                    isValid = false;
-                }
-            }
-
-            return isValid;
-        }
-
-
-
-
-
-        internal async Task save()
-        {
-
-            AddEventsReply responseReply;
             jsonTextObj jsonTextObj = new jsonTextObj(pageFormValue);
-            HttpResponseMessage stakeholder = await ApiManager.AddStakeholder(jsonTextObj, authReply.d.sessionId);
-
-            if (stakeholder.IsSuccessStatusCode)
-            {
-                var response = await stakeholder.Content.ReadAsStringAsync();
-                responseReply = await Task.Run(() => JsonConvert.DeserializeObject<AddEventsReply>(response));
-
-                if (responseReply.d.successful == true)
-                {
-                    await PageDialog.AlertAsync(authReply.attachment.ToString() + " Saved Successfully", "Stakeholder Saved", "Ok");
-                }
-                else
-                {
-                    await PageDialog.AlertAsync(responseReply.d.message, "Error Saving Stakeholder", "Ok");
-
-                }
-
-            }
-            else
-                await PageDialog.AlertAsync("API Error While Saving Stakeholder", "API Response Error", "Ok");
-            //  return null;
+            HttpResponseMessage events = await ApiManager.AddEvent(jsonTextObj, authReply.d.sessionId);
+            await Add(events);
         }
-        private async Task OnCommitEditOrder()
+        private async Task OnSave()
         {
             if (isFormValid())
             {
-
                 if (authReply.attachment.ToString() == "Groups")
                     FetchValuesFromFormControls("group");
                 else if (authReply.attachment.ToString() == "Individuals")
                     FetchValuesFromFormControls("individual");
                 else
                     FetchValuesFromFormControls("landparcel");
-
-
-                save();
+                AddEvent();
+                changeView();
 
             }
 
+
         }
-
         private int selectedIndex;
-
         public int SelectedIndex
         {
             get => selectedIndex;
@@ -240,86 +131,6 @@ namespace Staketracker.Core.ViewModels.Stakeholder
                 }
             }
         }
-
-        public override void ViewAppearing()
-        {
-            IsBusy = true;
-            if (mode == PresentationMode.Edit)
-            {
-                StakeholderDetailReq body = new StakeholderDetailReq()
-                {
-                    projectId = authReply.d.projectId,
-                    userId = authReply.d.userId,
-                    StakeholderPrimaryKey = primaryKey
-
-
-                };
-                jsonTextObj jto = new jsonTextObj(body);
-                PopulateControls(authReply, jto);
-
-
-            }
-
-            IsBusy = false;
-
-        }
-
-
-        internal async Task PopulateControls(AuthReply authReply, jsonTextObj jto)
-        {
-            FieldsValue fieldsValue;
-            HttpResponseMessage responseMessage;
-
-            if (authReply.attachment.ToString() == "Groups")
-                responseMessage = await ApiManager.GetGroupStakeholderDetails(jto, authReply.d.sessionId);
-            else if (authReply.attachment.ToString() == "Individuals")
-                responseMessage = await ApiManager.GetIndividualStakeholderDetails(jto, authReply.d.sessionId);
-
-            else
-                responseMessage = await ApiManager.GetLandParcelStakeholderDetails(jto, authReply.d.sessionId);
-
-
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var response = await responseMessage.Content.ReadAsStringAsync();
-                fieldsValue = await Task.Run(() => JsonConvert.DeserializeObject<FieldsValue>(response));
-
-                foreach (Field field in fieldsValue.d.Fields)
-                    foreach (ValidatableObject<string> valObj in FormContent.Values)
-                        if (valObj.FormAndDropDownField.PrimaryKey == field.PrimaryKey)
-                            try
-                            {
-                                if (valObj.FormAndDropDownField.InputType == "DropDownList")
-                                    valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
-                                else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
-                                {
-                                }
-                                else if (valObj.FormAndDropDownField.InputType == "CheckBox")
-                                {
-                                    if (field.Value != null && field.Value.ToString() == "on")
-                                        valObj.Value = true.ToString();
-                                    else
-                                        valObj.Value = false.ToString();
-                                }
-
-                                else
-                                {
-                                    if (field.Value != null)
-                                        valObj.Value = field.Value.ToString();
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                            }
-
-            }
-            else
-                await PageDialog.AlertAsync("API Error While Assigning Value to UI Controls", "API Response Error", "Ok");
-            //  return null;
-        }
-
-
-
 
     }
 }
