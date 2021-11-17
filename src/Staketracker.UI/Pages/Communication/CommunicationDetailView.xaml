@@ -19,7 +19,7 @@
                SeparatorVisibility="None" 
                 x:Name="listView" HasUnevenRows="True" 
                 VerticalScrollBarVisibility="Never"  
-                ItemTemplate="{StaticResource formDataTemplateSelector}"  
+                ItemTemplate="{StaticResource formDataTemplateSelectorView}"  
                 ItemsSource="{Binding FormContent}" 
                 SelectionMode="None" />
             </StackLayout>

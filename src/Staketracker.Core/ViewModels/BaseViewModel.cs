@@ -375,11 +375,15 @@ namespace Staketracker.Core.ViewModels
 
                     ValidatableObject<string> validatableObj = new ValidatableObject<string>();
                     validatableObj.FormAndDropDownField = d;
-                    validatableObj.DropdownValues = new System.Collections.ObjectModel.ObservableCollection<DropdownValue>();
                     validatableObj.PrimaryKey = d.PrimaryKey.ToString();
 
                     if (d.InputType == "DropDownList")
                     {
+
+                        if (d.DropdownValues != null)
+                        {
+                            validatableObj.DropdownValues = new System.Collections.ObjectModel.ObservableCollection<Staketracker.Core.Models.FormAndDropDownField.DropdownValue>(d.DropdownValues);
+                        }
                         validatableObj.isSelectOne = true;
 
                     }

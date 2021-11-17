@@ -93,9 +93,13 @@ namespace Staketracker.Core.ViewModels.CommunicationList
         {
             if (Device.Idiom != TargetIdiom.Phone)
                 return;
-
+            string communicationSubject = "";
+            if (communication.CommunicationSubject != null)
+            {
+                communicationSubject = communication.CommunicationSubject.ToString();
+            }
             _navigationService.Navigate<CommunicationDetailViewModel, PresentationContext<AuthReply>>(
-                new PresentationContext<AuthReply>(authReply, PresentationMode.Edit, int.Parse(communication.PrimaryKey)));
+                new PresentationContext<AuthReply>(authReply, PresentationMode.Read, int.Parse(communication.PrimaryKey), communicationSubject));
 
         }
 
