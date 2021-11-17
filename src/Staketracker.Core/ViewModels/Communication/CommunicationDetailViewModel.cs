@@ -42,7 +42,7 @@ namespace Staketracker.Core.ViewModels.Communication
             if (mode == PresentationMode.Edit || mode == PresentationMode.Read)
             {
                 var apiReqExtra = new APIRequestExtraBody(authReply, "PrimaryKey", primaryKey.ToString());
-                HttpResponseMessage communications = await ApiManager.GetCommunicationDetails(new jsonTextObj(apiReqExtra), authReply.d.sessionId);
+                HttpResponseMessage communications = await ApiManager.GetCommunicationDetails(new jsonTextObj(apiReqExtra.GetJsonText()), authReply.d.sessionId);
                 PopulateControlsWithData(authReply, primaryKey, communications);
             }
 

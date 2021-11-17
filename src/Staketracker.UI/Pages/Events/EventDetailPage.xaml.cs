@@ -59,7 +59,7 @@ namespace Staketracker.UI.Pages.Events
             this.LayoutRoot.Children.Add(editView);
         }
         private ContentView editView;
-        private ToolbarItem editToolbarItem, checkToolbarItem, deleteToolbarItem, saveToolbarItem;
+        private ToolbarItem editToolbarItem, deleteToolbarItem, saveToolbarItem;
 
         protected override void OnAppearing()
         {
@@ -86,11 +86,7 @@ namespace Staketracker.UI.Pages.Events
                 }
             }
         }
-        private void editToolbarItem_Clicked(object sender, System.EventArgs e)
-        {
-            if (this.editView.IsVisible)
-                ((IPopupHost)this.editView).OpenPopup();
-        }
+
         private void HandleCustomerDetailViewPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == IsVisibleProperty.PropertyName)

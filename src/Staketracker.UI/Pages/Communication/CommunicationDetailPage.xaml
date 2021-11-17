@@ -12,7 +12,7 @@
 
     <mcf:MvxContentPage.Content>
         <Grid x:Name="LayoutRoot">
-            <CommunicationDetailView:CommunicationDetailView x:Name="detailView" IsVisible="True">
+            <CommunicationDetailView:CommunicationDetailView x:Name="detailView" IsVisible="False">
                 <CommunicationDetailView:CommunicationDetailView.Triggers>
                     <DataTrigger TargetType="CommunicationDetailView:CommunicationDetailView" Binding="{Binding IsReading}" Value="True">
                         <Setter Property="IsVisible" Value="True" />

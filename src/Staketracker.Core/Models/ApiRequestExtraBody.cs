@@ -19,6 +19,11 @@ namespace Staketracker.Core.Models.ApiRequestBody
 
         }
         private JsonText _jsonText { get; set; }
+
+        public JsonText GetJsonText()
+        {
+            return _jsonText;
+        }
         public String jsonText { get; set; }
     }
 
