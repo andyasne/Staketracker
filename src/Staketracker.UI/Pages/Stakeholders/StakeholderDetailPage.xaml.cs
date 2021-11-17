@@ -6,6 +6,10 @@ using Staketracker.Core.ViewModels.Stakeholder;
 using Staketracker.UI.Pages.StakeholderList;
 using Staketracker.UI.Pages.stakeholders;
 using Xamarin.Forms;
+using Staketracker.UI.Pages.Stakeholder;
+using MvvmCross.Presenters.Attributes;
+using MvvmCross.ViewModels;
+using Staketracker.Core;
 
 namespace Staketracker.UI.Pages.StakeholdersDetail
 {
@@ -19,29 +23,32 @@ namespace Staketracker.UI.Pages.StakeholdersDetail
 
             if (Device.Idiom == TargetIdiom.Phone)
             {
-                // this.detailView.PropertyChanged += this.HandleVendorDetailViewPropertyChanged;
-                this.editView = new StakeholderDetailView();
-                ///  this.editView.PropertyChanged += this.HandleVendorEditViewPropertyChanged;
+                this.editView = new StakeholderEditView();
+                this.detailView.PropertyChanged += this.HandleCustomerDetailViewPropertyChanged;
+                this.editView.PropertyChanged += this.HandleCustomerEditViewPropertyChanged;
 
-                optionsToolbarItem = new ToolbarItem();
-                optionsToolbarItem.Text = "Layout";
-                optionsToolbarItem.IconImageSource = new FileImageSource() { File = "ellipsis" };
-                optionsToolbarItem.Clicked += this.OptionsToolbarItem_Clicked;
+                editToolbarItem = new ToolbarItem();
+                editToolbarItem.Text = "Edit";
+                editToolbarItem.IconImageSource = new FileImageSource() { File = "Edit" };
+                editToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("BeginEditCommand"));
 
-                checkToolbarItem = new ToolbarItem();
-                checkToolbarItem.Text = "Save";
-                checkToolbarItem.IconImageSource = new FileImageSource() { File = "check" };
-                checkToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("CommitCommand"));
+
+                saveToolbarItem = new ToolbarItem();
+                saveToolbarItem.Text = "Save";
+                saveToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("SaveCommand"));
+                //    saveToolbarItem.Clicked += this.editToolbarItem_Clicked;
+
+
+                deleteToolbarItem = new ToolbarItem();
+                deleteToolbarItem.Text = "Delete";
+                deleteToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("DeleteCommand"));
+
 
             }
             else
             {
-                //this.editView = new VendorEditViewTablet();
-
-                // NavigationPage.SetHasNavigationBar(this, false);
+                NavigationPage.SetHasNavigationBar(this, false);
             }
-            this.ToolbarItems.Add(checkToolbarItem);
-            //   this.ToolbarItems.Add(deleteToolbarItem);
 
             this.editView.IsVisible = false;
             var trigger = new DataTrigger(editView.GetType());
@@ -53,15 +60,97 @@ namespace Staketracker.UI.Pages.StakeholdersDetail
         }
 
         private ContentView editView;
-        private ToolbarItem optionsToolbarItem, checkToolbarItem, deleteToolbarItem;
+        private ToolbarItem editToolbarItem, checkToolbarItem, deleteToolbarItem, saveToolbarItem;
 
 
 
-        private void OptionsToolbarItem_Clicked(object sender, EventArgs e)
+        protected override void OnAppearing()
         {
-            //    this.detailView.OpenPopup();
+            base.OnAppearing();
+
+            if (Device.Idiom != TargetIdiom.Phone)
+                return;
+
+            if (this.detailView.IsVisible)
+            {
+                if (!this.ToolbarItems.Contains(editToolbarItem))
+                {
+                    this.ToolbarItems.Add(editToolbarItem);
+                    this.ToolbarItems.Add(deleteToolbarItem);
+                }
+
+            }
+
+            if (this.editView.IsVisible)
+            {
+                if (!this.ToolbarItems.Contains(saveToolbarItem))
+                {
+                    this.ToolbarItems.Add(saveToolbarItem);
+                }
+            }
+        }
+        private void editToolbarItem_Clicked(object sender, System.EventArgs e)
+        {
+            if (this.editView.IsVisible)
+                ((IPopupHost)this.editView).OpenPopup();
         }
 
+        private void HandleCustomerDetailViewPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == IsVisibleProperty.PropertyName)
+            {
+                if (this.detailView.IsVisible)
+                {
+                    if (!this.ToolbarItems.Contains(editToolbarItem))
+                    {
+                        this.ToolbarItems.Add(editToolbarItem);
+                        this.ToolbarItems.Add(deleteToolbarItem);
+                    }
+
+                }
+                else
+                {
+                    if (this.ToolbarItems.Contains(editToolbarItem))
+                    {
+                        this.ToolbarItems.Remove(editToolbarItem);
+                        this.ToolbarItems.Remove(deleteToolbarItem);
+                    }
+
+                }
+            }
+        }
+
+        private void HandleCustomerEditViewPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == IsVisibleProperty.PropertyName)
+            {
+                if (this.editView?.IsVisible == true)
+                {
+                    if (!this.ToolbarItems.Contains(saveToolbarItem))
+                    {
+                        this.ToolbarItems.Add(saveToolbarItem);
+                    }
+                }
+                else
+                {
+                    if (this.ToolbarItems.Contains(saveToolbarItem))
+                    {
+                        this.ToolbarItems.Remove(saveToolbarItem);
+                    }
+                }
+            }
+        }
+        public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
+        {
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+                return new MvxContentPagePresentationAttribute() { WrapInNavigationPage = true };
+            }
+            else
+            {
+                return new MvxCustomMasterDetailPagePresentationAttribute(MasterDetailPosition.Detail) { NoHistory = true, MasterHostViewType = typeof(StakeholderDetailPage) };
+            }
+        }
 
     }
 

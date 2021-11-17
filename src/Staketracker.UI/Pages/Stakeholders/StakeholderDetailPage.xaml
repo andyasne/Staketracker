@@ -12,8 +12,16 @@
 
     <mcf:MvxContentPage.Content>
         <Grid x:Name="LayoutRoot">
-            <StakeholderDetailView:StakeholderDetailView x:Name="detailView" IsVisible="True">
+            <StakeholderDetailView:StakeholderDetailView x:Name="detailView" IsVisible="False">
+                <StakeholderDetailView:StakeholderDetailView.Triggers>
+                    <DataTrigger TargetType="StakeholderDetailView:StakeholderDetailView" Binding="{Binding IsReading}" Value="True">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </StakeholderDetailView:StakeholderDetailView.Triggers>
             </StakeholderDetailView:StakeholderDetailView>
+
         </Grid>
+
+
     </mcf:MvxContentPage.Content>
 </mcf:MvxContentPage>

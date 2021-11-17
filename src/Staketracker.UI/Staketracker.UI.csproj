@@ -137,6 +137,9 @@
     <Compile Update="Pages\ChangePassword\ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\Stakeholders\StakeholderEditView.xaml.cs">
+      <DependentUpon>StakeholderEditView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\UserProfile\UserProfile.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
@@ -232,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\SearchResultsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Stakeholders\StakeholderEditView.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Stakeholders\StakeholderDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>

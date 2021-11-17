@@ -47,12 +47,8 @@ namespace Staketracker.UI.Pages.CommunicationsDetail
             }
             else
             {
-                //this.editView = new VendorEditViewTablet();
-
                 NavigationPage.SetHasNavigationBar(this, false);
             }
-            //    this.ToolbarItems.Add(saveToolbarItem);
-            //  this.ToolbarItems.Add(deleteToolbarItem);
 
             this.editView.IsVisible = false;
             var trigger = new DataTrigger(editView.GetType());
