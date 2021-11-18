@@ -47,6 +47,7 @@ namespace Staketracker.Core.ViewModels.Communication
 
         public override async Task Initialize()
         {
+            PageTitle = "Communication";
             await base.Initialize();
             RunSafe(GetFormUIControls(authReply, FormType.Communications), true, "Building Form Controls");
             UpdateTitle();

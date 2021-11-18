@@ -90,11 +90,11 @@ namespace Staketracker.Core.ViewModels
             if (IsReading)
             {
 
-                Title = "View " + PageTitle;
+                Title = "View " + name;
             }
             else
             {
-                Title = "Edit " + PageTitle;
+                Title = "Edit " + name;
             }
 
         }
@@ -157,7 +157,7 @@ namespace Staketracker.Core.ViewModels
                     Title = name;
                     break;
                 case PresentationMode.Edit:
-                    Title = $"Edit " + PageTitle;
+                    Title = $"Edit " + name;
                     break;
                 case PresentationMode.Create:
                     Title = "Add New " + PageTitle;

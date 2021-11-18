@@ -48,6 +48,8 @@ namespace Staketracker.Core.ViewModels.Events
         }
         public override async Task Initialize()
         {
+            PageTitle = "Event";
+
             await base.Initialize();
             RunSafe(GetFormUIControls(authReply, FormType.Events), true, "Building Form Controls");
             UpdateTitle();

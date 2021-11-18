@@ -68,6 +68,8 @@ namespace Staketracker.Core.ViewModels.Stakeholder
         }
         public override async Task Initialize()
         {
+            PageTitle = "Stakeholder";
+
             await base.Initialize();
             SelectedIndex = 1;
             if (authReply.attachment.ToString() == "Groups")
