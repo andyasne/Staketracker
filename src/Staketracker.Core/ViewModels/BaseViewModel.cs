@@ -232,10 +232,17 @@ namespace Staketracker.Core.ViewModels
                     {
                         if (_formContent.Value.SelectedDate != null)
                         {
-                            long selectedDate = ((long)_formContent.Value.SelectedDate.Value.Date.Ticks);
+
+                            //long selectedDate = ((long)_formContent.Value.SelectedDate.Value.Date.ge());
+                            // string _selectedDate = DateTime.Now.ToShortTimeString();
+                            DateTime utc = _formContent.Value.SelectedDate.Value.Date.ToUniversalTime();
+                            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+                            TimeSpan diff = utc - origin;
+                            inputValue.Value = string.Format("/Date({0})/", Math.Floor(diff.TotalMilliseconds));
+                            //  TimeZoneConverter.TZConvert.epo
                             //int unixTimestamp = (int)_formContent.Value.SelectedDate.Value.Ticks;
                             //selectedDate = _formContent.Value.SelectedDate.Value.ToUniversalTime;
-                            inputValue.Value = string.Format("/Date({0})/", selectedDate);
+                            //  inputValue.Value = string.Format("/Date({0})/", _selectedDate);
 
                         }
                     }
