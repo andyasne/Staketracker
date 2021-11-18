@@ -60,14 +60,14 @@ namespace Staketracker.UI.Pages.Events
         }
         private ContentView editView;
         private ToolbarItem editToolbarItem, deleteToolbarItem, saveToolbarItem;
-
+        Core.Models.PresentationMode mode;
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
             if (Device.Idiom != TargetIdiom.Phone)
                 return;
-
+            mode = ((SEventDetailViewModel)ViewModel).Mode;
             if (this.detailView.IsVisible)
             {
                 if (!this.ToolbarItems.Contains(editToolbarItem))
@@ -84,6 +84,12 @@ namespace Staketracker.UI.Pages.Events
                 {
                     this.ToolbarItems.Add(saveToolbarItem);
                 }
+            }
+            if (mode == Core.Models.PresentationMode.Create)
+            {
+                this.ToolbarItems.Clear();
+                this.ToolbarItems.Add(saveToolbarItem);
+
             }
         }
 
@@ -109,6 +115,13 @@ namespace Staketracker.UI.Pages.Events
                     }
 
                 }
+
+            }
+            if (mode == Core.Models.PresentationMode.Create)
+            {
+                this.ToolbarItems.Clear();
+                this.ToolbarItems.Add(saveToolbarItem);
+
             }
         }
         private void HandleCustomerEditViewPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -130,6 +143,12 @@ namespace Staketracker.UI.Pages.Events
                     }
                 }
             }
+            if (mode == Core.Models.PresentationMode.Create)
+            {
+                this.ToolbarItems.Clear();
+                this.ToolbarItems.Add(saveToolbarItem);
+
+            }
         }
         public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
         {
@@ -139,7 +158,9 @@ namespace Staketracker.UI.Pages.Events
             }
             else
             {
-                return new MvxCustomMasterDetailPagePresentationAttribute(MasterDetailPosition.Detail) { NoHistory = true, MasterHostViewType = typeof(EventDetailPage) };
+                return new MvxCustomMasterDetailPagePresentationAttribute(MasterDetailPosition.Detail)
+                { NoHistory = true, MasterHostViewType = typeof(EventDetailPage) };
+
             }
         }
 

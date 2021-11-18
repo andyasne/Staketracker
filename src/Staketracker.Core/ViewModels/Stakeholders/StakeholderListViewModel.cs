@@ -23,8 +23,6 @@ namespace Staketracker.Core.ViewModels.Stakeholders
     {
 
         public ICommand AddStakeholderCommand { get; }
-
-
         private readonly IMvxNavigationService _navigationService;
         public IMvxCommand SearchCommand { get; }
 
@@ -45,8 +43,7 @@ namespace Staketracker.Core.ViewModels.Stakeholders
                         TabViewItem selectedTab = view.SelectedItem as TabViewItem;
                         selectedHeaderTitle = selectedTab.HeaderText;
                         authReply.attachment = selectedHeaderTitle;
-                        _navigationService.Navigate<StakeholderDetailViewModel, PresentationContext<AuthReply>>(
-                            new PresentationContext<AuthReply>(authReply, PresentationMode.Create));
+                        _navigationService.Navigate<StakeholderDetailViewModel, PresentationContext<AuthReply>>(new PresentationContext<AuthReply>(authReply, PresentationMode.Create));
 
                     }
                 });
@@ -82,7 +79,6 @@ namespace Staketracker.Core.ViewModels.Stakeholders
 
             _navigationService.Navigate<StakeholderDetailViewModel, PresentationContext<AuthReply>>(
                 new PresentationContext<AuthReply>(authReply, PresentationMode.Read, int.Parse(groupStakeh.PrimaryKey), groupStakeh.GroupName));
-
 
         }
 
@@ -140,12 +136,9 @@ namespace Staketracker.Core.ViewModels.Stakeholders
         {
             base.Prepare();
 
-            this.IsBusy = true;
             this.authReply = parameter;
 
-            //this.Mode = parameter.Mode;
             RunSafe(GetLandParcelStakeholderDetails(authReply), true, "Loading Stakeholders");
-            this.IsBusy = false;
 
         }
         public async override Task Initialize()
@@ -153,9 +146,6 @@ namespace Staketracker.Core.ViewModels.Stakeholders
             await base.Initialize();
 
             GetFormUIControls(authReply, FormType.GroupedStakeholders);
-
-
-
 
         }
 
@@ -171,8 +161,6 @@ namespace Staketracker.Core.ViewModels.Stakeholders
         private Models.Stakeholders.Stakeholders stakeholders;
         internal async Task GetLandParcelStakeholderDetails(AuthReply authReply)
         {
-
-
             StakeholderBody body = new StakeholderBody();
             body.projectId = authReply.d.projectId;
             body.userId = authReply.d.userId;
@@ -184,8 +172,6 @@ namespace Staketracker.Core.ViewModels.Stakeholders
             {
                 var response = await stakeholders.Content.ReadAsStringAsync();
                 allStakeholders = await Task.Run(() => JsonConvert.DeserializeObject<Models.Stakeholders.Stakeholders>(response));
-
-
             }
             else
                 await PageDialog.AlertAsync("API Error While retrieving", "API Response Error", "Ok");

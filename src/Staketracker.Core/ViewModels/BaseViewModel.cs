@@ -177,7 +177,7 @@ namespace Staketracker.Core.ViewModels
 
             return isValid;
         }
-        protected PresentationMode Mode
+        public PresentationMode Mode
         {
             get => mode;
             set

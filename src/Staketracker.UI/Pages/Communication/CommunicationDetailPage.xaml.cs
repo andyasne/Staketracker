@@ -62,15 +62,14 @@ namespace Staketracker.UI.Pages.CommunicationsDetail
         private ContentView editView;
         private ToolbarItem editToolbarItem, checkToolbarItem, deleteToolbarItem, saveToolbarItem;
 
-
-
+        Core.Models.PresentationMode mode;
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
             if (Device.Idiom != TargetIdiom.Phone)
                 return;
-
+            mode = ((CommunicationDetailViewModel)ViewModel).Mode;
             if (this.detailView.IsVisible)
             {
                 if (!this.ToolbarItems.Contains(editToolbarItem))
@@ -88,11 +87,12 @@ namespace Staketracker.UI.Pages.CommunicationsDetail
                     this.ToolbarItems.Add(saveToolbarItem);
                 }
             }
-        }
-        private void editToolbarItem_Clicked(object sender, System.EventArgs e)
-        {
-            if (this.editView.IsVisible)
-                ((IPopupHost)this.editView).OpenPopup();
+            if (mode == Core.Models.PresentationMode.Create)
+            {
+                this.ToolbarItems.Clear();
+                this.ToolbarItems.Add(saveToolbarItem);
+
+            }
         }
 
         private void HandleCustomerDetailViewPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -117,9 +117,15 @@ namespace Staketracker.UI.Pages.CommunicationsDetail
                     }
 
                 }
+
+            }
+            if (mode == Core.Models.PresentationMode.Create)
+            {
+                this.ToolbarItems.Clear();
+                this.ToolbarItems.Add(saveToolbarItem);
+
             }
         }
-
         private void HandleCustomerEditViewPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == IsVisibleProperty.PropertyName)
@@ -138,6 +144,12 @@ namespace Staketracker.UI.Pages.CommunicationsDetail
                         this.ToolbarItems.Remove(saveToolbarItem);
                     }
                 }
+            }
+            if (mode == Core.Models.PresentationMode.Create)
+            {
+                this.ToolbarItems.Clear();
+                this.ToolbarItems.Add(saveToolbarItem);
+
             }
         }
         public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
