@@ -65,10 +65,10 @@ namespace Staketracker.UI.Pages.Events
         {
             base.OnAppearing();
 
-            if (Device.Idiom != TargetIdiom.Phone)
-                return;
+
             mode = ((SEventDetailViewModel)ViewModel).Mode;
-            if (this.detailView.IsVisible)
+
+            if (mode == Core.Models.PresentationMode.Read)
             {
                 if (!this.ToolbarItems.Contains(editToolbarItem))
                 {
@@ -78,7 +78,7 @@ namespace Staketracker.UI.Pages.Events
 
             }
 
-            if (this.editView.IsVisible)
+            if (mode == Core.Models.PresentationMode.Edit)
             {
                 if (!this.ToolbarItems.Contains(saveToolbarItem))
                 {
@@ -97,7 +97,8 @@ namespace Staketracker.UI.Pages.Events
         {
             if (e.PropertyName == IsVisibleProperty.PropertyName)
             {
-                if (this.detailView.IsVisible)
+                if (mode == Core.Models.PresentationMode.Read)
+
                 {
                     if (!this.ToolbarItems.Contains(editToolbarItem))
                     {
@@ -106,7 +107,7 @@ namespace Staketracker.UI.Pages.Events
                     }
 
                 }
-                else
+                else if (mode == Core.Models.PresentationMode.Edit)
                 {
                     if (this.ToolbarItems.Contains(editToolbarItem))
                     {
@@ -128,14 +129,14 @@ namespace Staketracker.UI.Pages.Events
         {
             if (e.PropertyName == IsVisibleProperty.PropertyName)
             {
-                if (this.editView?.IsVisible == true)
+                if (mode == Core.Models.PresentationMode.Edit)
                 {
                     if (!this.ToolbarItems.Contains(saveToolbarItem))
                     {
                         this.ToolbarItems.Add(saveToolbarItem);
                     }
                 }
-                else
+                else if (mode == Core.Models.PresentationMode.Read)
                 {
                     if (this.ToolbarItems.Contains(saveToolbarItem))
                     {

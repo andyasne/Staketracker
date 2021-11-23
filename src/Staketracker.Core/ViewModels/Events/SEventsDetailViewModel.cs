@@ -38,6 +38,11 @@ namespace Staketracker.Core.ViewModels.Events
         }
         public override async void ViewAppearing()
         {
+            if (mode == PresentationMode.Create)
+            {
+                this.IsReading = false;
+                this.IsEditing = true;
+            }
             if (mode == PresentationMode.Edit || mode == PresentationMode.Read)
             {
                 var apiReqExtra = new APIRequestExtraBody(authReply, "PrimaryKey", primaryKey.ToString());

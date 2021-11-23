@@ -57,6 +57,24 @@ namespace Staketracker.Core.ViewModels
         {
             changeView();
         }
+        public BaseViewModel()
+        {
+            ApiManager = new ApiManager(staketrackerApi);
+
+            OnDevelopmentNotifyCommand = new Command(() =>
+            {
+                OnDevelopment().Start();
+            });
+        }
+        public Task OnDevelopment()
+        {
+            return new Task(() =>
+            {
+                var msg = "This Page is Under Development";
+                PageDialog.Toast(msg, TimeSpan.FromSeconds(3));
+            });
+
+        }
         public string Title
         {
             get => title;
@@ -101,12 +119,12 @@ namespace Staketracker.Core.ViewModels
         public bool IsReading
         {
             get => isReading;
-            private set => SetField(ref isReading, value);
+            set => SetField(ref isReading, value);
         }
         public bool IsEditing
         {
             get => isEditing;
-            private set => SetField(ref isEditing, value);
+            set => SetField(ref isEditing, value);
         }
         public static string? DomainSelected
         {
@@ -326,7 +344,7 @@ namespace Staketracker.Core.ViewModels
                                 {
                                     foreach (Models.FormAndDropDownField.DropdownValue dv in field.DropdownValues)
                                     {
-                                        //       valObj.SelectedItems.Add(dv);
+                                        valObj.SelectedItems.Add(dv);
                                     }
                                 }
 
@@ -396,6 +414,10 @@ namespace Staketracker.Core.ViewModels
                     }
                     else if (d.InputType == "ListBoxMulti")
                     {
+                        if (d.DropdownValues != null)
+                        {
+                            validatableObj.DropdownValues = new System.Collections.ObjectModel.ObservableCollection<Staketracker.Core.Models.FormAndDropDownField.DropdownValue>(d.DropdownValues);
+                        }
                         validatableObj.isSelectMultiple = true;
                     }
 
@@ -450,24 +472,6 @@ namespace Staketracker.Core.ViewModels
             field = value;
             OnPropertyChanged(propertyName);
             return true;
-        }
-        public BaseViewModel()
-        {
-            ApiManager = new ApiManager(staketrackerApi);
-
-            OnDevelopmentNotifyCommand = new Command(() =>
-            {
-                OnDevelopment().Start();
-            });
-        }
-        public Task OnDevelopment()
-        {
-            return new Task(() =>
-            {
-                var msg = "This Page is Under Development";
-                PageDialog.Toast(msg, TimeSpan.FromSeconds(3));
-            });
-
         }
         public async Task RunSafe(Task task, bool ShowLoading = true, string loadinMessage = null)
         {

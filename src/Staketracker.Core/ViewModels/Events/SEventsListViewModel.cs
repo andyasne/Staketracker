@@ -151,10 +151,7 @@ namespace Staketracker.Core.ViewModels.Events
         public ICommand ToggleLayoutModeCommand { get; }
         public ICommand CreateEventCommand { get; }
         public ICommand EditEventCommand { get; }
-
         public ICommand DeleteEventCommand { get; }
-
-        //public ICommand SearchCommand { get; }
         public ICommand AboutCommand { get; }
 
         public override void Prepare(AuthReply authReply) => this.authReply = authReply;
