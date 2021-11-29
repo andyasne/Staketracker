@@ -196,8 +196,6 @@ namespace Staketracker.Core.ViewModels.Events
 
         private void OnSelectedEventChanged(Staketracker.Core.Models.Events.D _event)
         {
-            if (Device.Idiom != TargetIdiom.Phone)
-                return;
 
             navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(
                 new PresentationContext<AuthReply>(authReply, PresentationMode.Read, int.Parse(_event.PrimaryKey), _event.Name));
