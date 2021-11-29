@@ -458,7 +458,7 @@
                 DropDownListTemplate="{StaticResource DropDownListTemplate}"
                 MultiLineTemplate="{StaticResource MultiLineTemplate}" 
                 DateTimeTemplate="{StaticResource DateTimeTemplate}" 
-                ListBoxMultiTemplate="{StaticResource ListBoxMultiTemplate}" 
+                ListBoxMultiTemplate="{StaticResource DropDownListTemplate}" 
                 CheckBoxTemplate="{StaticResource CheckBoxTemplate}"  />
 
             <ui:formDataTemplateSelectorView x:Key="formDataTemplateSelectorView"
@@ -466,7 +466,7 @@
                 DropDownListTemplate="{StaticResource DropDownListTemplateRO}"
                 MultiLineTemplate="{StaticResource MultiLineTemplateRO}" 
                 DateTimeTemplate="{StaticResource DateTimeTemplateRO}" 
-                ListBoxMultiTemplate="{StaticResource ListBoxMultiTemplateRO}" 
+                ListBoxMultiTemplate="{StaticResource DropDownListTemplateRO}" 
                 CheckBoxTemplate="{StaticResource CheckBoxTemplateRO}"  />
 
 

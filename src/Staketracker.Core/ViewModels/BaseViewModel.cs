@@ -237,7 +237,7 @@ namespace Staketracker.Core.ViewModels
                     {
                         if (_formContent.Value.SelectedItem == null)
                         {
-                            inputValue.Value = null;
+                            inputValue.Value = "";
                         }
                         else
                         {
@@ -251,34 +251,27 @@ namespace Staketracker.Core.ViewModels
                         if (_formContent.Value.SelectedDate != null)
                         {
 
-                            //long selectedDate = ((long)_formContent.Value.SelectedDate.Value.Date.ge());
-                            // string _selectedDate = DateTime.Now.ToShortTimeString();
                             DateTime utc = _formContent.Value.SelectedDate.Value.Date.ToUniversalTime();
                             DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
                             TimeSpan diff = utc - origin;
                             inputValue.Value = string.Format("/Date({0})/", Math.Floor(diff.TotalMilliseconds));
-                            //  TimeZoneConverter.TZConvert.epo
-                            //int unixTimestamp = (int)_formContent.Value.SelectedDate.Value.Ticks;
-                            //selectedDate = _formContent.Value.SelectedDate.Value.ToUniversalTime;
-                            //  inputValue.Value = string.Format("/Date({0})/", _selectedDate);
 
                         }
                     }
                     else if (_formContent.Value.FormAndDropDownField.InputType == "ListBoxMulti")
                     {
                         List<string> selectedValues = new List<string>();
-                        if (_formContent.Value.SelectedItems != null && _formContent.Value.SelectedItems.Count > 0)
+
+                        if (_formContent.Value.SelectedItem == null)
                         {
-                            foreach (Models.FormAndDropDownField.DropdownValue selected in _formContent.Value.SelectedItems)
-                            {
-                                selectedValues.Add(selected.PrimaryKey);
-
-                            }
-
+                            inputValue.Value = "";
+                        }
+                        else
+                        {
+                            selectedValues.Add(_formContent.Value.SelectedItem.PrimaryKey.ToString());
                         }
 
-                        inputValue.Value = selectedValues;
-
+                        inputValue.Value = "[" + string.Join(",", selectedValues) + "]";
 
                     }
                     else
@@ -342,10 +335,8 @@ namespace Staketracker.Core.ViewModels
 
                                 else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
                                 {
-                                    foreach (Models.FormAndDropDownField.DropdownValue dv in field.DropdownValues)
-                                    {
-                                        valObj.SelectedItems.Add(dv);
-                                    }
+                                    valObj.SelectedItem = field.DropdownValues.FirstOrDefault();
+
                                 }
 
                                 else if (valObj.FormAndDropDownField.InputType == "CheckBox")
@@ -420,7 +411,6 @@ namespace Staketracker.Core.ViewModels
                         }
                         validatableObj.isSelectMultiple = true;
                     }
-
                     if (d.InputType == "DateTime")
                     {
                         validatableObj.isDateType = true;

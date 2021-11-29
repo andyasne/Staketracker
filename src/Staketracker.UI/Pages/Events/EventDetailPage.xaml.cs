@@ -59,16 +59,17 @@ namespace Staketracker.UI.Pages.Events
             this.LayoutRoot.Children.Add(editView);
         }
         private ContentView editView;
-        private ToolbarItem editToolbarItem, deleteToolbarItem, saveToolbarItem;
+        private ToolbarItem editToolbarItem, checkToolbarItem, deleteToolbarItem, saveToolbarItem;
+
         Core.Models.PresentationMode mode;
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-
+            if (Device.Idiom != TargetIdiom.Phone)
+                return;
             mode = ((SEventDetailViewModel)ViewModel).Mode;
-
-            if (mode == Core.Models.PresentationMode.Read)
+            if (this.detailView.IsVisible)
             {
                 if (!this.ToolbarItems.Contains(editToolbarItem))
                 {
@@ -78,7 +79,7 @@ namespace Staketracker.UI.Pages.Events
 
             }
 
-            if (mode == Core.Models.PresentationMode.Edit)
+            if (this.editView.IsVisible)
             {
                 if (!this.ToolbarItems.Contains(saveToolbarItem))
                 {
@@ -97,8 +98,7 @@ namespace Staketracker.UI.Pages.Events
         {
             if (e.PropertyName == IsVisibleProperty.PropertyName)
             {
-                if (mode == Core.Models.PresentationMode.Read)
-
+                if (this.detailView.IsVisible)
                 {
                     if (!this.ToolbarItems.Contains(editToolbarItem))
                     {
@@ -107,7 +107,7 @@ namespace Staketracker.UI.Pages.Events
                     }
 
                 }
-                else if (mode == Core.Models.PresentationMode.Edit)
+                else
                 {
                     if (this.ToolbarItems.Contains(editToolbarItem))
                     {
@@ -129,14 +129,14 @@ namespace Staketracker.UI.Pages.Events
         {
             if (e.PropertyName == IsVisibleProperty.PropertyName)
             {
-                if (mode == Core.Models.PresentationMode.Edit)
+                if (this.editView?.IsVisible == true)
                 {
                     if (!this.ToolbarItems.Contains(saveToolbarItem))
                     {
                         this.ToolbarItems.Add(saveToolbarItem);
                     }
                 }
-                else if (mode == Core.Models.PresentationMode.Read)
+                else
                 {
                     if (this.ToolbarItems.Contains(saveToolbarItem))
                     {
@@ -159,9 +159,7 @@ namespace Staketracker.UI.Pages.Events
             }
             else
             {
-                return new MvxCustomMasterDetailPagePresentationAttribute(MasterDetailPosition.Detail)
-                { NoHistory = true, MasterHostViewType = typeof(EventDetailPage) };
-
+                return new MvxCustomMasterDetailPagePresentationAttribute(MasterDetailPosition.Detail) { NoHistory = true, MasterHostViewType = typeof(SEventsListPage) };
             }
         }
 
