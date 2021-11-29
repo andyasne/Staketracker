@@ -202,6 +202,21 @@ namespace Staketracker.Core.ViewModels
             {
                 if (SetProperty(ref mode, value))
                 {
+                    if (mode == PresentationMode.Create)
+                    {
+                        IsReading = false;
+                        isEditing = true;
+                    }
+                    else if (mode == PresentationMode.Read)
+                    {
+                        IsReading = false;
+                        isEditing = true;
+                    }
+                    else
+                    {
+                        IsReading = true;
+                        isEditing = false;
+                    }
                     RaisePropertyChanged(() => IsEditing);
                     RaisePropertyChanged(() => IsReading);
                 }

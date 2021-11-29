@@ -60,16 +60,16 @@ namespace Staketracker.UI.Pages.Events
         }
         private ContentView editView;
         private ToolbarItem editToolbarItem, checkToolbarItem, deleteToolbarItem, saveToolbarItem;
-
-        Core.Models.PresentationMode mode;
+        Core.Models.PresentationMode mode = Core.Models.PresentationMode.Create;
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            if (ViewModel != null)
+            {
+                mode = ((SEventDetailViewModel)ViewModel).Mode;
+            }
 
-            if (Device.Idiom != TargetIdiom.Phone)
-                return;
-            mode = ((SEventDetailViewModel)ViewModel).Mode;
-            if (this.detailView.IsVisible)
+            if (this.detailView.IsVisible && mode == Core.Models.PresentationMode.Read)
             {
                 if (!this.ToolbarItems.Contains(editToolbarItem))
                 {
@@ -86,6 +86,7 @@ namespace Staketracker.UI.Pages.Events
                     this.ToolbarItems.Add(saveToolbarItem);
                 }
             }
+
             if (mode == Core.Models.PresentationMode.Create)
             {
                 this.ToolbarItems.Clear();
@@ -96,11 +97,18 @@ namespace Staketracker.UI.Pages.Events
 
         private void HandleCustomerDetailViewPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            if (ViewModel != null)
+            {
+                mode = ((SEventDetailViewModel)ViewModel).Mode;
+            }
+
             if (e.PropertyName == IsVisibleProperty.PropertyName)
             {
+                this.ToolbarItems.Clear();
+
                 if (this.detailView.IsVisible)
                 {
-                    if (!this.ToolbarItems.Contains(editToolbarItem))
+                    if (!this.ToolbarItems.Contains(editToolbarItem) && mode == Core.Models.PresentationMode.Read)
                     {
                         this.ToolbarItems.Add(editToolbarItem);
                         this.ToolbarItems.Add(deleteToolbarItem);
@@ -127,8 +135,14 @@ namespace Staketracker.UI.Pages.Events
         }
         private void HandleCustomerEditViewPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            if (ViewModel != null)
+            {
+                mode = ((SEventDetailViewModel)ViewModel).Mode;
+            }
             if (e.PropertyName == IsVisibleProperty.PropertyName)
             {
+                this.ToolbarItems.Clear();
+
                 if (this.editView?.IsVisible == true)
                 {
                     if (!this.ToolbarItems.Contains(saveToolbarItem))
