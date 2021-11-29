@@ -110,7 +110,7 @@ namespace Staketracker.UI.Pages.StakeholdersDetail
 
                 if (this.detailView.IsVisible)
                 {
-                    if (!this.ToolbarItems.Contains(editToolbarItem))
+                    if (!this.ToolbarItems.Contains(editToolbarItem) && mode == Core.Models.PresentationMode.Read)
                     {
                         this.ToolbarItems.Add(editToolbarItem);
                         this.ToolbarItems.Add(deleteToolbarItem);
