@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppName" xml:space="preserve">
-    <value>Staketrackerአማ</value>
+  <data name="dd" xml:space="preserve">
+    <value>dd</value>
   </data>
-  <data name="Dashboard" xml:space="preserve">
-    <value>ሰሌዳ</value>
+  <data name="String1" xml:space="preserve">
+    <value>ff</value>
   </data>
-  <data name="Open" xml:space="preserve">
-    <value>ክፈት</value>
+  <data name="String2" xml:space="preserve">
+    <value>dd</value>
   </data>
 </root>

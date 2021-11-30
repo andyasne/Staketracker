@@ -5,15 +5,17 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Pages\RootPage_.xaml.cs" />
-    <Compile Remove="Resource\Resource1.am.Designer.cs" />
-  </ItemGroup>
+
 
   <ItemGroup>
     <EmbeddedResource Remove="Pages\RootPage.xaml" />
     <EmbeddedResource Remove="Pages\RootPage_.xaml" />
+
+
   </ItemGroup>
+
+
+
 
   <ItemGroup>
     <PackageReference Include="MvvmCross" Version="7.1.2" />
@@ -186,8 +188,13 @@
     <Compile Update="Pages\HomePage.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
-    <Compile Update="Resource\Colors.xaml.cs">
+    <Compile Update="Resources\Colors.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Res\AppRes.am.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppRes.am.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -249,21 +256,28 @@
     <EmbeddedResource Update="Pages\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resource\Resource1.am.resx">
+    <EmbeddedResource Update="Resources\Resource1.am.resx">
       <CustomToolNamespace></CustomToolNamespace>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Resource1.en.resx">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resource\Resource1.en.resx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <EmbeddedResource Update="Resources\Resource1.us.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resource\Resource1.sp.resx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <Generator>ResXFileCodeGenerator</Generator>
+    <EmbeddedResource Update="Res\AppRes.am.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppRes.am.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resource\Resource1.us.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+    <EmbeddedResource Update="Res\AppRes.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Themes\Resource.us.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
 
