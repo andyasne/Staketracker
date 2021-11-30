@@ -124,10 +124,10 @@
     <value>Tablero</value>
   </data>
   <data name="forgot_your_password" xml:space="preserve">
-    <value>Forgot Your Password?</value>
+    <value>¿Olvidaste tu contraseña?</value>
   </data>
   <data name="forgot_your_user_id" xml:space="preserve">
-    <value>Forgot Your User Id?</value>
+    <value>¿Olvidó su identificación de usuario?</value>
   </data>
   <data name="password" xml:space="preserve">
     <value>Password</value>
@@ -136,7 +136,7 @@
     <value>Remember Me</value>
   </data>
   <data name="sign_in" xml:space="preserve">
-    <value>SIGN IN</value>
+    <value>INICIAR SESIÓN</value>
   </data>
   <data name="user_id" xml:space="preserve">
     <value>User ID</value>

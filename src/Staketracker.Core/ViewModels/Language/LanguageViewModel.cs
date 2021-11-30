@@ -56,7 +56,7 @@ namespace Staketracker.Core.ViewModels.Language
 
             };
 
-          //  SelectedLanguage = defaultLang;
+            //  SelectedLanguage = defaultLang;
 
             ChangeLanguage = new Command(() =>
             {
