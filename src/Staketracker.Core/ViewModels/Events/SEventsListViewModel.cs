@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using Staketracker.Core.Models;
 using Staketracker.Core.Models.ApiRequestBody;
 using Staketracker.Core.Models.Events;
+using Staketracker.Core.Res;
 using Xamarin.Forms;
 using D = Staketracker.Core.Models.Events.D;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
@@ -82,7 +83,7 @@ namespace Staketracker.Core.ViewModels.Events
 
             SearchCommand = new MvxAsyncCommand(OnSearch);
             AddEventsCommand = new MvxCommand(OnCreateEvent);
-            PageTitle = "Event";
+            PageTitle = AppRes.event_;
 
         }
 

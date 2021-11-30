@@ -18,6 +18,7 @@ namespace Staketracker.Core.ViewModels.Language
     using System.Threading.Tasks;
     using System.Windows.Input;
     using Xamarin.Forms;
+    using Staketracker.Core.ViewModels.Login;
 
     public class Language
     {
@@ -45,13 +46,17 @@ namespace Staketracker.Core.ViewModels.Language
             AddValidationRules();
             authReply = new AuthReply();
             _navigationService = navigationService;
+            Language defaultLang = new Language { Name = "English", Abr = "en" };
+
             this.Languages = new ObservableCollection<Language>
         {
-            new Language { Name = "English", Abr = "en"},
+                defaultLang,
             new Language { Name = "Spanish", Abr = "es"},
             new Language { Name = "Amharic", Abr = "am"}
 
             };
+
+            SelectedLanguage = defaultLang;
 
             ChangeLanguage = new Command(() =>
             {
@@ -60,6 +65,10 @@ namespace Staketracker.Core.ViewModels.Language
                     CultureInfo language = new CultureInfo(SelectedLanguage.Abr);
                     Thread.CurrentThread.CurrentUICulture = language;
                     AppRes.Culture = language;
+
+                    navigationService.ChangePresentation(
+                        new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(LoginViewModel)));
+
                 }
                 else
                 {

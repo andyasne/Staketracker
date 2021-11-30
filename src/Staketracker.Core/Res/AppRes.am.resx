@@ -144,4 +144,28 @@
   <data name="change_language" xml:space="preserve">
     <value>ቋንቋ ቀይር</value>
   </data>
+  <data name="event_" xml:space="preserve">
+    <value>ክስተት</value>
+  </data>
+  <data name="communication" xml:space="preserve">
+    <value>ግንኙነት</value>
+  </data>
+  <data name="stakeholder" xml:space="preserve">
+    <value>ባለድርሻ</value>
+  </data>
+  <data name="project_team" xml:space="preserve">
+    <value>የፕሮጀክት ቡድን</value>
+  </data>
+  <data name="topics" xml:space="preserve">
+    <value>ርዕሶች</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>ቅንብሮች</value>
+  </data>
+  <data name="help" xml:space="preserve">
+    <value>እገዛ</value>
+  </data>
+  <data name="sign_out" xml:space="preserve">
+    <value>ዛግተ ውጣ</value>
+  </data>
 </root>

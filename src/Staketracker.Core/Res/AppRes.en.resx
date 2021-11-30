@@ -144,4 +144,28 @@
   <data name="change_language" xml:space="preserve">
     <value>Change Language</value>
   </data>
+  <data name="event_" xml:space="preserve">
+    <value>Event</value>
+  </data>
+  <data name="communication" xml:space="preserve">
+    <value>Communication</value>
+  </data>
+  <data name="stakeholder" xml:space="preserve">
+    <value>Stakeholder</value>
+  </data>
+  <data name="project_team" xml:space="preserve">
+    <value>Project Team</value>
+  </data>
+  <data name="topics" xml:space="preserve">
+    <value>Topics</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="sign_out" xml:space="preserve">
+    <value>Sign Out</value>
+  </data>
 </root>

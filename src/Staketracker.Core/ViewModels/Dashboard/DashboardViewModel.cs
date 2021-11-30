@@ -14,6 +14,7 @@ using MvvmCross.ViewModels;
 //using Staketracker.Core.Resources;
 using Staketracker.Core.ViewModels.Menu;
 using Xamarin.Forms;
+using Staketracker.Core.Res;
 
 namespace Staketracker.Core.ViewModels.Dashboard
 {
@@ -30,7 +31,7 @@ namespace Staketracker.Core.ViewModels.Dashboard
 
             SignOutCommand = new Command(async () => await SignOut());
 
-            this.PageTitle = "Dashboard";
+            this.PageTitle = AppRes.dashboard;
 
 
         }
