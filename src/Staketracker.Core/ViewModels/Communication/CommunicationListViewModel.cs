@@ -16,6 +16,7 @@ using Staketracker.Core.ViewModels.Communication;
 using Staketracker.Core.ViewModels.Events;
 using D = Staketracker.Core.Models.Events.D;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
+using Staketracker.Core.Res;
 
 namespace Staketracker.Core.ViewModels.CommunicationList
 {
@@ -38,7 +39,7 @@ namespace Staketracker.Core.ViewModels.CommunicationList
 
         public CommunicationListViewModel(IMvxNavigationService navigationService)
         {
-            this.PageTitle = "Communication";
+            this.PageTitle = AppRes.communication;
 
             _navigationService = navigationService;
 

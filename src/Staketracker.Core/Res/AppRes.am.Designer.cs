@@ -142,5 +142,63 @@ namespace Staketracker.Core.Res
                 return ResourceManager.GetString("change_language", resourceCulture);
             }
         }
+
+        public static string event_
+        {
+            get
+            {
+                return ResourceManager.GetString("event_", resourceCulture);
+            }
+        }
+        public static string communication
+        {
+            get
+            {
+                return ResourceManager.GetString("communication", resourceCulture);
+            }
+        }
+        public static string stakeholder
+        {
+            get
+            {
+                return ResourceManager.GetString("stakeholder", resourceCulture);
+            }
+        }
+        public static string project_team
+        {
+            get
+            {
+                return ResourceManager.GetString("project_team", resourceCulture);
+            }
+        }
+        public static string settings
+        {
+            get
+            {
+                return ResourceManager.GetString("settings", resourceCulture);
+            }
+        }
+        public static string sign_out
+        {
+            get
+            {
+                return ResourceManager.GetString("sign_out", resourceCulture);
+            }
+        }
+        public static string help
+        {
+            get
+            {
+                return ResourceManager.GetString("help", resourceCulture);
+            }
+        }
+        public static string topics
+        {
+            get
+            {
+                return ResourceManager.GetString("topics", resourceCulture);
+            }
+        }
+
     }
 }

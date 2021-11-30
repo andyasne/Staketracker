@@ -15,6 +15,7 @@ using Telerik.XamarinForms.Primitives;
 using Xamarin.Forms;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
 using Staketracker.Core.Models.EventsFormValue;
+using Staketracker.Core.Res;
 
 namespace Staketracker.Core.ViewModels.Stakeholders
 {
@@ -28,7 +29,7 @@ namespace Staketracker.Core.ViewModels.Stakeholders
 
         public StakeholderListViewModel(IMvxNavigationService navigationService)
         {
-            this.PageTitle = "Stakeholder";
+            this.PageTitle = AppRes.stakeholder;
 
             _navigationService = navigationService;
 

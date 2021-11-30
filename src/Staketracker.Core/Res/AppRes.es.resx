@@ -121,7 +121,7 @@
     <value>Connect to Sandbox</value>
   </data>
   <data name="dashboard" xml:space="preserve">
-    <value>Dashboard</value>
+    <value>Tablero</value>
   </data>
   <data name="forgot_your_password" xml:space="preserve">
     <value>Forgot Your Password?</value>
@@ -143,5 +143,29 @@
   </data>
   <data name="change_language" xml:space="preserve">
     <value>Cambiar idioma</value>
+  </data>
+  <data name="event_" xml:space="preserve">
+    <value>evento</value>
+  </data>
+  <data name="communication" xml:space="preserve">
+    <value>Comunicación</value>
+  </data>
+  <data name="stakeholder" xml:space="preserve">
+    <value>Interesada</value>
+  </data>
+  <data name="project_team" xml:space="preserve">
+    <value>Project Team</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Ajustes</value>
+  </data>
+  <data name="sign_out" xml:space="preserve">
+    <value>Desconectar</value>
+  </data>
+  <data name="help" xml:space="preserve">
+    <value>Ayudar</value>
+  </data>
+  <data name="topics" xml:space="preserve">
+    <value>Temas</value>
   </data>
 </root>
