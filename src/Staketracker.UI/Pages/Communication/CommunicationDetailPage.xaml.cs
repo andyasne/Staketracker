@@ -93,10 +93,8 @@ namespace Staketracker.UI.Pages.CommunicationsDetail
                     this.ToolbarItems.Add(saveToolbarItem);
                 }
             }
-
-            if (mode == Core.Models.PresentationMode.Create)
+            if (mode == Core.Models.PresentationMode.Create && !this.ToolbarItems.Contains(saveToolbarItem))
             {
-                this.ToolbarItems.Clear();
                 this.ToolbarItems.Add(saveToolbarItem);
 
             }
@@ -111,7 +109,6 @@ namespace Staketracker.UI.Pages.CommunicationsDetail
 
             if (e.PropertyName == IsVisibleProperty.PropertyName)
             {
-                this.ToolbarItems.Clear();
 
                 if (this.detailView.IsVisible)
                 {
@@ -119,6 +116,7 @@ namespace Staketracker.UI.Pages.CommunicationsDetail
                     {
                         this.ToolbarItems.Add(editToolbarItem);
                         this.ToolbarItems.Add(deleteToolbarItem);
+                        this.ToolbarItems.Remove(saveToolbarItem);
                     }
 
                 }
@@ -128,14 +126,15 @@ namespace Staketracker.UI.Pages.CommunicationsDetail
                     {
                         this.ToolbarItems.Remove(editToolbarItem);
                         this.ToolbarItems.Remove(deleteToolbarItem);
+                        this.ToolbarItems.Remove(saveToolbarItem);
+
                     }
 
                 }
 
             }
-            if (mode == Core.Models.PresentationMode.Create)
+            if (mode == Core.Models.PresentationMode.Create && !this.ToolbarItems.Contains(saveToolbarItem))
             {
-                this.ToolbarItems.Clear();
                 this.ToolbarItems.Add(saveToolbarItem);
 
             }
@@ -148,12 +147,14 @@ namespace Staketracker.UI.Pages.CommunicationsDetail
             }
             if (e.PropertyName == IsVisibleProperty.PropertyName)
             {
-                this.ToolbarItems.Clear();
 
                 if (this.editView?.IsVisible == true)
                 {
                     if (!this.ToolbarItems.Contains(saveToolbarItem))
                     {
+                        saveToolbarItem = new ToolbarItem();
+                        saveToolbarItem.Text = "Save";
+                        saveToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("SaveCommand"));
                         this.ToolbarItems.Add(saveToolbarItem);
                     }
                 }
@@ -165,12 +166,13 @@ namespace Staketracker.UI.Pages.CommunicationsDetail
                     }
                 }
             }
-            if (mode == Core.Models.PresentationMode.Create)
+            if (mode == Core.Models.PresentationMode.Create && !this.ToolbarItems.Contains(saveToolbarItem))
             {
-                this.ToolbarItems.Clear();
                 this.ToolbarItems.Add(saveToolbarItem);
 
             }
+
+
         }
         public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
         {

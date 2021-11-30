@@ -14,10 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Resources\AppResources.am.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Resources\AppResources.am.resx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -107,11 +104,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Resources\AppResources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>AppResources.am.resx</DependentUpon>
-    </Compile>
     <Compile Update="Themes\DashboardStyles.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
@@ -121,11 +113,6 @@
     <Compile Update="Themes\SharedStyles.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Resources\AppResource.en-US.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

@@ -2,6 +2,9 @@ using System;
 using Staketracker.Core.Validators;
 using System.Collections.Generic;
 using Xamarin.Forms;
+using System.Globalization;
+using System.Threading;
+using Staketracker.UI.Resources;
 
 namespace Staketracker.UI
 {
@@ -78,6 +81,10 @@ namespace Staketracker.UI
         public App()
         {
             InitializeComponent();
+
+            CultureInfo language = new CultureInfo("am");
+            Thread.CurrentThread.CurrentUICulture = language;
+            //  Resource1.Culture = language;
         }
 
         private void RadDateTimePicker_SelectionChanged(object sender, EventArgs e)

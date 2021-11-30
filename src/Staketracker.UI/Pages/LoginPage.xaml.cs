@@ -1,10 +1,13 @@
 using System.ComponentModel;
+using System.Globalization;
+using System.Threading;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using MvvmCross.Presenters;
 using MvvmCross.Presenters.Attributes;
 using MvvmCross.ViewModels;
 using Staketracker.Core.ViewModels.Login;
+using Staketracker.UI.Resources;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,6 +21,9 @@ namespace Staketracker.UI.Pages
         public LoginPage()
         {
             InitializeComponent();
+            //CultureInfo language = new CultureInfo("am");
+            //Thread.CurrentThread.CurrentUICulture = language;
+            //Resource1.Culture = language;
         }
 
         protected override void OnAppearing()

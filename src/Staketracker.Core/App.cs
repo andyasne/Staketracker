@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Threading;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
-using Staketracker.Core.Resources;
+//using Staketracker.Core.Resources;
 
 namespace Staketracker.Core
 {

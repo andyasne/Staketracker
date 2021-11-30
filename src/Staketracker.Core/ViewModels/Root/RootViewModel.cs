@@ -1,6 +1,6 @@
 using System.Globalization;
 using System.Threading;
-using Staketracker.Core.Resources;
+//using Staketracker.Core.Resources;
 using Staketracker.Core.ViewModels.Menu;
 
 namespace Staketracker.Core.ViewModels.Root
@@ -30,7 +30,7 @@ namespace Staketracker.Core.ViewModels.Root
             CultureInfo info = new CultureInfo("am");
             Thread.CurrentThread.CurrentUICulture = info;
 
-            AppResources.Culture = info;
+            //AppResources.Culture = info;
 
             MenuItemList = new MvxObservableCollection<string>()
             {

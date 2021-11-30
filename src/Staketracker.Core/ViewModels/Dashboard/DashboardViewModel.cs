@@ -11,7 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MvvmCross.ViewModels;
-using Staketracker.Core.Resources;
+//using Staketracker.Core.Resources;
 using Staketracker.Core.ViewModels.Menu;
 using Xamarin.Forms;
 

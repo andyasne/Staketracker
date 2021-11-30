@@ -30,8 +30,7 @@
                         
                                                      Style="{StaticResource ComboEntryStyle}"
                                                      SearchMode="Contains"
-                                                        ItemsSource="{Binding BusinessUnit}"
-                                                 
+                                                     ItemsSource="{Binding BusinessUnit}"
                                                      SearchTextPath="Name"
                                                      IsDropDownClosedOnSelection="True"
                                                      DropDownHeight="200"
