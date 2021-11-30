@@ -7,8 +7,13 @@
                       xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Login;assembly=Staketracker.Core"
                       xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
                       xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
-                    xmlns:local="clr-namespace:Staketracker.UI.Pages"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                 
+                      xmlns:local="clr-namespace:Staketracker.UI.Pages"
                       x:Class="Staketracker.UI.Pages.LoginPage"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+                      xmlns:resx="clr-namespace:Staketracker.Core.Res;assembly=Staketracker.Core"
                    
                       NavigationPage.HasNavigationBar="False"
              x:TypeArguments="viewModels:LoginViewModel">
@@ -20,8 +25,6 @@
             </ResourceDictionary.MergedDictionaries>
             <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
             <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
-
-
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -46,12 +49,12 @@
                     <telerikInput:RadEntry x:Name="production" Text="{Binding IsSandboxDisplay}" IsReadOnly="True"   Style="{StaticResource LoginEntryStyle}"  Margin="0,0,0,5"    WatermarkText="Production" />
                     <StackLayout Orientation="Horizontal">
                         <telerikPrimitives:RadCheckBox x:Name="isSandbox" Style="{StaticResource checkBoxButtonStyle}"  IsChecked="{Binding IsSandboxChecked}" />
-                        <Label Text="Connect to Sandbox"  Style="{StaticResource NormalLabelStyle}" />
+                        <Label Text="{x:Static resx:AppRes.connect_to_sandbox}"    Style="{StaticResource NormalLabelStyle}" />
                     </StackLayout>
 
                     <!--User Id-->
                     <telerikInput:RadEntry   Margin="0,30,0,0"
-                                   WatermarkText="User ID" WidthRequest="350"
+                                   WatermarkText="{x:Static resx:AppRes.user_id}" WidthRequest="350"
                                    Text="{Binding Username.Value, Mode=TwoWay }"
                                    Style="{StaticResource LoginEntryStyle}">
                         <telerikInput:RadEntry.Behaviors>
@@ -71,7 +74,7 @@
                         <telerikInput:RadEntry
                          IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, Path=HidePassword}"
                             HorizontalOptions="StartAndExpand"
-                        WatermarkText="Password" 
+                        WatermarkText="{x:Static resx:AppRes.password}"  
                         Text="{Binding Password.Value, Mode=TwoWay}"
                                    Style="{StaticResource LoginEntryStyle}" WidthRequest="320" >
                             <telerikInput:RadEntry.Behaviors>
@@ -100,7 +103,7 @@
 
                     <StackLayout Orientation="Horizontal"  Margin="0,0,0,30">
                         <telerikPrimitives:RadCheckBox x:Name="rememberMe" Style="{StaticResource checkBoxButtonStyle}" />
-                        <Label Text="Remember Me" Style="{StaticResource NormalLabelStyle}" />
+                        <Label Text="{x:Static resx:AppRes.remember_me}"  Style="{StaticResource NormalLabelStyle}" />
 
                     </StackLayout>
 
@@ -122,14 +125,14 @@
 
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <telerikInput:RadButton Text="SIGN IN"   Grid.Row="0"  Grid.Column="0" Margin="0,0,0,20" Grid.ColumnSpan="4" WidthRequest="200" HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"
+                    <telerikInput:RadButton Text="{x:Static resx:AppRes.sign_in}" Grid.Row="0"  Grid.Column="0" Margin="0,0,0,20" Grid.ColumnSpan="4" WidthRequest="200" HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"
                                             Command="{Binding AuthenticateUserCommand}"
                                             Style="{StaticResource ActionButtonStyle}" />
-                    <telerikInput:RadButton VerticalContentAlignment="End" HorizontalContentAlignment="Start"  HeightRequest="20" Text="Forgot Your User Id?"   Grid.Row="1" Grid.Column="1"
+                    <telerikInput:RadButton VerticalContentAlignment="End" HorizontalContentAlignment="Start"  HeightRequest="20" Text="{x:Static resx:AppRes.forgot_your_user_id}"   Grid.Row="1" Grid.Column="1"
                                      Style="{StaticResource SecondaryActionButtonStyle}" Command="{Binding ForgetUserIdCommand}"
                                     FontAttributes="None" />
 
-                    <telerikInput:RadButton Text="Forget Your Password?" HeightRequest="20"  HorizontalContentAlignment="End" VerticalContentAlignment="End" Grid.Row="1" Grid.Column="3"
+                    <telerikInput:RadButton Text= "{x:Static resx:AppRes.forgot_your_password}"  HeightRequest="20"  HorizontalContentAlignment="End" VerticalContentAlignment="End" Grid.Row="1" Grid.Column="3"
                                      Style="{StaticResource SecondaryActionButtonStyle}"  Command="{Binding ForgetPasswordCommand}"
                                     FontAttributes="None" />
                 </Grid>

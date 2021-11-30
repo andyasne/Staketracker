@@ -1,6 +1,6 @@
 using Xamarin.Forms;
 
-namespace Staketracker.UI.Resources
+namespace Staketracker.Core.Resources
 {
     public partial class Colors : ResourceDictionary
     {

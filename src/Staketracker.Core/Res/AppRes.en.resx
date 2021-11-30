@@ -117,13 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppName" xml:space="preserve">
-    <value>Staketrackerአማ</value>
+  <data name="connect_to_sandbox" xml:space="preserve">
+    <value>Connect to Sandbox</value>
   </data>
-  <data name="Dashboard" xml:space="preserve">
-    <value>ሰሌዳ</value>
+  <data name="dashboard" xml:space="preserve">
+    <value>Dashboard</value>
   </data>
-  <data name="Open" xml:space="preserve">
-    <value>ክፈት</value>
+  <data name="forgot_your_password" xml:space="preserve">
+    <value>Forgot Your Password?</value>
+  </data>
+  <data name="forgot_your_user_id" xml:space="preserve">
+    <value>Forgot Your User Id?</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="remember_me" xml:space="preserve">
+    <value>Remember Me</value>
+  </data>
+  <data name="sign_in" xml:space="preserve">
+    <value>SIGN IN</value>
+  </data>
+  <data name="user_id" xml:space="preserve">
+    <value>User ID</value>
+  </data>
+  <data name="change_language" xml:space="preserve">
+    <value>Change Language</value>
   </data>
 </root>

@@ -10,14 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="Resources\AppResources.am.resx" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Resources\AppResources.am.resx" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.1.0.483" />
     <PackageReference Include="fusillade" Version="2.3.1" />
     <PackageReference Include="Json.Net" Version="1.0.33" />
@@ -104,6 +96,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Res\AppRes.am.Designer.cs">
+      <DependentUpon>AppRes.am.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Themes\DashboardStyles.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
@@ -113,6 +110,19 @@
     <Compile Update="Themes\SharedStyles.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Res\AppRes.am.resx">
+      <LastGenOutput>AppRes.am.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Res\AppRes.en.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Res\AppRes.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

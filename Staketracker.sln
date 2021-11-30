@@ -175,6 +175,7 @@ Global
 		{6CE3F365-CC75-4FEA-B0B1-6D08900FBD75} = {F0CB8F6E-A34F-42EC-B080-390EE3FE98F1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		RESX_AutoCreateNewLanguageFiles = True
 		SolutionGuid = {8A32023A-8994-447A-9890-63D0A2746288}
 	EndGlobalSection
 EndGlobal

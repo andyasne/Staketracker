@@ -6,6 +6,9 @@ using System;
 using System.Threading.Tasks;
 using Staketracker.Core.ViewModels.Menu;
 using Staketracker.Core.ViewModels.Login;
+using System.Globalization;
+using System.Threading;
+using Staketracker.Core.Res;
 
 namespace Staketracker.Core
 {
@@ -14,6 +17,9 @@ namespace Staketracker.Core
         public AppStart(IMvxApplication application, IMvxNavigationService navigationService)
             : base(application, navigationService)
         {
+            CultureInfo language = new CultureInfo("am");
+            Thread.CurrentThread.CurrentUICulture = language;
+            AppRes.Culture = language;
         }
 
 

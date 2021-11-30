@@ -7,7 +7,7 @@ using MvvmCross.Presenters;
 using MvvmCross.Presenters.Attributes;
 using MvvmCross.ViewModels;
 using Staketracker.Core.ViewModels.Login;
-using Staketracker.UI.Resources;
+using Staketracker.Core.Resources;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

@@ -8,13 +8,22 @@ namespace Staketracker.Core.ViewModels.Language
     using Staketracker.Core.Validators.Rules;
     using Staketracker.Core.ViewModels.Root;
     using Staketracker.Core.ViewModels.TwoStepVerification;
+    using Staketracker.Core.Res;
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Globalization;
     using System.Net.Http;
+    using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Input;
     using Xamarin.Forms;
 
+    public class Language
+    {
+        public string Name { get; set; }
+        public string Abr { get; set; }
+    }
     public class LanguageViewModel : BaseViewModel
     {
         private string email;
@@ -27,16 +36,35 @@ namespace Staketracker.Core.ViewModels.Language
         public ICommand ChangeLanguage { get; set; }
 
         public ICommand SubmitForgetPasswordCommand { get; set; }
+        public ObservableCollection<Language> Languages { get; set; }
+        public Language SelectedLanguage { get; set; }
+
 
         public LanguageViewModel(IMvxNavigationService navigationService)
         {
             AddValidationRules();
             authReply = new AuthReply();
             _navigationService = navigationService;
+            this.Languages = new ObservableCollection<Language>
+        {
+            new Language { Name = "English", Abr = "en"},
+            new Language { Name = "Spanish", Abr = "es"},
+            new Language { Name = "Amharic", Abr = "am"}
+
+            };
 
             ChangeLanguage = new Command(() =>
             {
-
+                if (SelectedLanguage != null)
+                {
+                    CultureInfo language = new CultureInfo(SelectedLanguage.Abr);
+                    Thread.CurrentThread.CurrentUICulture = language;
+                    AppRes.Culture = language;
+                }
+                else
+                {
+                    //invalid
+                }
 
             });
 

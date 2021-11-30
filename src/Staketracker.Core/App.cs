@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Threading;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
+using Staketracker.Core.Res;
 //using Staketracker.Core.Resources;
 
 namespace Staketracker.Core
@@ -15,9 +16,7 @@ namespace Staketracker.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            //CultureInfo info = new CultureInfo("am");
-            //Thread.CurrentThread.CurrentUICulture = info;
-            //AppResource.Culture = info;
+
 
             RegisterCustomAppStart<AppStart>();
         }
