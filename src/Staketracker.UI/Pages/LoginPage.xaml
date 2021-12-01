@@ -7,13 +7,13 @@
                       xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Login;assembly=Staketracker.Core"
                       xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
                       xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                        xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                  
-                      xmlns:local="clr-namespace:Staketracker.UI.Pages"
-                      x:Class="Staketracker.UI.Pages.LoginPage"
-                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-                      xmlns:resx="clr-namespace:Staketracker.Core.Res;assembly=Staketracker.Core"
+                        xmlns:local="clr-namespace:Staketracker.UI.Pages"
+                        x:Class="Staketracker.UI.Pages.LoginPage"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        mc:Ignorable="d"
+                        xmlns:resx="clr-namespace:Staketracker.Core.Res;assembly=Staketracker.Core"
                    
                       NavigationPage.HasNavigationBar="False"
              x:TypeArguments="viewModels:LoginViewModel">
@@ -117,22 +117,22 @@
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"  />
-                        <RowDefinition Height="Auto"  />
+                        <RowDefinition Height="40"  />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="170" />
 
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <telerikInput:RadButton Text="{x:Static resx:AppRes.sign_in}" Grid.Row="0"  Grid.Column="0" Margin="0,0,0,20" Grid.ColumnSpan="4" WidthRequest="200" HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"
                                             Command="{Binding AuthenticateUserCommand}"
                                             Style="{StaticResource ActionButtonStyle}" />
-                    <telerikInput:RadButton VerticalContentAlignment="End" HorizontalContentAlignment="Start"  HeightRequest="20" Text="{x:Static resx:AppRes.forgot_your_user_id}"   Grid.Row="1" Grid.Column="1"
+                    <telerikInput:RadButton   HorizontalContentAlignment="Center"  HeightRequest="20"  VerticalContentAlignment="Center"  Text="{x:Static resx:AppRes.forgot_your_user_id}"   Grid.Row="1" Grid.Column="1"
                                      Style="{StaticResource SecondaryActionButtonStyle}" Command="{Binding ForgetUserIdCommand}"
                                     FontAttributes="None" />
 
-                    <telerikInput:RadButton Text= "{x:Static resx:AppRes.forgot_your_password}"  HeightRequest="20"  HorizontalContentAlignment="End" VerticalContentAlignment="End" Grid.Row="1" Grid.Column="3"
+                    <telerikInput:RadButton Text= "{x:Static resx:AppRes.forgot_your_password}"  HeightRequest="20"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="3"
                                      Style="{StaticResource SecondaryActionButtonStyle}"  Command="{Binding ForgetPasswordCommand}"
                                     FontAttributes="None" />
                 </Grid>

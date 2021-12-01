@@ -168,4 +168,16 @@
   <data name="topics" xml:space="preserve">
     <value>Temas</value>
   </data>
+  <data name="language" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="default_interface_language" xml:space="preserve">
+    <value>Idioma de interfaz predeterminado</value>
+  </data>
+  <data name="switch_project" xml:space="preserve">
+    <value>Cambiar proyecto</value>
+  </data>
+  <data name="change_password" xml:space="preserve">
+    <value>Cambiar la contraseña</value>
+  </data>
 </root>

@@ -168,4 +168,16 @@
   <data name="sign_out" xml:space="preserve">
     <value>Sign Out</value>
   </data>
+  <data name="language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="default_interface_language" xml:space="preserve">
+    <value>Default Interface Language</value>
+  </data>
+  <data name="switch_project" xml:space="preserve">
+    <value>Switch Project</value>
+  </data>
+  <data name="change_password" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
 </root>

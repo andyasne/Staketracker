@@ -9,6 +9,7 @@ using Staketracker.Core.ViewModels.Login;
 using System.Globalization;
 using System.Threading;
 using Staketracker.Core.Res;
+using Plugin.Settings;
 
 namespace Staketracker.Core
 {
@@ -17,7 +18,8 @@ namespace Staketracker.Core
         public AppStart(IMvxApplication application, IMvxNavigationService navigationService)
             : base(application, navigationService)
         {
-            CultureInfo language = new CultureInfo("am");
+            string defaultLang = CrossSettings.Current.GetValueOrDefault("DefaultLanguage", "en");
+            CultureInfo language = new CultureInfo(defaultLang);
             Thread.CurrentThread.CurrentUICulture = language;
             AppRes.Culture = language;
         }

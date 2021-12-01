@@ -199,6 +199,35 @@ namespace Staketracker.Core.Res
                 return ResourceManager.GetString("topics", resourceCulture);
             }
         }
+        public static string language
+        {
+            get
+            {
+                return ResourceManager.GetString("language", resourceCulture);
+            }
+        }
+        public static string default_interface_language
+        {
+            get
+            {
+                return ResourceManager.GetString("default_interface_language", resourceCulture);
+            }
+        }
+        public static string switch_project
+        {
+            get
+            {
+                return ResourceManager.GetString("switch_project", resourceCulture);
+            }
+        }
+        public static string change_password
+        {
+            get
+            {
+                return ResourceManager.GetString("change_password", resourceCulture);
+            }
+        }
+
 
     }
 }
