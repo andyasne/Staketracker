@@ -213,15 +213,7 @@ namespace Staketracker.Core.ViewModels.Events
 
         }
 
-        private async void OnEventUpdated(EventUpdatedMessage message)
-        {
 
-        }
-
-        private void OnEventDeleted(EventDeletedMessage message)
-        {
-
-        }
 
         private void OnCreateEvent() =>
             navigationService.Navigate<SEventDetailViewModel, PresentationContext<AuthReply>>(

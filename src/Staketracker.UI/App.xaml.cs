@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Threading;
 using Staketracker.Core.Resources;
 using Staketracker.Core.Res;
+using Plugin.Settings;
 
 namespace Staketracker.UI
 {
@@ -83,7 +84,8 @@ namespace Staketracker.UI
         {
             InitializeComponent();
 
-            CultureInfo language = new CultureInfo("en");
+            string defaultLang = CrossSettings.Current.GetValueOrDefault("DefaultLanguage", "en");
+            CultureInfo language = new CultureInfo(defaultLang);
             Thread.CurrentThread.CurrentUICulture = language;
             AppRes.Culture = language;
         }

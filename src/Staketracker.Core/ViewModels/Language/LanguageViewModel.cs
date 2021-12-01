@@ -19,6 +19,7 @@ namespace Staketracker.Core.ViewModels.Language
     using System.Windows.Input;
     using Xamarin.Forms;
     using Staketracker.Core.ViewModels.Login;
+    using Plugin.Settings;
 
     public class Language
     {
@@ -43,7 +44,7 @@ namespace Staketracker.Core.ViewModels.Language
 
         public LanguageViewModel(IMvxNavigationService navigationService)
         {
-            AddValidationRules();
+
             authReply = new AuthReply();
             _navigationService = navigationService;
             Language defaultLang = new Language { Name = "English", Abr = "en" };
@@ -56,8 +57,6 @@ namespace Staketracker.Core.ViewModels.Language
 
             };
 
-            //  SelectedLanguage = defaultLang;
-
             ChangeLanguage = new Command(() =>
             {
                 if (SelectedLanguage != null)
@@ -65,9 +64,9 @@ namespace Staketracker.Core.ViewModels.Language
                     CultureInfo language = new CultureInfo(SelectedLanguage.Abr);
                     Thread.CurrentThread.CurrentUICulture = language;
                     AppRes.Culture = language;
-
-                    navigationService.ChangePresentation(
-                        new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(LoginViewModel)));
+                    CrossSettings.Current.AddOrUpdateValue("DefaultLanguage", SelectedLanguage.Abr);
+                    //navigationService.ChangePresentation(
+                    //    new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(LoginViewModel)));
 
                 }
                 else
@@ -79,29 +78,7 @@ namespace Staketracker.Core.ViewModels.Language
 
         }
 
-        private async void SubmitForgetUserId()
-        {
 
-
-        }
-        public void AddValidationRules()
-        {
-            Email.Validations.Add(new IsValidEmailRule<string> { ValidationMessage = "Enter Valid Email Address" });
-        }
-
-        private bool AreFieldsValid()
-        {
-            return Email.Validate();
-        }
-
-        internal async Task AuthenticateUser(LoginAPIBody loginApiBody)
-        {
-            if (AreFieldsValid())
-            {
-
-
-            }
-        }
 
 
 
