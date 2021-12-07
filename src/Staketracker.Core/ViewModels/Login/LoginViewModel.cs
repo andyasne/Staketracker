@@ -106,8 +106,8 @@ namespace Staketracker.Core.ViewModels.Login
 
         public void AddValidationRules()
         {
-            Username.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "User Id is Required" });
-            Password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Password Required" });
+            Username.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = AppRes.user_id_required });
+            Password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = AppRes.password_required });
         }
 
         private bool AreFieldsValid()
