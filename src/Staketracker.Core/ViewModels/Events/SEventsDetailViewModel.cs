@@ -17,6 +17,7 @@ using Staketracker.Core.Models.EventsFormValue;
 using Xamarin.Forms;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
 using System.Text.RegularExpressions;
+using Staketracker.Core.Res;
 
 namespace Staketracker.Core.ViewModels.Events
 {
@@ -53,10 +54,10 @@ namespace Staketracker.Core.ViewModels.Events
         }
         public override async Task Initialize()
         {
-            PageTitle = "Event";
+            PageTitle = AppRes.event_;
 
             await base.Initialize();
-            RunSafe(GetFormUIControls(authReply, FormType.Events), true, "Building Form Controls");
+            RunSafe(GetFormUIControls(authReply, FormType.Events), true, AppRes.building_form_controls);
             UpdateTitle();
         }
         private async Task OnDeleteSEvent()

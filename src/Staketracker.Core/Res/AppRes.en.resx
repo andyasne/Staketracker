@@ -180,4 +180,70 @@
   <data name="change_password" xml:space="preserve">
     <value>Change Password</value>
   </data>
+  <data name="commitment_status" xml:space="preserve">
+    <value>Commitment Status</value>
+  </data>
+  <data name="for_the_last_3_months" xml:space="preserve">
+    <value>For the last 3 Months</value>
+  </data>
+  <data name="top_5_stakeholder_groups" xml:space="preserve">
+    <value>Top 5 Stakeholder Groups</value>
+  </data>
+  <data name="issues_status" xml:space="preserve">
+    <value>Issues Status</value>
+  </data>
+  <data name="by_entry_date" xml:space="preserve">
+    <value>By Entry Date</value>
+  </data>
+  <data name="add_new" xml:space="preserve">
+    <value>Add New</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="building_form_controls" xml:space="preserve">
+    <value>Building Form Controls</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="groups" xml:space="preserve">
+    <value>Groups</value>
+  </data>
+  <data name="view" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="individuals" xml:space="preserve">
+    <value>Individuals</value>
+  </data>
+  <data name="land_parcels" xml:space="preserve">
+    <value>Land Parcels</value>
+  </data>
+  <data name="signing_in" xml:space="preserve">
+    <value>Signing In</value>
+  </data>
+  <data name="old_password" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="new_password" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="confirm_password" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="business_unit" xml:space="preserve">
+    <value>Business Unit</value>
+  </data>
+  <data name="project" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="top_10_topics_discussed" xml:space="preserve">
+    <value>Top 10 Topics Discussed</value>
+  </data>
+  <data name="AppRes.delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
 </root>

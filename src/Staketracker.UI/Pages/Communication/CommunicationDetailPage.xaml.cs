@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using MvvmCross.Presenters.Attributes;
 using MvvmCross.ViewModels;
 using Staketracker.Core;
+using Staketracker.Core.Res;
 
 namespace Staketracker.UI.Pages.CommunicationsDetail
 {
@@ -28,19 +29,19 @@ namespace Staketracker.UI.Pages.CommunicationsDetail
                 this.editView.PropertyChanged += this.HandleCustomerEditViewPropertyChanged;
 
                 editToolbarItem = new ToolbarItem();
-                editToolbarItem.Text = "Edit";
-                editToolbarItem.IconImageSource = new FileImageSource() { File = "Edit" };
+                editToolbarItem.Text = AppRes.edit;
+                editToolbarItem.IconImageSource = new FileImageSource() { File = AppRes.edit };
                 editToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("BeginEditCommand"));
 
 
                 saveToolbarItem = new ToolbarItem();
-                saveToolbarItem.Text = "Save";
+                saveToolbarItem.Text = AppRes.save;
                 saveToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("SaveCommand"));
                 //    saveToolbarItem.Clicked += this.editToolbarItem_Clicked;
 
 
                 deleteToolbarItem = new ToolbarItem();
-                deleteToolbarItem.Text = "Delete";
+                deleteToolbarItem.Text = AppRes.delete;
                 deleteToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("DeleteCommand"));
 
 
@@ -153,7 +154,7 @@ namespace Staketracker.UI.Pages.CommunicationsDetail
                     if (!this.ToolbarItems.Contains(saveToolbarItem))
                     {
                         saveToolbarItem = new ToolbarItem();
-                        saveToolbarItem.Text = "Save";
+                        saveToolbarItem.Text = AppRes.save;
                         saveToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("SaveCommand"));
                         this.ToolbarItems.Add(saveToolbarItem);
                     }

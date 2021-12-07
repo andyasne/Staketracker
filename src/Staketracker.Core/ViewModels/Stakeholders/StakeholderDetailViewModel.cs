@@ -43,6 +43,7 @@ namespace Staketracker.Core.ViewModels.Stakeholder
         {
             if (mode == PresentationMode.Edit || mode == PresentationMode.Read)
             {
+
                 StakeholderDetailReq body = new StakeholderDetailReq()
                 {
                     projectId = authReply.d.projectId,
