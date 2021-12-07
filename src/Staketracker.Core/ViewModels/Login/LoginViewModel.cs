@@ -133,7 +133,7 @@ namespace Staketracker.Core.ViewModels.Login
                     authReply = await Task.Run(() => JsonConvert.DeserializeObject<AuthReply>(response));
                     if (authReply.d.sessionId == null)
                     {
-                        await PageDialog.AlertAsync("Incorrect Username or Password", "Validation Error", "Ok");
+                        await PageDialog.AlertAsync(AppRes.incorrect_username_or_password, AppRes.validation_error, AppRes.ok);
                         return;
                     }
 
@@ -165,7 +165,7 @@ namespace Staketracker.Core.ViewModels.Login
                 }
                 else if (authResponse.StatusCode == System.Net.HttpStatusCode.InternalServerError)
                 {
-                    await PageDialog.AlertAsync("Incorrect Username or Password", "Validation Error", "Ok");
+                    await PageDialog.AlertAsync(AppRes.incorrect_username_or_password, AppRes.validation_error, AppRes.ok);
                 }
                 else if (authResponse.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
@@ -178,7 +178,7 @@ namespace Staketracker.Core.ViewModels.Login
         {
             return new Task(() =>
             {
-                var msg = "This Page is Under Development";
+                var msg = AppRes.under_development;
                 PageDialog.Toast(msg, TimeSpan.FromSeconds(3));
             });
 
@@ -201,7 +201,7 @@ namespace Staketracker.Core.ViewModels.Login
             }
             else
             {
-                await PageDialog.AlertAsync("API Error While retrieving IS2 Enabled State for the user", "API Response Error", "Ok");
+                await PageDialog.AlertAsync(AppRes.is2_enabled_error, AppRes.api_response_error, AppRes.ok);
                 return false;
             }
         }

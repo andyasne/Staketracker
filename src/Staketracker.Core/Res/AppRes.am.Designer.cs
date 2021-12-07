@@ -566,5 +566,75 @@ namespace Staketracker.Core.Res
 
 
 
+
+        public static string api_error_trying_to_change_pw
+        {
+            get
+            {
+                return ResourceManager.GetString("api_error_trying_to_change_pw", resourceCulture);
+            }
+        }
+
+        public static string password_changed
+        {
+            get
+            {
+                return ResourceManager.GetString("password_changed", resourceCulture);
+            }
+        }
+
+        public static string password_changed_successfully
+        {
+            get
+            {
+                return ResourceManager.GetString("password_changed_successfully", resourceCulture);
+            }
+        }
+
+        public static string is2_enabled_error
+        {
+            get
+            {
+                return ResourceManager.GetString("is2_enabled_error", resourceCulture);
+            }
+        }
+
+        public static string under_development
+        {
+            get
+            {
+                return ResourceManager.GetString("under_development", resourceCulture);
+            }
+        }
+
+
+        public static string validation_error
+        {
+            get
+            {
+                return ResourceManager.GetString("validation_error", resourceCulture);
+            }
+        }
+
+
+
+        public static string incorrect_username_or_password
+        {
+            get
+            {
+                return ResourceManager.GetString("incorrect_username_or_password", resourceCulture);
+            }
+        }
+
+        public static string error_changing_pw
+        {
+            get
+            {
+                return ResourceManager.GetString("error_changing_pw", resourceCulture);
+            }
+        }
+
+
+
     }
 }

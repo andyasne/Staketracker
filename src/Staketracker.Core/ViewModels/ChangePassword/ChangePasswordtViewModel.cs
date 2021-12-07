@@ -10,6 +10,7 @@ namespace Staketracker.Core.ViewModels.ChangePassword
     using Staketracker.Core.Models.ApiRequestBody;
     using Staketracker.Core.Models.ChangePasswordReply;
     using Staketracker.Core.Models.EventsFormValue;
+    using Staketracker.Core.Res;
     using Staketracker.Core.Validators;
     using Staketracker.Core.Validators.Rules;
     using Staketracker.Core.ViewModels.Root;
@@ -67,15 +68,15 @@ namespace Staketracker.Core.ViewModels.ChangePassword
                 if (responseReply.d.status.ToString() == "OK")
                 {
                     //TODO: navigate back
-                    await PageDialog.AlertAsync("Password Changed Successfully", "Password Changed", "Ok");
+                    await PageDialog.AlertAsync(AppRes.password_changed_successfully, AppRes.password_changed, AppRes.ok);
                 }
                 else
                 {
-                    await PageDialog.AlertAsync(responseReply.d.message, "Error Changing Password", "Ok");
+                    await PageDialog.AlertAsync(responseReply.d.message, AppRes.error_changing_pw, AppRes.ok);
                 }
             }
             else
-                await PageDialog.AlertAsync("API Error While Trying to change password", "API Response Error", "Ok");
+                await PageDialog.AlertAsync(AppRes.api_error_trying_to_change_pw, AppRes.api_response_error, AppRes.ok);
 
         }
     }

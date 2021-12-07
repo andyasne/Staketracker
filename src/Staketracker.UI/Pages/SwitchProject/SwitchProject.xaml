@@ -7,7 +7,7 @@
                       xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.SwitchProject;assembly=Staketracker.Core"
                       xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
                       xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
-                      Title="Switch Project" 
+                      Title="{x:Static resx:AppRes.switch_project}" 
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             mc:Ignorable="d"

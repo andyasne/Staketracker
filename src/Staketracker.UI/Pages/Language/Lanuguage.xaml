@@ -7,12 +7,12 @@
                       xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Language;assembly=Staketracker.Core"
                       xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
                       xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
-                      Title="Change Language"
                       x:Class="Staketracker.UI.Pages.LanguagePage"
                     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     mc:Ignorable="d"
                     xmlns:resx="clr-namespace:Staketracker.Core.Res;assembly=Staketracker.Core"
+                      Title="{x:Static resx:AppRes.change_language}" 
                    
                       NavigationPage.HasBackButton="True"
                       NavigationPage.HasNavigationBar="True"
