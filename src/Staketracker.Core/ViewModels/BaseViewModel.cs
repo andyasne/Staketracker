@@ -305,8 +305,8 @@ namespace Staketracker.Core.ViewModels
             }
 
         }
-        public async Task<bool> ShowDeleteConfirmation() => await PageDialog.ConfirmAsync($"Are you sure you want to delete the Event?",
-                        "Delete Event", "Yes", "No");
+        public async Task<bool> ShowDeleteConfirmation() => await PageDialog.ConfirmAsync(AppRes.msg_delete_confirm,
+                        AppRes.delete_event, AppRes.yes, AppRes.no);
         public async Task Add(HttpResponseMessage events)
         {
             AddEventsReply reply;
@@ -318,17 +318,17 @@ namespace Staketracker.Core.ViewModels
 
                 if (reply.d.successful == true)
                 {
-                    await PageDialog.AlertAsync("Saved Successfully", "Saved", "Ok");
+                    await PageDialog.AlertAsync(AppRes.saved_successfully, AppRes.saved, AppRes.ok);
                 }
                 else
                 {
-                    await PageDialog.AlertAsync(reply.d.message, "Error Saving", "Ok");
+                    await PageDialog.AlertAsync(reply.d.message, AppRes.error_saving, AppRes.ok);
 
                 }
 
             }
             else
-                await PageDialog.AlertAsync("API Error While Saving", "API Response Error", "Ok");
+                await PageDialog.AlertAsync(AppRes.msg_error_while_saving, AppRes.api_response_error, AppRes.ok);
         }
         public async Task PopulateControlsWithData(AuthReply authReply, int primaryKey, HttpResponseMessage resp)
         {
@@ -385,7 +385,7 @@ namespace Staketracker.Core.ViewModels
 
             }
             else
-                await PageDialog.AlertAsync("API Error While Assigning Value to UI Controls", "API Response Error", "Ok");
+                await PageDialog.AlertAsync(AppRes.msg_error_while_assigning_ui, AppRes.api_response_error, AppRes.ok);
 
         }
         public async Task GetFormUIControls(AuthReply authReply, string type)
@@ -467,7 +467,7 @@ namespace Staketracker.Core.ViewModels
             }
             else
             {
-                await PageDialog.AlertAsync("API Error while Getting Form Fields", "API Response Error", "Ok");
+                await PageDialog.AlertAsync(AppRes.msg_err_getting_form_fields, AppRes.api_response_error, AppRes.ok);
                 //  return null;
             }
         }
@@ -489,7 +489,7 @@ namespace Staketracker.Core.ViewModels
                 IsBusy = true;
 
                 if (ShowLoading)
-                    UserDialogs.Instance.ShowLoading(loadinMessage ?? "Loading");
+                    UserDialogs.Instance.ShowLoading(loadinMessage ?? AppRes.loading);
 
                 await task;
             }
@@ -499,7 +499,7 @@ namespace Staketracker.Core.ViewModels
                 //   UserDialogs.Instance.HideLoading();
                 Debug.WriteLine(e.ToString());
                 //await Application.Current.MainPage.DisplayAlert("Eror", "Check your internet connection", "Ok");
-                await PageDialog.AlertAsync("Check your internet connection", "Error", "Ok");
+                await PageDialog.AlertAsync(AppRes.msg_check_internet_conn, AppRes.error, AppRes.ok);
             }
             finally
             {

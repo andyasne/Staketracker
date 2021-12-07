@@ -249,4 +249,55 @@
   <data name="loading_pages" xml:space="preserve">
     <value>ገጾችን በመጫን ላይ</value>
   </data>
+  <data name="msg_delete_confirm" xml:space="preserve">
+    <value>እርግጠኛ ነዎት ክስተቱን መሰረዝ ይፈልጋሉ?</value>
+  </data>
+  <data name="delete_event" xml:space="preserve">
+    <value>ክስተት ሰርዝ</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>አዎ</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>አይ</value>
+  </data>
+  <data name="saved_successfully" xml:space="preserve">
+    <value>በተሳካ ሁኔታ ተቀምጧል</value>
+  </data>
+  <data name="saved" xml:space="preserve">
+    <value>ተቀምጧል</value>
+  </data>
+  <data name="ok" xml:space="preserve">
+    <value>እሺ</value>
+  </data>
+  <data name="error_saving" xml:space="preserve">
+    <value>በማስቀመጥ ላይ ስህተት</value>
+  </data>
+  <data name="msg_error_while_saving" xml:space="preserve">
+    <value>በማስቀመጥ ጊዜ የኤፒአይ ስህተት</value>
+  </data>
+  <data name="api_response_error" xml:space="preserve">
+    <value>የኤፒአይ ምላሽ ስህተት</value>
+  </data>
+  <data name="msg_error_while_assigning_ui" xml:space="preserve">
+    <value>እሴትን ለUI መቆጣጠሪያዎች በመመደብ ላይ ሳለ የኤፒአይ ስህተት</value>
+  </data>
+  <data name="msg_err_getting_form_fields" xml:space="preserve">
+    <value>የቅጽ መስኮችን በማግኘት ወቅት የኤፒአይ ስህተት</value>
+  </data>
+  <data name="loading" xml:space="preserve">
+    <value>በመጫን ላይ</value>
+  </data>
+  <data name="msg_check_internet_conn" xml:space="preserve">
+    <value>የበይነመረብ ግንኙነትዎን ያረጋግጡ</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>ስህተት</value>
+  </data>
+  <data name="all_rights_reserved" xml:space="preserve">
+    <value>ሁሉም መብቶች የተጠበቁ ናቸው |</value>
+  </data>
+  <data name="privacy" xml:space="preserve">
+    <value>ግላዊነት</value>
+  </data>
 </root>

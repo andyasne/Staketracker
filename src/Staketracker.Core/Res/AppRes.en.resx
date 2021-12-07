@@ -249,4 +249,55 @@
   <data name="loading_pages" xml:space="preserve">
     <value>Loading Pages</value>
   </data>
+  <data name="msg_delete_confirm" xml:space="preserve">
+    <value>Are you sure you want to delete the Event?</value>
+  </data>
+  <data name="delete_event" xml:space="preserve">
+    <value>Delete Event</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="saved_successfully" xml:space="preserve">
+    <value>Saved Successfully</value>
+  </data>
+  <data name="saved" xml:space="preserve">
+    <value>Saved</value>
+  </data>
+  <data name="ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="error_saving" xml:space="preserve">
+    <value>Error Saving</value>
+  </data>
+  <data name="msg_error_while_saving" xml:space="preserve">
+    <value>API Error While Saving</value>
+  </data>
+  <data name="api_response_error" xml:space="preserve">
+    <value>API Response Error</value>
+  </data>
+  <data name="msg_error_while_assigning_ui" xml:space="preserve">
+    <value>API Error While Assigning Value to UI Controls</value>
+  </data>
+  <data name="msg_err_getting_form_fields" xml:space="preserve">
+    <value>API Error while Getting Form Fields</value>
+  </data>
+  <data name="loading" xml:space="preserve">
+    <value>Loading</value>
+  </data>
+  <data name="msg_check_internet_conn" xml:space="preserve">
+    <value>Check your internet connection</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="all_rights_reserved" xml:space="preserve">
+    <value>All Rights Reserved |</value>
+  </data>
+  <data name="privacy" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
 </root>

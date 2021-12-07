@@ -402,5 +402,151 @@ namespace Staketracker.Core.Res
 
 
 
+        public static string error_saving
+        {
+            get
+            {
+                return ResourceManager.GetString("error_saving", resourceCulture);
+            }
+        }
+        public static string loading
+        {
+            get
+            {
+                return ResourceManager.GetString("loading", resourceCulture);
+            }
+        }
+        public static string msg_err_getting_form_fields
+        {
+            get
+            {
+                return ResourceManager.GetString("msg_err_getting_form_fields", resourceCulture);
+            }
+        }
+
+        public static string api_response_error
+        {
+            get
+            {
+                return ResourceManager.GetString("api_response_error", resourceCulture);
+            }
+        }
+
+        public static string ok
+        {
+            get
+            {
+                return ResourceManager.GetString("ok", resourceCulture);
+            }
+        }
+
+        public static string saved
+        {
+            get
+            {
+                return ResourceManager.GetString("saved", resourceCulture);
+            }
+        }
+
+        public static string no
+        {
+            get
+            {
+                return ResourceManager.GetString("no", resourceCulture);
+            }
+        }
+        public static string yes
+        {
+            get
+            {
+                return ResourceManager.GetString("yes", resourceCulture);
+            }
+        }
+
+        public static string delete_event
+        {
+            get
+            {
+                return ResourceManager.GetString("delete_event", resourceCulture);
+            }
+        }
+
+        public static string msg_delete_confirm
+        {
+            get
+            {
+                return ResourceManager.GetString("msg_delete_confirm", resourceCulture);
+            }
+        }
+
+        public static string error
+        {
+            get
+            {
+                return ResourceManager.GetString("error", resourceCulture);
+            }
+        }
+
+
+
+
+        public static string saved_successfully
+        {
+            get
+            {
+                return ResourceManager.GetString("saved_successfully", resourceCulture);
+            }
+        }
+
+        public static string msg_error_while_saving
+        {
+            get
+            {
+                return ResourceManager.GetString("msg_error_while_saving", resourceCulture);
+            }
+        }
+
+        public static string msg_error_while_assigning_ui
+        {
+            get
+            {
+                return ResourceManager.GetString("msg_error_while_assigning_ui", resourceCulture);
+            }
+        }
+
+        public static string msg_check_internet_conn
+        {
+            get
+            {
+                return ResourceManager.GetString("msg_check_internet_conn", resourceCulture);
+            }
+        }
+
+        public static string all_rights_reserved
+        {
+            get
+            {
+                return ResourceManager.GetString("all_rights_reserved", resourceCulture);
+            }
+        }
+
+        public static string privacy
+        {
+            get
+            {
+                return ResourceManager.GetString("privacy", resourceCulture);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
     }
 }

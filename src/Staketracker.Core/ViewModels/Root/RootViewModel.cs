@@ -103,10 +103,6 @@ namespace Staketracker.Core.ViewModels.Root
             MvxNotifyTask.Create(async () => RunSafe(InitializeViewModels(), true, AppRes.loading_pages));
 
 
-
-
-
-
         }
 
         private async Task InitializeViewModels()
