@@ -228,6 +228,171 @@ namespace Staketracker.Core.Res
             }
         }
 
+        public static string building_form_controls
+        {
+            get
+            {
+                return ResourceManager.GetString("building_form_controls", resourceCulture);
+            }
+        }
+
+        public static string save
+        {
+            get
+            {
+                return ResourceManager.GetString("save", resourceCulture);
+            }
+        }
+        public static string view
+        {
+            get
+            {
+                return ResourceManager.GetString("view", resourceCulture);
+            }
+        }
+        public static string groups
+        {
+            get
+            {
+                return ResourceManager.GetString("groups", resourceCulture);
+            }
+        }
+        public static string individuals
+        {
+            get
+            {
+                return ResourceManager.GetString("individuals", resourceCulture);
+            }
+        }
+        public static string land_parcels
+        {
+            get
+            {
+                return ResourceManager.GetString("land_parcels", resourceCulture);
+            }
+        }
+        public static string commitment_status
+        {
+            get
+            {
+                return ResourceManager.GetString("commitment_status", resourceCulture);
+            }
+        }
+        public static string for_the_last_3_months
+        {
+            get
+            {
+                return ResourceManager.GetString("for_the_last_3_months", resourceCulture);
+            }
+        }
+        public static string top_5_stakeholder_groups
+        {
+            get
+            {
+                return ResourceManager.GetString("top_5_stakeholder_groups", resourceCulture);
+            }
+        }
+        public static string issues_status
+        {
+            get
+            {
+                return ResourceManager.GetString("issues_status", resourceCulture);
+            }
+        }
+
+        public static string by_entry_date
+        {
+            get
+            {
+                return ResourceManager.GetString("by_entry_date", resourceCulture);
+            }
+        }
+        public static string add_new
+        {
+            get
+            {
+                return ResourceManager.GetString("add_new", resourceCulture);
+            }
+        }
+        public static string edit
+        {
+            get
+            {
+                return ResourceManager.GetString("edit", resourceCulture);
+            }
+        }
+        public static string signing_in
+        {
+            get
+            {
+                return ResourceManager.GetString("signing_in", resourceCulture);
+            }
+        }
+
+        public static string top_10_topics_discussed
+        {
+            get
+            {
+                return ResourceManager.GetString("top_10_topics_discussed", resourceCulture);
+            }
+        }
+
+        public static string new_password
+        {
+            get
+            {
+                return ResourceManager.GetString("new_password", resourceCulture);
+            }
+        }
+
+        public static string confirm_password
+        {
+            get
+            {
+                return ResourceManager.GetString("confirm_password", resourceCulture);
+            }
+        }
+
+        public static string business_unit
+        {
+            get
+            {
+                return ResourceManager.GetString("business_unit", resourceCulture);
+            }
+        }
+        public static string open
+        {
+            get
+            {
+                return ResourceManager.GetString("open", resourceCulture);
+            }
+        }
+
+        public static string project
+        {
+            get
+            {
+                return ResourceManager.GetString("project", resourceCulture);
+            }
+        }
+
+        public static string old_password
+        {
+            get
+            {
+                return ResourceManager.GetString("old_password", resourceCulture);
+            }
+        }
+        public static string delete
+        {
+            get
+            {
+                return ResourceManager.GetString(AppRes.delete, resourceCulture);
+            }
+        }
+
+
+
 
     }
 }

@@ -88,6 +88,7 @@ namespace Staketracker.Core.ViewModels.Language
 
                     AppRes.Culture = language;
                     CrossSettings.Current.AddOrUpdateValue("DefaultLanguage", SelectedLanguage.Abr);
+
                     //navigationService.ChangePresentation(
                     //    new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(LoginViewModel)));
 

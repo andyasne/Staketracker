@@ -251,18 +251,6 @@
     <EmbeddedResource Update="Pages\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Resource1.am.resx">
-      <CustomToolNamespace></CustomToolNamespace>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Resource1.en.resx">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Resource1.us.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Themes\Resource.us.resx">
       <SubType>Designer</SubType>
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -297,6 +285,10 @@
     <None Update="Resources\Colors.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Res\" />
   </ItemGroup>
 
 </Project>

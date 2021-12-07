@@ -2,6 +2,11 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Staketracker.UI.Pages.Dashboard.Top10TopicsDiscussedCard"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            mc:Ignorable="d"
+            xmlns:resx="clr-namespace:Staketracker.Core.Res;assembly=Staketracker.Core"
+        
              xmlns:telerikChart="clr-namespace:Telerik.XamarinForms.Chart;assembly=Telerik.XamarinForms.Chart">
 
     <ContentView.Resources>
@@ -22,7 +27,7 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="Top 10 Topics Discussed" Style="{StaticResource TitleLabelStyle}"  />
+        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{x:Static resx:AppRes.top_10_topics_discussed}" Style="{StaticResource TitleLabelStyle}"  />
 
         <telerikChart:RadPieChart x:Name="pieChart" Grid.Row="1" Grid.Column="0">
             <telerikChart:RadPieChart.ChartBehaviors>

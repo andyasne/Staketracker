@@ -10,6 +10,7 @@ using Staketracker.Core.Models.ApiRequestBody;
 using Staketracker.Core.Models.EventsFormValue;
 using Staketracker.Core.Models.FieldsValue;
 using Staketracker.Core.Models.FormAndDropDownField;
+using Staketracker.Core.Res;
 using Staketracker.Core.Services;
 using Staketracker.Core.Validators;
 using Staketracker.Core.Validators.Rules;
@@ -175,10 +176,10 @@ namespace Staketracker.Core.ViewModels
                     Title = name;
                     break;
                 case PresentationMode.Edit:
-                    Title = $"Edit " + name;
+                    Title = AppRes.edit + " " + name;
                     break;
                 case PresentationMode.Create:
-                    Title = "Add New " + PageTitle;
+                    Title = AppRes.add_new + " " + PageTitle;
                     break;
             }
         }

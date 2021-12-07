@@ -9,7 +9,11 @@
                       xmlns:telerikBusyIndicator="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-                      x:Class="Staketracker.UI.Pages.StakeholderList.StakeholderListPage"
+                           xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            mc:Ignorable="d"
+            xmlns:resx="clr-namespace:Staketracker.Core.Res;assembly=Staketracker.Core"
+                          x:Class="Staketracker.UI.Pages.StakeholderList.StakeholderListPage"
                       Title="StakeTracker" Icon="Stakeholder" ios:Page.UseSafeArea="true"
                       x:TypeArguments="viewModels:StakeholderListViewModel">
 
@@ -46,7 +50,7 @@
 
             <telerikBusyIndicator:RadTabView x:Name="tabView"  Grid.Row="1"  >
                 <telerikBusyIndicator:RadTabView.Items>
-                    <telerikBusyIndicator:TabViewItem  HeaderText="Groups">
+                    <telerikBusyIndicator:TabViewItem  HeaderText= "{x:Static resx:AppRes.groups}">
                         <telerikPrimitives:TabViewItem.Content>
                             <Grid RowSpacing="0">
                                 <Grid.RowDefinitions>
@@ -125,7 +129,7 @@
 
                         </telerikPrimitives:TabViewItem.Content>
                     </telerikBusyIndicator:TabViewItem>
-                    <telerikBusyIndicator:TabViewItem HeaderText="Individuals">
+                    <telerikBusyIndicator:TabViewItem HeaderText= "{x:Static resx:AppRes.individuals}">
                         <telerikPrimitives:TabViewItem.Content>
                             <Grid RowSpacing="0">
                                 <Grid.RowDefinitions>
@@ -204,7 +208,7 @@
 
                         </telerikPrimitives:TabViewItem.Content>
                     </telerikBusyIndicator:TabViewItem>
-                    <telerikBusyIndicator:TabViewItem HeaderText="Land Parcels">
+                    <telerikBusyIndicator:TabViewItem HeaderText="{x:Static resx:AppRes.land_parcels}">
                         <telerikPrimitives:TabViewItem.Content>
                             <Grid RowSpacing="0">
                                 <Grid.RowDefinitions>

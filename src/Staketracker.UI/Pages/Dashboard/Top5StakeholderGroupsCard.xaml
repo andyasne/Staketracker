@@ -2,6 +2,11 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Staketracker.UI.Pages.Dashboard.Top5StakeholderGroupsCard"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            mc:Ignorable="d"
+            xmlns:resx="clr-namespace:Staketracker.Core.Res;assembly=Staketracker.Core"
+        
              xmlns:telerikChart="clr-namespace:Telerik.XamarinForms.Chart;assembly=Telerik.XamarinForms.Chart">
 
     <ContentView.Resources>
@@ -21,7 +26,7 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0"  Text="Top 5 Stakeholder Groups" Style="{StaticResource TitleLabelStyle}"  />
+        <Label Grid.Row="0"  Text= "{x:Static resx:AppRes.top_5_stakeholder_groups}" Style="{StaticResource TitleLabelStyle}"  />
 
         <telerikChart:RadCartesianChart Grid.Row="1" Grid.Column="0">
             <telerikChart:RadCartesianChart.ChartBehaviors>

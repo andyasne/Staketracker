@@ -24,6 +24,7 @@ namespace Staketracker.UI.Pages
             //CultureInfo language = new CultureInfo("am");
             //Thread.CurrentThread.CurrentUICulture = language;
             //Resource1.Culture = language;
+
         }
 
         protected override void OnAppearing()

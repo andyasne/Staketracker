@@ -32,7 +32,7 @@
 
             <ScrollView Grid.Row="1">
                 <StackLayout Orientation="Vertical" Padding="30,0,30,0" VerticalOptions="CenterAndExpand" Spacing="1">
-                    <Label Text="Settings" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold"  >
+                    <Label Text="{x:Static resx:AppRes.settings}" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold"  >
                     </Label>
                     <Grid>
                         <Grid.RowDefinitions>

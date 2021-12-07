@@ -5,6 +5,7 @@ namespace Staketracker.Core.ViewModels.Login
     using Newtonsoft.Json;
     using Plugin.Settings;
     using Staketracker.Core.Models;
+    using Staketracker.Core.Res;
     using Staketracker.Core.Validators;
     using Staketracker.Core.Validators.Rules;
     using Staketracker.Core.ViewModels.ForgetPassword;
@@ -80,7 +81,7 @@ namespace Staketracker.Core.ViewModels.Login
 
             IsSandboxChecked = false;
 
-            AuthenticateUserCommand = new Command(async () => await RunSafe(AuthenticateUser(loginApiBody), true, "Signing In"));
+            AuthenticateUserCommand = new Command(async () => await RunSafe(AuthenticateUser(loginApiBody), true, AppRes.signing_in));
             OnDevelopmentCommand = new Command(() =>
             {
                 OnDevelopment().Start();
