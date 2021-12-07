@@ -387,7 +387,7 @@ namespace Staketracker.Core.Res
         {
             get
             {
-                return ResourceManager.GetString(AppRes.delete, resourceCulture);
+                return ResourceManager.GetString("delete", resourceCulture);
             }
         }
 
