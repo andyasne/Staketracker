@@ -31,7 +31,7 @@ namespace Staketracker.Core.ViewModels
 {
     public abstract class BaseViewModel : MvxViewModel, INotifyPropertyChanged
     {
-        public Boolean isDevelopmentMode = true;
+        public Boolean isDevelopmentMode = false;
 
         public IUserDialogs PageDialog = UserDialogs.Instance;
         public IApiManager ApiManager;
