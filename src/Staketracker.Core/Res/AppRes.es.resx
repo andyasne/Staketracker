@@ -244,6 +244,9 @@
     <value>Los 10 temas principales discutidos</value>
   </data>
   <data name="delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Borrar</value>
+  </data>
+  <data name="loading_pages" xml:space="preserve">
+    <value>Cargando páginas</value>
   </data>
 </root>

@@ -391,6 +391,14 @@ namespace Staketracker.Core.Res
             }
         }
 
+        public static string loading_pages
+        {
+            get
+            {
+                return ResourceManager.GetString("loading_pages", resourceCulture);
+            }
+        }
+
 
 
 

@@ -244,6 +244,9 @@
     <value>አርትዕ</value>
   </data>
   <data name="delete" xml:space="preserve">
-    <value></value>
+    <value>ሰርዝ</value>
+  </data>
+  <data name="loading_pages" xml:space="preserve">
+    <value>ገጾችን በመጫን ላይ</value>
   </data>
 </root>

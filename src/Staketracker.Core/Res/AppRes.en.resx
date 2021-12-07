@@ -246,4 +246,7 @@
   <data name="delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="loading_pages" xml:space="preserve">
+    <value>Loading Pages</value>
+  </data>
 </root>

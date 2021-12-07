@@ -9,6 +9,7 @@ namespace Staketracker.Core.ViewModels.Root
     using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Staketracker.Core.Models;
+    using Staketracker.Core.Res;
     using Staketracker.Core.ViewModels.CommunicationList;
     using Staketracker.Core.ViewModels.Dashboard;
     using Staketracker.Core.ViewModels.Events;
@@ -99,7 +100,7 @@ namespace Staketracker.Core.ViewModels.Root
         {
             base.ViewAppearing();
 
-            MvxNotifyTask.Create(async () => RunSafe(InitializeViewModels(), true, "Loading Pages"));
+            MvxNotifyTask.Create(async () => RunSafe(InitializeViewModels(), true, AppRes.loading_pages));
 
 
 
