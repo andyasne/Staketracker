@@ -642,6 +642,13 @@ namespace Staketracker.Core.Res
                 return ResourceManager.GetString("please_try_again", resourceCulture);
             }
         }
+        public static string server_response_error
+        {
+            get
+            {
+                return ResourceManager.GetString("server_response_error", resourceCulture);
+            }
+        }
 
 
 

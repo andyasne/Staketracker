@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="add_new" xml:space="preserve">
+    <value>Ajouter un nouveau</value>
+  </data>
+  <data name="all_rights_reserved" xml:space="preserve">
+    <value>Tous droits réservés |</value>
+  </data>
+  <data name="msg_error_while_assigning_ui" xml:space="preserve">
+    <value>Erreur d'API lors de l'attribution d'une valeur aux contrôles de l'interface utilisateur</value>
+  </data>
+  <data name="msg_err_getting_form_fields" xml:space="preserve">
+    <value>Erreur API lors de l'obtention des champs de formulaire</value>
+  </data>
+  <data name="is2_enabled_error" xml:space="preserve">
+    <value>Erreur API lors de la récupération de l'état IS2 activé pour l'utilisateur</value>
+  </data>
+  <data name="msg_error_while_saving" xml:space="preserve">
+    <value>Erreur API lors de l'enregistrement</value>
+  </data>
+  <data name="api_error_trying_to_change_pw" xml:space="preserve">
+    <value>Erreur API lors de la tentative de changement de mot de passe</value>
+  </data>
+  <data name="api_response_error" xml:space="preserve">
+    <value>Erreur de réponse de l'API</value>
+  </data>
+  <data name="msg_delete_confirm" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer l'événement ?</value>
+  </data>
+  <data name="building_form_controls" xml:space="preserve">
+    <value>Création de contrôles de formulaire</value>
+  </data>
+  <data name="business_unit" xml:space="preserve">
+    <value>Unité d'affaires</value>
+  </data>
+  <data name="by_entry_date" xml:space="preserve">
+    <value>Par date d'entrée</value>
+  </data>
+  <data name="change_language" xml:space="preserve">
+    <value>Changer de langue</value>
+  </data>
+  <data name="change_password" xml:space="preserve">
+    <value>Changer le mot de passe</value>
+  </data>
+  <data name="msg_check_internet_conn" xml:space="preserve">
+    <value>Vérifiez votre connection internet</value>
+  </data>
+  <data name="commitment_status" xml:space="preserve">
+    <value>Statut de l'engagement</value>
+  </data>
+  <data name="communication" xml:space="preserve">
+    <value>la communication</value>
+  </data>
+  <data name="confirm_password" xml:space="preserve">
+    <value>Confirmez le mot de passe</value>
+  </data>
+  <data name="connect_to_sandbox" xml:space="preserve">
+    <value>Se connecter au bac à sable</value>
+  </data>
+  <data name="dashboard" xml:space="preserve">
+    <value>Tableau de bord</value>
+  </data>
+  <data name="default_interface_language" xml:space="preserve">
+    <value>Langue d'interface par défaut</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Effacer</value>
+  </data>
+  <data name="delete_event" xml:space="preserve">
+    <value>Supprimer l'événement</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Éditer</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
+  <data name="error_changing_pw" xml:space="preserve">
+    <value>Erreur lors du changement de mot de passe</value>
+  </data>
+  <data name="error_saving" xml:space="preserve">
+    <value>Erreur lors de l'enregistrement</value>
+  </data>
+  <data name="event_" xml:space="preserve">
+    <value>Événement</value>
+  </data>
+  <data name="for_the_last_3_months" xml:space="preserve">
+    <value>Au cours des 3 derniers mois</value>
+  </data>
+  <data name="forgot_your_password" xml:space="preserve">
+    <value>Mot de passe oublié?</value>
+  </data>
+  <data name="forgot_your_user_id" xml:space="preserve">
+    <value>Vous avez oublié votre identifiant ?</value>
+  </data>
+  <data name="groups" xml:space="preserve">
+    <value>Groupes</value>
+  </data>
+  <data name="help" xml:space="preserve">
+    <value>Aider</value>
+  </data>
+  <data name="incorrect_username_or_password" xml:space="preserve">
+    <value>Identifiant ou mot de passe incorrect</value>
+  </data>
+  <data name="individuals" xml:space="preserve">
+    <value>Personnes</value>
+  </data>
+  <data name="issues_status" xml:space="preserve">
+    <value>Statut des problèmes</value>
+  </data>
+  <data name="land_parcels" xml:space="preserve">
+    <value>Parcelles de terrain</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Langue</value>
+  </data>
+  <data name="loading" xml:space="preserve">
+    <value>Chargement</value>
+  </data>
+  <data name="loading_pages" xml:space="preserve">
+    <value>Chargement des pages</value>
+  </data>
+  <data name="new_password" xml:space="preserve">
+    <value>nouveau mot de passe</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="ok" xml:space="preserve">
+    <value>D'accord</value>
+  </data>
+  <data name="old_password" xml:space="preserve">
+    <value>ancien mot de passe</value>
+  </data>
+  <data name="open" xml:space="preserve">
+    <value>Ouvert</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="password_changed" xml:space="preserve">
+    <value>Mot de passe changé</value>
+  </data>
+  <data name="password_changed_successfully" xml:space="preserve">
+    <value>Le mot de passe a été changé avec succès</value>
+  </data>
+  <data name="password_required" xml:space="preserve">
+    <value>Mot de passe requis</value>
+  </data>
+  <data name="please_try_again" xml:space="preserve">
+    <value>Veuillez réessayer</value>
+  </data>
+  <data name="privacy" xml:space="preserve">
+    <value>Intimité</value>
+  </data>
+  <data name="project" xml:space="preserve">
+    <value>Projet</value>
+  </data>
+  <data name="project_team" xml:space="preserve">
+    <value>Projet de groupe</value>
+  </data>
+  <data name="remember_me" xml:space="preserve">
+    <value>Souviens-toi de moi</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>sauvegarder</value>
+  </data>
+  <data name="saved" xml:space="preserve">
+    <value>Enregistré</value>
+  </data>
+  <data name="saved_successfully" xml:space="preserve">
+    <value>Enregistré avec succès</value>
+  </data>
+  <data name="server_response_error" xml:space="preserve">
+    <value>Erreur de réponse du serveur</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="sign_in" xml:space="preserve">
+    <value>S'IDENTIFIER</value>
+  </data>
+  <data name="sign_out" xml:space="preserve">
+    <value>Se déconnecter</value>
+  </data>
+  <data name="signing_in" xml:space="preserve">
+    <value>Connectez-vous</value>
+  </data>
+  <data name="stakeholder" xml:space="preserve">
+    <value>Partie prenante</value>
+  </data>
+  <data name="switch_project" xml:space="preserve">
+    <value>Changer de projet</value>
+  </data>
+  <data name="under_development" xml:space="preserve">
+    <value>Cette page est en cours de développement</value>
+  </data>
+  <data name="top_10_topics_discussed" xml:space="preserve">
+    <value>Top 10 des sujets abordés</value>
+  </data>
+  <data name="top_5_stakeholder_groups" xml:space="preserve">
+    <value>Top 5 des groupes de parties prenantes</value>
+  </data>
+  <data name="topics" xml:space="preserve">
+    <value>Les sujets</value>
+  </data>
+  <data name="user_id" xml:space="preserve">
+    <value>Identifiant d'utilisateur</value>
+  </data>
+  <data name="user_id_required" xml:space="preserve">
+    <value>L'ID utilisateur est requis</value>
+  </data>
+  <data name="validation_error" xml:space="preserve">
+    <value>erreur de validation</value>
+  </data>
+  <data name="view" xml:space="preserve">
+    <value>Vue</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+</root>
