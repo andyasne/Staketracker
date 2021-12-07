@@ -7,6 +7,7 @@ namespace Staketracker.Core.ViewModels.SwitchProject
     using Staketracker.Core.Models;
     using Staketracker.Core.Validators;
     using Staketracker.Core.Validators.Rules;
+    using Staketracker.Core.ViewModels.Login;
     using Staketracker.Core.ViewModels.Root;
     using Staketracker.Core.ViewModels.TwoStepVerification;
     using System;
@@ -63,18 +64,10 @@ namespace Staketracker.Core.ViewModels.SwitchProject
 
         private async void OpenProject()
         {
-
-
             DomainSelected = SelectedProject.Name;
-
-
             CrossSettings.Current.AddOrUpdateValue("ProjectName", DomainSelected);
-
-
             SetField(ref domainSelected, DomainSelected);
-            await PageDialog.AlertAsync("Please Restart the Application", "Restart Application", "Ok");
-
-            await this._navigationService.ChangePresentation(new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(Settings.SettingsViewModel)));
+            _navigationService.Navigate(new LoginViewModel(navigationService));
 
         }
         private async void SubmitForgetUserId()
