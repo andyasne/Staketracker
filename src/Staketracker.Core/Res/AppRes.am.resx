@@ -304,6 +304,6 @@
     <value>የተጠቃሚ መታወቂያ ያስፈልጋል</value>
   </data>
   <data name="password_required" xml:space="preserve">
-    <value></value>
+    <value>የይለፍ ቃል ያስፈልጋል</value>
   </data>
 </root>
