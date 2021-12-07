@@ -56,13 +56,36 @@ namespace Staketracker.Core.ViewModels.Language
             new Language { Name = "Amharic", Abr = "am"}
 
             };
+            string savedDefaultLang = CrossSettings.Current.GetValueOrDefault("DefaultLanguage", "");
+
+            foreach (Language lang in Languages)
+            {
+                if (lang.Abr == savedDefaultLang)
+                {
+                    this.SelectedLanguage = lang;
+                }
+            }
 
             ChangeLanguage = new Command(() =>
             {
                 if (SelectedLanguage != null)
                 {
                     CultureInfo language = new CultureInfo(SelectedLanguage.Abr);
+                    Thread.CurrentThread.CurrentCulture = language;
                     Thread.CurrentThread.CurrentUICulture = language;
+                    System.Globalization.CultureInfo ci;
+                    ci = language;
+                    try
+                    {
+                        ci = new System.Globalization.CultureInfo(SelectedLanguage.Abr);
+                    }
+                    catch (CultureNotFoundException ex)
+                    {
+                        ci = new System.Globalization.CultureInfo("en");//default to en
+                    }
+
+                    Application.Current.Properties["Lang"] = language.TwoLetterISOLanguageName;// ci.Name.Substring(0, ci.Name.IndexOf("-"));
+
                     AppRes.Culture = language;
                     CrossSettings.Current.AddOrUpdateValue("DefaultLanguage", SelectedLanguage.Abr);
                     //navigationService.ChangePresentation(
@@ -77,6 +100,10 @@ namespace Staketracker.Core.ViewModels.Language
             });
 
         }
+
+
+
+
 
 
 
