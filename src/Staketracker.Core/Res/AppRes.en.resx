@@ -243,7 +243,7 @@
   <data name="top_10_topics_discussed" xml:space="preserve">
     <value>Top 10 Topics Discussed</value>
   </data>
-  <data name="AppRes.delete" xml:space="preserve">
+  <data name="delete" xml:space="preserve">
     <value>Delete</value>
   </data>
 </root>
