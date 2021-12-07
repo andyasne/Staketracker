@@ -306,4 +306,31 @@
   <data name="password_required" xml:space="preserve">
     <value>የይለፍ ቃል ያስፈልጋል</value>
   </data>
+  <data name="incorrect_username_or_password" xml:space="preserve">
+    <value>የተሳሳተ የተጠቃሚ ስም ወይም የይለፍ ቃል</value>
+  </data>
+  <data name="validation_error" xml:space="preserve">
+    <value>የማረጋገጫ ስህተት</value>
+  </data>
+  <data name="under_development" xml:space="preserve">
+    <value>ይህ ገጽ በልማት ላይ ነው።</value>
+  </data>
+  <data name="is2_enabled_error" xml:space="preserve">
+    <value>IS2 የነቃ ሁኔታ ለተጠቃሚው በማንሳት ላይ ሳለ የኤፒአይ ስህተት</value>
+  </data>
+  <data name="password_changed_successfully" xml:space="preserve">
+    <value>የይለፍ ቃል በተሳካ ሁኔታ ተቀይሯል።</value>
+  </data>
+  <data name="password_changed" xml:space="preserve">
+    <value>የይለፍ ቃል ተቀይሯል።</value>
+  </data>
+  <data name="error_changing_pw" xml:space="preserve">
+    <value>የይለፍ ቃል መቀየር ላይ ስህተት</value>
+  </data>
+  <data name="api_error_trying_to_change_pw" xml:space="preserve">
+    <value>የይለፍ ቃል ለመቀየር በሚሞከርበት ጊዜ የኤፒአይ ስህተት</value>
+  </data>
+  <data name="please_try_again" xml:space="preserve">
+    <value>እባክዎ ዳግም ይሞክሩ</value>
+  </data>
 </root>

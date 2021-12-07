@@ -71,7 +71,7 @@ namespace Staketracker.Core.ViewModels
         {
             return new Task(() =>
             {
-                var msg = "This Page is Under Development";
+                var msg = AppRes.under_development;
                 PageDialog.Toast(msg, TimeSpan.FromSeconds(3));
             });
 
@@ -332,61 +332,70 @@ namespace Staketracker.Core.ViewModels
         }
         public async Task PopulateControlsWithData(AuthReply authReply, int primaryKey, HttpResponseMessage resp)
         {
-            FieldsValue fieldsValue;
-
-            if (resp.IsSuccessStatusCode)
+            try
             {
-                var response = await resp.Content.ReadAsStringAsync();
-                fieldsValue = await Task.Run(() => JsonConvert.DeserializeObject<FieldsValue>(response));
 
-                foreach (Field field in fieldsValue.d.Fields)
-                    foreach (ValidatableObject<string> valObj in FormContent.Values)
-                        if (valObj.FormAndDropDownField.PrimaryKey == field.PrimaryKey)
-                            try
-                            {
-                                if (valObj.FormAndDropDownField.InputType == "DropDownList")
-                                {
-                                    valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
-                                }
+                FieldsValue fieldsValue;
 
-                                else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
-                                {
-                                    valObj.SelectedItem = field.DropdownValues.FirstOrDefault();
+                if (resp.IsSuccessStatusCode)
+                {
+                    var response = await resp.Content.ReadAsStringAsync();
+                    fieldsValue = await Task.Run(() => JsonConvert.DeserializeObject<FieldsValue>(response));
 
-                                }
-
-                                else if (valObj.FormAndDropDownField.InputType == "CheckBox")
+                    foreach (Field field in fieldsValue.d.Fields)
+                        foreach (ValidatableObject<string> valObj in FormContent.Values)
+                            if (valObj.FormAndDropDownField.PrimaryKey == field.PrimaryKey)
+                                try
                                 {
-                                    if (field.Value != null && field.Value.ToString() == "on")
-                                        valObj.Value = true.ToString();
-                                    else
-                                        valObj.Value = false.ToString();
-                                }
-                                else if (valObj.FormAndDropDownField.InputType == "DateTime")
-                                {
-                                    string dateval;
-                                    if (field.Value != null)
+                                    if (valObj.FormAndDropDownField.InputType == "DropDownList")
                                     {
-                                        dateval = field.Value.ToString();
-                                        valObj.SelectedDate = DateTime.Parse(dateval);
-                                        //valObj.SelectedDate = DateTime.Today;
+                                        valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
                                     }
 
+                                    else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
+                                    {
+                                        valObj.SelectedItem = field.DropdownValues.FirstOrDefault();
+
+                                    }
+
+                                    else if (valObj.FormAndDropDownField.InputType == "CheckBox")
+                                    {
+                                        if (field.Value != null && field.Value.ToString() == "on")
+                                            valObj.Value = true.ToString();
+                                        else
+                                            valObj.Value = false.ToString();
+                                    }
+                                    else if (valObj.FormAndDropDownField.InputType == "DateTime")
+                                    {
+                                        string dateval;
+                                        if (field.Value != null)
+                                        {
+                                            dateval = field.Value.ToString();
+                                            valObj.SelectedDate = DateTime.Parse(dateval);
+                                            //valObj.SelectedDate = DateTime.Today;
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        if (field.Value != null)
+                                            valObj.Value = field.Value.ToString();
+                                    }
                                 }
-                                else
+                                catch (Exception ex)
                                 {
-                                    if (field.Value != null)
-                                        valObj.Value = field.Value.ToString();
                                 }
-                            }
-                            catch (Exception ex)
-                            {
-                            }
+
+                }
+                else
+                    await PageDialog.AlertAsync(AppRes.msg_error_while_assigning_ui, AppRes.api_response_error, AppRes.ok);
+            }
+            catch (Exception ex)
+            {
+                await PageDialog.AlertAsync(ex.Message, AppRes.please_try_again, AppRes.ok);
+
 
             }
-            else
-                await PageDialog.AlertAsync(AppRes.msg_error_while_assigning_ui, AppRes.api_response_error, AppRes.ok);
-
         }
         public async Task GetFormUIControls(AuthReply authReply, string type)
         {

@@ -306,4 +306,31 @@
   <data name="user_id_required" xml:space="preserve">
     <value>Se requiere identificación de usuario</value>
   </data>
+  <data name="api_error_trying_to_change_pw" xml:space="preserve">
+    <value>Error de API al intentar cambiar la contraseña</value>
+  </data>
+  <data name="password_changed" xml:space="preserve">
+    <value>Contraseña cambiada</value>
+  </data>
+  <data name="password_changed_successfully" xml:space="preserve">
+    <value>Contraseña cambiada con éxito</value>
+  </data>
+  <data name="is2_enabled_error" xml:space="preserve">
+    <value>Error de API al recuperar el estado habilitado de IS2 para el usuario</value>
+  </data>
+  <data name="under_development" xml:space="preserve">
+    <value>Esta página está en desarrollo</value>
+  </data>
+  <data name="validation_error" xml:space="preserve">
+    <value>Error de validacion</value>
+  </data>
+  <data name="incorrect_username_or_password" xml:space="preserve">
+    <value>Nombre de usuario o contraseña incorrecta</value>
+  </data>
+  <data name="error_changing_pw" xml:space="preserve">
+    <value>Error al cambiar la contraseña</value>
+  </data>
+  <data name="please_try_again" xml:space="preserve">
+    <value>Inténtalo de nuevo</value>
+  </data>
 </root>
