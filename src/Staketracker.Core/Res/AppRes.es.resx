@@ -333,4 +333,7 @@
   <data name="please_try_again" xml:space="preserve">
     <value>Inténtalo de nuevo</value>
   </data>
+  <data name="server_response_error" xml:space="preserve">
+    <value>Error de respuesta del servidor</value>
+  </data>
 </root>

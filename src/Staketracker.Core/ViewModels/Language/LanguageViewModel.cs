@@ -52,6 +52,7 @@ namespace Staketracker.Core.ViewModels.Language
             this.Languages = new ObservableCollection<Language>
         {
                 defaultLang,
+            new Language { Name = "French", Abr = "fr"},
             new Language { Name = "Spanish", Abr = "es"},
             new Language { Name = "Amharic", Abr = "am"}
 

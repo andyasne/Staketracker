@@ -372,7 +372,6 @@ namespace Staketracker.Core.ViewModels
                                         {
                                             dateval = field.Value.ToString();
                                             valObj.SelectedDate = DateTime.Parse(dateval);
-                                            //valObj.SelectedDate = DateTime.Today;
                                         }
 
                                     }
@@ -392,7 +391,7 @@ namespace Staketracker.Core.ViewModels
             }
             catch (Exception ex)
             {
-                await PageDialog.AlertAsync(ex.Message, AppRes.please_try_again, AppRes.ok);
+                await PageDialog.AlertAsync(ex.Message, AppRes.server_response_error + " " + AppRes.please_try_again, AppRes.ok);
 
 
             }
