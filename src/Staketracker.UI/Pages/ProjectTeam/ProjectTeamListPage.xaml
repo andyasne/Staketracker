@@ -55,8 +55,8 @@
                                     </Grid.ColumnDefinitions>
                                     <StackLayout  Grid.Column="1" Spacing="1" >
 
-                                        <Label Text="{Binding Name}" TextColor="Black" MaxLines="2" VerticalOptions="Start" />
-                                        <Label Text="{Binding Phone}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+                                        <Label Text="{Binding FullName}"  TextColor="Black" MaxLines="2" VerticalOptions="Start" />
+                                        <Label Text="{Binding Email}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
 
                                     </StackLayout>
 

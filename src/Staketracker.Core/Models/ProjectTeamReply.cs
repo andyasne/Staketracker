@@ -20,6 +20,8 @@ namespace Staketracker.Core.Models.ProjectTeam
         public string Email { get; set; }
         public string Phone { get; set; }
         public string PrimaryKey { get; set; }
+
+        public string FullName => $"{LastName}, {LastName} ({Details[0].Department})";
     }
 
     public class ProjectTeamReply
