@@ -2,13 +2,12 @@
 <views:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                      xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.ProjectTeam;assembly=Staketracker.Core"
+                      xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Issues;assembly=Staketracker.Core"
                       xmlns:telerikListView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls"
                       xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
-                      xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-                      x:Class="Staketracker.UI.Pages.ProjectTeam.ProjectTeamListPage"
-                       Title="StakeTracker"  ios:Page.UseSafeArea="true"
-                      x:TypeArguments="viewModels:ProjectTeamListViewModel">
+                      x:Class="Staketracker.UI.Pages.Issues.IssuesListPage"
+                       Title="StakeTracker" Icon=""  
+                      x:TypeArguments="viewModels:IssuesListViewModel">
 
 
     <Grid x:Name="LayoutRoot" RowSpacing="0">
@@ -33,11 +32,11 @@
                     </OnIdiom>
                 </BoxView.CornerRadius>
             </BoxView>
-            <Label Text="Project Team" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" 
+            <Label Text="Topics (Issues)" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" 
                    TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
             </Label>
 
-            <telerikDataControls:RadListView   ItemsSource="{Binding projectTeamList.d, Mode=OneWay}" SelectionMode="None"
+            <telerikDataControls:RadListView   ItemsSource="{Binding IssuesList.d, Mode=OneWay}" SelectionMode="None"
                                                Grid.Row="1"
                                                
                                                
@@ -55,8 +54,9 @@
                                     </Grid.ColumnDefinitions>
                                     <StackLayout  Grid.Column="1" Spacing="1" >
 
-                                        <Label Text="{Binding FullName}"  TextColor="Black" MaxLines="2" VerticalOptions="Start" />
-                                        <Label Text="{Binding Email}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+                                        <Label Text="{Binding Name}"  TextColor="Black" MaxLines="2" VerticalOptions="Start" />
+                                        <Label Text="{Binding Details[0].SubCategory}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+                                        <Label Text="{Binding Details[0].Category}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
 
                                     </StackLayout>
 
@@ -85,12 +85,16 @@
 
             <Label Grid.Row="1" Text="No Events." IsVisible="False" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                 <Label.Triggers>
-                    <DataTrigger TargetType="Label" Binding="{Binding Path=projectTeamList.d.Count}" Value="0">
+                    <DataTrigger TargetType="Label" Binding="{Binding Path=IssuesList.d.Count}" Value="0">
                         <Setter Property="IsVisible" Value="True" />
                     </DataTrigger>
                 </Label.Triggers>
             </Label>
 
+            <!--<telerikInput:RadButton Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" Margin="0, 0, 18, 18"
+                                        FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-plus}"
+                                        Command="{Binding AddCommunicationCommand, Mode=OneWay}"
+                                        Style="{StaticResource FloatingActionButton}" />-->
         </Grid>
 
     </Grid>

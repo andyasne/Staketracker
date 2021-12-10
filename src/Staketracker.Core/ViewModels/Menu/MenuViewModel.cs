@@ -6,6 +6,7 @@ using Staketracker.Core.ViewModels.Dashboard;
 using Staketracker.Core.ViewModels.Events;
 using Staketracker.Core.ViewModels.ForgetPassword;
 using Staketracker.Core.ViewModels.Home;
+using Staketracker.Core.ViewModels.Issues;
 using Staketracker.Core.ViewModels.Login;
 using Staketracker.Core.ViewModels.ProjectTeam;
 using Staketracker.Core.ViewModels.Root;
@@ -42,12 +43,7 @@ namespace Staketracker.Core.ViewModels.Menu
 
             ProjectTeamCommand = new Command(OpenProjectTeam);
 
-            TopicsCommand = new Command(() =>
-            {
-                OnDevelopment().Start();
-
-
-            });
+            TopicsCommand = new Command(OpenIssues);
 
             SettingsCommand = new Command(OpenSettingsPage);
 
@@ -71,6 +67,14 @@ namespace Staketracker.Core.ViewModels.Menu
         {
 
             await _navigationService.Navigate<ProjectTeamListViewModel, AuthReply>(authReply);
+
+            hideMainMenu();
+
+        }
+        private async void OpenIssues()
+        {
+
+            await _navigationService.Navigate<IssuesListViewModel, AuthReply>(authReply);
 
             hideMainMenu();
 

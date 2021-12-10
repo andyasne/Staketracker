@@ -45,6 +45,7 @@ namespace Staketracker.Core.Services
 
         Task<HttpResponseMessage> GetProjectTeam(jsonTextObj jsonTextObj, string sessionId);
 
+        Task<HttpResponseMessage> GetIssues(jsonTextObj jsonTextObj, string sessionId);
 
     }
 }
