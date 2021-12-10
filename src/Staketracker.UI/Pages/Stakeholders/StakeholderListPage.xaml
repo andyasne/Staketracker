@@ -9,17 +9,13 @@
                       xmlns:telerikBusyIndicator="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
                       xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-                           xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-            mc:Ignorable="d"
-            xmlns:resx="clr-namespace:Staketracker.Core.Res;assembly=Staketracker.Core"
-                          x:Class="Staketracker.UI.Pages.StakeholderList.StakeholderListPage"
-                      Title="StakeTracker" Icon="Stakeholder" ios:Page.UseSafeArea="true"
+                    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    mc:Ignorable="d"
+                    xmlns:resx="clr-namespace:Staketracker.Core.Res;assembly=Staketracker.Core"
+                    x:Class="Staketracker.UI.Pages.StakeholderList.StakeholderListPage"
+Title="StakeTracker" Icon="Stakeholder" ios:Page.UseSafeArea="true"
                       x:TypeArguments="viewModels:StakeholderListViewModel">
-
-
-
-
 
     <Grid x:Name="LayoutRoot" RowSpacing="0">
         <Grid.RowDefinitions>

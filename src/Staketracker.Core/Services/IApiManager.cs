@@ -37,12 +37,14 @@ namespace Staketracker.Core.Services
 
         Task<HttpResponseMessage> GetLandParcelStakeholderDetails(jsonTextObj jsonTextObj, string sessionId);
 
-
         Task<HttpResponseMessage> GetAllStakeholders(jsonTextObj jsonTextObj, string sessionId);
 
         Task<HttpResponseMessage> GetCommunicationDetails(jsonTextObj jsonTextObj, string sessionId);
 
         Task<HttpResponseMessage> ChangePassword(jsonTextObj jsonTextObj, string sessionId);
+
+        Task<HttpResponseMessage> GetProjectTeam(jsonTextObj jsonTextObj, string sessionId);
+
 
     }
 }

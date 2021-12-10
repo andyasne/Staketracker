@@ -140,6 +140,9 @@
     <Compile Update="Pages\ChangePassword\ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\ProjectTeam\ProjectTeamListPage.xaml.cs">
+      <DependentUpon>ProjectTeamListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\Stakeholders\StakeholderEditView.xaml.cs">
       <DependentUpon>StakeholderEditView.xaml</DependentUpon>
     </Compile>

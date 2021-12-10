@@ -7,6 +7,7 @@ using Staketracker.Core.ViewModels.Events;
 using Staketracker.Core.ViewModels.ForgetPassword;
 using Staketracker.Core.ViewModels.Home;
 using Staketracker.Core.ViewModels.Login;
+using Staketracker.Core.ViewModels.ProjectTeam;
 using Staketracker.Core.ViewModels.Root;
 using Staketracker.Core.ViewModels.Settings;
 using Staketracker.Core.ViewModels.TwoStepVerification;
@@ -19,7 +20,7 @@ using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels.Menu
 {
-    public class MenuViewModel : BaseViewModel
+    public class MenuViewModel : BaseViewModel<AuthReply>
     {
         public ICommand UserProfileCommand { get; set; }
 
@@ -28,19 +29,19 @@ namespace Staketracker.Core.ViewModels.Menu
         public ICommand SettingsCommand { get; set; }
         public ICommand HelpCommand { get; set; }
         public ICommand SignOutCommand { get; set; }
+
+
+
         public MenuViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
+
             SettingsCommand = new Command(OpenSettingsPage);
 
             UserProfileCommand = new Command(OpenUserProfile);
 
-            ProjectTeamCommand = new Command(() =>
-            {
-                OnDevelopment().Start();
+            ProjectTeamCommand = new Command(OpenProjectTeam);
 
-
-            });
             TopicsCommand = new Command(() =>
             {
                 OnDevelopment().Start();
@@ -62,28 +63,41 @@ namespace Staketracker.Core.ViewModels.Menu
 
         }
 
+        public override void Prepare(AuthReply authReply)
+        {
+            this.authReply = authReply;
+        }
+        private async void OpenProjectTeam()
+        {
+
+            await _navigationService.Navigate<ProjectTeamListViewModel, AuthReply>(authReply);
+
+            hideMainMenu();
+
+        }
+
         private async void OpenUserProfile()
         {
-            MasterDetailPage masterDetailRootPage = (MasterDetailPage)Application.Current.MainPage;
-            masterDetailRootPage.IsPresented = false;
 
             await _navigationService.Navigate<UserProfileViewModel>();
+            hideMainMenu();
+
 
 
         }
 
         readonly IMvxNavigationService _navigationService;
 
-
-
         private async void OpenSettingsPage()
         {
-            //MasterDetailPage masterDetailRootPage = (MasterDetailPage)Application.Current.MainPage;
-            //masterDetailRootPage.IsPresented = false;
 
             await _navigationService.Navigate<SettingsViewModel>();
 
+            hideMainMenu();
+        }
 
+        private static void hideMainMenu()
+        {
             if (Application.Current.MainPage is MasterDetailPage masterDetailPage)
             {
                 masterDetailPage.IsPresented = false;

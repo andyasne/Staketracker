@@ -30,7 +30,7 @@ namespace Staketracker.Core.ViewModels
 
         private async Task InitializeViewModels()
         {
-            await _navigationService.Navigate<MenuViewModel>();
+            await _navigationService.Navigate<MenuViewModel, AuthReply>(authReply);
             await _navigationService.Navigate<RootViewModel, AuthReply>(authReply);
         }
         AuthReply authReply;

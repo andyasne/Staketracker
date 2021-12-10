@@ -103,7 +103,7 @@ namespace Staketracker.Core.ViewModels.Stakeholders
             authReply.attachment = "Individuals";
 
             _navigationService.Navigate<StakeholderDetailViewModel, PresentationContext<AuthReply>>(
-                new PresentationContext<AuthReply>(authReply, PresentationMode.Edit, int.Parse(individual.PrimaryKey), individual.FirstName));
+                new PresentationContext<AuthReply>(authReply, PresentationMode.Read, int.Parse(individual.PrimaryKey), individual.FirstName));
 
 
         }
@@ -127,7 +127,7 @@ namespace Staketracker.Core.ViewModels.Stakeholders
             authReply.attachment = "LandParcel";
 
             _navigationService.Navigate<StakeholderDetailViewModel, PresentationContext<AuthReply>>(
-                new PresentationContext<AuthReply>(authReply, PresentationMode.Edit, int.Parse(landp.PrimaryKey), landp.LegalDescription));
+                new PresentationContext<AuthReply>(authReply, PresentationMode.Read, int.Parse(landp.PrimaryKey), landp.LegalDescription));
 
 
         }
