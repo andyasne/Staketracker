@@ -43,14 +43,11 @@ namespace Staketracker.Core.ViewModels.Stakeholder
         {
             if (mode == PresentationMode.Edit || mode == PresentationMode.Read)
             {
-
                 StakeholderDetailReq body = new StakeholderDetailReq()
                 {
                     projectId = authReply.d.projectId,
                     userId = authReply.d.userId,
                     StakeholderPrimaryKey = primaryKey
-
-
                 };
                 jsonTextObj jto = new jsonTextObj(body);
                 HttpResponseMessage responseMessage;
@@ -58,7 +55,6 @@ namespace Staketracker.Core.ViewModels.Stakeholder
                     responseMessage = await ApiManager.GetGroupStakeholderDetails(jto, authReply.d.sessionId);
                 else if (authReply.attachment.ToString() == "Individuals")
                     responseMessage = await ApiManager.GetIndividualStakeholderDetails(jto, authReply.d.sessionId);
-
                 else
                     responseMessage = await ApiManager.GetLandParcelStakeholderDetails(jto, authReply.d.sessionId);
 
@@ -70,7 +66,6 @@ namespace Staketracker.Core.ViewModels.Stakeholder
         public override async Task Initialize()
         {
             PageTitle = "Stakeholder";
-
             await base.Initialize();
             SelectedIndex = 1;
             if (authReply.attachment.ToString() == "Groups")
