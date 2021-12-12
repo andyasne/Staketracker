@@ -25,12 +25,12 @@ namespace Staketracker.UI.Pages.Issues
 
 
 
-            this.editView.IsVisible = false;
-            var trigger = new DataTrigger(editView.GetType());
-            trigger.Binding = new Binding("IsEditing");
-            trigger.Value = bool.TrueString;
-            trigger.Setters.Add(new Setter() { Property = ContentView.IsVisibleProperty, Value = true });
-            this.editView.Triggers.Add(trigger);
+            //this.editView.IsVisible = false;
+            //var trigger = new DataTrigger(editView.GetType());
+            //trigger.Binding = new Binding("IsEditing");
+            //trigger.Value = bool.TrueString;
+            //trigger.Setters.Add(new Setter() { Property = ContentView.IsVisibleProperty, Value = true });
+            //this.editView.Triggers.Add(trigger);
             //  this.LayoutRoot.Children.Add(editView);
 
         }

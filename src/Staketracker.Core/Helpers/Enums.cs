@@ -9,6 +9,6 @@ namespace Staketracker.Core.Helpers
         public static string LandParcelStakeholders = "LandParcelStakeholders";
         public static string GroupedStakeholders = "GroupedStakeholders";
         public static string IndividualStakeholders = "IndividualStakeholders";
-        public static string Issuess = "Events";
+        public static string Issuess = "Issues";
     }
 }
