@@ -71,6 +71,9 @@ namespace Staketracker.Core
         [Post("/uat/mobilev1.asmx/getIssues")]
         Task<HttpResponseMessage> GetIssues([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
+        [Post("/uat/mobilev1.asmx/getIssueDetails")]
+        Task<HttpResponseMessage> GetIssueDetails([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
+
 
     }
 }

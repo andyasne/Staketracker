@@ -25,7 +25,6 @@ namespace Staketracker.Core.Res
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class AppRes
     {
-
         private static global::System.Resources.ResourceManager resourceMan;
 
         private static global::System.Globalization.CultureInfo resourceCulture;
@@ -647,6 +646,14 @@ namespace Staketracker.Core.Res
             get
             {
                 return ResourceManager.GetString("server_response_error", resourceCulture);
+            }
+        }
+
+        public static string issues
+        {
+            get
+            {
+                return ResourceManager.GetString("issues", resourceCulture);
             }
         }
 

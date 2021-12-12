@@ -336,4 +336,7 @@
   <data name="server_response_error" xml:space="preserve">
     <value>የአገልጋይ ምላሽ ስህተት</value>
   </data>
+  <data name="issues" xml:space="preserve">
+    <value>ጉዳዮች</value>
+  </data>
 </root>

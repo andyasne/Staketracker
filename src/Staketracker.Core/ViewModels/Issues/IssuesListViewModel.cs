@@ -45,7 +45,35 @@ namespace Staketracker.Core.ViewModels.Issues
             RunSafe(GetProjectList(authReply), true, "Loading Issues");
 
         }
+        private Staketracker.Core.Models.Issues.D selectedIssues;
 
+        public Staketracker.Core.Models.Issues.D SelectedIssues
+        {
+            get => selectedIssues;
+            set
+            {
+                if (SetProperty(ref selectedIssues, value) && value != null)
+                {
+
+                    OnSelectedEventChanged(selectedIssues);
+                }
+
+            }
+        }
+
+        private void OnSelectedEventChanged(Staketracker.Core.Models.Issues.D Issues)
+        {
+            if (Device.Idiom != TargetIdiom.Phone)
+                return;
+            string IssuesSubject = "";
+            if (Issues.Name != null)
+            {
+                IssuesSubject = Issues.Name.ToString();
+            }
+            navigationService.Navigate<IssuesDetailViewModel, PresentationContext<AuthReply>>(
+                new PresentationContext<AuthReply>(authReply, PresentationMode.Read, int.Parse(Issues.PrimaryKey), IssuesSubject));
+
+        }
 
 
         private IssuesModel issuesList;
