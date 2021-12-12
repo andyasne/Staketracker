@@ -316,4 +316,7 @@
   <data name="yes" xml:space="preserve">
     <value>Oui</value>
   </data>
+  <data name="issues" xml:space="preserve">
+    <value>Problèmes</value>
+  </data>
 </root>

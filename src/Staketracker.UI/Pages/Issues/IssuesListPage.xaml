@@ -2,7 +2,7 @@
 <views:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                      xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Issues;assembly=Staketracker.Core"
+                     xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Issues;assembly=Staketracker.Core"
                       xmlns:telerikListView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls"
                       xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
                       x:Class="Staketracker.UI.Pages.Issues.IssuesListPage"
@@ -36,10 +36,10 @@
                    TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
             </Label>
 
-            <telerikDataControls:RadListView   ItemsSource="{Binding IssuesList.d, Mode=OneWay}" SelectionMode="None"
-                                               Grid.Row="1"
+            <telerikDataControls:RadListView   ItemsSource="{Binding IssuesList.d, Mode=OneWay}"  SelectionMode="Single"
+                                               Grid.Row="1" SelectedItem="{Binding SelectedIssue, Mode=TwoWay}" 
                                                
-                                               
+                                             
                                              >
                 <telerikDataControls:RadListView.ItemTemplate>
                     <DataTemplate>

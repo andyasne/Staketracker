@@ -4,6 +4,16 @@ using System.Text;
 
 namespace Staketracker.Core.Models.Issues
 {
+    public class IssuesDetailReq
+    {
+        public IssuesDetailReq()
+        {
+
+        }
+        public int userId { get; set; }
+        public int projectId { get; set; }
+        public string PrimaryKey { get; set; }
+    }
     public class Detail
     {
         public string Description { get; set; }
