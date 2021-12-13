@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mcf:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:mcf="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.ProjectTeam;assembly=Staketracker.Core"
+                    x:TypeArguments="viewModels:ProjectTeamDetailViewModel"
+                    xmlns:ProjectTeamDetailView="clr-namespace:Staketracker.UI.Pages.ProjectTeam;assembly=Staketracker.UI"
+                    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                    x:Class="Staketracker.UI.Pages.ProjectTeam.ProjectTeamDetailPage"
+                    Title="{Binding Title}" BackgroundColor="#f1f3f7" ios:Page.UseSafeArea="true">
+
+
+    <mcf:MvxContentPage.Content>
+        <Grid x:Name="LayoutRoot">
+            <ProjectTeamDetailView:ProjectTeamDetailView x:Name="detailView" IsVisible="False">
+                <ProjectTeamDetailView:ProjectTeamDetailView.Triggers>
+                    <DataTrigger TargetType="ProjectTeamDetailView:ProjectTeamDetailView" Binding="{Binding IsReading}" Value="True">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </ProjectTeamDetailView:ProjectTeamDetailView.Triggers>
+            </ProjectTeamDetailView:ProjectTeamDetailView>
+        </Grid>
+    </mcf:MvxContentPage.Content>
+</mcf:MvxContentPage>

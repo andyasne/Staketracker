@@ -37,9 +37,9 @@
                    TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
             </Label>
 
-            <telerikDataControls:RadListView   ItemsSource="{Binding projectTeamList.d, Mode=OneWay}" SelectionMode="None"
-                                               Grid.Row="1"
-                                               
+            <telerikDataControls:RadListView   ItemsSource="{Binding projectTeamList.d, Mode=OneWay}" 
+                                                SelectionMode="Single"
+                                               Grid.Row="1" SelectedItem="{Binding SelectedProjectTeam, Mode=TwoWay}" 
                                                
                                              >
                 <telerikDataControls:RadListView.ItemTemplate>
