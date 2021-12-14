@@ -26,8 +26,8 @@ namespace Staketracker.Core.ViewModels.Login
     }
     public class LoginViewModel : BaseViewModel
     {
-        private const string sandboxTitle = "Sandbox";
-        private const string productionTitle = "Production";
+        private string sandboxTitle = AppRes.sandbox;
+        private string productionTitle = AppRes.production;
         internal readonly IMvxNavigationService _navigationService;
 
 
@@ -48,10 +48,10 @@ namespace Staketracker.Core.ViewModels.Login
 
                 }
 
-                //if (this.isSandboxChecked == true)
-                //    DomainSelected = sandboxTitle;
-                //else
-                //    DomainSelected = productionTitle;
+                if (this.isSandboxChecked == true)
+                    DomainSelected = sandboxTitle;
+                else
+                    DomainSelected = productionTitle;
 
 
             }

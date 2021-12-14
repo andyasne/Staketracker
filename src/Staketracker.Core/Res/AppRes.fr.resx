@@ -331,4 +331,10 @@
   <data name="submit" xml:space="preserve">
     <value>Soumettre</value>
   </data>
+  <data name="production" xml:space="preserve">
+    <value>production</value>
+  </data>
+  <data name="sandbox" xml:space="preserve">
+    <value>bac à sable</value>
+  </data>
 </root>

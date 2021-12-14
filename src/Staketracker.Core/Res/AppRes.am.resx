@@ -351,4 +351,10 @@
   <data name="request_your_user_id" xml:space="preserve">
     <value>የተጠቃሚ መታወቂያዎን ይጠይቁ</value>
   </data>
+  <data name="sandbox" xml:space="preserve">
+    <value>ሳንድቦክስ</value>
+  </data>
+  <data name="production" xml:space="preserve">
+    <value>ፕሮዳክሸን</value>
+  </data>
 </root>
