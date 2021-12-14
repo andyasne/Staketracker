@@ -658,6 +658,34 @@ namespace Staketracker.Core.Res
         }
 
 
+        public static string request_your_user_id
+        {
+            get
+            {
+                return ResourceManager.GetString("request_your_user_id", resourceCulture);
+            }
+        }
+        public static string email
+        {
+            get
+            {
+                return ResourceManager.GetString("email", resourceCulture);
+            }
+        }
+        public static string request_your_password
+        {
+            get
+            {
+                return ResourceManager.GetString("request_your_password", resourceCulture);
+            }
+        }
+        public static string submit
+        {
+            get
+            {
+                return ResourceManager.GetString("submit", resourceCulture);
+            }
+        }
 
     }
 }

@@ -339,4 +339,16 @@
   <data name="issues" xml:space="preserve">
     <value>ጉዳዮች</value>
   </data>
+  <data name="request_your_password" xml:space="preserve">
+    <value>የይለፍ ቃልዎን ይጠይቁ</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>ኢሜይል</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>አስገባ</value>
+  </data>
+  <data name="request_your_user_id" xml:space="preserve">
+    <value>የተጠቃሚ መታወቂያዎን ይጠይቁ</value>
+  </data>
 </root>

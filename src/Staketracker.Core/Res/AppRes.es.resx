@@ -339,4 +339,16 @@
   <data name="issues" xml:space="preserve">
     <value>Asuntos</value>
   </data>
+  <data name="request_your_user_id" xml:space="preserve">
+    <value>Solicite su identificación de usuario</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>Entregar</value>
+  </data>
+  <data name="request_your_password" xml:space="preserve">
+    <value>Solicite su contraseña</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>Correo electrónico</value>
+  </data>
 </root>

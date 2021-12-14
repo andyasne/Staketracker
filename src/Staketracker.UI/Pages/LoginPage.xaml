@@ -44,72 +44,72 @@
                     <Label Text="StakeTracker For Mobile" FontSize="35" Margin="0,0,20,5" VerticalTextAlignment="Center" TextColor="{StaticResource LightColor}" FontFamily="Lobster" Style="{StaticResource TitleLabelStyle}" />
                 </StackLayout>
             </StackLayout>
-            <ScrollView Grid.Row="1">
-                <StackLayout Orientation="Vertical" Padding="30,40,30,0" VerticalOptions="CenterAndExpand" Spacing="10">
-                    <telerikInput:RadEntry x:Name="production" Text="{Binding IsSandboxDisplay}" IsReadOnly="True"   Style="{StaticResource LoginEntryStyle}"  Margin="0,0,0,5"    WatermarkText="Production" />
-                    <StackLayout Orientation="Horizontal">
-                        <telerikPrimitives:RadCheckBox x:Name="isSandbox" Style="{StaticResource checkBoxButtonStyle}"  IsChecked="{Binding IsSandboxChecked}" />
-                        <Label Text="{x:Static resx:AppRes.connect_to_sandbox}"    Style="{StaticResource NormalLabelStyle}" />
-                    </StackLayout>
 
-                    <!--User Id-->
-                    <telerikInput:RadEntry   Margin="0,30,0,0" 
+            <StackLayout  Grid.Row="1" Orientation="Vertical" Padding="30,40,30,0" VerticalOptions="CenterAndExpand" Spacing="10">
+                <telerikInput:RadEntry x:Name="production" Text="{Binding IsSandboxDisplay}" IsReadOnly="True"   Style="{StaticResource LoginEntryStyle}"  Margin="0,0,0,5"    WatermarkText="Production" />
+                <StackLayout Orientation="Horizontal">
+                    <telerikPrimitives:RadCheckBox x:Name="isSandbox" Style="{StaticResource checkBoxButtonStyle}"  IsChecked="{Binding IsSandboxChecked}" />
+                    <Label Text="{x:Static resx:AppRes.connect_to_sandbox}"    Style="{StaticResource NormalLabelStyle}" />
+                </StackLayout>
+
+                <!--User Id-->
+                <telerikInput:RadEntry   Margin="0,30,0,0" 
                                    WatermarkText="{x:Static resx:AppRes.user_id}" WidthRequest="350"
                                    Text="{Binding Username.Value, Mode=TwoWay }"
                                    Style="{StaticResource LoginEntryStyle}">
-                        <telerikInput:RadEntry.Behaviors>
-                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding Username.IsValid}" />
-                        </telerikInput:RadEntry.Behaviors>
-                    </telerikInput:RadEntry>
+                    <telerikInput:RadEntry.Behaviors>
+                        <behaviour:EntryLineValidationBehaviour IsValid="{Binding Username.IsValid}" />
+                    </telerikInput:RadEntry.Behaviors>
+                </telerikInput:RadEntry>
 
-                    <Label Text="{Binding Username.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                <Label Text="{Binding Username.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Username.IsValid, Converter={StaticResource InverseBoolConverter}}"
                          Style="{StaticResource ErrorTextStyle}" />
 
-                    <!--/User Id-->
+                <!--/User Id-->
 
 
-                    <StackLayout Orientation="Horizontal"  HorizontalOptions="StartAndExpand"  Margin="0,0,0,0">
+                <StackLayout Orientation="Horizontal"  HorizontalOptions="StartAndExpand"  Margin="0,0,0,0">
 
-                        <telerikInput:RadEntry
+                    <telerikInput:RadEntry
                          IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, Path=HidePassword}"
                             HorizontalOptions="StartAndExpand"
                         WatermarkText="{x:Static resx:AppRes.password}"  
                         Text="{Binding Password.Value, Mode=TwoWay}"
                                    Style="{StaticResource LoginEntryStyle}" WidthRequest="320" >
-                            <telerikInput:RadEntry.Behaviors>
-                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding Password.IsValid}" />
-                            </telerikInput:RadEntry.Behaviors>
-                        </telerikInput:RadEntry>
-                        <ImageButton VerticalOptions="Center" 
+                        <telerikInput:RadEntry.Behaviors>
+                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding Password.IsValid}" />
+                        </telerikInput:RadEntry.Behaviors>
+                    </telerikInput:RadEntry>
+                    <ImageButton VerticalOptions="Center" 
                                HeightRequest="30"
                                BackgroundColor="Transparent"
                                 HorizontalOptions="EndAndExpand"
                                Source="hide_password.png">
-                            <ImageButton.Triggers>
-                                <EventTrigger Event="Clicked">
-                                    <local:ShowPasswordTriggerAction ShowIcon="show_password.png"
+                        <ImageButton.Triggers>
+                            <EventTrigger Event="Clicked">
+                                <local:ShowPasswordTriggerAction ShowIcon="show_password.png"
                                                               HideIcon="hide_password.png"
                                                               x:Name="ShowPasswordActualTrigger"/>
-                                </EventTrigger>
-                            </ImageButton.Triggers>
-                        </ImageButton>
-                    </StackLayout>
+                            </EventTrigger>
+                        </ImageButton.Triggers>
+                    </ImageButton>
+                </StackLayout>
 
-                    <Label Text="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                <Label Text="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Password.IsValid, Converter={StaticResource InverseBoolConverter}}"
                         Style="{StaticResource ErrorTextStyle}" />
 
 
-                    <StackLayout Orientation="Horizontal"  Margin="0,20,0,30">
-                        <telerikPrimitives:RadCheckBox x:Name="rememberMe" Style="{StaticResource checkBoxButtonStyle}" />
-                        <Label Text="{x:Static resx:AppRes.remember_me}"  Style="{StaticResource NormalLabelStyle}" />
-
-                    </StackLayout>
-
+                <StackLayout Orientation="Horizontal"  Margin="0,20,0,30">
+                    <telerikPrimitives:RadCheckBox x:Name="rememberMe" Style="{StaticResource checkBoxButtonStyle}" />
+                    <Label Text="{x:Static resx:AppRes.remember_me}"  Style="{StaticResource NormalLabelStyle}" />
 
                 </StackLayout>
-            </ScrollView>
+
+
+            </StackLayout>
+
         </Grid>
         <RelativeLayout VerticalOptions="EndAndExpand"  HorizontalOptions="Fill"    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
 
