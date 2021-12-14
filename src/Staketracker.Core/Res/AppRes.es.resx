@@ -351,4 +351,10 @@
   <data name="email" xml:space="preserve">
     <value>Correo electrónico</value>
   </data>
+  <data name="production" xml:space="preserve">
+    <value>producción</value>
+  </data>
+  <data name="sandbox" xml:space="preserve">
+    <value>salvadera</value>
+  </data>
 </root>

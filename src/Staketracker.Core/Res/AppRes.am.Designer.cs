@@ -686,6 +686,20 @@ namespace Staketracker.Core.Res
                 return ResourceManager.GetString("submit", resourceCulture);
             }
         }
+        public static string sandbox
+        {
+            get
+            {
+                return ResourceManager.GetString("sandbox", resourceCulture);
+            }
+        }
+        public static string production
+        {
+            get
+            {
+                return ResourceManager.GetString("production", resourceCulture);
+            }
+        }
 
     }
 }
