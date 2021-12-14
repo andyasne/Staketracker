@@ -49,16 +49,31 @@ namespace Staketracker.Core.ViewModels.Login
                 }
 
                 if (this.isSandboxChecked == true)
-                    DomainSelected = sandboxTitle;
+                {
+                    SelectedEnviroment = sandboxTitle;
+                }
                 else
-                    DomainSelected = productionTitle;
+                {
+                    SelectedEnviroment = productionTitle;
+                }
 
 
             }
         }
-
-
         public LoginAPIBody loginApiBody { get; set; }
+        public String selectedEnviroment;
+        public String SelectedEnviroment
+        {
+            get { return selectedEnviroment; }
+            set
+            {
+                if (this.selectedEnviroment != value)
+                {
+                    SetField(ref selectedEnviroment, value);
+
+                }
+            }
+        }
         public ICommand AuthenticateUserCommand { get; set; }
         public ICommand OnDevelopmentCommand { get; set; }
         public ICommand ForgetUserIdCommand { get; set; }
