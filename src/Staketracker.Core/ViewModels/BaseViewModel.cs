@@ -131,7 +131,7 @@ namespace Staketracker.Core.ViewModels
         {
             get
             {
-                return CrossSettings.Current.GetValueOrDefault("ProjectName", "Production");
+                return CrossSettings.Current.GetValueOrDefault("ProjectName", AppRes.production);
 
             }
             set
