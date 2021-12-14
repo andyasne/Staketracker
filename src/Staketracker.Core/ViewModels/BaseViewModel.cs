@@ -127,18 +127,16 @@ namespace Staketracker.Core.ViewModels
             get => isEditing;
             set => SetField(ref isEditing, value);
         }
-        public static string? DomainSelected
+        public string DomainSelected
         {
             get
             {
-                return CrossSettings.Current.GetValueOrDefault("ProjectName", "Production");
+                return CrossSettings.Current.GetValueOrDefault("ProjectName", AppRes.production);
 
             }
             set
             {
                 CrossSettings.Current.AddOrUpdateValue("ProjectName", value);
-
-
 
                 if (domainSelected != value)
                 {
