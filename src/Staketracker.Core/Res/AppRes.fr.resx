@@ -337,4 +337,10 @@
   <data name="sandbox" xml:space="preserve">
     <value>bac à sable</value>
   </data>
+  <data name="new_password_does_not_match" xml:space="preserve">
+    <value>Votre nouveau mot de passe ne correspond pas au mot de passe confirmé.</value>
+  </data>
+  <data name="msg_required_fields" xml:space="preserve">
+    <value>Les champs ne peuvent pas être vides.</value>
+  </data>
 </root>

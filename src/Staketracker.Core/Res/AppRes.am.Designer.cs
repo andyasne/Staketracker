@@ -701,5 +701,22 @@ namespace Staketracker.Core.Res
             }
         }
 
+        public static string new_password_does_not_match
+        {
+            get
+            {
+                return ResourceManager.GetString("new_password_does_not_match", resourceCulture);
+            }
+        }
+        public static string msg_required_fields
+        {
+            get
+            {
+                return ResourceManager.GetString("msg_required_fields", resourceCulture);
+            }
+        }
+
+
+
     }
 }

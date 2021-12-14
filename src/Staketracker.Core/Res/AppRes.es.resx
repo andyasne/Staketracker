@@ -357,4 +357,10 @@
   <data name="sandbox" xml:space="preserve">
     <value>salvadera</value>
   </data>
+  <data name="new_password_does_not_match" xml:space="preserve">
+    <value>Su nueva contraseña no coincide con la contraseña confirmada.</value>
+  </data>
+  <data name="msg_required_fields" xml:space="preserve">
+    <value>Los campos no pueden estar vacíos.</value>
+  </data>
 </root>

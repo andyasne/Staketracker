@@ -357,4 +357,10 @@
   <data name="production" xml:space="preserve">
     <value>ፕሮዳክሸን</value>
   </data>
+  <data name="new_password_does_not_match" xml:space="preserve">
+    <value>አዲሱ የይለፍ ቃል ከተረጋገጠ የይለፍ ቃል ጋር አይዛመድም።</value>
+  </data>
+  <data name="msg_required_fields" xml:space="preserve">
+    <value>ባዶ ሊሆኑ አይችሉም</value>
+  </data>
 </root>

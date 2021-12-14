@@ -27,12 +27,8 @@ namespace Staketracker.Core.ViewModels.ChangePassword
         private string email;
         private AuthReply authReply;
         internal readonly IMvxNavigationService _navigationService;
-
-
         public ValidatableObject<string> Email { get; set; } = new ValidatableObject<string>();
-
-
-        public ICommand SubmitForgetPasswordCommand { get; set; }
+        public ICommand ChangePasswordCommand { get; set; }
         public ChangePasswordBody ChangePasswordBodyModel { get; set; }
 
         public ChangePasswordViewModel(IMvxNavigationService navigationService)
@@ -40,17 +36,28 @@ namespace Staketracker.Core.ViewModels.ChangePassword
             authReply = new AuthReply();
             _navigationService = navigationService;
             ChangePasswordBodyModel = new ChangePasswordBody();
-            SubmitForgetPasswordCommand = new MvxAsyncCommand(OnSubmitForgetPasswordCommand);
+            ChangePasswordCommand = new MvxAsyncCommand(OnPasswordChange);
 
         }
 
-        private async Task OnSubmitForgetPasswordCommand()
+        private async Task OnPasswordChange()
         {
             int userId = CrossSettings.Current.GetValueOrDefault("userId", 0);
 
             ChangePasswordBodyModel.UserId = userId.ToString();
 
-            ChangePassword(ChangePasswordBodyModel);
+            if (string.IsNullOrEmpty(ChangePasswordBodyModel.ConfirmNewPassword) || string.IsNullOrEmpty(ChangePasswordBodyModel.CurrentPassword) || string.IsNullOrEmpty(ChangePasswordBodyModel.NewPassword))
+            {
+                await PageDialog.AlertAsync(AppRes.msg_required_fields, AppRes.validation_error, AppRes.ok);
+            }
+            else if (ChangePasswordBodyModel.ConfirmNewPassword != ChangePasswordBodyModel.NewPassword)
+            {
+                await PageDialog.AlertAsync(AppRes.new_password_does_not_match, AppRes.validation_error, AppRes.ok);
+            }
+            else
+            {
+                ChangePassword(ChangePasswordBodyModel);
+            }
         }
 
         internal async Task ChangePassword(ChangePasswordBody changePasswordBody)
