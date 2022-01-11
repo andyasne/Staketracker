@@ -718,5 +718,46 @@ namespace Staketracker.Core.Res
 
 
 
+
+
+
+        public static string server_error_while_delete_msg
+        {
+            get
+            {
+                return ResourceManager.GetString("server_error_while_delete_msg", resourceCulture);
+            }
+        }
+        public static string record_not_deleted
+        {
+            get
+            {
+                return ResourceManager.GetString("record_not_deleted", resourceCulture);
+            }
+        }
+        public static string record_deleted
+        {
+            get
+            {
+                return ResourceManager.GetString("record_deleted", resourceCulture);
+            }
+        }
+        public static string record_deleted_msg
+        {
+            get
+            {
+                return ResourceManager.GetString("record_deleted_msg", resourceCulture);
+            }
+        }
+        public static string record_not_deleted_msg
+        {
+            get
+            {
+                return ResourceManager.GetString("record_not_deleted_msg", resourceCulture);
+            }
+        }
+
+
+
     }
 }

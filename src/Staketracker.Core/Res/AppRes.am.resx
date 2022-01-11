@@ -363,4 +363,19 @@
   <data name="msg_required_fields" xml:space="preserve">
     <value>ባዶ ሊሆኑ አይችሉም</value>
   </data>
+  <data name="record_deleted_msg" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="record_deleted" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="record_not_deleted" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="record_not_deleted_msg" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="server_error_while_delete_msg" xml:space="preserve">
+    <value></value>
+  </data>
 </root>
