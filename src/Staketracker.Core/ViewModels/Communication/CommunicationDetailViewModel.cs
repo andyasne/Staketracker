@@ -4,10 +4,14 @@ namespace Staketracker.Core.ViewModels.Communication
     using System.Threading.Tasks;
     using MvvmCross.Commands;
     using MvvmCross.Navigation;
+    using Newtonsoft.Json;
     using Staketracker.Core.Helpers;
     using Staketracker.Core.Models;
+    using Staketracker.Core.Models.AddEventsReply;
     using Staketracker.Core.Models.Communication;
+    using Staketracker.Core.Models.DelRec;
     using Staketracker.Core.Models.EventsFormValue;
+    using Staketracker.Core.Res;
     using Staketracker.Core.ViewModels.CommunicationList;
     using PresentationMode = Staketracker.Core.Models.PresentationMode;
 
@@ -58,9 +62,33 @@ namespace Staketracker.Core.ViewModels.Communication
             var result = await ShowDeleteConfirmation();
             if (result)
             {
-                //TODO: Add Delete Logic here
+                jsonTextObj jsonTextObj = new jsonTextObj(new DelRecReqModel() { KeyId = (int)ScreenKeyIdEnum.Communication, ScreenId = primaryKey });
+                HttpResponseMessage events = await ApiManager.DelRec(jsonTextObj, authReply.d.sessionId);
 
-                NavigateToList();
+                DelRecReplyModel reply;
+
+                if (events.IsSuccessStatusCode)
+                {
+                    var response = await events.Content.ReadAsStringAsync();
+                    reply = await Task.Run(() => JsonConvert.DeserializeObject<DelRecReplyModel>(response));
+
+                    if (reply.d == "Record deleted")
+                    {
+
+                        await PageDialog.AlertAsync("Record deleted", AppRes.saved, AppRes.ok);
+
+                        NavigateToList();
+                    }
+                    else
+                    {
+                        await PageDialog.AlertAsync(reply.d, AppRes.error_saving, AppRes.ok);
+
+                    }
+
+                }
+                else
+                    await PageDialog.AlertAsync(AppRes.msg_error_while_saving, AppRes.api_response_error, AppRes.ok);
+
             }
         }
 

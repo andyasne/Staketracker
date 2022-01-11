@@ -18,6 +18,7 @@ using Xamarin.Forms;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
 using System.Text.RegularExpressions;
 using Staketracker.Core.Res;
+using Staketracker.Core.Models.DelRec;
 
 namespace Staketracker.Core.ViewModels.Events
 {
@@ -65,9 +66,33 @@ namespace Staketracker.Core.ViewModels.Events
             var result = await ShowDeleteConfirmation();
             if (result)
             {
-                //TODO: Add Delete Logic here
+                jsonTextObj jsonTextObj = new jsonTextObj(new DelRecReqModel() { KeyId = (int)ScreenKeyIdEnum.Event, ScreenId = primaryKey });
+                HttpResponseMessage events = await ApiManager.DelRec(jsonTextObj, authReply.d.sessionId);
 
-                NavigateToList();
+                DelRecReplyModel reply;
+
+                if (events.IsSuccessStatusCode)
+                {
+                    var response = await events.Content.ReadAsStringAsync();
+                    reply = await Task.Run(() => JsonConvert.DeserializeObject<DelRecReplyModel>(response));
+
+                    if (reply.d == "Record deleted")
+                    {
+
+                        await PageDialog.AlertAsync("Record deleted", AppRes.saved, AppRes.ok);
+
+                        NavigateToList();
+                    }
+                    else
+                    {
+                        await PageDialog.AlertAsync(reply.d, AppRes.error_saving, AppRes.ok);
+
+                    }
+
+                }
+                else
+                    await PageDialog.AlertAsync(AppRes.msg_error_while_saving, AppRes.api_response_error, AppRes.ok);
+
             }
         }
         private async Task NavigateToList()
