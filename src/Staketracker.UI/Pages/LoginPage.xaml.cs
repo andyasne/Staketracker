@@ -21,9 +21,7 @@ namespace Staketracker.UI.Pages
         public LoginPage()
         {
             InitializeComponent();
-            //CultureInfo language = new CultureInfo("am");
-            //Thread.CurrentThread.CurrentUICulture = language;
-            //Resource1.Culture = language;
+           
 
         }
 

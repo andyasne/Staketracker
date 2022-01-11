@@ -28,7 +28,7 @@ namespace Staketracker.Core.ViewModels.Root
         public RootViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
-            CultureInfo info = new CultureInfo("am");
+            CultureInfo info = new CultureInfo("en");
             Thread.CurrentThread.CurrentUICulture = info;
 
             //AppResources.Culture = info;

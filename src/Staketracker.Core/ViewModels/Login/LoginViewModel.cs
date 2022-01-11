@@ -90,8 +90,8 @@ namespace Staketracker.Core.ViewModels.Login
             _navigationService = navigationService;
             if (isDevelopmentMode)
             {
-                Username.Value = "alem";
-                Password.Value = "Biniye@97";
+                Username.Value = "ALEM";
+                Password.Value = "Sustainet0";
             }
 
             IsSandboxChecked = false;

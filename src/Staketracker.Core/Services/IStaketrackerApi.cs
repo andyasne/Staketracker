@@ -12,69 +12,69 @@ namespace Staketracker.Core
     [Headers("Content-Type: application/json")]
     public interface IStaketrackerApi
     {
-        [Post("/uat/mobilev1.asmx/authenticateUser")]
+        [Post("/sandbox/mobilev1.asmx/authenticateUser")]
         Task<HttpResponseMessage> AuthenticateUser([Body] LoginAPIBody loginApiBody, CancellationToken cancellationToken);
 
 
-        [Post("/uat/mobilev1.asmx/Is2FEnabled")]
+        [Post("/sandbox/mobilev1.asmx/Is2FEnabled")]
         Task<HttpResponseMessage> Is2FEnabled([Body] LoginAPIBody loginApiBody, CancellationToken cancellationToken);
 
 
-        [Post("/uat/mobilev1.asmx/getUsrEmail")]
+        [Post("/sandbox/mobilev1.asmx/getUsrEmail")]
         Task<HttpResponseMessage> GetUsrEmail([Body] LoginAPIBody loginApiBody, CancellationToken cancellationToken);
 
-        [Post("/uat/mobilev1.asmx/getEvents")]
+        [Post("/sandbox/mobilev1.asmx/getEvents")]
         Task<HttpResponseMessage> GetEvents([Body] APIRequestBody aPIRequestBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
 
-        [Post("/uat/mobilev1.asmx/addEvent")]
+        [Post("/sandbox/mobilev1.asmx/addEvent")]
         Task<HttpResponseMessage> AddEvent([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
 
-        [Post("/uat/mobilev1.asmx/addCommunication")]
+        [Post("/sandbox/mobilev1.asmx/addCommunication")]
         Task<HttpResponseMessage> AddCommunication([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
-        [Post("/uat/mobilev1.asmx/addStakeholder")]
+        [Post("/sandbox/mobilev1.asmx/addStakeholder")]
         Task<HttpResponseMessage> AddStakeholder([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
-        [Post("/uat/mobilev1.asmx/getFormAndDropDownFieldValues")]
+        [Post("/sandbox/mobilev1.asmx/getFormAndDropDownFieldValues")]
         Task<HttpResponseMessage> GetFormAndDropDownFieldValues([Body] FormFieldBody formFieldBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
-        [Post("/uat/mobilev1.asmx/getEventDetails")]
+        [Post("/sandbox/mobilev1.asmx/getEventDetails")]
         Task<HttpResponseMessage> GetEventDetails([Body] APIRequestExtraBody aPIRequestExtraBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
-        [Post("/uat/mobilev1.asmx/getAllCommunications")]
+        [Post("/sandbox/mobilev1.asmx/getAllCommunications")]
         Task<HttpResponseMessage> GetAllCommunications([Body] APIRequestBody aPIRequestBody, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
-        [Post("/uat/mobilev1.asmx/getGroupStakeholderDetails")]
+        [Post("/sandbox/mobilev1.asmx/getGroupStakeholderDetails")]
         Task<HttpResponseMessage> GetGroupStakeholderDetails([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
-        [Post("/uat/mobilev1.asmx/getIndividualStakeholderDetails")]
+        [Post("/sandbox/mobilev1.asmx/getIndividualStakeholderDetails")]
         Task<HttpResponseMessage> GetIndividualStakeholderDetails([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
-        [Post("/uat/mobilev1.asmx/getLandParcelStakeholderDetails")]
+        [Post("/sandbox/mobilev1.asmx/getLandParcelStakeholderDetails")]
         Task<HttpResponseMessage> GetLandParcelStakeholderDetails([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
 
-        [Post("/uat/mobilev1.asmx/getAllStakeholders")]
+        [Post("/sandbox/mobilev1.asmx/getAllStakeholders")]
         Task<HttpResponseMessage> GetAllStakeholders([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
 
-        [Post("/uat/mobilev1.asmx/getCommunicationDetails")]
+        [Post("/sandbox/mobilev1.asmx/getCommunicationDetails")]
         Task<HttpResponseMessage> GetCommunicationDetails([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
-        [Post("/uat/mobilev1.asmx/changePassword")]
+        [Post("/sandbox/mobilev1.asmx/changePassword")]
         Task<HttpResponseMessage> ChangePassword([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
-        [Post("/uat/mobilev1.asmx/getProjectTeam")]
+        [Post("/sandbox/mobilev1.asmx/getProjectTeam")]
         Task<HttpResponseMessage> GetProjectTeam([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
-        [Post("/uat/mobilev1.asmx/getIssues")]
+        [Post("/sandbox/mobilev1.asmx/getIssues")]
         Task<HttpResponseMessage> GetIssues([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
-        [Post("/uat/mobilev1.asmx/getIssueDetails")]
+        [Post("/sandbox/mobilev1.asmx/getIssueDetails")]
         Task<HttpResponseMessage> GetIssueDetails([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
-        [Post("/uat/mobilev1.asmx/getProjectTeamMemberDetails")]
+        [Post("/sandbox/mobilev1.asmx/getProjectTeamMemberDetails")]
         Task<HttpResponseMessage> GetProjectTeamMemberDetails([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
 
