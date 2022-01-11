@@ -77,6 +77,9 @@ namespace Staketracker.Core
         [Post("/sandbox/mobilev1.asmx/getProjectTeamMemberDetails")]
         Task<HttpResponseMessage> GetProjectTeamMemberDetails([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
+        [Post("/sandbox/mobilev1.asmx/DelRec")]
+        Task<HttpResponseMessage> DelRec([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
+
 
 
     }
