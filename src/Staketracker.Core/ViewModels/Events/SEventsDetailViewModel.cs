@@ -18,6 +18,7 @@ using Xamarin.Forms;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
 using System.Text.RegularExpressions;
 using Staketracker.Core.Res;
+using Staketracker.Core.Models.DelRec;
 
 namespace Staketracker.Core.ViewModels.Events
 {
@@ -65,7 +66,9 @@ namespace Staketracker.Core.ViewModels.Events
             var result = await ShowDeleteConfirmation();
             if (result)
             {
-                //TODO: Add Delete Logic here
+                jsonTextObj jsonTextObj = new jsonTextObj(new DelRecReqModel() { KeyId = });
+                HttpResponseMessage events = await ApiManager.DelRec(jsonTextObj, authReply.d.sessionId);
+
 
                 NavigateToList();
             }
