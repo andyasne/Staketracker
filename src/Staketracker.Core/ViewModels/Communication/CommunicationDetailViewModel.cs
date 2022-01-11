@@ -60,35 +60,33 @@ namespace Staketracker.Core.ViewModels.Communication
         private async Task OnDelete()
         {
             var result = await ShowDeleteConfirmation();
+
             if (result)
             {
-                jsonTextObj jsonTextObj = new jsonTextObj(new DelRecReqModel() { KeyId = (int)ScreenKeyIdEnum.Communication, ScreenId = primaryKey });
-                HttpResponseMessage events = await ApiManager.DelRec(jsonTextObj, authReply.d.sessionId);
+                DelRecReqModel delReqModel = new DelRecReqModel()
+                { KeyId = (int)primaryKey, ScreenId = (int)ScreenKeyIdEnum.Communication };
+                jsonTextObj jsonTextObj = new jsonTextObj(delReqModel);
 
+                HttpResponseMessage respMsg = await ApiManager.DelRec(jsonTextObj, authReply.d.sessionId);
                 DelRecReplyModel reply;
 
-                if (events.IsSuccessStatusCode)
+                if (respMsg.IsSuccessStatusCode)
                 {
-                    var response = await events.Content.ReadAsStringAsync();
+                    var response = await respMsg.Content.ReadAsStringAsync();
                     reply = await Task.Run(() => JsonConvert.DeserializeObject<DelRecReplyModel>(response));
-
                     if (reply.d == "Record deleted")
                     {
-
-                        await PageDialog.AlertAsync("Record deleted", AppRes.saved, AppRes.ok);
-
+                        await PageDialog.AlertAsync(AppRes.record_deleted_msg, AppRes.record_deleted, AppRes.ok);
                         NavigateToList();
                     }
                     else
                     {
-                        await PageDialog.AlertAsync(reply.d, AppRes.error_saving, AppRes.ok);
-
+                        await PageDialog.AlertAsync(AppRes.record_not_deleted_msg, AppRes.record_not_deleted, AppRes.ok);
                     }
 
                 }
                 else
-                    await PageDialog.AlertAsync(AppRes.msg_error_while_saving, AppRes.api_response_error, AppRes.ok);
-
+                    await PageDialog.AlertAsync(AppRes.server_error_while_delete_msg, AppRes.api_response_error, AppRes.ok);
             }
         }
 
