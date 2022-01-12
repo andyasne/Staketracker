@@ -63,25 +63,26 @@ namespace Staketracker.Core.ViewModels.Communication
 
             if (result)
             {
-                DelRecReqModel delReqModel = new DelRecReqModel()
-                { KeyId = (int)primaryKey, ScreenId = (int)ScreenKeyIdEnum.Communication };
-                jsonTextObj jsonTextObj = new jsonTextObj(delReqModel);
+                DelRecReqModel delReqModel = new DelRecReqModel();
+                delReqModel.KeyId = (int)primaryKey;
+                delReqModel.ScreenId = (int)ScreenKeyIdEnum.Communication;
+                jsonTextObj _jsonTextObj = new jsonTextObj(delReqModel);
 
-                HttpResponseMessage respMsg = await ApiManager.DelRec(jsonTextObj, authReply.d.sessionId);
+                HttpResponseMessage respMsg = await ApiManager.DelRec(_jsonTextObj, authReply.d.sessionId);
                 DelRecReplyModel reply;
 
                 if (respMsg.IsSuccessStatusCode)
                 {
                     var response = await respMsg.Content.ReadAsStringAsync();
                     reply = await Task.Run(() => JsonConvert.DeserializeObject<DelRecReplyModel>(response));
-                    if (reply.d == "Record deleted")
+                    if (reply.d.Equals("Record deleted"))
                     {
                         await PageDialog.AlertAsync(AppRes.record_deleted_msg, AppRes.record_deleted, AppRes.ok);
                         NavigateToList();
                     }
                     else
                     {
-                        await PageDialog.AlertAsync(AppRes.record_not_deleted_msg, AppRes.record_not_deleted, AppRes.ok);
+                        await PageDialog.AlertAsync(primaryKey.ToString() + reply.d, AppRes.record_not_deleted, AppRes.ok);
                     }
 
                 }

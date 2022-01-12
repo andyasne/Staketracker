@@ -716,11 +716,6 @@ namespace Staketracker.Core.Res
             }
         }
 
-
-
-
-
-
         public static string server_error_while_delete_msg
         {
             get

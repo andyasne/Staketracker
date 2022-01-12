@@ -20,6 +20,8 @@ using Xamarin.Forms;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
 using Staketracker.Core.Models.Stakeholders;
 using Staketracker.Core.ViewModels.Stakeholders;
+using Staketracker.Core.Models.DelRec;
+using Staketracker.Core.Res;
 
 namespace Staketracker.Core.ViewModels.Stakeholder
 {
@@ -80,12 +82,43 @@ namespace Staketracker.Core.ViewModels.Stakeholder
         private async Task OnDeleteSEvent()
         {
             var result = await ShowDeleteConfirmation();
+
             if (result)
             {
-                //TODO: Add Delete Logic here
+                DelRecReqModel delReqModel = new DelRecReqModel() { KeyId = primaryKey };
 
-                NavigateToList();
+                if (authReply.attachment.ToString() == "Groups")
+                    delReqModel.ScreenId = (int)ScreenKeyIdEnum.Stakeholder_Group;
+                else if (authReply.attachment.ToString() == "Individuals")
+                    delReqModel.ScreenId = (int)ScreenKeyIdEnum.Stakeholder_Individual;
+                else
+                    delReqModel.ScreenId = (int)ScreenKeyIdEnum.Stakeholder_LandParcel;
+
+
+                jsonTextObj _jsonTextObj = new jsonTextObj(delReqModel);
+
+                HttpResponseMessage respMsg = await ApiManager.DelRec(_jsonTextObj, authReply.d.sessionId);
+                DelRecReplyModel reply;
+                if (respMsg.IsSuccessStatusCode)
+                {
+                    var response = await respMsg.Content.ReadAsStringAsync();
+                    reply = await Task.Run(() => JsonConvert.DeserializeObject<DelRecReplyModel>(response));
+
+                    if (reply.d == "Record deleted")
+                    {
+                        await PageDialog.AlertAsync(AppRes.record_deleted_msg, AppRes.record_deleted, AppRes.ok);
+                        NavigateToList();
+                    }
+                    else
+                    {
+                        await PageDialog.AlertAsync(AppRes.record_not_deleted_msg, AppRes.record_not_deleted, AppRes.ok);
+                    }
+
+                }
+                else
+                    await PageDialog.AlertAsync(AppRes.server_error_while_delete_msg, AppRes.api_response_error, AppRes.ok);
             }
+
         }
         private async Task NavigateToList()
         {

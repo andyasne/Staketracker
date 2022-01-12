@@ -54,7 +54,7 @@ namespace Staketracker.Core.Models.EventsFormValue
 
         public jsonTextObj(Object Obj)
         {
-            jsonText = GetStringFormat(Obj);
+            this.jsonText = GetStringFormat(Obj);
         }
 
         public jsonTextObj()

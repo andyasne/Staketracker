@@ -10,6 +10,7 @@ namespace Staketracker.Core.Models.DelRec
         {
 
         }
+
         public string d { get; set; }
 
     }
@@ -17,7 +18,8 @@ namespace Staketracker.Core.Models.DelRec
     {
         public DelRecReqModel()
         {
-
+            ScreenId = 0;
+            KeyId = 0;
         }
         public int ScreenId { get; set; }
         public int KeyId { get; set; }
