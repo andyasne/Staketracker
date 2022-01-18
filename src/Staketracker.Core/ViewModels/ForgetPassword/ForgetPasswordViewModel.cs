@@ -1,9 +1,13 @@
 namespace Staketracker.Core.ViewModels.ForgetPassword
 {
     using MvvmCross.Navigation;
+    using Newtonsoft.Json;
     using Staketracker.Core.Models;
+    using Staketracker.Core.Models.EventsFormValue;
+    using Staketracker.Core.Res;
     using Staketracker.Core.Validators;
     using Staketracker.Core.Validators.Rules;
+    using System.Net.Http;
     using System.Threading.Tasks;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -31,6 +35,31 @@ namespace Staketracker.Core.ViewModels.ForgetPassword
 
         private async void SubmitForgetUserId()
         {
+            RequestUsrorPwdModel requestUsrorPwdModel = new RequestUsrorPwdModel();
+            requestUsrorPwdModel.username = authReply.d.loginName;
+            requestUsrorPwdModel.password = Email.Value;
+
+            jsonTextObj _jsonTextObj = new jsonTextObj(requestUsrorPwdModel);
+            HttpResponseMessage respMsg = await ApiManager.RequestPwd(_jsonTextObj, authReply.d.sessionId);
+
+            UsrEmailResponse reply;
+
+            if (respMsg.IsSuccessStatusCode)
+            {
+                var response = await respMsg.Content.ReadAsStringAsync();
+                reply = await Task.Run(() => JsonConvert.DeserializeObject<UsrEmailResponse>(response));
+                if (reply.d.Equals("Success"))
+                {
+                    await PageDialog.AlertAsync(AppRes.record_deleted_msg, AppRes.record_deleted, AppRes.ok);
+                }
+                else
+                {
+                    await PageDialog.AlertAsync(reply.d.ToString(), AppRes.error, AppRes.ok);
+                }
+
+            }
+            else
+                await PageDialog.AlertAsync(AppRes.server_error_while_delete_msg, AppRes.api_response_error, AppRes.ok);
 
 
         }
