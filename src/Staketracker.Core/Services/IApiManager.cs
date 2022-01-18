@@ -50,6 +50,9 @@ namespace Staketracker.Core.Services
         Task<HttpResponseMessage> GetIssueDetails(jsonTextObj jsonTextObj, string sessionId);
         Task<HttpResponseMessage> GetProjectTeamMemberDetails(jsonTextObj jsonTextObj, string sessionId);
         Task<HttpResponseMessage> DelRec(jsonTextObj jsonTextObj, string sessionId);
+        Task<HttpResponseMessage> RequestUsr(jsonTextObj jsonTextObj, string sessionId);
+        Task<HttpResponseMessage> RequestPwd(jsonTextObj jsonTextObj, string sessionId);
+
 
     }
 }

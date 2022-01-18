@@ -81,6 +81,15 @@ namespace Staketracker.Core
         Task<HttpResponseMessage> DelRec([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
 
+        [Post("/sandbox/mobilev1.asmx/RequestUsr")]
+        Task<HttpResponseMessage> RequestUsr([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
+
+
+        [Post("/sandbox/mobilev1.asmx/RequestPwd")]
+        Task<HttpResponseMessage> RequestPwd([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
+
+
+
 
     }
 }
