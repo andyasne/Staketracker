@@ -364,18 +364,18 @@
     <value>ባዶ ሊሆኑ አይችሉም</value>
   </data>
   <data name="record_deleted_msg" xml:space="preserve">
-    <value></value>
+    <value>መዝገቡ በተሳካ ሁኔታ ተሰርዟል።</value>
   </data>
   <data name="record_deleted" xml:space="preserve">
-    <value></value>
+    <value>መዝገብ ተሰርዟል።</value>
   </data>
   <data name="record_not_deleted" xml:space="preserve">
-    <value></value>
+    <value>መዝገብ አልተሰረዘም</value>
   </data>
   <data name="record_not_deleted_msg" xml:space="preserve">
-    <value></value>
+    <value>መዝገቡ ሊሰረዝ አይችልም።</value>
   </data>
   <data name="server_error_while_delete_msg" xml:space="preserve">
-    <value></value>
+    <value>መዝገብን ለመሰረዝ በሚሞከርበት ጊዜ የአገልጋይ ስህተት</value>
   </data>
 </root>

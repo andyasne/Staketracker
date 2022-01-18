@@ -363,4 +363,19 @@
   <data name="msg_required_fields" xml:space="preserve">
     <value>Los campos no pueden estar vacíos.</value>
   </data>
+  <data name="server_error_while_delete_msg" xml:space="preserve">
+    <value>Error del servidor al intentar eliminar el registro</value>
+  </data>
+  <data name="record_not_deleted_msg" xml:space="preserve">
+    <value>El registro NO se puede eliminar</value>
+  </data>
+  <data name="record_deleted_msg" xml:space="preserve">
+    <value>El registro se elimina con éxito</value>
+  </data>
+  <data name="record_not_deleted" xml:space="preserve">
+    <value>Registro no eliminado</value>
+  </data>
+  <data name="record_deleted" xml:space="preserve">
+    <value>Registro eliminado</value>
+  </data>
 </root>

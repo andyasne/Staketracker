@@ -343,4 +343,19 @@
   <data name="msg_required_fields" xml:space="preserve">
     <value>Les champs ne peuvent pas être vides.</value>
   </data>
+  <data name="server_error_while_delete_msg" xml:space="preserve">
+    <value>Erreur de serveur lors de la tentative de suppression d'un enregistrement</value>
+  </data>
+  <data name="record_not_deleted_msg" xml:space="preserve">
+    <value>L'enregistrement ne peut PAS être supprimé</value>
+  </data>
+  <data name="record_deleted_msg" xml:space="preserve">
+    <value>L'enregistrement a été supprimé avec succès</value>
+  </data>
+  <data name="record_not_deleted" xml:space="preserve">
+    <value>Enregistrement non supprimé</value>
+  </data>
+  <data name="record_deleted" xml:space="preserve">
+    <value>Enregistrement supprimé</value>
+  </data>
 </root>
