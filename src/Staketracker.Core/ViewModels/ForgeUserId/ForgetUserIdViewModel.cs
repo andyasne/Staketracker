@@ -17,7 +17,7 @@ namespace Staketracker.Core.ViewModels.ForgetUserId
     using System.Windows.Input;
     using Xamarin.Forms;
 
-    public class ForgetUserIdViewModel : BaseViewModel
+    public class ForgetUserIdViewModel : BaseViewModel<PresentationContext<string>>
     {
         private string email;
         private AuthReply authReply;
@@ -42,10 +42,10 @@ namespace Staketracker.Core.ViewModels.ForgetUserId
         {
             RequestUsrorPwdModel requestUsrorPwdModel = new RequestUsrorPwdModel();
             requestUsrorPwdModel.username = Email.Value;
-            requestUsrorPwdModel.password = "";
+            requestUsrorPwdModel.password = username;
 
             jsonTextObj _jsonTextObj = new jsonTextObj(requestUsrorPwdModel);
-            HttpResponseMessage respMsg = await ApiManager.RequestUsr(_jsonTextObj, authReply.d.sessionId);
+            HttpResponseMessage respMsg = await ApiManager.RequestUsr(_jsonTextObj, "");
 
             UsrEmailResponse reply;
 
@@ -88,8 +88,11 @@ namespace Staketracker.Core.ViewModels.ForgetUserId
 
             }
         }
+        private string username;
+        public override void Prepare(PresentationContext<string> usernameContext)
+        {
+            this.username = usernameContext.Model;
 
-
-
+        }
     }
 }
