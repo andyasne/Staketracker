@@ -116,7 +116,10 @@ namespace Staketracker.Core.ViewModels.Login
         }
         private async void OpenForgetPassword()
         {
-            await _navigationService.Navigate<ForgetPasswordViewModel>();
+
+            await _navigationService.Navigate<ForgetPasswordViewModel, PresentationContext<string>>(
+                  new PresentationContext<string>(Username.Value.ToString(), Models.PresentationMode.Create));
+
 
         }
 

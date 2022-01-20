@@ -42,7 +42,7 @@ namespace Staketracker.Core.ViewModels.ForgetUserId
         {
             RequestUsrorPwdModel requestUsrorPwdModel = new RequestUsrorPwdModel();
             requestUsrorPwdModel.username = Email.Value;
-            requestUsrorPwdModel.password = username;
+            requestUsrorPwdModel.password = "";
 
             jsonTextObj _jsonTextObj = new jsonTextObj(requestUsrorPwdModel);
             HttpResponseMessage respMsg = await ApiManager.RequestUsr(_jsonTextObj, "");
@@ -53,7 +53,7 @@ namespace Staketracker.Core.ViewModels.ForgetUserId
             {
                 var response = await respMsg.Content.ReadAsStringAsync();
                 reply = await Task.Run(() => JsonConvert.DeserializeObject<UsrEmailResponse>(response));
-                if (reply.d.Equals("Success"))
+                if (reply.d.Equals("Email Sent"))
                 {
 
                     await PageDialog.AlertAsync(AppRes.msg_email_sent_success, AppRes.email_sent, AppRes.ok);

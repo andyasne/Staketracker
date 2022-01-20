@@ -12,7 +12,7 @@ namespace Staketracker.Core.ViewModels.ForgetPassword
     using System.Windows.Input;
     using Xamarin.Forms;
 
-    public class ForgetPasswordViewModel : BaseViewModel
+    public class ForgetPasswordViewModel : BaseViewModel<PresentationContext<string>>
     {
         private string email;
         private AuthReply authReply;
@@ -36,11 +36,11 @@ namespace Staketracker.Core.ViewModels.ForgetPassword
         private async void SubmitForgetPassword()
         {
             RequestUsrorPwdModel requestUsrorPwdModel = new RequestUsrorPwdModel();
-            requestUsrorPwdModel.username = authReply.d.loginName;
+            requestUsrorPwdModel.username = username;
             requestUsrorPwdModel.password = Email.Value;
 
             jsonTextObj _jsonTextObj = new jsonTextObj(requestUsrorPwdModel);
-            HttpResponseMessage respMsg = await ApiManager.RequestPwd(_jsonTextObj, authReply.d.sessionId);
+            HttpResponseMessage respMsg = await ApiManager.RequestPwd(_jsonTextObj, "");
 
             UsrEmailResponse reply;
 
@@ -84,7 +84,11 @@ namespace Staketracker.Core.ViewModels.ForgetPassword
             }
         }
 
+        private string username;
+        public override void Prepare(PresentationContext<string> usernameContext)
+        {
+            this.username = usernameContext.Model;
 
-
+        }
     }
 }
