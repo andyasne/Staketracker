@@ -378,4 +378,10 @@
   <data name="record_deleted" xml:space="preserve">
     <value>Registro eliminado</value>
   </data>
+  <data name="email_sent" xml:space="preserve">
+    <value>Email enviado</value>
+  </data>
+  <data name="msg_email_sent_success" xml:space="preserve">
+    <value>Éxito. Le hemos enviado un correo electrónico con más instrucciones.</value>
+  </data>
 </root>

@@ -378,4 +378,10 @@
   <data name="server_error_while_delete_msg" xml:space="preserve">
     <value>መዝገብን ለመሰረዝ በሚሞከርበት ጊዜ የአገልጋይ ስህተት</value>
   </data>
+  <data name="msg_email_sent_success" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="email_sent" xml:space="preserve">
+    <value></value>
+  </data>
 </root>
