@@ -29,11 +29,11 @@ namespace Staketracker.Core.ViewModels.ForgetPassword
             AddValidationRules();
             authReply = new AuthReply();
             _navigationService = navigationService;
-            SubmitForgetPasswordCommand = new Command(SubmitForgetUserId);
+            SubmitForgetPasswordCommand = new Command(SubmitForgetPassword);
 
         }
 
-        private async void SubmitForgetUserId()
+        private async void SubmitForgetPassword()
         {
             RequestUsrorPwdModel requestUsrorPwdModel = new RequestUsrorPwdModel();
             requestUsrorPwdModel.username = authReply.d.loginName;
@@ -50,7 +50,9 @@ namespace Staketracker.Core.ViewModels.ForgetPassword
                 reply = await Task.Run(() => JsonConvert.DeserializeObject<UsrEmailResponse>(response));
                 if (reply.d.Equals("Success"))
                 {
-                    await PageDialog.AlertAsync(AppRes.record_deleted_msg, AppRes.record_deleted, AppRes.ok);
+
+
+                    await PageDialog.AlertAsync(AppRes.msg_email_sent_success, AppRes.email_sent, AppRes.ok);
                 }
                 else
                 {
@@ -59,7 +61,7 @@ namespace Staketracker.Core.ViewModels.ForgetPassword
 
             }
             else
-                await PageDialog.AlertAsync(AppRes.server_error_while_delete_msg, AppRes.api_response_error, AppRes.ok);
+                await PageDialog.AlertAsync(AppRes.server_response_error, AppRes.api_response_error, AppRes.ok);
 
 
         }

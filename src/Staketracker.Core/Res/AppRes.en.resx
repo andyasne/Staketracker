@@ -378,4 +378,10 @@
   <data name="server_error_while_delete_msg" xml:space="preserve">
     <value>Server Error While Trying to Delete Record</value>
   </data>
+  <data name="msg_email_sent_success" xml:space="preserve">
+    <value>Success. We`ve sent you an email with further instructions.</value>
+  </data>
+  <data name="email_sent" xml:space="preserve">
+    <value>Email Sent</value>
+  </data>
 </root>

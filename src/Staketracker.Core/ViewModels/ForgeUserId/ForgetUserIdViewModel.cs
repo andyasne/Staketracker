@@ -4,6 +4,8 @@ namespace Staketracker.Core.ViewModels.ForgetUserId
     using MvvmCross.ViewModels;
     using Newtonsoft.Json;
     using Staketracker.Core.Models;
+    using Staketracker.Core.Models.EventsFormValue;
+    using Staketracker.Core.Res;
     using Staketracker.Core.Validators;
     using Staketracker.Core.Validators.Rules;
     using Staketracker.Core.ViewModels.Root;
@@ -38,6 +40,33 @@ namespace Staketracker.Core.ViewModels.ForgetUserId
 
         private async void SubmitForgetUserId()
         {
+            RequestUsrorPwdModel requestUsrorPwdModel = new RequestUsrorPwdModel();
+            requestUsrorPwdModel.username = Email.Value;
+            requestUsrorPwdModel.password = "";
+
+            jsonTextObj _jsonTextObj = new jsonTextObj(requestUsrorPwdModel);
+            HttpResponseMessage respMsg = await ApiManager.RequestUsr(_jsonTextObj, authReply.d.sessionId);
+
+            UsrEmailResponse reply;
+
+            if (respMsg.IsSuccessStatusCode)
+            {
+                var response = await respMsg.Content.ReadAsStringAsync();
+                reply = await Task.Run(() => JsonConvert.DeserializeObject<UsrEmailResponse>(response));
+                if (reply.d.Equals("Success"))
+                {
+
+                    await PageDialog.AlertAsync(AppRes.msg_email_sent_success, AppRes.email_sent, AppRes.ok);
+                }
+                else
+                {
+                    await PageDialog.AlertAsync(reply.d.ToString(), AppRes.error, AppRes.ok);
+                }
+
+            }
+            else
+                await PageDialog.AlertAsync(AppRes.server_response_error, AppRes.api_response_error, AppRes.ok);
+
 
 
         }

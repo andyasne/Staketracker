@@ -752,6 +752,22 @@ namespace Staketracker.Core.Res
             }
         }
 
+        public static string email_sent
+        {
+            get
+            {
+                return ResourceManager.GetString("email_sent", resourceCulture);
+            }
+        }
+        public static string msg_email_sent_success
+        {
+            get
+            {
+                return ResourceManager.GetString("msg_email_sent_success", resourceCulture);
+            }
+        }
+
+
 
 
     }
