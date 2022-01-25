@@ -158,7 +158,7 @@ namespace Staketracker.Core.ViewModels.Login
                     }
 
                     bool Is2FEnabled = await GetIs2FEnabled(loginApiBody);
-
+                    Is2FEnabled = false;
 
                     CrossSettings.Current.AddOrUpdateValue("userId", authReply.d.userId);
                     CrossSettings.Current.AddOrUpdateValue("sessionId", authReply.d.sessionId);
@@ -211,6 +211,7 @@ namespace Staketracker.Core.ViewModels.Login
 
             if (_Is2FEnabled.IsSuccessStatusCode)
             {
+
                 var response = await _Is2FEnabled.Content.ReadAsStringAsync();
                 is2FEnabledResponse = await Task.Run(() => JsonConvert.DeserializeObject<Is2FEnabledResponse>(response));
 
@@ -219,6 +220,7 @@ namespace Staketracker.Core.ViewModels.Login
                 else
                 { return false; }
             }
+
             else
             {
                 await PageDialog.AlertAsync(AppRes.is2_enabled_error, AppRes.api_response_error, AppRes.ok);
