@@ -116,11 +116,8 @@ namespace Staketracker.Core.ViewModels.Login
         }
         private async void OpenForgetPassword()
         {
-
             await _navigationService.Navigate<ForgetPasswordViewModel, PresentationContext<string>>(
                   new PresentationContext<string>(Username.Value.ToString(), Models.PresentationMode.Create));
-
-
         }
 
 
@@ -158,7 +155,6 @@ namespace Staketracker.Core.ViewModels.Login
                     }
 
                     bool Is2FEnabled = await GetIs2FEnabled(loginApiBody);
-                    Is2FEnabled = false;
 
                     CrossSettings.Current.AddOrUpdateValue("userId", authReply.d.userId);
                     CrossSettings.Current.AddOrUpdateValue("sessionId", authReply.d.sessionId);
@@ -173,15 +169,10 @@ namespace Staketracker.Core.ViewModels.Login
                     }
                     else
                     {
-
-
                         await _navigationService.Navigate<Rvm, AuthReply>(authReply);
 
                     }
 
-
-                    //   String msg = "Logged in successfully, SessionId-" + authReply.d.sessionId;
-                    // PageDialog.Toast(msg, TimeSpan.FromSeconds(5));
                 }
                 else if (authResponse.StatusCode == System.Net.HttpStatusCode.InternalServerError)
                 {
