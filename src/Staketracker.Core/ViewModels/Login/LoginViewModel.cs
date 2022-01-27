@@ -173,8 +173,6 @@ namespace Staketracker.Core.ViewModels.Login
                     }
                     else
                     {
-
-
                         await _navigationService.Navigate<Rvm, AuthReply>(authReply);
 
                     }
