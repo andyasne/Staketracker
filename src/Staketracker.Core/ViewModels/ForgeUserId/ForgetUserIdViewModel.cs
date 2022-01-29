@@ -34,40 +34,43 @@ namespace Staketracker.Core.ViewModels.ForgetUserId
             AddValidationRules();
             authReply = new AuthReply();
             _navigationService = navigationService;
-            SubmitForgetUserIdCommand = new Command(SubmitForgetUserId);
+
+            SubmitForgetUserIdCommand = new Command(async () => await RunSafe(SubmitForgetUserId(), true, "Requesting User Id"));
 
         }
 
-        private async void SubmitForgetUserId()
+        internal async Task SubmitForgetUserId()
         {
-            RequestUsrorPwdModel requestUsrorPwdModel = new RequestUsrorPwdModel();
-            requestUsrorPwdModel.username = Email.Value;
-            requestUsrorPwdModel.password = "";
-
-            jsonTextObj _jsonTextObj = new jsonTextObj(requestUsrorPwdModel);
-            HttpResponseMessage respMsg = await ApiManager.RequestUsr(_jsonTextObj, "");
-
-            UsrEmailResponse reply;
-
-            if (respMsg.IsSuccessStatusCode)
+            if (AreFieldsValid())
             {
-                var response = await respMsg.Content.ReadAsStringAsync();
-                reply = await Task.Run(() => JsonConvert.DeserializeObject<UsrEmailResponse>(response));
-                if (reply.d.Equals("Email sent"))
-                {
+                RequestUsrorPwdModel requestUsrorPwdModel = new RequestUsrorPwdModel();
+                requestUsrorPwdModel.username = Email.Value;
+                requestUsrorPwdModel.password = "";
 
-                    await PageDialog.AlertAsync(AppRes.msg_email_sent_success, AppRes.email_sent, AppRes.ok);
+                jsonTextObj _jsonTextObj = new jsonTextObj(requestUsrorPwdModel);
+                HttpResponseMessage respMsg = await ApiManager.RequestUsr(_jsonTextObj, "");
+
+                UsrEmailResponse reply;
+
+                if (respMsg.IsSuccessStatusCode)
+                {
+                    var response = await respMsg.Content.ReadAsStringAsync();
+                    reply = await Task.Run(() => JsonConvert.DeserializeObject<UsrEmailResponse>(response));
+                    if (reply.d.Equals("Email sent"))
+                    {
+
+                        await PageDialog.AlertAsync(AppRes.msg_email_sent_success, AppRes.email_sent, AppRes.ok);
+                    }
+                    else
+                    {
+                        await PageDialog.AlertAsync(reply.d.ToString(), AppRes.error, AppRes.ok);
+                    }
+
                 }
                 else
-                {
-                    await PageDialog.AlertAsync(reply.d.ToString(), AppRes.error, AppRes.ok);
-                }
+                    await PageDialog.AlertAsync(AppRes.server_response_error, AppRes.api_response_error, AppRes.ok);
 
             }
-            else
-                await PageDialog.AlertAsync(AppRes.server_response_error, AppRes.api_response_error, AppRes.ok);
-
-
 
         }
 
@@ -82,14 +85,7 @@ namespace Staketracker.Core.ViewModels.ForgetUserId
             return Email.Validate();
         }
 
-        internal async Task AuthenticateUser(LoginAPIBody loginApiBody)
-        {
-            if (AreFieldsValid())
-            {
 
-
-            }
-        }
         private string username;
         public override void Prepare(PresentationContext<string> usernameContext)
         {

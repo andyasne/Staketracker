@@ -34,8 +34,11 @@
                     <Label  TextColor="{StaticResource DarkBlueColor}"   Style="{StaticResource TitleLabelStyle}"    VerticalTextAlignment="Start" VerticalOptions="Start"  Text=  "{x:Static resx:AppRes.request_your_user_id}"   HorizontalTextAlignment="End"  HorizontalOptions="StartAndExpand" />
                     <Label    Style="{StaticResource SubtitleLabelStyle}"     VerticalTextAlignment="Start" VerticalOptions="Start"  Text= "{x:Static resx:AppRes.email}"   HorizontalTextAlignment="End"  HorizontalOptions="StartAndExpand" />
 
-                    <telerikInput:RadEntry   Text="{Binding Email.Value}"   Style="{StaticResource LoginEntryStyle}"  Margin="0,0,0,5"      />
-
+                    <telerikInput:RadEntry   Text="{Binding Email.Value}"   Style="{StaticResource LoginEntryStyle}"  Margin="0,0,0,5"  >
+                        <telerikInput:RadEntry.Behaviors>
+                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding Email.IsValid}" />
+                        </telerikInput:RadEntry.Behaviors>
+                    </telerikInput:RadEntry>
                     <Label Text="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}"
                         Style="{StaticResource ErrorTextStyle}" />

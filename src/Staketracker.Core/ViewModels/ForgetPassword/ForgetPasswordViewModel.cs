@@ -30,59 +30,59 @@ namespace Staketracker.Core.ViewModels.ForgetPassword
             AddValidationRules();
             authReply = new AuthReply();
             _navigationService = navigationService;
-            SubmitForgetPasswordCommand = new Command(SubmitForgetPassword);
+            SubmitForgetPasswordCommand = new Command(async () => await RunSafe(SubmitForgetPassword(), true, "Requesting New Password"));
+
 
         }
 
-        private async void SubmitForgetPassword()
+        async Task SubmitForgetPassword()
         {
-            UsrEmailResponse reply;
-            RequestUsrorPwdModel requestUsrorPwdModel = new RequestUsrorPwdModel();
-            requestUsrorPwdModel.username = Username.Value;
-            requestUsrorPwdModel.password = Email.Value;
-
-            jsonTextObj _jsonTextObj = new jsonTextObj(requestUsrorPwdModel);
-            HttpResponseMessage respMsg = await ApiManager.RequestPwd(_jsonTextObj, "");
-
-            if (respMsg.IsSuccessStatusCode)
+            if (AreFieldsValid())
             {
-                var response = await respMsg.Content.ReadAsStringAsync();
-                reply = await Task.Run(() => JsonConvert.DeserializeObject<UsrEmailResponse>(response));
-                if (reply.d.Equals("Success"))
+                UsrEmailResponse reply;
+                RequestUsrorPwdModel requestUsrorPwdModel = new RequestUsrorPwdModel();
+                requestUsrorPwdModel.username = Username.Value;
+                requestUsrorPwdModel.password = Email.Value;
+
+                jsonTextObj _jsonTextObj = new jsonTextObj(requestUsrorPwdModel);
+                HttpResponseMessage respMsg = await ApiManager.RequestPwd(_jsonTextObj, "");
+
+                if (respMsg.IsSuccessStatusCode)
                 {
+                    var response = await respMsg.Content.ReadAsStringAsync();
+                    reply = await Task.Run(() => JsonConvert.DeserializeObject<UsrEmailResponse>(response));
+                    if (reply.d.Equals("Success"))
+                    {
 
 
-                    await PageDialog.AlertAsync(AppRes.msg_email_sent_success, AppRes.email_sent, AppRes.ok);
+                        await PageDialog.AlertAsync(AppRes.msg_email_sent_success, AppRes.email_sent, AppRes.ok);
+                    }
+                    else
+                    {
+                        await PageDialog.AlertAsync(reply.d.ToString(), AppRes.error, AppRes.ok);
+                    }
+
                 }
                 else
-                {
-                    await PageDialog.AlertAsync(reply.d.ToString(), AppRes.error, AppRes.ok);
-                }
+                    await PageDialog.AlertAsync(AppRes.server_response_error, AppRes.api_response_error, AppRes.ok);
 
             }
-            else
-                await PageDialog.AlertAsync(AppRes.server_response_error, AppRes.api_response_error, AppRes.ok);
-
-
         }
         public void AddValidationRules()
         {
             Email.Validations.Add(new IsValidEmailRule<string> { ValidationMessage = "Enter Valid Email Address" });
+            Username.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = AppRes.user_id_required });
+
         }
 
         private bool AreFieldsValid()
         {
-            return Email.Validate();
+            bool isFirstNameValid = Username.Validate();
+            bool isEmailValid = Email.Validate();
+            return isFirstNameValid && isEmailValid;
         }
 
-        internal async Task AuthenticateUser(LoginAPIBody loginApiBody)
-        {
-            if (AreFieldsValid())
-            {
 
-
-            }
-        }
 
         private string username;
         public override void Prepare(PresentationContext<string> usernameContext)
