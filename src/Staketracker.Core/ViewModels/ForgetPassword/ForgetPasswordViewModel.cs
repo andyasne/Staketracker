@@ -21,6 +21,7 @@ namespace Staketracker.Core.ViewModels.ForgetPassword
 
         public ValidatableObject<string> Email { get; set; } = new ValidatableObject<string>();
 
+        public ValidatableObject<string> Username { get; set; } = new ValidatableObject<string>();
 
         public ICommand SubmitForgetPasswordCommand { get; set; }
 
@@ -36,7 +37,7 @@ namespace Staketracker.Core.ViewModels.ForgetPassword
         private async void SubmitForgetPassword()
         {
             RequestUsrorPwdModel requestUsrorPwdModel = new RequestUsrorPwdModel();
-            requestUsrorPwdModel.username = username;
+            requestUsrorPwdModel.username = Username.Value;
             requestUsrorPwdModel.password = Email.Value;
 
             jsonTextObj _jsonTextObj = new jsonTextObj(requestUsrorPwdModel);
