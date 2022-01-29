@@ -53,7 +53,7 @@ namespace Staketracker.Core.ViewModels.ForgetUserId
             {
                 var response = await respMsg.Content.ReadAsStringAsync();
                 reply = await Task.Run(() => JsonConvert.DeserializeObject<UsrEmailResponse>(response));
-                if (reply.d.Equals("Email Sent"))
+                if (reply.d.Equals("Email sent"))
                 {
 
                     await PageDialog.AlertAsync(AppRes.msg_email_sent_success, AppRes.email_sent, AppRes.ok);
@@ -70,6 +70,8 @@ namespace Staketracker.Core.ViewModels.ForgetUserId
 
 
         }
+
+
         public void AddValidationRules()
         {
             Email.Validations.Add(new IsValidEmailRule<string> { ValidationMessage = "Enter Valid Email Address" });

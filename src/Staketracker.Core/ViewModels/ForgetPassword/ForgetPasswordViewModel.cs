@@ -36,14 +36,13 @@ namespace Staketracker.Core.ViewModels.ForgetPassword
 
         private async void SubmitForgetPassword()
         {
+            UsrEmailResponse reply;
             RequestUsrorPwdModel requestUsrorPwdModel = new RequestUsrorPwdModel();
             requestUsrorPwdModel.username = Username.Value;
             requestUsrorPwdModel.password = Email.Value;
 
             jsonTextObj _jsonTextObj = new jsonTextObj(requestUsrorPwdModel);
             HttpResponseMessage respMsg = await ApiManager.RequestPwd(_jsonTextObj, "");
-
-            UsrEmailResponse reply;
 
             if (respMsg.IsSuccessStatusCode)
             {
