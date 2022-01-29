@@ -63,13 +63,13 @@ namespace Staketracker.Core.ViewModels.Communication
 
             if (result)
             {
+                DelRecReplyModel reply;
                 DelRecReqModel delReqModel = new DelRecReqModel();
                 delReqModel.KeyId = (int)primaryKey;
                 delReqModel.ScreenId = (int)ScreenKeyIdEnum.Communication;
                 jsonTextObj _jsonTextObj = new jsonTextObj(delReqModel);
 
                 HttpResponseMessage respMsg = await ApiManager.DelRec(_jsonTextObj, authReply.d.sessionId);
-                DelRecReplyModel reply;
 
                 if (respMsg.IsSuccessStatusCode)
                 {
@@ -82,7 +82,8 @@ namespace Staketracker.Core.ViewModels.Communication
                     }
                     else
                     {
-                        await PageDialog.AlertAsync(primaryKey.ToString() + reply.d, AppRes.record_not_deleted, AppRes.ok);
+                        //await PageDialog.AlertAsync(primaryKey.ToString() + reply.d, AppRes.record_not_deleted, AppRes.ok);
+                        await PageDialog.AlertAsync(reply.d, AppRes.record_not_deleted, AppRes.ok);
                     }
 
                 }

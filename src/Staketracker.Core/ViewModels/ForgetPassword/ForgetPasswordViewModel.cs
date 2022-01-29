@@ -84,10 +84,8 @@ namespace Staketracker.Core.ViewModels.ForgetPassword
 
 
 
-        private string username;
         public override void Prepare(PresentationContext<string> usernameContext)
         {
-            this.username = usernameContext.Model;
 
         }
     }
