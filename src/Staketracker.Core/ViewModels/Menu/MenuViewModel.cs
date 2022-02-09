@@ -94,8 +94,9 @@ namespace Staketracker.Core.ViewModels.Menu
 
         private async void OpenSettingsPage()
         {
+            await this._navigationService.Navigate<SettingsViewModel, AuthReply>(authReply);
 
-            await _navigationService.Navigate<SettingsViewModel>();
+
 
             hideMainMenu();
         }

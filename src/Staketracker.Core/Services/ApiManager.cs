@@ -293,6 +293,14 @@ namespace Staketracker.Core.Services
 
         }
 
+        public async Task<HttpResponseMessage> GetProjectList(jsonTextObj jsonTextObj, string sessionId)
+        {
+            var cts = new CancellationTokenSource();
+            var task = RemoteRequestAsync<HttpResponseMessage>(staketrackerApi.GetApi(Priority.UserInitiated).GetProjectList(jsonTextObj, sessionId, cts.Token));
+            return await AddToRunningTasks(cts, task);
+
+        }
+
 
 
     }

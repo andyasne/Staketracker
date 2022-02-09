@@ -18,12 +18,11 @@ namespace Staketracker.Core.ViewModels.Settings
     using System.Windows.Input;
     using Xamarin.Forms;
 
-    public class SettingsViewModel : BaseViewModel
+    public class SettingsViewModel : BaseViewModel<AuthReply>
     {
         private string email;
         private AuthReply authReply;
         internal readonly IMvxNavigationService _navigationService;
-
 
         public ValidatableObject<string> Email { get; set; } = new ValidatableObject<string>();
 
@@ -53,7 +52,8 @@ namespace Staketracker.Core.ViewModels.Settings
 
             SwitchProjectCommand = new Command(() =>
             {
-                _navigationService.Navigate<SwitchProjectViewModel>();
+                _navigationService.Navigate<SwitchProjectViewModel, AuthReply>(authReply);
+
 
             });
 
@@ -88,7 +88,11 @@ namespace Staketracker.Core.ViewModels.Settings
 
             }
         }
+        public override void Prepare(AuthReply parameter)
+        {
+            authReply = parameter;
 
+        }
 
 
     }

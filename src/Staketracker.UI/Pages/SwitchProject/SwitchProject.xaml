@@ -31,13 +31,15 @@
                     <Label    Style="{StaticResource SubtitleLabelStyle}"     VerticalTextAlignment="Start" VerticalOptions="Start"  Text= "{x:Static resx:AppRes.business_unit}" HorizontalTextAlignment="End"  HorizontalOptions="StartAndExpand" />
 
                     <telerikInput:RadComboBox
-                               DisplayMemberPath="Name" 
                         
                                                      Style="{StaticResource ComboEntryStyle}"
                                                      SearchMode="Contains"
-                                                     ItemsSource="{Binding BusinessUnit}"
-                                                     SearchTextPath="Name"
+                                                     ItemsSource="{Binding BusinessUnit,Mode=TwoWay}"
+                                                     SearchTextPath="name"
                                                      IsDropDownClosedOnSelection="True"
+                                                       DisplayMemberPath="name" 
+                                                    SelectedItem="{Binding SelectedBusinessUnit, Mode=TwoWay}"
+                        
                                                      DropDownHeight="200"
                                                      IsEditable="False"
                                                      SelectionMode="Single" >
@@ -54,9 +56,9 @@
                     <telerikInput:RadComboBox
                                                      Style="{StaticResource ComboEntryStyle}"
                                                      SearchMode="Contains"
-                                                     SearchTextPath="Name"
+                                                     SearchTextPath="name"
                                                     ItemsSource="{Binding Project}"
-                                                    DisplayMemberPath="Name"
+                                                    DisplayMemberPath="name"
                                                     SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
                                                     IsDropDownClosedOnSelection="True"
                                                      DropDownHeight="200"
