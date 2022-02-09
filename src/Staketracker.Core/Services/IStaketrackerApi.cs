@@ -92,6 +92,9 @@ namespace Staketracker.Core
         [Post("/sandbox/mobilev1.asmx/getProjectList")]
         Task<HttpResponseMessage> GetProjectList([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
 
+        [Post("/sandbox/mobilev1.asmx/switchProject")]
+        Task<HttpResponseMessage> SwitchProject([Body] jsonTextObj jsonTextObj, [Header("sessionId")] string sessionId, CancellationToken cancellationToken);
+
 
 
 

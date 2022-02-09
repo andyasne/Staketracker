@@ -53,6 +53,7 @@ namespace Staketracker.Core.Services
         Task<HttpResponseMessage> RequestUsr(jsonTextObj jsonTextObj, string sessionId);
         Task<HttpResponseMessage> RequestPwd(jsonTextObj jsonTextObj, string sessionId);
         Task<HttpResponseMessage> GetProjectList(jsonTextObj jsonTextObj, string sessionId);
+        Task<HttpResponseMessage> SwitchProject(jsonTextObj jsonTextObj, string sessionId);
 
 
     }

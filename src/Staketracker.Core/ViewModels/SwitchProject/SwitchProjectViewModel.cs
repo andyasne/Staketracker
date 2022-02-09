@@ -6,6 +6,7 @@ namespace Staketracker.Core.ViewModels.SwitchProject
     using Plugin.Settings;
     using Staketracker.Core.Models;
     using Staketracker.Core.Models.EventsFormValue;
+    using Staketracker.Core.Models.RequestSwitchProject;
     using Staketracker.Core.Models.ResponseProjectList;
     using Staketracker.Core.Validators;
     using Staketracker.Core.Validators.Rules;
@@ -100,7 +101,7 @@ namespace Staketracker.Core.ViewModels.SwitchProject
             DomainSelected = SelectedProject.name;
             CrossSettings.Current.AddOrUpdateValue("ProjectName", DomainSelected);
             SetField(ref domainSelected, DomainSelected);
-            _navigationService.Navigate(new LoginViewModel(navigationService));
+            SwitchProject(authReply);
 
         }
 
@@ -126,7 +127,45 @@ namespace Staketracker.Core.ViewModels.SwitchProject
 
             }
             else
-                await PageDialog.AlertAsync("API Error While retrieving", "API Response Error", "Ok");
+                await PageDialog.AlertAsync("API Error While Getting Project List", "API Response Error", "Ok");
+
+        }
+
+
+        internal async Task SwitchProject(AuthReply authReply)
+        {
+            if (SelectedProject == null)
+                return;
+
+            RequestSwitchProject body = new RequestSwitchProject();
+            body.UserId = authReply.d.userId;
+            body.ProjectId = SelectedProject.projectId;
+            var apiReq = new jsonTextObj(body);
+            HttpResponseMessage respMsg = await ApiManager.SwitchProject(apiReq, authReply.d.sessionId);
+
+            if (respMsg.IsSuccessStatusCode)
+            {
+                var response = await respMsg.Content.ReadAsStringAsync();
+                ResponseSwitchProject responseSwitchProject = await Task.Run(() => JsonConvert.DeserializeObject<ResponseSwitchProject>(response));
+
+                if (responseSwitchProject.d.Status == "OK")
+                {
+                    await PageDialog.AlertAsync("Changed Project to " + SelectedProject.name, "Project Changed", "Ok");
+
+                    _navigationService.Navigate(new LoginViewModel(navigationService));
+
+                }
+                else
+                {
+
+                    await PageDialog.AlertAsync("API Error While Trying to Change Project", "API Response Error", "Ok");
+
+                }
+
+
+            }
+            else
+                await PageDialog.AlertAsync("API Error While Trying to Change Project", "API Response Error", "Ok");
 
         }
 
