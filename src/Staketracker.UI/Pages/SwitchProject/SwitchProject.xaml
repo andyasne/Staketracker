@@ -37,9 +37,9 @@
                                                      ItemsSource="{Binding BusinessUnit,Mode=TwoWay}"
                                                      SearchTextPath="name"
                                                      IsDropDownClosedOnSelection="True"
-                                                       DisplayMemberPath="name" 
-                                                    SelectedItem="{Binding SelectedBusinessUnit, Mode=TwoWay}"
-                        
+                                                     DisplayMemberPath="name" 
+                                                     SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                                                     SelectedItem="{Binding SelectedBusinessUnit, Mode=TwoWay}"
                                                      DropDownHeight="200"
                                                      IsEditable="False"
                                                      SelectionMode="Single" >

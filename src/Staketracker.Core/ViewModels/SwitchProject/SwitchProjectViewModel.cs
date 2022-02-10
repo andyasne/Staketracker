@@ -14,6 +14,7 @@ namespace Staketracker.Core.ViewModels.SwitchProject
     using Staketracker.Core.ViewModels.Root;
     using Staketracker.Core.ViewModels.TwoStepVerification;
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Net.Http;
@@ -74,6 +75,22 @@ namespace Staketracker.Core.ViewModels.SwitchProject
                 }
             }
         }
+        private int selectedIndex;
+        public int SelectedIndex
+        {
+            get
+            {
+                return this.selectedIndex;
+            }
+            set
+            {
+                if (this.selectedIndex != value)
+                {
+                    this.selectedIndex = value;
+
+                }
+            }
+        }
         public String DomainSelected { get; set; }
 
         public ICommand OpenProjectCommand { get; set; }
@@ -83,18 +100,28 @@ namespace Staketracker.Core.ViewModels.SwitchProject
             authReply = parameter;
             RunSafe(GetProjectList(authReply), true, "Loading Business Unit and Projects");
 
-
-
         }
 
+        private void AssignDefault()
+        {
+            string selectedProjectId = CrossSettings.Current.GetValueOrDefault("SelectedProjectId", "");
+            string businessUnitName = CrossSettings.Current.GetValueOrDefault("BusinessUnitName", "");
 
+            if (businessUnitName != "")
+            {
+                //  SelectedBusinessUnit = BusinessUnit.Where(bu => bu.name == businessUnitName).FirstOrDefault();
+            }
+            if (selectedProjectId != "")
+            {
+                SelectedProject = SelectedBusinessUnit.projects.Where(pr => pr.projectId == int.Parse(selectedProjectId)).FirstOrDefault();
+            }
+
+        }
 
         public SwitchProjectViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
             OpenProjectCommand = new Command(async () => await RunSafe(OpenProject(), true, "Switching Project"));
-
-
 
         }
 
@@ -108,7 +135,9 @@ namespace Staketracker.Core.ViewModels.SwitchProject
             }
 
             DomainSelected = SelectedProject.name;
-            CrossSettings.Current.AddOrUpdateValue("ProjectName", DomainSelected);
+            CrossSettings.Current.AddOrUpdateValue("ProjectName", SelectedProject.name);
+            CrossSettings.Current.AddOrUpdateValue("BusinessUnitName", SelectedBusinessUnit.name);
+            CrossSettings.Current.AddOrUpdateValue("SelectedProjectId", SelectedProject.projectId.ToString());
             SetField(ref domainSelected, DomainSelected);
 
             SwitchProject(authReply);
@@ -134,6 +163,9 @@ namespace Staketracker.Core.ViewModels.SwitchProject
                 {
                     this.BusinessUnit.Add(bunit);
                 }
+                AssignDefault();
+
+                SelectedIndex = 0;
 
             }
             else
