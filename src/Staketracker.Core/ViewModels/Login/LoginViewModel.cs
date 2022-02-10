@@ -158,7 +158,6 @@ namespace Staketracker.Core.ViewModels.Login
 
                     CrossSettings.Current.AddOrUpdateValue("userId", authReply.d.userId);
                     CrossSettings.Current.AddOrUpdateValue("sessionId", authReply.d.sessionId);
-                    Is2FEnabled = false;
 
                     if (Is2FEnabled)
                     {
