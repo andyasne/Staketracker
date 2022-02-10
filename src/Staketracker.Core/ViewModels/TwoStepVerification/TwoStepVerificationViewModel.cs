@@ -94,7 +94,7 @@ namespace Staketracker.Core.ViewModels.TwoStepVerification
         }
         void SendTwoStepVerificationEmail(string email, int generatedCode)
         {
-            string emailTemplate = "Here's your Authentication code: {0} \n Please note that, for security purposes, this temporary confirmation code will expire in 10 minutes.\nIf you did not try to login, please ignore this email, or reply to let us know.\n Best Regards,\n StakeTracker Customer Support \n Email:support @staketracker.com \n Phone: 604 - 670 - 0240";
+            string emailTemplate = " Here's your Authentication code: {0} \n Please note that, for security purposes, this temporary confirmation code will expire in 10 minutes.\n If you did not try to login, please ignore this email, or reply to let us know.\n Best Regards,\n StakeTracker Customer Support \n Email:support @staketracker.com \n Phone: 604 - 670 - 0240";
 
             string emailBody = String.Format(emailTemplate, generatedCode.ToString());
             //define mail
