@@ -52,7 +52,6 @@ namespace Staketracker.Core.ViewModels.CommunicationList
             _navigationService.Navigate<CommunicationDetailViewModel, PresentationContext<AuthReply>>(
                 new PresentationContext<AuthReply>(authReply, PresentationMode.Create));
 
-        public AuthReply authReply;
 
         public override void Prepare(AuthReply parameter)
         {

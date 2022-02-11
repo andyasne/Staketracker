@@ -131,12 +131,19 @@ namespace Staketracker.Core.ViewModels
         {
             get
             {
-                return CrossSettings.Current.GetValueOrDefault("ProjectName", AppRes.production);
+                if (authReply != null)
+                    return CrossSettings.Current.GetValueOrDefault("ProjectName_" + authReply.d.loginName, AppRes.production);
+                else
+                    return CrossSettings.Current.GetValueOrDefault("ProjectName_", AppRes.production);
 
             }
             set
             {
-                CrossSettings.Current.AddOrUpdateValue("ProjectName", value);
+                if (authReply != null)
+                    CrossSettings.Current.AddOrUpdateValue("ProjectName_" + authReply.d.loginName, value);
+                else
+                    CrossSettings.Current.AddOrUpdateValue("ProjectName_", value);
+
 
                 if (domainSelected != value)
                 {

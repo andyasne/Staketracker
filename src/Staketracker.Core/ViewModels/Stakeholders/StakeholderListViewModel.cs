@@ -55,7 +55,6 @@ namespace Staketracker.Core.ViewModels.Stakeholders
 
 
         public ICommand ButtonClickCommand { get; private set; }
-        public AuthReply authReply;
 
 
         private Staketracker.Core.Models.Stakeholders.GroupedStakeholder _selectedStakeholder;

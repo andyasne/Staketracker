@@ -157,9 +157,9 @@ namespace Staketracker.Core.ViewModels.SwitchProject
             }
 
             DomainSelected = SelectedProject.name;
-            CrossSettings.Current.AddOrUpdateValue("ProjectName", SelectedProject.name);
-            CrossSettings.Current.AddOrUpdateValue("BusinessUnitName", SelectedBusinessUnit.name);
-            CrossSettings.Current.AddOrUpdateValue("SelectedProjectId", SelectedProject.projectId.ToString());
+            CrossSettings.Current.AddOrUpdateValue("ProjectName_" + authReply.d.loginName, SelectedProject.name);
+            CrossSettings.Current.AddOrUpdateValue("BusinessUnitName_" + authReply.d.loginName, SelectedBusinessUnit.name);
+            CrossSettings.Current.AddOrUpdateValue("SelectedProjectId_" + authReply.d.loginName, SelectedProject.projectId.ToString());
             SetField(ref domainSelected, DomainSelected);
 
             SwitchProject(authReply);

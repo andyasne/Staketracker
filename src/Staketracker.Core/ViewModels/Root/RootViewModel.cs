@@ -120,7 +120,7 @@ namespace Staketracker.Core.ViewModels.Root
 
                 //}
 
-                await _navigationService.Navigate<Dashboard.DashboardViewModel>();
+                await _navigationService.Navigate<Dashboard.DashboardViewModel, AuthReply>(authReply);
 
                 await _navigationService.Navigate<SEventsListViewModel, AuthReply>(authReply);
 

@@ -66,7 +66,6 @@ namespace Staketracker.Core.ViewModels.Events
 
         private readonly IMvxNavigationService navigationService;
 
-        internal AuthReply authReply;
         private LayoutMode currentLayoutMode;
         private string draftSearchTerm, listDescription, currentUserName;
 

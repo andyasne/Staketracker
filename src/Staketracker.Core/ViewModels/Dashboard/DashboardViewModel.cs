@@ -18,12 +18,18 @@ using Staketracker.Core.Res;
 
 namespace Staketracker.Core.ViewModels.Dashboard
 {
-    public class DashboardViewModel : BaseViewModel
+    public class DashboardViewModel : BaseViewModel<AuthReply>
 
     {
         private readonly IMvxNavigationService _navigationService;
 
         public ICommand SignOutCommand { get; set; }
+        public async override void Prepare(AuthReply authReply)
+        {
+            this.authReply = authReply;
+            await this.FetchData();
+        }
+
 
         public DashboardViewModel(IMvxNavigationService navigationService)
         {
