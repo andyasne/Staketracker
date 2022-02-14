@@ -24,7 +24,6 @@ namespace Staketracker.Core.ViewModels
         public override void ViewAppearing()
         {
             base.ViewAppearing();
-
             MvxNotifyTask.Create(async () => await this.InitializeViewModels());
         }
 

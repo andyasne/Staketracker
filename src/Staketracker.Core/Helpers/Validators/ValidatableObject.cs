@@ -203,13 +203,13 @@ namespace Staketracker.Core.Validators
                     .Select(v => v.ValidationMessage);
             }
 
-            if (isSelectOne)
+            else if (isSelectOne)
             {
                 errors = ValidationsList.Where(v => !v.Check(SelectedItem))
                     .Select(v => v.ValidationMessage);
 
             }
-            if (isDateType)
+            else if (isDateType)
             {
 
                 errors = ValidationsDateTime.Where(v => !v.Check(SelectedDate))
