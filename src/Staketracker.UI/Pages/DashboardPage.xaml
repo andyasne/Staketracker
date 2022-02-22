@@ -34,6 +34,9 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
 
             <Label Text="{Binding HeaderTitle}" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
             </Label>
+            <telerikInput:RadButton Text="Test Open Linked Page"   Command="{Binding OpenLinkPage}"   Margin="0,20,0,20"  WidthRequest="200" HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"
+                                            Style="{StaticResource ActionButtonStyle}" />
+
             <ScrollView Grid.Row="1">
                 <StackLayout Orientation="Vertical" Spacing="10" Margin="20,0" >
                     <StackLayout.Resources>

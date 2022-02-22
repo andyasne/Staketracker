@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      
+                      xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels.Linked.Communication;assembly=Staketracker.Core"
+                      xmlns:telerikListView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls"
+                      xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
+                      xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+                      xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                      x:Class="Staketracker.UI.Pages.Linked.Communication.CommunicationLinkedListPage"
+                      
+                      Title="StakeTracker" Icon="Communication" ios:Page.UseSafeArea="true"
+                      
+                      x:TypeArguments="viewModels:CommunicationLinkedListViewModel"
+                      
+                      >
+
+
+    <Grid x:Name="LayoutRoot" RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="ContentRoot">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.Padding>
+                <OnIdiom x:TypeArguments="Thickness">
+                    <OnIdiom.Tablet>20,20,0,20</OnIdiom.Tablet>
+                </OnIdiom>
+            </Grid.Padding>
+            <BoxView BackgroundColor="White" Grid.RowSpan="2">
+                <BoxView.CornerRadius>
+                    <OnIdiom x:TypeArguments="CornerRadius" Default="4,0,4,0">
+                        <OnIdiom.Phone>0</OnIdiom.Phone>
+                    </OnIdiom>
+                </BoxView.CornerRadius>
+            </BoxView>
+            <Label Text="Link to Communication" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" 
+                   TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
+            </Label>
+
+            <telerikDataControls:RadListView ItemsSource="{Binding communicationReply_.d, Mode=OneWay}" SelectionMode="Single"
+                                                IsPullToRefreshEnabled="true" Grid.Row="1"
+                                                RefreshRequested="Handle_RefreshRequested"
+                                                SelectedItem="{Binding SelectedCommunication, Mode=TwoWay}">
+                <telerikDataControls:RadListView.ItemTemplate>
+                    <DataTemplate>
+                        <telerikListView:ListViewTemplateCell>
+                            <telerikListView:ListViewTemplateCell.View>
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30" />
+
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout  Grid.Column="0" Padding="2"  VerticalOptions="Center"  HorizontalOptions="CenterAndExpand" >
+                                        <telerikPrimitives:RadCheckBox x:Name="checkbox"  />
+                                    </StackLayout>
+                                    <StackLayout  Grid.Column="1" Spacing="1" >
+
+                                        <Label Text="{Binding CommunicationSubject}" TextColor="Black" MaxLines="2" VerticalOptions="Start" />
+                                        <Label Text="{Binding GetDateString}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+
+                                    </StackLayout>
+
+                                    <!--<Label Grid.Column="2"   VerticalOptions="Center" HorizontalOptions="Center" TextColor="Gray" Margin="0,0,40,0"
+                                            FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-right-open-big}">
+                                        <Label.IsVisible>
+                                            <OnIdiom x:TypeArguments="x:Boolean" Default="False">
+                                                <OnIdiom.Phone>True</OnIdiom.Phone>
+                                            </OnIdiom>
+                                        </Label.IsVisible>
+                                    </Label>-->
+
+                                    <BoxView Grid.ColumnSpan="3" HeightRequest="1" VerticalOptions="End" BackgroundColor="#d7d7d7" />
+                                </Grid>
+                            </telerikListView:ListViewTemplateCell.View>
+                        </telerikListView:ListViewTemplateCell>
+                    </DataTemplate>
+                </telerikDataControls:RadListView.ItemTemplate>
+                <telerikDataControls:RadListView.ItemStyle>
+                    <telerikListView:ListViewItemStyle BorderLocation="None"  BorderWidth="0" />
+                </telerikDataControls:RadListView.ItemStyle>
+                <telerikDataControls:RadListView.LayoutDefinition>
+                    <telerikListView:ListViewLinearLayout ItemLength="60" />
+                </telerikDataControls:RadListView.LayoutDefinition>
+            </telerikDataControls:RadListView>
+
+            <Label Grid.Row="1" Text="No Events." IsVisible="False" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Path=communicationReply_.d.Count}" Value="0">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+
+            <telerikInput:RadButton Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" Margin="0, 0, 18, 18"
+                                        FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-plus}"
+                                        Command="{Binding AddCommunicationCommand, Mode=OneWay}"
+                                        Style="{StaticResource FloatingActionButton}" />
+        </Grid>
+
+    </Grid>
+</views:MvxContentPage>
