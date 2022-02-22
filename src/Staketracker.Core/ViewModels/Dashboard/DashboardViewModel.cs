@@ -15,6 +15,8 @@ using MvvmCross.ViewModels;
 using Staketracker.Core.ViewModels.Menu;
 using Xamarin.Forms;
 using Staketracker.Core.Res;
+using Staketracker.Core.ViewModels.ForgetPassword;
+using Staketracker.Core.ViewModels.Linked.Communication;
 
 namespace Staketracker.Core.ViewModels.Dashboard
 {
@@ -29,6 +31,7 @@ namespace Staketracker.Core.ViewModels.Dashboard
             this.authReply = authReply;
             await this.FetchData();
         }
+        public ICommand OpenLinkPage { get; set; }
 
 
         public DashboardViewModel(IMvxNavigationService navigationService)
@@ -39,8 +42,16 @@ namespace Staketracker.Core.ViewModels.Dashboard
 
             this.PageTitle = AppRes.dashboard;
 
+            OpenLinkPage = new Command(OpenLinkPage_);
+
 
         }
+        private async void OpenLinkPage_()
+        {
+            await _navigationService.Navigate<CommunicationLinkedListViewModel, AuthReply>(
+                 authReply);
+        }
+
 
         private async Task SignOut()
         {
