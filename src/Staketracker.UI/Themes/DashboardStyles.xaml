@@ -33,6 +33,9 @@
     <Style TargetType="{x:Type Label}" x:Key="FormSubtitleLabelStyle">
 
         <Setter Property="TextColor" Value="LightSlateGray" />
+        <Setter Property="HorizontalTextAlignment" Value="Start">
+
+        </Setter>
         <Setter Property="Margin"
                 Value="0,1,0,1" />
         <Setter Property="FontSize"

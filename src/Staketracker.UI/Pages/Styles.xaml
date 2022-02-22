@@ -57,7 +57,9 @@ xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assem
         <Setter Property="BackgroundColor"
                 Value="{StaticResource EntryBackgroundColor}" />
 
+        <Setter Property="HorizontalTextAlignment" Value="Start">
 
+        </Setter>
         <Setter Property="HeightRequest"
                 Value="45" />
 

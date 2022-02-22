@@ -260,7 +260,7 @@
                 <ViewCell >
 
                     <StackLayout   Margin="0,2,0,2">
-                        <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
+                        <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"   HorizontalTextAlignment="Start"  Margin="{StaticResource itemSpacing}" />
 
                         <telerikInput:RadEntry    Text="{Binding  Value.Value, Mode=TwoWay }"  IsReadOnly="True"
                              Style="{StaticResource LoginEntryStyle}">
