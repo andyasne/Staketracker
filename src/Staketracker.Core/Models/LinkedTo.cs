@@ -36,8 +36,8 @@ namespace Staketracker.Core.Models
     public class LinkedToConfig
     {
         public static List<KeyValuePair<String, LinkedTo>> CommunicationsPage = new List<KeyValuePair<String, LinkedTo>>();
-        public static List<KeyValuePair<String, LinkedTo>> projectTeamPage = new List<KeyValuePair<String, LinkedTo>>();
-        public static List<KeyValuePair<String, LinkedTo>> eventsPage = new List<KeyValuePair<String, LinkedTo>>();
+        public static List<KeyValuePair<String, LinkedTo>> ProjectTeamPage = new List<KeyValuePair<String, LinkedTo>>();
+        public static List<KeyValuePair<String, LinkedTo>> EventsPage = new List<KeyValuePair<String, LinkedTo>>();
         public LinkedToConfig()
         {
             CommunicationsPage.Add(new KeyValuePair<string, LinkedTo>("Stakeholder",
@@ -75,7 +75,7 @@ namespace Staketracker.Core.Models
                     }
                 }));
 
-            projectTeamPage.Add(new KeyValuePair<string, LinkedTo>("Event",
+            ProjectTeamPage.Add(new KeyValuePair<string, LinkedTo>("Event",
                new LinkedTo()
                {
                    LandParcel = new LandParcel()
@@ -91,7 +91,7 @@ namespace Staketracker.Core.Models
 
                    }
                }));
-            eventsPage.Add(new KeyValuePair<string, LinkedTo>("Communication",
+            EventsPage.Add(new KeyValuePair<string, LinkedTo>("Communication",
               new LinkedTo()
               {
                   LandParcel = new LandParcel()
@@ -108,7 +108,7 @@ namespace Staketracker.Core.Models
                   }
               }));
 
-            eventsPage.Add(new KeyValuePair<string, LinkedTo>("Stakeholder",
+            EventsPage.Add(new KeyValuePair<string, LinkedTo>("Stakeholder",
             new LinkedTo()
             {
                 LandParcel = new LandParcel()
@@ -128,7 +128,7 @@ namespace Staketracker.Core.Models
             }));
 
 
-            eventsPage.Add(new KeyValuePair<string, LinkedTo>("Project Team",
+            EventsPage.Add(new KeyValuePair<string, LinkedTo>("Project Team",
              new LinkedTo()
              {
                  LandParcel = new LandParcel()
@@ -145,7 +145,7 @@ namespace Staketracker.Core.Models
                  }
              }));
 
-            eventsPage.Add(new KeyValuePair<string, LinkedTo>("Issue",
+            EventsPage.Add(new KeyValuePair<string, LinkedTo>("Issue",
            new LinkedTo()
            {
                LandParcel = new LandParcel()
