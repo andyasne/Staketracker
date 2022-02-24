@@ -16,14 +16,7 @@
                 ItemTemplate="{StaticResource formDataTemplateSelectorView}"  
                 ItemsSource="{Binding FormContent}" 
                 SelectionMode="None" />
-                <Label  Text="Link Event to : " HorizontalOptions="StartAndExpand" Style="{StaticResource NormalLabelStyle}"  Margin="0" />
-
-
-                <telerikInput:RadButton Text="Communication             >"   Command="{Binding OpenLinkPage}"  HorizontalContentAlignment="Start" Padding="10"  Margin="0,2,0,5"    WidthRequest="200"   HorizontalOptions="StartAndExpand"
-                                            Style="{StaticResource ActionButtonStyle}" />
-                <telerikInput:RadButton Text="Stakeholders                >"   Command="{Binding OpenLinkPage}"  HorizontalContentAlignment="Start" Padding="10"  Margin="0,2,0,5"    WidthRequest="200"   HorizontalOptions="StartAndExpand"
-                                            Style="{StaticResource ActionButtonStyle}" />
-             </StackLayout>
+               </StackLayout>
         </ScrollView>
     </ContentView.Content>
 

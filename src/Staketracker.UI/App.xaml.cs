@@ -19,25 +19,36 @@ namespace Staketracker.UI
         public DataTemplate DateTimeTemplate { get; set; }
         public DataTemplate CheckBoxTemplate { get; set; }
         public DataTemplate ListBoxMultiTemplate { get; set; }
+        public DataTemplate LinkedToLabelTemplate { get; set; }
+        public DataTemplate LinkedToTemplate { get; set; }
+
 
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
             var s = (KeyValuePair<string, ValidatableObject<string>>)item;
-            var k = s.Value.FormAndDropDownField.InputType;
-            if (k == "TextBox")
-                return TextBoxTemplate;
-            else if (k == "MultiLine")
-                return MultiLineTemplate;
-            else if (k == "DateTime")
-                return DateTimeTemplate;
-            else if (k == "CheckBox")
-                return CheckBoxTemplate;
-            else if (k == "ListBoxMulti")
-                return ListBoxMultiTemplate;
+            if (s.Value.FormAndDropDownField != null)
+            {
+                var k = s.Value.FormAndDropDownField.InputType;
+                if (k == "TextBox")
+                    return TextBoxTemplate;
+                else if (k == "MultiLine")
+                    return MultiLineTemplate;
+                else if (k == "DateTime")
+                    return DateTimeTemplate;
+                else if (k == "CheckBox")
+                    return CheckBoxTemplate;
+                else if (k == "ListBoxMulti")
+                    return ListBoxMultiTemplate;
+                else
+                    return DropDownListTemplate;
+            }
+            else if (s.Value.LinkedControlType == "button")
+                return LinkedToTemplate;
+            else if (s.Value.LinkedControlType == "label")
+                return LinkedToLabelTemplate;
             else
-
-                return DropDownListTemplate;
+                return null;
 
         }
     }
@@ -51,27 +62,37 @@ namespace Staketracker.UI
         public DataTemplate DateTimeTemplate { get; set; }
         public DataTemplate CheckBoxTemplate { get; set; }
         public DataTemplate ListBoxMultiTemplate { get; set; }
+        public DataTemplate LinkedToTemplate { get; set; }
 
+        public DataTemplate LinkedToLabelTemplate { get; set; }
 
 
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
             var s = (KeyValuePair<string, ValidatableObject<string>>)item;
-            var k = s.Value.FormAndDropDownField.InputType;
-            if (k == "TextBox")
-                return TextBoxTemplate;
-            else if (k == "MultiLine")
-                return MultiLineTemplate;
-            else if (k == "DateTime")
-                return DateTimeTemplate;
-            else if (k == "CheckBox")
-                return CheckBoxTemplate;
-            else if (k == "ListBoxMulti")
-                return ListBoxMultiTemplate;
+            if (s.Value.FormAndDropDownField != null)
+            {
+                var k = s.Value.FormAndDropDownField.InputType;
+                if (k == "TextBox")
+                    return TextBoxTemplate;
+                else if (k == "MultiLine")
+                    return MultiLineTemplate;
+                else if (k == "DateTime")
+                    return DateTimeTemplate;
+                else if (k == "CheckBox")
+                    return CheckBoxTemplate;
+                else if (k == "ListBoxMulti")
+                    return ListBoxMultiTemplate;
+                else
+                    return DropDownListTemplate;
+            }
+            else if (s.Value.LinkedControlType == "button")
+                return LinkedToTemplate;
+            else if (s.Value.LinkedControlType == "label")
+                return LinkedToLabelTemplate;
             else
-
-                return DropDownListTemplate;
+                return null;
 
         }
     }

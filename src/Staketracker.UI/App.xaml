@@ -255,6 +255,27 @@
                 </ViewCell>
 
             </DataTemplate>
+            <DataTemplate x:Key="LinkedToLabelTemplate">
+                <ViewCell>
+
+                    <StackLayout  Margin="0,2,0,2">
+                        <Label  Text="{Binding Value.PageTitle}" HorizontalOptions="StartAndExpand" Style="{StaticResource NormalLabelStyle}"  Margin="0" />
+
+                    </StackLayout>
+                </ViewCell>
+
+            </DataTemplate>
+            <DataTemplate x:Key="LinkedToTemplate">
+                <ViewCell>
+
+                    <StackLayout  Margin="0,2,0,2">
+                        <telerikInput:RadButton Text="{Binding Key}"  HorizontalContentAlignment="Start" Padding="10" Command="{Binding OpenLinkPage}"  Margin="0,2,0,5"     WidthRequest="200"   HorizontalOptions="StartAndExpand" 
+                                            Style="{StaticResource ActionButtonStyle}" />
+                    </StackLayout>
+                </ViewCell>
+
+            </DataTemplate>
+
 
             <DataTemplate x:Key="TextBoxTemplateRO"  >
                 <ViewCell >
@@ -452,6 +473,25 @@
                 </ViewCell>
 
             </DataTemplate>
+            <DataTemplate x:Key="LinkedToLabelTemplateRO">
+                <ViewCell>
+
+                    <StackLayout  Margin="0,2,0,2">
+                        <Label  Text="{Binding Value.PageTitle}" HorizontalOptions="StartAndExpand" Style="{StaticResource NormalLabelStyle}"  Margin="0" />
+                    </StackLayout>
+                </ViewCell>
+
+            </DataTemplate>
+            <DataTemplate x:Key="LinkedToTemplateRO">
+                <ViewCell>
+
+                    <StackLayout  Margin="0,2,0,2">
+                        <telerikInput:RadButton Text="{Binding Key}"  HorizontalContentAlignment="Start" Padding="10" Command="{Binding OpenLinkPage}"  Margin="0,2,0,5"     WidthRequest="200"   HorizontalOptions="StartAndExpand" 
+                                            Style="{StaticResource ActionButtonStyle}" />
+                    </StackLayout>
+                </ViewCell>
+
+            </DataTemplate>
 
             <ui:formDataTemplateSelector x:Key="formDataTemplateSelector"
                 TextBoxTemplate="{StaticResource TextBoxTemplate}"
@@ -459,7 +499,11 @@
                 MultiLineTemplate="{StaticResource MultiLineTemplate}" 
                 DateTimeTemplate="{StaticResource DateTimeTemplate}" 
                 ListBoxMultiTemplate="{StaticResource DropDownListTemplate}" 
-                CheckBoxTemplate="{StaticResource CheckBoxTemplate}"  />
+                CheckBoxTemplate="{StaticResource CheckBoxTemplate}"
+                LinkedToLabelTemplate="{StaticResource LinkedToLabelTemplate}"
+                LinkedToTemplate="{StaticResource LinkedToTemplate}"
+                                         
+                                         />
 
             <ui:formDataTemplateSelectorView x:Key="formDataTemplateSelectorView"
                 TextBoxTemplate="{StaticResource TextBoxTemplateRO}"
@@ -467,7 +511,12 @@
                 MultiLineTemplate="{StaticResource MultiLineTemplateRO}" 
                 DateTimeTemplate="{StaticResource DateTimeTemplateRO}" 
                 ListBoxMultiTemplate="{StaticResource DropDownListTemplateRO}" 
-                CheckBoxTemplate="{StaticResource CheckBoxTemplateRO}"  />
+                CheckBoxTemplate="{StaticResource CheckBoxTemplateRO}" 
+                LinkedToLabelTemplate="{StaticResource LinkedToLabelTemplateRO}"
+                                             
+                LinkedToTemplate="{StaticResource LinkedToTemplateRO}"
+                                             
+                                             />
 
 
         </ResourceDictionary>

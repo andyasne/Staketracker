@@ -10,6 +10,7 @@ using Staketracker.Core.Models.ApiRequestBody;
 using Staketracker.Core.Models.EventsFormValue;
 using Staketracker.Core.Models.FieldsValue;
 using Staketracker.Core.Models.FormAndDropDownField;
+using Staketracker.Core.Models.LinkedTo;
 using Staketracker.Core.Res;
 using Staketracker.Core.Services;
 using Staketracker.Core.Validators;
@@ -476,6 +477,54 @@ namespace Staketracker.Core.ViewModels
                     _formContent.Add(label, validatableObj);
 
                 }
+
+                LinkedToConfig linkedToConfig = new LinkedToConfig();
+                bool linkedToLabel = false;
+
+                foreach (KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo> linked in linkedToConfig.EventsPage)
+                {
+                    ValidatableObject<string> validatableObj = new ValidatableObject<string>();
+                    validatableObj.LinkedControlType = "button";
+                    validatableObj.PageTitle = "Link " + pageTitle + " to : ";
+                    Staketracker.Core.Models.LinkedTo.LinkedTo linkedTo = linked.Value;
+
+                    if (Mode == PresentationMode.Create)
+                    {
+                        if (linkedTo.enableEditing == true)
+                        {
+                            if (linkedToLabel == false)
+                            {
+                                validatableObj.LinkedControlType = "label";
+
+                                _formContent.Add(validatableObj.PageTitle, validatableObj);
+                                linkedToLabel = true;
+                            }
+
+                            _formContent.Add(linked.Key.ToString(), validatableObj);
+
+                        }
+                    }
+                    else
+                    {
+                        if (linkedTo.enableEditing == false)
+                        {
+                            if (linkedToLabel == false)
+                            {
+                                validatableObj.LinkedControlType = "label";
+                                _formContent.Add(validatableObj.PageTitle, validatableObj);
+                                linkedToLabel = true;
+                            }
+
+                            _formContent.Add(linked.Key.ToString(), validatableObj);
+
+                        }
+                    }
+
+
+
+                }
+
+
                 FormContent = _formContent;
 
 
