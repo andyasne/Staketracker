@@ -59,7 +59,6 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
 
             this.IsBusy = true;
             this.authReply = parameter;
-            //this.Mode = parameter.Mode;
             RunSafe(GetCommunication(authReply), true, "Loading Communication");
             this.IsBusy = false;
 

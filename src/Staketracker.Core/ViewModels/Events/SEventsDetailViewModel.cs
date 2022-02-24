@@ -19,17 +19,28 @@ using PresentationMode = Staketracker.Core.Models.PresentationMode;
 using System.Text.RegularExpressions;
 using Staketracker.Core.Res;
 using Staketracker.Core.Models.DelRec;
+using System.Windows.Input;
+using Staketracker.Core.ViewModels.Linked.Communication;
 
 namespace Staketracker.Core.ViewModels.Events
 {
     public class SEventDetailViewModel : BaseViewModel<PresentationContext<AuthReply>>
     {
+        public ICommand OpenLinkPage { get; set; }
+
         public SEventDetailViewModel(IMvxNavigationService navigationService)
         {
             this.navigationService = navigationService;
             DeleteCommand = new MvxAsyncCommand(OnDeleteSEvent);
             SaveCommand = new MvxAsyncCommand(OnSave);
             BeginEditCommand = new MvxAsyncCommand(OnBeginEdit);
+            OpenLinkPage = new Command(OpenLinkPage_);
+
+        }
+        private async void OpenLinkPage_()
+        {
+            await navigationService.Navigate<CommunicationLinkedListViewModel, AuthReply>(
+                 authReply);
         }
         public override void Prepare(PresentationContext<AuthReply> parameter)
         {
@@ -58,7 +69,12 @@ namespace Staketracker.Core.ViewModels.Events
             PageTitle = AppRes.event_;
 
             await base.Initialize();
+
             RunSafe(GetFormUIControls(authReply, FormType.Events), true, AppRes.building_form_controls);
+
+
+
+
             UpdateTitle();
         }
         private async Task OnDeleteSEvent()

@@ -20,13 +20,12 @@ namespace Staketracker.UI.Pages.Linked.Communication
             InitializeComponent();
 
             ToolbarItem doneToolbarItem = new ToolbarItem();
+
             doneToolbarItem.Text = "Done";
+
             doneToolbarItem.Clicked += this.doneToolbarItem_Clicked;
 
             this.ToolbarItems.Add(doneToolbarItem);
-
-
-
 
         }
 

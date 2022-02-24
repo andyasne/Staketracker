@@ -477,6 +477,8 @@ namespace Staketracker.Core.ViewModels
 
                 }
                 FormContent = _formContent;
+
+
             }
             else
             {

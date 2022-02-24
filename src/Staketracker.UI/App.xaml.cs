@@ -21,8 +21,6 @@ namespace Staketracker.UI
         public DataTemplate ListBoxMultiTemplate { get; set; }
 
 
-
-
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
             var s = (KeyValuePair<string, ValidatableObject<string>>)item;

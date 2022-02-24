@@ -11,12 +11,19 @@
             <StackLayout Margin="20">
                 <ListView   
                 SeparatorVisibility="None" 
-                x:Name="listView" HasUnevenRows="True" 
+                x:Name="listView" HasUnevenRows="True"  
                 VerticalScrollBarVisibility="Never"  
                 ItemTemplate="{StaticResource formDataTemplateSelectorView}"  
                 ItemsSource="{Binding FormContent}" 
                 SelectionMode="None" />
-            </StackLayout>
+                <Label  Text="Link Event to : " HorizontalOptions="StartAndExpand" Style="{StaticResource NormalLabelStyle}"  Margin="0" />
+
+
+                <telerikInput:RadButton Text="Communication             >"   Command="{Binding OpenLinkPage}"  HorizontalContentAlignment="Start" Padding="10"  Margin="0,2,0,5"    WidthRequest="200"   HorizontalOptions="StartAndExpand"
+                                            Style="{StaticResource ActionButtonStyle}" />
+                <telerikInput:RadButton Text="Stakeholders                >"   Command="{Binding OpenLinkPage}"  HorizontalContentAlignment="Start" Padding="10"  Margin="0,2,0,5"    WidthRequest="200"   HorizontalOptions="StartAndExpand"
+                                            Style="{StaticResource ActionButtonStyle}" />
+             </StackLayout>
         </ScrollView>
     </ContentView.Content>
 
