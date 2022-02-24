@@ -94,7 +94,7 @@ namespace Staketracker.Core.Models.LinkedTo
                   sortVariable = new List<string>() { "Date" },
                   sortBy = "Chrono",
                   linkedTo = "Event",
-                  enableEditing = true
+                  enableEditing = false
 
 
               }));
