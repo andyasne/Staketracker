@@ -10,10 +10,12 @@ using Staketracker.Core.Models.ApiRequestBody;
 using Staketracker.Core.Models.EventsFormValue;
 using Staketracker.Core.Models.FieldsValue;
 using Staketracker.Core.Models.FormAndDropDownField;
+using Staketracker.Core.Models.LinkedTo;
 using Staketracker.Core.Res;
 using Staketracker.Core.Services;
 using Staketracker.Core.Validators;
 using Staketracker.Core.Validators.Rules;
+using Staketracker.Core.ViewModels.Linked.Communication;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -58,6 +60,8 @@ namespace Staketracker.Core.ViewModels
         {
             changeView();
         }
+        public ICommand OpenLinkPage { get; set; }
+
         public BaseViewModel()
         {
             ApiManager = new ApiManager(staketrackerApi);
@@ -66,7 +70,17 @@ namespace Staketracker.Core.ViewModels
             {
                 OnDevelopment().Start();
             });
+            OpenLinkPage = new Command(OpenLinkPage_);
+
         }
+
+
+        private async void OpenLinkPage_()
+        {
+            await navigationService.Navigate<CommunicationLinkedListViewModel, AuthReply>(
+                 authReply);
+        }
+
         public Task OnDevelopment()
         {
             return new Task(() =>
@@ -476,6 +490,45 @@ namespace Staketracker.Core.ViewModels
                     _formContent.Add(label, validatableObj);
 
                 }
+                LinkedToConfig linkedToConfig = new LinkedToConfig();
+                List<KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo>> linkedPage;
+                if (PageTitle == "Event")
+                    linkedPage = linkedToConfig.EventsPage;
+                else if (PageTitle == "Communication")
+                    linkedPage = linkedToConfig.CommunicationsPage;
+                else if (PageTitle == "Stakeholder")
+                    linkedPage = linkedToConfig.ProjectTeamPage;
+
+                bool linkedToLabel = false;
+
+                foreach (KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo> linked in linkedToConfig.EventsPage)
+                {
+                    ValidatableObject<string> validatableObj = new ValidatableObject<string>();
+                    Staketracker.Core.Models.LinkedTo.LinkedTo linkedTo = linked.Value;
+
+                    if (Mode == PresentationMode.Create || Mode == PresentationMode.Edit)
+                    {
+                        if (linkedTo.enableEditing == true)
+                        {
+                            AddLinkToControls(_formContent, ref linkedToLabel, linked, ref validatableObj);
+
+                        }
+                    }
+                    else
+                    {
+                        if (linkedTo.enableEditing == false)
+                        {
+                            AddLinkToControls(_formContent, ref linkedToLabel, linked, ref validatableObj);
+
+
+                        }
+                    }
+
+
+
+                }
+
+
                 FormContent = _formContent;
 
 
@@ -486,6 +539,34 @@ namespace Staketracker.Core.ViewModels
                 //  return null;
             }
         }
+
+        private void AddLinkToControls(Dictionary<string, ValidatableObject<string>> _formContent, ref bool linkedToLabel, KeyValuePair<string, Models.LinkedTo.LinkedTo> linked, ref ValidatableObject<string> validatableObj)
+        {
+            AddLinkToLabel(_formContent, ref linkedToLabel, ref validatableObj);
+
+            validatableObj = AddLinkToButton(_formContent, linked);
+        }
+
+        private static ValidatableObject<string> AddLinkToButton(Dictionary<string, ValidatableObject<string>> _formContent, KeyValuePair<string, Models.LinkedTo.LinkedTo> linked)
+        {
+            var validatableObj = new ValidatableObject<string>();
+            validatableObj.LinkedControlType = "button";
+            _formContent.Add(linked.Key.ToString(), validatableObj);
+            return validatableObj;
+        }
+
+        private void AddLinkToLabel(Dictionary<string, ValidatableObject<string>> _formContent, ref bool linkedToLabel, ref ValidatableObject<string> validatableObj)
+        {
+            if (linkedToLabel == false)
+            {
+                validatableObj = new ValidatableObject<string>();
+                validatableObj.PageTitle = "Link " + pageTitle + " to : ";
+                validatableObj.LinkedControlType = "label";
+                _formContent.Add(validatableObj.PageTitle, validatableObj);
+                linkedToLabel = true;
+            }
+        }
+
         protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))

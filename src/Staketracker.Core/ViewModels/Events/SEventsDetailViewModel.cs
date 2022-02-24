@@ -28,6 +28,9 @@ namespace Staketracker.Core.ViewModels.Events
     {
         public ICommand OpenLinkPage { get; set; }
 
+
+
+
         public SEventDetailViewModel(IMvxNavigationService navigationService)
         {
             this.navigationService = navigationService;

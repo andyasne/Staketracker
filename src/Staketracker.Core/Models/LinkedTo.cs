@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Staketracker.Core.Models
+namespace Staketracker.Core.Models.LinkedTo
 {
     public class LandInterestSelectionVariables
     {
@@ -10,7 +10,7 @@ namespace Staketracker.Core.Models
         public string parentKey { get; set; }
     }
 
-    public class LandParcel
+    public class LinkedTo
     {
         public int counters { get; set; }
         public bool mandatory { get; set; }
@@ -27,139 +27,125 @@ namespace Staketracker.Core.Models
         public LandInterestSelectionVariables landInterestSelectionVariables { get; set; }
     }
 
-    public class LinkedTo
-    {
-        public LandParcel LandParcel { get; set; }
-    }
-
 
     public class LinkedToConfig
     {
-        public static List<KeyValuePair<String, LinkedTo>> CommunicationsPage = new List<KeyValuePair<String, LinkedTo>>();
-        public static List<KeyValuePair<String, LinkedTo>> ProjectTeamPage = new List<KeyValuePair<String, LinkedTo>>();
-        public static List<KeyValuePair<String, LinkedTo>> EventsPage = new List<KeyValuePair<String, LinkedTo>>();
+        public List<KeyValuePair<String, LinkedTo>> CommunicationsPage = new List<KeyValuePair<String, LinkedTo>>();
+        public List<KeyValuePair<String, LinkedTo>> ProjectTeamPage = new List<KeyValuePair<String, LinkedTo>>();
+        public List<KeyValuePair<String, LinkedTo>> EventsPage = new List<KeyValuePair<String, LinkedTo>>();
         public LinkedToConfig()
         {
             CommunicationsPage.Add(new KeyValuePair<string, LinkedTo>("Stakeholder",
                 new LinkedTo()
                 {
-                    LandParcel = new LandParcel()
-                    {
-                        counters = 3,
-                        mandatory = true,
-                        buttonLabel = "Stakeholders",
-                        arraysNameObject = new List<string>() { "IndividualStakeholders", "GroupedStakeholders", "LandParcelStakeholders" },
-                        sortVariable = new List<string>() { "LastName", "GroupName", "LegalDescription" },
-                        sortBy = "alpha",
-                        linkedTo = "Communications",
-                        enableEditing = true,
-                        landParcelEnableContactSelection = true,
-                        groupEnableContactSelection = true
-                    }
+
+                    counters = 3,
+                    mandatory = true,
+                    buttonLabel = "Stakeholders",
+                    arraysNameObject = new List<string>() { "IndividualStakeholders", "GroupedStakeholders", "LandParcelStakeholders" },
+                    sortVariable = new List<string>() { "LastName", "GroupName", "LegalDescription" },
+                    sortBy = "alpha",
+                    linkedTo = "Communications",
+                    enableEditing = true,
+                    landParcelEnableContactSelection = true,
+                    groupEnableContactSelection = true
+
                 }));
 
             CommunicationsPage.Add(new KeyValuePair<string, LinkedTo>("Issue",
                 new LinkedTo()
                 {
-                    LandParcel = new LandParcel()
-                    {
-                        counters = 1,
-                        mandatory = false,
-                        buttonLabel = "Topics",
-                        arraysNameObject = "Issues",
-                        sortVariable = new List<string>() { "Name" },
-                        sortBy = "alpha",
-                        linkedTo = "Communications",
-                        enableEditing = true
 
-                    }
+                    counters = 1,
+                    mandatory = false,
+                    buttonLabel = "Topics",
+                    arraysNameObject = "Issues",
+                    sortVariable = new List<string>() { "Name" },
+                    sortBy = "alpha",
+                    linkedTo = "Communications",
+                    enableEditing = true
+
+
                 }));
 
             ProjectTeamPage.Add(new KeyValuePair<string, LinkedTo>("Event",
                new LinkedTo()
                {
-                   LandParcel = new LandParcel()
-                   {
-                       counters = 1,
-                       mandatory = false,
-                       buttonLabel = "Event",
-                       arraysNameObject = "Event",
-                       sortVariable = new List<string>() { "EventDate" },
-                       sortBy = "Chrono",
-                       linkedTo = "Team",
-                       enableEditing = true
 
-                   }
+                   counters = 1,
+                   mandatory = false,
+                   buttonLabel = "Event",
+                   arraysNameObject = "Event",
+                   sortVariable = new List<string>() { "EventDate" },
+                   sortBy = "Chrono",
+                   linkedTo = "Team",
+                   enableEditing = true
+
+
                }));
             EventsPage.Add(new KeyValuePair<string, LinkedTo>("Communication",
               new LinkedTo()
               {
-                  LandParcel = new LandParcel()
-                  {
-                      counters = 1,
-                      mandatory = false,
-                      buttonLabel = "Communication",
-                      arraysNameObject = "Communication",
-                      sortVariable = new List<string>() { "Date" },
-                      sortBy = "Chrono",
-                      linkedTo = "Event",
-                      enableEditing = true
 
-                  }
+                  counters = 1,
+                  mandatory = false,
+                  buttonLabel = "Communication",
+                  arraysNameObject = "Communication",
+                  sortVariable = new List<string>() { "Date" },
+                  sortBy = "Chrono",
+                  linkedTo = "Event",
+                  enableEditing = true
+
+
               }));
 
             EventsPage.Add(new KeyValuePair<string, LinkedTo>("Stakeholder",
             new LinkedTo()
             {
-                LandParcel = new LandParcel()
-                {
-                    counters = 3,
-                    mandatory = false,
-                    buttonLabel = "Stakeholders",
-                    arraysNameObject = new List<string>() { "IndividualStakeholders", "GroupedStakeholders", "LandParcelStakeholders" },
-                    sortVariable = new List<string>() { "LastName", "GroupName", "LegalDescription" },
-                    sortBy = "alpha",
-                    linkedTo = "Event",
-                    enableEditing = true,
-                    groupEnableContactSelection = true,
-                    landParcelEnableContactSelection = true
+                counters = 3,
+                mandatory = false,
+                buttonLabel = "Stakeholders",
+                arraysNameObject = new List<string>() { "IndividualStakeholders", "GroupedStakeholders", "LandParcelStakeholders" },
+                sortVariable = new List<string>() { "LastName", "GroupName", "LegalDescription" },
+                sortBy = "alpha",
+                linkedTo = "Event",
+                enableEditing = true,
+                groupEnableContactSelection = true,
+                landParcelEnableContactSelection = true
 
-                }
+
             }));
 
 
             EventsPage.Add(new KeyValuePair<string, LinkedTo>("Project Team",
              new LinkedTo()
              {
-                 LandParcel = new LandParcel()
-                 {
-                     counters = 1,
-                     mandatory = false,
-                     buttonLabel = "Project Team",
-                     arraysNameObject = "Team",
-                     sortVariable = new List<string>() { "LastName" },
-                     sortBy = "alpha",
-                     linkedTo = "Event",
-                     enableEditing = false
+                 counters = 1,
+                 mandatory = false,
+                 buttonLabel = "Project Team",
+                 arraysNameObject = "Team",
+                 sortVariable = new List<string>() { "LastName" },
+                 sortBy = "alpha",
+                 linkedTo = "Event",
+                 enableEditing = false
 
-                 }
+
              }));
 
             EventsPage.Add(new KeyValuePair<string, LinkedTo>("Issue",
            new LinkedTo()
            {
-               LandParcel = new LandParcel()
-               {
-                   counters = 1,
-                   mandatory = false,
-                   buttonLabel = "Topics",
-                   arraysNameObject = "Issues",
-                   sortVariable = new List<string>() { "Name" },
-                   sortBy = "alpha",
-                   linkedTo = "Event",
-                   enableEditing = false
 
-               }
+               counters = 1,
+               mandatory = false,
+               buttonLabel = "Topics",
+               arraysNameObject = "Issues",
+               sortVariable = new List<string>() { "Name" },
+               sortBy = "alpha",
+               linkedTo = "Event",
+               enableEditing = false
+
+
            }));
 
 
