@@ -491,17 +491,21 @@ namespace Staketracker.Core.ViewModels
 
                 }
                 LinkedToConfig linkedToConfig = new LinkedToConfig();
-                List<KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo>> linkedPage;
+                List<KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo>> linkedPage = null;
                 if (PageTitle == "Event")
                     linkedPage = linkedToConfig.EventsPage;
                 else if (PageTitle == "Communication")
                     linkedPage = linkedToConfig.CommunicationsPage;
                 else if (PageTitle == "Stakeholder")
+                    linkedPage = linkedToConfig.StakeHolders_IndividualPage;
+                else if (PageTitle == "Project Team")
                     linkedPage = linkedToConfig.ProjectTeamPage;
+                else if (PageTitle == "Topics")
+                    linkedPage = linkedToConfig.IssuesPage;
 
                 bool linkedToLabel = false;
 
-                foreach (KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo> linked in linkedToConfig.EventsPage)
+                foreach (KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo> linked in linkedPage)
                 {
                     ValidatableObject<string> validatableObj = new ValidatableObject<string>();
                     Staketracker.Core.Models.LinkedTo.LinkedTo linkedTo = linked.Value;

@@ -21,20 +21,216 @@ namespace Staketracker.Core.Models.LinkedTo
         public string linkedTo { get; set; }
         public string contactAndInterestDetailArrayName { get; set; }
         public bool enableEditing { get; set; }
+        public bool enableContactTypeSelection { get; set; }
+
+
         public bool enableLandInterestSelection { get; set; }
         public bool landParcelEnableContactSelection { get; set; }
         public bool groupEnableContactSelection { get; set; }
         public LandInterestSelectionVariables landInterestSelectionVariables { get; set; }
+        public LandInterestSelectionVariables contactTypeSelectionVariables { get; set; }
     }
 
 
     public class LinkedToConfig
     {
         public List<KeyValuePair<String, LinkedTo>> CommunicationsPage = new List<KeyValuePair<String, LinkedTo>>();
+        public List<KeyValuePair<String, LinkedTo>> StakeHolders_IndividualPage = new List<KeyValuePair<String, LinkedTo>>();
+        public List<KeyValuePair<String, LinkedTo>> StakeHolders_Group = new List<KeyValuePair<String, LinkedTo>>();
+        public List<KeyValuePair<String, LinkedTo>> StakeHolders_LandParcel = new List<KeyValuePair<String, LinkedTo>>();
         public List<KeyValuePair<String, LinkedTo>> ProjectTeamPage = new List<KeyValuePair<String, LinkedTo>>();
         public List<KeyValuePair<String, LinkedTo>> EventsPage = new List<KeyValuePair<String, LinkedTo>>();
+        public List<KeyValuePair<String, LinkedTo>> IssuesPage = new List<KeyValuePair<String, LinkedTo>>();
         public LinkedToConfig()
         {
+
+            StakeHolders_LandParcel.Add(new KeyValuePair<string, LinkedTo>("Individual",
+          new LinkedTo()
+          {
+
+              counters = 1,
+              mandatory = false,
+              buttonLabel = "Individual contacts",
+              arraysNameObject = new List<string>() { "IndividualStakeholders" },
+              sortVariable = new List<string>() { "LastName" },
+              sortBy = "alpha",
+              linkedTo = "LandParcelStakeholder",
+              enableEditing = true,
+              contactAndInterestDetailArrayName = "LandParcelStakeholder",
+              enableContactTypeSelection = true,
+              contactTypeSelectionVariables = new LandInterestSelectionVariables()
+              {
+                  myKey = "StakeHolderKey",
+                  parentKey = "LandParcelKey"
+              }
+
+          }));
+
+            StakeHolders_LandParcel.Add(new KeyValuePair<string, LinkedTo>("Group",
+       new LinkedTo()
+       {
+
+           counters = 1,
+           mandatory = false,
+           buttonLabel = "Group contacts",
+           arraysNameObject = new List<string>() { "GroupedStakeholders" },
+           sortVariable = new List<string>() { "GroupName" },
+           sortBy = "alpha",
+           linkedTo = "LandParcelStakeholder",
+           enableEditing = true,
+           contactAndInterestDetailArrayName = "LandParcelStakeholder",
+           enableContactTypeSelection = true,
+           contactTypeSelectionVariables = new LandInterestSelectionVariables()
+           {
+               myKey = "GroupedStakeHolderKey",
+               parentKey = "LandParcelKey"
+           }
+
+       }));
+            StakeHolders_LandParcel.Add(new KeyValuePair<string, LinkedTo>("Issue",
+       new LinkedTo()
+       {
+
+           counters = 1,
+           mandatory = false,
+           buttonLabel = "Topics",
+           arraysNameObject = new List<string>() { "Issues" },
+           sortVariable = new List<string>() { "Name" },
+           sortBy = "alpha",
+           linkedTo = "LandParcelStakeholder",
+           enableEditing = false
+
+       }));
+
+
+
+            StakeHolders_Group.Add(new KeyValuePair<string, LinkedTo>("Contact",
+            new LinkedTo()
+            {
+
+                counters = 1,
+                mandatory = false,
+                buttonLabel = "Contacts",
+                arraysNameObject = new List<string>() { "IndividualStakeholders" },
+                sortVariable = new List<string>() { "LastName" },
+                sortBy = "alpha",
+                linkedTo = "GroupedStakeholder",
+                enableEditing = true,
+                contactAndInterestDetailArrayName = "GroupedStakeholder",
+                enableContactTypeSelection = true,
+                contactTypeSelectionVariables = new LandInterestSelectionVariables()
+                {
+                    myKey = "StakeHolderKey",
+                    parentKey = "GroupedStakeHolderKey"
+                }
+
+            }));
+
+
+            StakeHolders_Group.Add(new KeyValuePair<string, LinkedTo>("LandParcel",
+           new LinkedTo()
+           {
+
+               counters = 1,
+               mandatory = false,
+               buttonLabel = "Land Parcels",
+               arraysNameObject = new List<string>() { "LandParcelStakeholders" },
+               sortVariable = new List<string>() { "LegalDescription" },
+               sortBy = "alpha",
+               linkedTo = "GroupedStakeholder",
+               enableEditing = true,
+               contactAndInterestDetailArrayName = "GroupedStakeholder",
+               enableContactTypeSelection = true,
+               contactTypeSelectionVariables = new LandInterestSelectionVariables()
+               {
+                   myKey = "LandParcelKey",
+                   parentKey = "GroupedStakeHolderKey"
+               }
+
+           }));
+
+
+            StakeHolders_Group.Add(new KeyValuePair<string, LinkedTo>("Issue",
+        new LinkedTo()
+        {
+
+            counters = 1,
+            mandatory = false,
+            buttonLabel = "Topics",
+            arraysNameObject = new List<string>() { "Issues" },
+            sortVariable = new List<string>() { "Name" },
+            sortBy = "alpha",
+            linkedTo = "GroupedStakeholder",
+            enableEditing = false,
+            contactAndInterestDetailArrayName = "GroupedStakeholder",
+
+
+        }));
+
+
+
+            StakeHolders_IndividualPage.Add(new KeyValuePair<string, LinkedTo>("Group",
+              new LinkedTo()
+              {
+
+                  counters = 1,
+                  mandatory = false,
+                  buttonLabel = "Groups",
+                  arraysNameObject = new List<string>() { "GroupedStakeholders" },
+                  sortVariable = new List<string>() { "GroupName" },
+                  sortBy = "alpha",
+                  linkedTo = "IndividualStakeholder",
+                  enableEditing = true,
+                  contactAndInterestDetailArrayName = "IndividualStakeholders",
+                  enableContactTypeSelection = true,
+                  contactTypeSelectionVariables = new LandInterestSelectionVariables()
+                  {
+                      myKey = "GroupedStakeHolderKey",
+                      parentKey = "StakeHolderKey"
+                  }
+
+              }));
+
+
+            StakeHolders_IndividualPage.Add(new KeyValuePair<string, LinkedTo>("Land Parcel",
+            new LinkedTo()
+            {
+
+                counters = 1,
+                mandatory = false,
+                buttonLabel = "Land parcels",
+                arraysNameObject = new List<string>() { "LandParcelStakeholders" },
+                sortVariable = new List<string>() { "LegalDescription" },
+                sortBy = "alpha",
+                linkedTo = "IndividualStakeholder",
+                enableEditing = true,
+                contactAndInterestDetailArrayName = "IndividualStakeholders",
+                enableContactTypeSelection = true,
+                contactTypeSelectionVariables = new LandInterestSelectionVariables()
+                {
+                    myKey = "LandParcelKey",
+                    parentKey = "StakeHolderKey"
+                }
+
+            }));
+
+
+
+            StakeHolders_IndividualPage.Add(new KeyValuePair<string, LinkedTo>("Issue",
+            new LinkedTo()
+            {
+
+                counters = 1,
+                mandatory = false,
+                buttonLabel = "Topics",
+                arraysNameObject = new List<string>() { "Issues" },
+                sortVariable = new List<string>() { "Name" },
+                sortBy = "alpha",
+                linkedTo = "IndividualStakeholder",
+                enableEditing = false
+            }));
+
+
             CommunicationsPage.Add(new KeyValuePair<string, LinkedTo>("Stakeholder",
                 new LinkedTo()
                 {
@@ -67,6 +263,22 @@ namespace Staketracker.Core.Models.LinkedTo
 
 
                 }));
+
+            CommunicationsPage.Add(new KeyValuePair<string, LinkedTo>("Team Member",
+              new LinkedTo()
+              {
+
+                  counters = 1,
+                  mandatory = false,
+                  buttonLabel = "Team members",
+                  arraysNameObject = "Team",
+                  sortVariable = new List<string>() { "LastName" },
+                  sortBy = "alpha",
+                  linkedTo = "Communications",
+                  enableEditing = true
+
+
+              }));
 
             ProjectTeamPage.Add(new KeyValuePair<string, LinkedTo>("Event",
                new LinkedTo()
@@ -147,6 +359,56 @@ namespace Staketracker.Core.Models.LinkedTo
 
 
            }));
+
+            IssuesPage.Add(new KeyValuePair<string, LinkedTo>("Individual",
+           new LinkedTo()
+           {
+
+               counters = 1,
+               mandatory = false,
+               buttonLabel = "Individuals",
+               arraysNameObject = "IndividualStakeholders",
+               sortVariable = new List<string>() { "LastName" },
+               sortBy = "alpha",
+               linkedTo = "Issue",
+               enableEditing = false
+
+
+           }));
+
+
+            IssuesPage.Add(new KeyValuePair<string, LinkedTo>("Group",
+           new LinkedTo()
+           {
+
+               counters = 1,
+               mandatory = false,
+               buttonLabel = "Groups",
+               arraysNameObject = "GroupedStakeholders",
+               sortVariable = new List<string>() { "GroupName" },
+               sortBy = "alpha",
+               linkedTo = "Issue",
+               enableEditing = false
+
+
+           }));
+
+
+            IssuesPage.Add(new KeyValuePair<string, LinkedTo>("LandParcel",
+         new LinkedTo()
+         {
+
+             counters = 1,
+             mandatory = false,
+             buttonLabel = "Land Parcels",
+             arraysNameObject = "LandParcelStakeholders",
+             sortVariable = new List<string>() { "LegalDescription" },
+             sortBy = "alpha",
+             linkedTo = "Issue",
+             enableEditing = false
+
+
+         }));
 
 
 
