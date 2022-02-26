@@ -36,14 +36,15 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
 
         private readonly IMvxNavigationService _navigationService;
         public IMvxCommand SearchCommand { get; }
+        Staketracker.Core.Models.LinkedTo.LinkedTo linkedObj;
 
         public CommunicationLinkedListViewModel(IMvxNavigationService navigationService)
         {
+
             this.PageTitle = AppRes.communication;
 
             _navigationService = navigationService;
 
-            this.SearchCommand = new MvxAsyncCommand(OnSearch);
             AddCommunicationCommand = new MvxCommand(OnCreateCommunication);
 
         }
@@ -59,7 +60,9 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
 
             this.IsBusy = true;
             this.authReply = parameter;
-            RunSafe(GetCommunication(authReply), true, "Loading Communication");
+            linkedObj = (Staketracker.Core.Models.LinkedTo.LinkedTo)authReply.attachment;
+            RunSafe(GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel);
+
             this.IsBusy = false;
 
         }
@@ -124,18 +127,6 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
             else
                 await PageDialog.AlertAsync("API Error While retrieving Communication", "API Response Error", "Ok");
 
-        }
-
-        public async Task Refresh()
-        {
-        }
-
-        private async Task OnSearch()
-        {
-            if (Device.Idiom != TargetIdiom.Phone)
-                return;
-
-            await this._navigationService.Navigate<SearchResultsViewModel>();
         }
     }
 }

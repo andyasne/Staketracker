@@ -31,7 +31,6 @@ namespace Staketracker.Core.ViewModels.Dashboard
             this.authReply = authReply;
             await this.FetchData();
         }
-        public ICommand OpenLinkPage { get; set; }
 
 
         public DashboardViewModel(IMvxNavigationService navigationService)
@@ -42,15 +41,10 @@ namespace Staketracker.Core.ViewModels.Dashboard
 
             this.PageTitle = AppRes.dashboard;
 
-            OpenLinkPage = new Command(OpenLinkPage_);
 
 
         }
-        private async void OpenLinkPage_()
-        {
-            await _navigationService.Navigate<CommunicationLinkedListViewModel, AuthReply>(
-                 authReply);
-        }
+
 
 
         private async Task SignOut()

@@ -75,8 +75,9 @@ namespace Staketracker.Core.ViewModels
         }
 
 
-        private async void OpenLinkPage_()
+        public async void OpenLinkPage_(object _value)
         {
+            authReply.attachment = _value;
             await navigationService.Navigate<CommunicationLinkedListViewModel, AuthReply>(
                  authReply);
         }
@@ -556,6 +557,7 @@ namespace Staketracker.Core.ViewModels
         {
             var validatableObj = new ValidatableObject<string>();
             validatableObj.LinkedControlType = "button";
+            validatableObj.Attachment = linked;
             _formContent.Add(linked.Key.ToString(), validatableObj);
             return validatableObj;
         }
