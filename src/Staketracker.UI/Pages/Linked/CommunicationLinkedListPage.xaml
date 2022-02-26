@@ -9,10 +9,8 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                       xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
                       xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
                       xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                   Title="{Binding LinkName}"
                       x:Class="Staketracker.UI.Pages.Linked.Communication.CommunicationLinkedListPage"
-                      
-                      Title="StakeTracker" Icon="Communication" ios:Page.UseSafeArea="true"
-                      
                       x:TypeArguments="viewModels:CommunicationLinkedListViewModel"
                       
                       >
@@ -41,10 +39,8 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                 </BoxView.CornerRadius>
             </BoxView>
             <StackLayout Grid.Row="0">
-            <Label Text="Link to Communication" VerticalOptions="Start"   BackgroundColor="{StaticResource EntryBackgroundColor}" 
-                   TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold"  >
-            </Label>
-            <telerikInput:RadEntry x:Name="search" FontSize="16"    VerticalOptions="Start" BackgroundColor="{StaticResource EntryBackgroundColor}" 
+              
+                <telerikInput:RadEntry x:Name="search" FontSize="16"    VerticalOptions="Start" BackgroundColor="{StaticResource EntryBackgroundColor}" 
                    TextColor="{StaticResource DarkTextColor}"  WatermarkText="Search" FontAttributes="Bold"  />
 
             </StackLayout>

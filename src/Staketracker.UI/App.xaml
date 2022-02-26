@@ -1,58 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application
-    x:Class="Staketracker.UI.App"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:forms="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.Core"
-      xmlns:telerikListView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls"
-                      xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
-                      xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
-                      xmlns:telerikBusyIndicator="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
-                      xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-                                 xmlns:behaviour="clr-namespace:Staketracker.Core.Helpers.Behaviours;assembly=Staketracker.Core"
-                      xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
- 
-    xmlns:phantomExtensions="clr-namespace:PhantomLib.Extensions;assembly=PhantomLib"
-    xmlns:phantomViews="clr-namespace:PhantomLib.Views;assembly=PhantomLib"
-    xmlns:converter="clr-namespace:Staketracker.Core.Helpers.Converters;assembly=Staketracker.Core"
-    xmlns:ui="clr-namespace:Staketracker.UI;assembly=Staketracker.UI">
+            x:Class="Staketracker.UI.App"
+            xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:forms="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.Core"
+      xmlns:viewModels="clr-namespace:Staketracker.Core.ViewModels;assembly=Staketracker.Core"       
+    xmlns:telerikListView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls"
+            xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
+            xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+            xmlns:telerikBusyIndicator="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+            xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:behaviour="clr-namespace:Staketracker.Core.Helpers.Behaviours;assembly=Staketracker.Core"
+            xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+            xmlns:phantomExtensions="clr-namespace:PhantomLib.Extensions;assembly=PhantomLib"
+            xmlns:phantomViews="clr-namespace:PhantomLib.Views;assembly=PhantomLib"
+            xmlns:converter="clr-namespace:Staketracker.Core.Helpers.Converters;assembly=Staketracker.Core"
+            xmlns:ui="clr-namespace:Staketracker.UI;assembly=Staketracker.UI">
+
     <Application.Resources>
-        <x:String x:Key="icon-th-large">&#xe800;</x:String>
-        <x:String x:Key="icon-menu">&#xe801;</x:String>
-        <x:String x:Key="icon-th-list">&#xe802;</x:String>
-        <x:String x:Key="icon-right-open-big">&#xe803;</x:String>
-        <x:String x:Key="icon-right-open">&#xe804;</x:String>
-        <x:String x:Key="icon-right-open-mini">&#xe805;</x:String>
-        <x:String x:Key="icon-cancel">&#xe806;</x:String>
-        <x:String x:Key="icon-cancel-1">&#xe807;</x:String>
-        <x:String x:Key="icon-cancel-2">&#xe808;</x:String>
-        <x:String x:Key="icon-cancel-3">&#xe809;</x:String>
-        <x:String x:Key="icon-cancel-4">&#xe80a;</x:String>
-        <x:String x:Key="icon-cancel-5">&#xe80b;</x:String>
-        <x:String x:Key="icon-cancel-6">&#xe80c;</x:String>
-        <x:String x:Key="icon-right-open-1">&#xf006;</x:String>
-        <x:String x:Key="icon-th-thumb">&#xf00a;</x:String>
-        <x:String x:Key="icon-ellipsis">&#xF141;</x:String>
-        <x:String x:Key="icon-ellipsis-vert">&#xF142;</x:String>
-        <x:String x:Key="icon-plus">&#xe80d;</x:String>
-        <x:String x:Key="icon-plus-1">&#xe80e;</x:String>
-        <x:String x:Key="icon-plus-2">&#xe80f;</x:String>
-        <x:String x:Key="icon-plus-3">&#xe810;</x:String>
-        <x:String x:Key="icon-plus-4">&#xe811;</x:String>
-        <x:String x:Key="icon-plus-5">&#xe812;</x:String>
-        <x:String x:Key="icon-pencil">&#xe813;</x:String>
-        <x:String x:Key="icon-pencil-1">&#xe814;</x:String>
-        <x:String x:Key="icon-pencil-2">&#xe815;</x:String>
-        <x:String x:Key="icon-pencil-3">&#xe816;</x:String>
-        <x:String x:Key="icon-pencil-4">&#xe817;</x:String>
-        <x:String x:Key="icon-left-open-big">&#xe818;</x:String>
-        <x:String x:Key="icon-left-open">&#xe819;</x:String>
-        <x:String x:Key="icon-left-open-1">&#xe81a;</x:String>
-        <x:String x:Key="icon-left-open-3">&#xe81b;</x:String>
-        <x:String x:Key="icon-left-open-4">&#xe81c;</x:String>
-        <Thickness x:Key="itemSpacing">0,2,0,1</Thickness>
-        <Color x:Key="TitleLabelColor">#bcbcbc</Color>
-        <Color x:Key="LineColor">#d7d7d7</Color>
+
         <ResourceDictionary xmlns:themes="clr-namespace:Staketracker.UI.Themes">
             <ResourceDictionary.MergedDictionaries>
                 <themes:DashboardStyles />
@@ -93,7 +59,6 @@
                                                        SearchMode="Contains"
                                                        SearchTextPath="Label"
                                                        IsDropDownClosedOnSelection="True"
-                                                      
                                                        IsEditable="False" 
                                                        SelectionMode="Single" >
                             <telerikInput:RadComboBox.DropDownHeight>
@@ -269,7 +234,8 @@
                 <ViewCell>
 
                     <StackLayout  Margin="0,2,0,2">
-                        <telerikInput:RadButton Text="{Binding Key}"  HorizontalContentAlignment="Start" Padding="10" Command="{Binding OpenLinkPage}"  Margin="0,2,0,5"     WidthRequest="200"   HorizontalOptions="StartAndExpand" 
+                        <telerikInput:RadButton Text="{Binding Key}"  HorizontalContentAlignment="Start" Padding="10"
+                                                  Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:BaseViewModel}}, Path=OpenLinkPage}" CommandParameter="{Binding Value.Attachment}"    Margin="0,2,0,5"     WidthRequest="200"   HorizontalOptions="StartAndExpand" 
                                             Style="{StaticResource ActionButtonStyle}" />
                     </StackLayout>
                 </ViewCell>
@@ -486,7 +452,8 @@
                 <ViewCell>
 
                     <StackLayout  Margin="0,2,0,2">
-                        <telerikInput:RadButton Text="{Binding Key}"  HorizontalContentAlignment="Start" Padding="10" Command="{Binding OpenLinkPage}"  Margin="0,2,0,5"     WidthRequest="200"   HorizontalOptions="StartAndExpand" 
+                        <telerikInput:RadButton Text="{Binding Key}"  HorizontalContentAlignment="Start" Padding="10" 
+                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:BaseViewModel}}, Path=OpenLinkPage}" CommandParameter="{Binding Value.Attachment}"    WidthRequest="200"   HorizontalOptions="StartAndExpand" 
                                             Style="{StaticResource ActionButtonStyle}" />
                     </StackLayout>
                 </ViewCell>
@@ -562,6 +529,42 @@
                 <phantomExtensions:Values />
                 <phantomExtensions:Views />
             </ResourceDictionary.MergedDictionaries>
+            <x:String x:Key="icon-th-large">&#xe800;</x:String>
+            <x:String x:Key="icon-menu">&#xe801;</x:String>
+            <x:String x:Key="icon-th-list">&#xe802;</x:String>
+            <x:String x:Key="icon-right-open-big">&#xe803;</x:String>
+            <x:String x:Key="icon-right-open">&#xe804;</x:String>
+            <x:String x:Key="icon-right-open-mini">&#xe805;</x:String>
+            <x:String x:Key="icon-cancel">&#xe806;</x:String>
+            <x:String x:Key="icon-cancel-1">&#xe807;</x:String>
+            <x:String x:Key="icon-cancel-2">&#xe808;</x:String>
+            <x:String x:Key="icon-cancel-3">&#xe809;</x:String>
+            <x:String x:Key="icon-cancel-4">&#xe80a;</x:String>
+            <x:String x:Key="icon-cancel-5">&#xe80b;</x:String>
+            <x:String x:Key="icon-cancel-6">&#xe80c;</x:String>
+            <x:String x:Key="icon-right-open-1">&#xf006;</x:String>
+            <x:String x:Key="icon-th-thumb">&#xf00a;</x:String>
+            <x:String x:Key="icon-ellipsis">&#xF141;</x:String>
+            <x:String x:Key="icon-ellipsis-vert">&#xF142;</x:String>
+            <x:String x:Key="icon-plus">&#xe80d;</x:String>
+            <x:String x:Key="icon-plus-1">&#xe80e;</x:String>
+            <x:String x:Key="icon-plus-2">&#xe80f;</x:String>
+            <x:String x:Key="icon-plus-3">&#xe810;</x:String>
+            <x:String x:Key="icon-plus-4">&#xe811;</x:String>
+            <x:String x:Key="icon-plus-5">&#xe812;</x:String>
+            <x:String x:Key="icon-pencil">&#xe813;</x:String>
+            <x:String x:Key="icon-pencil-1">&#xe814;</x:String>
+            <x:String x:Key="icon-pencil-2">&#xe815;</x:String>
+            <x:String x:Key="icon-pencil-3">&#xe816;</x:String>
+            <x:String x:Key="icon-pencil-4">&#xe817;</x:String>
+            <x:String x:Key="icon-left-open-big">&#xe818;</x:String>
+            <x:String x:Key="icon-left-open">&#xe819;</x:String>
+            <x:String x:Key="icon-left-open-1">&#xe81a;</x:String>
+            <x:String x:Key="icon-left-open-3">&#xe81b;</x:String>
+            <x:String x:Key="icon-left-open-4">&#xe81c;</x:String>
+            <Thickness x:Key="itemSpacing">0,2,0,1</Thickness>
+            <Color x:Key="TitleLabelColor">#bcbcbc</Color>
+            <Color x:Key="LineColor">#d7d7d7</Color>
 
             <Color x:Key="ErrorColor">#CD2B1D</Color>
             <Color x:Key="AccentColor">#D236DD</Color>

@@ -144,6 +144,7 @@ namespace Staketracker.Core.Validators
         public Boolean isSelectOne { get; set; }
         public string LinkedControlType { get; set; }
         public Boolean isSelectMultiple { get; set; }
+        public object Attachment { get; set; }
         public Boolean isDateType { get; set; }
         public Models.FormAndDropDownField.DropdownValue SelectedItem
         {

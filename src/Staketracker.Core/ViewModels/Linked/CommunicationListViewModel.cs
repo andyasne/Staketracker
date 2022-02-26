@@ -17,6 +17,8 @@ using Staketracker.Core.ViewModels.Events;
 using D = Staketracker.Core.Models.Events.D;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
 using Staketracker.Core.Res;
+using System;
+using Staketracker.Core.Models.LinkedTo;
 
 namespace Staketracker.Core.ViewModels.Linked.Communication
 {
@@ -34,17 +36,34 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
     {
         public IMvxCommand AddCommunicationCommand { get; }
 
+        private string linkName;
+
+        public string LinkName
+        {
+
+            get { return linkName; }
+            set
+            {
+                SetField(ref linkName, value);
+
+                linkName = value;
+
+            }
+        }
+
         private readonly IMvxNavigationService _navigationService;
         public IMvxCommand SearchCommand { get; }
+        Staketracker.Core.Models.LinkedTo.LinkedTo linkedObj;
 
         public CommunicationLinkedListViewModel(IMvxNavigationService navigationService)
         {
-            this.PageTitle = AppRes.communication;
+
 
             _navigationService = navigationService;
 
-            this.SearchCommand = new MvxAsyncCommand(OnSearch);
             AddCommunicationCommand = new MvxCommand(OnCreateCommunication);
+
+
 
         }
 
@@ -55,12 +74,31 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
 
         public override void Prepare(AuthReply parameter)
         {
-            base.Prepare();
 
             this.IsBusy = true;
             this.authReply = parameter;
-            RunSafe(GetCommunication(authReply), true, "Loading Communication");
+            KeyValuePair<String, LinkedTo> _linkedTo = (KeyValuePair<String, LinkedTo>)authReply.attachment;
+            linkedObj = _linkedTo.Value;
+
+
+
+            RunSafe(GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel);
+
             this.IsBusy = false;
+            base.Prepare();
+
+            this.PageTitle = linkedObj.buttonLabel;
+            this.LinkName = "Link to " + this.PageTitle;
+
+
+        }
+
+        public override async void ViewAppearing()
+        {
+            base.ViewAppearing();
+            this.PageTitle = linkedObj.buttonLabel;
+            this.LinkName = "Link to " + this.PageTitle;
+
 
         }
         private bool isSearchEmpty, isBusy;
@@ -103,6 +141,7 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
         }
 
         private CommunicationReply communicationReply;
+
         public CommunicationReply communicationReply_
         {
             get => communicationReply;
@@ -124,18 +163,6 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
             else
                 await PageDialog.AlertAsync("API Error While retrieving Communication", "API Response Error", "Ok");
 
-        }
-
-        public async Task Refresh()
-        {
-        }
-
-        private async Task OnSearch()
-        {
-            if (Device.Idiom != TargetIdiom.Phone)
-                return;
-
-            await this._navigationService.Navigate<SearchResultsViewModel>();
         }
     }
 }
