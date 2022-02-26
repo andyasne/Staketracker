@@ -143,8 +143,8 @@
     <Compile Update="Pages\Issues\IssuesListPage.xaml.cs">
       <DependentUpon>IssuesListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Pages\Linked\CommunicationLinkedListPage.xaml.cs">
-      <DependentUpon>CommunicationLinkedListPage.xaml</DependentUpon>
+    <Compile Update="Pages\Linked\LinkedListPage.xaml.cs">
+      <DependentUpon>LinkedListPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Pages\ProjectTeam\ProjectTeamPage.xaml.cs">
       <DependentUpon>ProjectTeamPage.xaml</DependentUpon>

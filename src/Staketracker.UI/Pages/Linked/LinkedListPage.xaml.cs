@@ -12,9 +12,9 @@ using Xamarin.Forms;
 
 namespace Staketracker.UI.Pages.Linked.Communication
 {
-    public partial class CommunicationLinkedListPage : MvxContentPage<CommunicationLinkedListViewModel>
+    public partial class LinkedListPage : MvxContentPage<LinkedListViewModel>
     {
-        public CommunicationLinkedListPage()
+        public LinkedListPage()
         {
 
             InitializeComponent();

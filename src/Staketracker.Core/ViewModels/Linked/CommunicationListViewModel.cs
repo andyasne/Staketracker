@@ -31,7 +31,7 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
         public string Status { get; set; }
     }
 
-    public class CommunicationLinkedListViewModel : BaseViewModel<AuthReply>
+    public class LinkedListViewModel : BaseViewModel<AuthReply>
 
     {
         public IMvxCommand AddCommunicationCommand { get; }
@@ -55,15 +55,11 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
         public IMvxCommand SearchCommand { get; }
         Staketracker.Core.Models.LinkedTo.LinkedTo linkedObj;
 
-        public CommunicationLinkedListViewModel(IMvxNavigationService navigationService)
+        public LinkedListViewModel(IMvxNavigationService navigationService)
         {
-
-
             _navigationService = navigationService;
 
             AddCommunicationCommand = new MvxCommand(OnCreateCommunication);
-
-
 
         }
 
