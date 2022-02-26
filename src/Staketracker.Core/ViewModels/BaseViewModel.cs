@@ -363,46 +363,47 @@ namespace Staketracker.Core.ViewModels
 
                     foreach (Field field in fieldsValue.d.Fields)
                         foreach (ValidatableObject<string> valObj in FormContent.Values)
-                            if (valObj.FormAndDropDownField.PrimaryKey == field.PrimaryKey)
-                                try
-                                {
-                                    if (valObj.FormAndDropDownField.InputType == "DropDownList")
+                            if (valObj.FormAndDropDownField != null)
+                                if (valObj.FormAndDropDownField.PrimaryKey == field.PrimaryKey)
+                                    try
                                     {
-                                        valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
-                                    }
-
-                                    else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
-                                    {
-                                        valObj.SelectedItem = field.DropdownValues.FirstOrDefault();
-
-                                    }
-
-                                    else if (valObj.FormAndDropDownField.InputType == "CheckBox")
-                                    {
-                                        if (field.Value != null && field.Value.ToString() == "on")
-                                            valObj.Value = true.ToString();
-                                        else
-                                            valObj.Value = false.ToString();
-                                    }
-                                    else if (valObj.FormAndDropDownField.InputType == "DateTime")
-                                    {
-                                        string dateval;
-                                        if (field.Value != null)
+                                        if (valObj.FormAndDropDownField.InputType == "DropDownList")
                                         {
-                                            dateval = field.Value.ToString();
-                                            valObj.SelectedDate = DateTime.Parse(dateval);
+                                            valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
                                         }
 
+                                        else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
+                                        {
+                                            valObj.SelectedItem = field.DropdownValues.FirstOrDefault();
+
+                                        }
+
+                                        else if (valObj.FormAndDropDownField.InputType == "CheckBox")
+                                        {
+                                            if (field.Value != null && field.Value.ToString() == "on")
+                                                valObj.Value = true.ToString();
+                                            else
+                                                valObj.Value = false.ToString();
+                                        }
+                                        else if (valObj.FormAndDropDownField.InputType == "DateTime")
+                                        {
+                                            string dateval;
+                                            if (field.Value != null)
+                                            {
+                                                dateval = field.Value.ToString();
+                                                valObj.SelectedDate = DateTime.Parse(dateval);
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            if (field.Value != null)
+                                                valObj.Value = field.Value.ToString();
+                                        }
                                     }
-                                    else
+                                    catch (Exception ex)
                                     {
-                                        if (field.Value != null)
-                                            valObj.Value = field.Value.ToString();
                                     }
-                                }
-                                catch (Exception ex)
-                                {
-                                }
 
                 }
                 else
