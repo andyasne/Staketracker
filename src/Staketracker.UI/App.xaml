@@ -255,7 +255,7 @@
 
 
 
-                            <Editor  Keyboard="Plain"  IsEnabled="False"  IsReadOnly="True" Text="{Binding  Value.Value, Mode=TwoWay }" AutoSize="TextChanges" MaxLength="180" 
+                            <Editor  Keyboard="Plain"    IsReadOnly="True" Text="{Binding  Value.Value, Mode=TwoWay }" AutoSize="TextChanges" MaxLength="180" 
                                  TextColor="{StaticResource DarkTextColor}" PlaceholderColor="{StaticResource LightBlueColor}"
                                  BackgroundColor="{StaticResource EntryBackgroundColor}" 
                                  Margin="0,0,0,4" 
