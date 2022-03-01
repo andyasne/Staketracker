@@ -69,14 +69,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
 
                                     </StackLayout>
 
-                                    <!--<Label Grid.Column="2"   VerticalOptions="Center" HorizontalOptions="Center" TextColor="Gray" Margin="0,0,40,0"
-                                            FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-right-open-big}">
-                                        <Label.IsVisible>
-                                            <OnIdiom x:TypeArguments="x:Boolean" Default="False">
-                                                <OnIdiom.Phone>True</OnIdiom.Phone>
-                                            </OnIdiom>
-                                        </Label.IsVisible>
-                                    </Label>-->
+
 
                                     <BoxView Grid.ColumnSpan="3" HeightRequest="1" VerticalOptions="End" BackgroundColor="#d7d7d7" />
                                 </Grid>

@@ -41,6 +41,8 @@ namespace Staketracker.Core.Models.LinkedTo
         public List<KeyValuePair<String, LinkedTo>> ProjectTeamPage = new List<KeyValuePair<String, LinkedTo>>();
         public List<KeyValuePair<String, LinkedTo>> EventsPage = new List<KeyValuePair<String, LinkedTo>>();
         public List<KeyValuePair<String, LinkedTo>> IssuesPage = new List<KeyValuePair<String, LinkedTo>>();
+
+
         public LinkedToConfig()
         {
 

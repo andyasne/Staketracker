@@ -31,14 +31,17 @@
 
                     <StackLayout   Margin="0,2,0,2">
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
+                        <Frame BorderColor="LightGray" HasShadow="False" Padding="3">
 
-                        <telerikInput:RadEntry    Text="{Binding  Value.Value, Mode=TwoWay }"  
-                             Style="{StaticResource LoginEntryStyle}">
-                            <telerikInput:RadEntry.Behaviors>
-                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding Value.IsValid}" />
-                            </telerikInput:RadEntry.Behaviors>
-                        </telerikInput:RadEntry>
 
+                            <Editor  Keyboard="Plain"    Text="{Binding  Value.Value, Mode=TwoWay }" AutoSize="TextChanges" MaxLength="180" 
+                                 TextColor="{StaticResource DarkTextColor}" PlaceholderColor="{StaticResource LightBlueColor}"
+                                 BackgroundColor="{StaticResource EntryBackgroundColor}" 
+                                 Margin="0,0,0,4" 
+                                 >
+
+                            </Editor>
+                        </Frame>
                         <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
                          Style="{StaticResource ErrorTextStyle}" />
@@ -248,13 +251,19 @@
 
                     <StackLayout   Margin="0,2,0,2">
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"   HorizontalTextAlignment="Start"  Margin="{StaticResource itemSpacing}" />
+                        <Frame BorderColor="LightGray" HasShadow="False" Padding="3">
 
-                        <telerikInput:RadEntry    Text="{Binding  Value.Value, Mode=TwoWay }"  IsReadOnly="True"
-                             Style="{StaticResource LoginEntryStyle}">
-                            <telerikInput:RadEntry.Behaviors>
-                                <behaviour:EntryLineValidationBehaviour IsValid="{Binding Value.IsValid}" />
-                            </telerikInput:RadEntry.Behaviors>
-                        </telerikInput:RadEntry>
+
+
+                            <Editor  Keyboard="Plain"  IsEnabled="False"  IsReadOnly="True" Text="{Binding  Value.Value, Mode=TwoWay }" AutoSize="TextChanges" MaxLength="180" 
+                                 TextColor="{StaticResource DarkTextColor}" PlaceholderColor="{StaticResource LightBlueColor}"
+                                 BackgroundColor="{StaticResource EntryBackgroundColor}" 
+                                 Margin="0,0,0,4" 
+                                 >
+
+                            </Editor>
+                        </Frame>
+
 
                         <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"

@@ -75,16 +75,9 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
             this.authReply = parameter;
             KeyValuePair<String, LinkedTo> _linkedTo = (KeyValuePair<String, LinkedTo>)authReply.attachment;
             linkedObj = _linkedTo.Value;
-
-
-
             RunSafe(GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel);
-
             this.IsBusy = false;
             base.Prepare();
-
-            this.PageTitle = linkedObj.buttonLabel;
-            this.LinkName = "Link to " + this.PageTitle;
 
 
         }
