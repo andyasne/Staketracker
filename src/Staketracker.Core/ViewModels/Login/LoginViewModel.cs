@@ -91,7 +91,7 @@ namespace Staketracker.Core.ViewModels.Login
             if (isDevelopmentMode)
             {
                 Username.Value = "ALEM";
-                Password.Value = "Sustainet0";
+                Password.Value = "Sustainet1";
             }
 
             IsSandboxChecked = false;
@@ -155,6 +155,7 @@ namespace Staketracker.Core.ViewModels.Login
                     }
 
                     bool Is2FEnabled = await GetIs2FEnabled(loginApiBody);
+                    Is2FEnabled = false;
 
                     CrossSettings.Current.AddOrUpdateValue("userId", authReply.d.userId);
                     CrossSettings.Current.AddOrUpdateValue("sessionId", authReply.d.sessionId);
