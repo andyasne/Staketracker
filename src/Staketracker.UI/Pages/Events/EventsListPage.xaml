@@ -46,22 +46,25 @@
                     <DataTemplate>
                         <telerikListView:ListViewTemplateCell>
                             <telerikListView:ListViewTemplateCell.View>
-                                <Grid >
+                                <Grid VerticalOptions="CenterAndExpand"  >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30" />
-
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <StackLayout  Grid.Column="1" Spacing="1" >
+                                    <StackLayout  Grid.Column="1" Spacing="1"  Grid.Row="0">
 
-                                        <Label Text="{Binding Name}" TextColor="Black"   VerticalOptions="Start" />
-                                        <Label Text="{Binding GetDateString}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
-                                        <Label Text="{Binding Type}"  VerticalOptions="Start"  TextColor="#757575" FontSize="Micro"/>
+                                        <Label Text="{Binding Name}" TextColor="Black"   />
+                                        <Label Text="{Binding GetDateString}"   TextColor="#757575" FontSize="Micro"/>
+                                        <Label Text="{Binding Type}"  TextColor="#757575" FontSize="Micro"/>
 
                                     </StackLayout>
 
-                                    <Label Grid.Column="2"   VerticalOptions="Center" HorizontalOptions="Center" TextColor="Gray" Margin="0,0,40,0"
+                                    <Label Grid.Column="2" Grid.Row="0"  VerticalOptions="Center" HorizontalOptions="Center" TextColor="Gray" Margin="0,0,40,0"
                                             FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-right-open-big}">
                                         <Label.IsVisible>
                                             <OnIdiom x:TypeArguments="x:Boolean" Default="False">
@@ -70,7 +73,7 @@
                                         </Label.IsVisible>
                                     </Label>
 
-                                    <BoxView Grid.ColumnSpan="3" HeightRequest="1" VerticalOptions="End" BackgroundColor="#d7d7d7" />
+                                    <BoxView Grid.ColumnSpan="3"  Margin="0,5,0,2"  Grid.Row="1" HeightRequest="1" VerticalOptions="End" BackgroundColor="#d7d7d7" />
                                 </Grid>
                             </telerikListView:ListViewTemplateCell.View>
                         </telerikListView:ListViewTemplateCell>
