@@ -145,16 +145,16 @@
     <value>Change Language</value>
   </data>
   <data name="event_" xml:space="preserve">
-    <value>Event</value>
+    <value>Events</value>
   </data>
   <data name="communication" xml:space="preserve">
-    <value>Communication</value>
+    <value>Communications</value>
   </data>
   <data name="stakeholder" xml:space="preserve">
-    <value>Stakeholder</value>
+    <value>Stakeholders</value>
   </data>
   <data name="project_team" xml:space="preserve">
-    <value>Project Team</value>
+    <value>Project Teams</value>
   </data>
   <data name="topics" xml:space="preserve">
     <value>Topics</value>

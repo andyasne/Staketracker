@@ -22,8 +22,6 @@ namespace Staketracker.Core.Models.LinkedTo
         public string contactAndInterestDetailArrayName { get; set; }
         public bool enableEditing { get; set; }
         public bool enableContactTypeSelection { get; set; }
-
-
         public bool enableLandInterestSelection { get; set; }
         public bool landParcelEnableContactSelection { get; set; }
         public bool groupEnableContactSelection { get; set; }
