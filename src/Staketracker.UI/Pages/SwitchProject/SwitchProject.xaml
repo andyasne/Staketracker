@@ -66,7 +66,7 @@
 
                     </telerikInput:RadComboBox>
 
-                    <telerikInput:RadButton Text= "{x:Static resx:AppRes.open}"   Grid.Row="0"  Grid.Column="0" Margin="0,200,0,20" Grid.ColumnSpan="4" WidthRequest="200"
+                    <telerikInput:RadButton Text= "Switch"   Grid.Row="0"  Grid.Column="0" Margin="0,200,0,20" Grid.ColumnSpan="4" WidthRequest="200"
                                            HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"
                                             Command="{Binding OpenProjectCommand}"
                                             Style="{StaticResource ActionButtonStyle}" />
