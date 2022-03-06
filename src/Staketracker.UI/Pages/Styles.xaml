@@ -26,13 +26,13 @@ xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assem
         <Setter Property="TextColor"
                 Value="{StaticResource MediumBlueColor}" />
         <Setter Property="FontSize"
-                Value="20" />
+                Value="15" />
         <Setter Property="FontAttributes"
                 Value="Bold" />
         <Setter Property="HorizontalTextAlignment"
                 Value="Center" />
         <Setter Property="Margin"
-                Value="0,20" />
+                Value="0,10" />
     </Style>
 
     <Style x:Key="NormalLabelStyle"
