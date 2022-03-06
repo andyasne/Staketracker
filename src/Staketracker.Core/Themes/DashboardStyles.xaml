@@ -19,7 +19,7 @@
     <telerikDataGrid:DataGridBorderStyle x:Key="rowStyle" BorderColor="#d7d7d7" BorderThickness="0,0,0,1" />
 
     <Style x:Key="TitleLabelStyle" TargetType="{x:Type Label}">
-        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="FontSize" Value="15" />
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="TextColor" Value="#757575" />
     </Style>
