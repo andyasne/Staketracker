@@ -126,31 +126,12 @@
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"    
                                 Margin="{StaticResource itemSpacing}" />
 
-                        <telerikInput:RadDateTimePicker SpinnerHeaderStyle="{StaticResource spinnerHeaderStyle}"
-                                SpinnerStyle="{StaticResource spinnerStyle}"
-                                SelectionHighlightStyle="{StaticResource selectionHighlightStyle}"
-                                 Date = "{Binding  Value.SelectedDate, Mode=TwoWay }"
-                                                          DefaultHighlightedDate= "{Binding  Value.DefaultHighlightedDate, Mode=TwoWay }"
-                                 DisplayStringFormat=""
-                                 SpinnerFormat="d" Margin="0" 
-                                 Placeholder="Select a Date" 
-                                AreSpinnerHeadersVisible="True"
-                                DisplayLabelStyle="{StaticResource displayLabelStyle}"
-                                PlaceholderLabelStyle="{StaticResource placeholderLabelStyle}"
-                                BorderColor="{StaticResource LightBlueColor}" Padding="4,1,4,1" 
-                                BackgroundColor="{StaticResource EntryBackgroundColor}" 
-                                CornerRadius="6"  BorderThickness="0.3" HeightRequest="45"  >
-                            <telerikInput:RadDateTimePicker.SelectorSettings>
-                                <telerikInput:PickerPopupSelectorSettings PopupOutsideBackgroundColor="#D9D9D9CC"
-                                                  PopupViewStyle="{StaticResource popupViewStyle}"
-                                                  HeaderStyle="{StaticResource headerStyle}"
-                                                  HeaderLabelText="Date Picker"
-                                                  HeaderLabelStyle="{StaticResource headerLabelStyle}"
-                                                  FooterStyle="{StaticResource footerStyle}"
-                                                  AcceptButtonStyle="{StaticResource acceptButtonStyle}"
-                                                  CancelButtonStyle="{StaticResource cancelButtonStyle}"/>
-                            </telerikInput:RadDateTimePicker.SelectorSettings>
-                        </telerikInput:RadDateTimePicker>
+
+                        <DatePicker  Format="MMMM dd yyyy" Date = "{Binding  Value.SelectedDate, Mode=TwoWay }"
+                                    date= "{Binding  Value.DefaultHighlightedDate, Mode=TwoWay }"
+                                    />
+
+
 
                         <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
@@ -350,32 +331,11 @@
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"    
                                 Margin="{StaticResource itemSpacing}" />
 
-                        <telerikInput:RadDateTimePicker SpinnerHeaderStyle="{StaticResource spinnerHeaderStyle}"
-                                SpinnerStyle="{StaticResource spinnerStyle}"
-                                SelectionHighlightStyle="{StaticResource selectionHighlightStyle}"
-                                 Date = "{Binding  Value.SelectedDate, Mode=TwoWay }"
-                                   DefaultHighlightedDate= "{Binding  Value.DefaultHighlightedDate, Mode=TwoWay }"
+
+                        <DatePicker  Format="MMMM dd yyyy" IsEnabled="False" Date = "{Binding  Value.SelectedDate, Mode=TwoWay }"
                                    
-                                 DisplayStringFormat=""
-                                 SpinnerFormat="d" Margin="0" 
-                                 Placeholder="Select a Date" 
-                                AreSpinnerHeadersVisible="True"
-                                DisplayLabelStyle="{StaticResource displayLabelStyle}"
-                                PlaceholderLabelStyle="{StaticResource placeholderLabelStyle}"
-                                BorderColor="{StaticResource LightBlueColor}" Padding="4,1,4,1" 
-                                BackgroundColor="{StaticResource EntryBackgroundColor}" 
-                                CornerRadius="6"  BorderThickness="0.3" HeightRequest="45"  >
-                            <telerikInput:RadDateTimePicker.SelectorSettings>
-                                <telerikInput:PickerPopupSelectorSettings PopupOutsideBackgroundColor="#D9D9D9CC"
-                                                  PopupViewStyle="{StaticResource popupViewStyle}"
-                                                  HeaderStyle="{StaticResource headerStyle}"
-                                                  HeaderLabelText="Date Picker"
-                                                  HeaderLabelStyle="{StaticResource headerLabelStyle}"
-                                                  FooterStyle="{StaticResource footerStyle}"
-                                                  AcceptButtonStyle="{StaticResource acceptButtonStyle}"
-                                                  CancelButtonStyle="{StaticResource cancelButtonStyle}"/>
-                            </telerikInput:RadDateTimePicker.SelectorSettings>
-                        </telerikInput:RadDateTimePicker>
+                                    />
+
 
                         <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
