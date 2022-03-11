@@ -507,32 +507,33 @@ namespace Staketracker.Core.ViewModels
 
                 bool linkedToLabel = false;
 
-                foreach (KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo> linked in linkedPage)
-                {
-                    ValidatableObject<string> validatableObj = new ValidatableObject<string>();
-                    Staketracker.Core.Models.LinkedTo.LinkedTo linkedTo = linked.Value;
-
-                    if (Mode == PresentationMode.Create || Mode == PresentationMode.Edit)
+                if (linkedPage != null)
+                    foreach (KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo> linked in linkedPage)
                     {
-                        if (linkedTo.enableEditing == true)
+                        ValidatableObject<string> validatableObj = new ValidatableObject<string>();
+                        Staketracker.Core.Models.LinkedTo.LinkedTo linkedTo = linked.Value;
+
+                        if (Mode == PresentationMode.Create || Mode == PresentationMode.Edit)
                         {
-                            AddLinkToControls(_formContent, ref linkedToLabel, linked, ref validatableObj);
+                            if (linkedTo.enableEditing == true)
+                            {
+                                AddLinkToControls(_formContent, ref linkedToLabel, linked, ref validatableObj);
 
+                            }
                         }
-                    }
-                    else
-                    {
-                        if (linkedTo.enableEditing == false)
+                        else
                         {
-                            AddLinkToControls(_formContent, ref linkedToLabel, linked, ref validatableObj);
+                            if (linkedTo.enableEditing == false)
+                            {
+                                AddLinkToControls(_formContent, ref linkedToLabel, linked, ref validatableObj);
 
 
+                            }
                         }
+
+
+
                     }
-
-
-
-                }
 
 
                 FormContent = _formContent;
