@@ -40,7 +40,7 @@ namespace Staketracker.UI.Pages.CommunicationList
 
 
             // this.ToolbarItems.Add(searchToolbarItem);
-            this.ToolbarItems.Add(filterToolbarItem);
+           // this.ToolbarItems.Add(filterToolbarItem);
         }
 
         private async void Handle_RefreshRequested(object sender, Telerik.XamarinForms.DataControls.ListView.PullToRefreshRequestedEventArgs e)

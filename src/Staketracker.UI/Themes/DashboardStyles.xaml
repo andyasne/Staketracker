@@ -29,6 +29,17 @@
         <Setter Property="TextColor" Value="#a1a1a1" />
     </Style>
 
+    <Style x:Key="PageSubtitleStyle" TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="Small" />
+        <Setter Property="TextColor" Value="#a1a1a1" />
+        <Setter Property="VerticalOptions" Value="Start" />
+        <Setter Property="BackgroundColor" Value="{StaticResource DarkBlueColor}"  />
+        <Setter Property="TextColor" Value="{StaticResource LightColor}"  />
+        <Setter Property="Padding" Value="100,-5,5,5" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
 
     <Style TargetType="{x:Type Label}" x:Key="FormSubtitleLabelStyle">
 
@@ -38,8 +49,7 @@
         </Setter>
         <Setter Property="Margin"
                 Value="0,1,0,1" />
-        <Setter Property="FontSize"
-                Value="Subtitle" />
+        <Setter Property="FontSize" Value="Subtitle" />
     </Style>
 
     <Style x:Key="FormEntryStyle"

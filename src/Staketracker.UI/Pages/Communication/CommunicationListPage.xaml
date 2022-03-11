@@ -40,9 +40,7 @@
                     </OnIdiom>
                 </BoxView.CornerRadius>
             </BoxView>
-            <Label Text="{Binding HeaderTitle}" VerticalOptions="Start"  BackgroundColor="{StaticResource EntryBackgroundColor}" 
-                   TextColor="{StaticResource DarkTextColor}"  Padding="5,5,5,5" FontSize="16" FontAttributes="Bold" Grid.Row="0">
-            </Label>
+            <Label Text="{Binding HeaderTitle}" Style="{StaticResource PageSubtitleStyle}"   Grid.Row="0" ></Label>
 
             <telerikDataControls:RadListView ItemsSource="{Binding communicationReply_.d, Mode=OneWay}" SelectionMode="Single"
                                                 IsPullToRefreshEnabled="true" Grid.Row="1"
