@@ -35,7 +35,7 @@
         <Setter Property="VerticalOptions" Value="Start" />
         <Setter Property="BackgroundColor" Value="{StaticResource DarkBlueColor}"  />
         <Setter Property="TextColor" Value="{StaticResource LightColor}"  />
-        <Setter Property="Padding" Value="100,-5,5,5" />
+        <Setter Property="Padding" Value="75,-5,5,3" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontAttributes" Value="Bold" />
     </Style>
