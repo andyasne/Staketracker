@@ -128,18 +128,18 @@
                     <telerikInput:RadButton Text="{x:Static resx:AppRes.sign_in}" Grid.Row="0"  Grid.Column="0" Margin="0,0,0,20" Grid.ColumnSpan="4" WidthRequest="200" HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"
                                             Command="{Binding AuthenticateUserCommand}"
                                             Style="{StaticResource ActionButtonStyle}" />
-                    <telerikInput:RadButton   HorizontalContentAlignment="Center"  HeightRequest="20"  VerticalContentAlignment="Center"  Text="{x:Static resx:AppRes.forgot_your_user_id}"   Grid.Row="1" Grid.Column="1"
+                    <telerikInput:RadButton   HorizontalContentAlignment="Center"  Margin="20,0,40,0"  HeightRequest="40" WidthRequest="20"   VerticalContentAlignment="Center"  Text="{x:Static resx:AppRes.forgot_your_user_id}"   Grid.Row="1" Grid.Column="1"
                                      Style="{StaticResource SecondaryActionButtonStyle}" Command="{Binding ForgetUserIdCommand}"
                                     FontAttributes="None" />
 
-                    <telerikInput:RadButton Text= "{x:Static resx:AppRes.forgot_your_password}"  HeightRequest="20"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="3"
+                    <telerikInput:RadButton Text= "{x:Static resx:AppRes.forgot_your_password}"  Margin="40,0,20,0"   HeightRequest="20"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="3"
                                      Style="{StaticResource SecondaryActionButtonStyle}"  Command="{Binding ForgetPasswordCommand}"
                                     FontAttributes="None" />
                 </Grid>
                 <Label  TextColor="{StaticResource DarkTextColor}"  VerticalTextAlignment="End"  VerticalOptions="End"  Text="(c) SustaiNet Software International Inc." HorizontalTextAlignment="Center"  HorizontalOptions="CenterAndExpand" />
                 <StackLayout Orientation="Horizontal" VerticalOptions="Start"  Margin="0,0,0,10">
                     <Label  TextColor="{StaticResource DarkTextColor}"     VerticalTextAlignment="Start" VerticalOptions="Start"  Text= "{x:Static resx:AppRes.all_rights_reserved}" HorizontalTextAlignment="End"  HorizontalOptions="EndAndExpand" />
-                    <Label  TextColor="{StaticResource LightBlueColor}"     VerticalTextAlignment="Start" VerticalOptions="Start"  Text="{x:Static resx:AppRes.privacy}"   HorizontalTextAlignment="Start"  HorizontalOptions="StartAndExpand" />
+                    <telerikInput:RadButton  Style="{StaticResource SecondaryActionButtonStyle}"  HeightRequest="20" Margin="0" HorizontalContentAlignment="Start"  TextColor="{StaticResource LightBlueColor}"  VerticalOptions="Start"  Text="Privacy Policy"  Command="{Binding OnPrivacyCommand, Mode=OneWay}"  HorizontalOptions="StartAndExpand" />
                 </StackLayout>
 
             </StackLayout>
