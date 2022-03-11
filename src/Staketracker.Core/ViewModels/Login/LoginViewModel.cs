@@ -18,6 +18,7 @@ namespace Staketracker.Core.ViewModels.Login
     using System.Net.Http;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using Xamarin.Essentials;
     using Xamarin.Forms;
     public class City
     {
@@ -76,6 +77,7 @@ namespace Staketracker.Core.ViewModels.Login
         }
         public ICommand AuthenticateUserCommand { get; set; }
         public ICommand OnDevelopmentCommand { get; set; }
+        public ICommand OnPrivacyCommand { get; set; }
         public ICommand ForgetUserIdCommand { get; set; }
         public ICommand ForgetPasswordCommand { get; set; }
 
@@ -101,12 +103,17 @@ namespace Staketracker.Core.ViewModels.Login
             {
                 OnDevelopment().Start();
             });
-
+            OnPrivacyCommand = new Command(OpenPrivacy);
             ForgetPasswordCommand = new Command(OpenForgetPassword);
             ForgetUserIdCommand = new Command(OpenForgetUserId);
 
         }
+        private async void OpenPrivacy()
+        {
+            Uri uri = new Uri("https://www.sustainet.com/privacy-policy/");
+            await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
 
+        }
         private async void OpenForgetUserId()
         {
 
