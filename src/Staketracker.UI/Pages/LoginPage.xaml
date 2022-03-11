@@ -101,7 +101,7 @@
                         Style="{StaticResource ErrorTextStyle}" />
 
 
-                <StackLayout Orientation="Horizontal"  Margin="0,20,0,30">
+                <StackLayout Orientation="Horizontal"  IsVisible="false" Margin="0,20,0,30">
                     <telerikPrimitives:RadCheckBox x:Name="rememberMe" Style="{StaticResource checkBoxButtonStyle}" />
                     <Label Text="{x:Static resx:AppRes.remember_me}"  Style="{StaticResource NormalLabelStyle}" />
 
