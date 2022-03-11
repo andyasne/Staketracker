@@ -13,7 +13,7 @@ using Staketracker.Core.Models.ApiRequestBody;
 using Staketracker.Core.Models.Events;
 using Staketracker.Core.Res;
 using Xamarin.Forms;
-
+using System.Linq;
 
 using D = Staketracker.Core.Models.Events.D;
 using PresentationMode = Staketracker.Core.Models.PresentationMode;
@@ -80,7 +80,7 @@ namespace Staketracker.Core.ViewModels.ProjectTeam
         public ProjectTeamReply projectTeamList
         {
             get => _projectTeamList;
-            private set => SetField(ref _projectTeamList, value);
+            set => SetField(ref _projectTeamList, value);
         }
         internal async Task GetProjectList(AuthReply authReply)
         {
@@ -90,12 +90,14 @@ namespace Staketracker.Core.ViewModels.ProjectTeam
             body.userId = authReply.d.userId;
 
             var apiReq = new jsonTextObj(body);
-            HttpResponseMessage stakeholders = await ApiManager.GetProjectTeam(apiReq, authReply.d.sessionId);
+            HttpResponseMessage projectTeamListRespMessage = await ApiManager.GetProjectTeam(apiReq, authReply.d.sessionId);
 
-            if (stakeholders.IsSuccessStatusCode)
+            if (projectTeamListRespMessage.IsSuccessStatusCode)
             {
-                var response = await stakeholders.Content.ReadAsStringAsync();
-                projectTeamList = await Task.Run(() => JsonConvert.DeserializeObject<ProjectTeamReply>(response));
+                var response = await projectTeamListRespMessage.Content.ReadAsStringAsync();
+                ProjectTeamReply _projectTeamList = await Task.Run(() => JsonConvert.DeserializeObject<ProjectTeamReply>(response));
+                _projectTeamList.d.Sort((x, y) => { return string.Compare(x.FullName, y.FullName); });
+                projectTeamList = _projectTeamList;
             }
             else
                 await PageDialog.AlertAsync("API Error While retrieving", "API Response Error", "Ok");

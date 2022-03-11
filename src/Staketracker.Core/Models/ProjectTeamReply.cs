@@ -26,7 +26,7 @@ namespace Staketracker.Core.Models.ProjectTeam
 
     public class ProjectTeamReply
     {
-        public IList<D> d { get; set; }
+        public List<D> d { get; set; }
 
     }
 
