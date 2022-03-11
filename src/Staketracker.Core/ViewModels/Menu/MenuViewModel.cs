@@ -17,6 +17,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Staketracker.Core.ViewModels.Menu
@@ -47,12 +48,8 @@ namespace Staketracker.Core.ViewModels.Menu
 
             SettingsCommand = new Command(OpenSettingsPage);
 
-            HelpCommand = new Command(() =>
-            {
-                OnDevelopment().Start();
+            HelpCommand = new Command(onHelpCommand);
 
-
-            });
             SignOutCommand = new Command(SignOut);
 
 
@@ -71,6 +68,16 @@ namespace Staketracker.Core.ViewModels.Menu
             hideMainMenu();
 
         }
+
+        private async void onHelpCommand()
+        {
+
+            Uri uri = new Uri("https://staketracker.zendesk.com");
+            await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+            hideMainMenu();
+
+        }
+
         private async void OpenIssues()
         {
 
