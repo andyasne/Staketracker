@@ -60,9 +60,14 @@ namespace Staketracker.Core.ViewModels.CommunicationList
             this.IsBusy = true;
             this.authReply = parameter;
             //this.Mode = parameter.Mode;
-            RunSafe(GetCommunication(authReply), true, "Loading Communication");
+
             this.IsBusy = false;
 
+        }
+
+        public override void ViewAppearing()
+        {
+            RunSafe(GetCommunication(authReply), true, "Loading Communication");
         }
         private bool isSearchEmpty, isBusy;
         public bool IsBusy

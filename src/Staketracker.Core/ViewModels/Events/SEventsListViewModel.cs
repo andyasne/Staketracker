@@ -89,6 +89,11 @@ namespace Staketracker.Core.ViewModels.Events
         public IMvxCommand SearchCommand { get; }
 
         public IMvxCommand AddEventsCommand { get; }
+        public override void ViewAppearing()
+        {
+            RunSafe(GetEvents(authReply), true, "Loading Events");
+        }
+
 
         public ObservableCollection<SEvent> Events
         {
@@ -156,11 +161,6 @@ namespace Staketracker.Core.ViewModels.Events
 
         public override void Prepare(AuthReply authReply) => this.authReply = authReply;
 
-        public override Task Initialize()
-        {
-            return RunSafe(GetEvents(authReply), true, "Loading Events");
-
-        }
 
         private EventsReply eventsReply;
         public EventsReply EventsReply_
