@@ -68,4 +68,25 @@
     <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">#FF4081</item>
     </style>
+
+    <style name="MainTheme" parent="MainTheme.Base">
+        <item name="android:datePickerDialogTheme">@style/CustomDatePickerDialog</item>
+    </style>
+
+    <style name="CustomDatePickerDialog" parent="ThemeOverlay.AppCompat.Dialog">
+        <!--header background-->
+        <item name="colorAccent">#009933</item>
+        <!--header textcolor-->
+        <item name="android:textColorPrimaryInverse">#ff9900</item>
+        <!--body background-->
+        <item name="android:windowBackground">#000099</item>
+        <!--selected day-->
+        <item name="android:colorControlActivated">#ff8000</item>
+        <!--days of the month-->
+        <item name="android:textColorPrimary">#ffff00</item>
+        <!--days of the week-->
+        <item name="android:textColorSecondary">#ff0066</item>
+        <!--cancel&ok-->
+        <item name="android:textColor">#00ffff</item>
+    </style>
 </resources>
