@@ -38,6 +38,8 @@
                                                      SearchTextPath="name"
                                                      IsDropDownClosedOnSelection="True"
                                                      DisplayMemberPath="name" 
+                                         SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+
                                                      SelectedItem="{Binding SelectedBusinessUnit, Mode=TwoWay}"
                                                      DropDownHeight="200"
                                                      IsEditable="False"

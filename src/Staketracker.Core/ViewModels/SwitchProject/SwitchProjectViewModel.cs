@@ -109,6 +109,8 @@ namespace Staketracker.Core.ViewModels.SwitchProject
                 if (this.selectedIndex != value)
                 {
                     this.selectedIndex = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(selectedIndex)));
+
 
                 }
             }
@@ -164,6 +166,10 @@ namespace Staketracker.Core.ViewModels.SwitchProject
 
             SwitchProject(authReply);
 
+        }
+        public override void ViewAppearing()
+        {
+            this.SelectedIndex = 1;
         }
 
 
