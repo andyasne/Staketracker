@@ -165,6 +165,10 @@ namespace Staketracker.Core.ViewModels.SwitchProject
             SwitchProject(authReply);
 
         }
+        public override void ViewAppearing()
+        {
+            this.SelectedIndex = 2;
+        }
 
 
         internal async Task GetProjectList(AuthReply authReply)
