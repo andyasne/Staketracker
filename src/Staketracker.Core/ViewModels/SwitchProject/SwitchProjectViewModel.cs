@@ -51,7 +51,7 @@ namespace Staketracker.Core.ViewModels.SwitchProject
 
         }
 
-        public Project selectedProject { get; set; }
+        private Project selectedProject;
 
         public Project SelectedProject
         {
@@ -63,13 +63,12 @@ namespace Staketracker.Core.ViewModels.SwitchProject
             {
                 if (this.selectedProject != value)
                 {
-                    this.selectedProject = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(selectedProject)));
 
+                    SetField(ref selectedProject, value);
                 }
             }
         }
-        public BusinessUnit selectedBusinessUnit;
+        private BusinessUnit selectedBusinessUnit;
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
@@ -85,36 +84,20 @@ namespace Staketracker.Core.ViewModels.SwitchProject
             {
                 if (this.selectedBusinessUnit != value)
                 {
-                    this.selectedBusinessUnit = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(selectedBusinessUnit)));
+
 
                     Project = new ObservableCollection<Project>();
                     foreach (Project proj in value.projects)
                     {
                         Project.Add(proj);
                     }
-
-                }
-            }
-        }
-        private int selectedIndex;
-        public int SelectedIndex
-        {
-            get
-            {
-                return this.selectedIndex;
-            }
-            set
-            {
-                if (this.selectedIndex != value)
-                {
-                    this.selectedIndex = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(selectedIndex)));
+                    SetField(ref selectedBusinessUnit, value);
 
 
                 }
             }
         }
+
         public String DomainSelected { get; set; }
 
         public ICommand OpenProjectCommand { get; set; }
@@ -128,8 +111,8 @@ namespace Staketracker.Core.ViewModels.SwitchProject
 
         private void AssignDefault()
         {
-            string selectedProjectId = CrossSettings.Current.GetValueOrDefault("SelectedProjectId", "");
-            string businessUnitName = CrossSettings.Current.GetValueOrDefault("BusinessUnitName", "");
+            string selectedProjectId = CrossSettings.Current.GetValueOrDefault("SelectedProjectId_" + authReply.d.loginName, "");
+            string businessUnitName = CrossSettings.Current.GetValueOrDefault("BusinessUnitName_" + authReply.d.loginName, "");
 
             if (businessUnitName != "")
             {
@@ -162,17 +145,11 @@ namespace Staketracker.Core.ViewModels.SwitchProject
             CrossSettings.Current.AddOrUpdateValue("ProjectName_" + authReply.d.loginName, SelectedProject.name);
             CrossSettings.Current.AddOrUpdateValue("BusinessUnitName_" + authReply.d.loginName, SelectedBusinessUnit.name);
             CrossSettings.Current.AddOrUpdateValue("SelectedProjectId_" + authReply.d.loginName, SelectedProject.projectId.ToString());
-            SetField(ref domainSelected, DomainSelected);
 
             SwitchProject(authReply);
 
         }
-        public override void ViewAppearing()
-        {
-            this.SelectedIndex = 1;
-        }
-
-
+      
         internal async Task GetProjectList(AuthReply authReply)
         {
 
@@ -193,7 +170,6 @@ namespace Staketracker.Core.ViewModels.SwitchProject
                 }
                 AssignDefault();
 
-                //  SelectedIndex = 0;
 
             }
             else

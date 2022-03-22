@@ -29,7 +29,7 @@
                 <StackLayout Orientation="Vertical" Padding="30,0,30,0" VerticalOptions="CenterAndExpand" Spacing="1">
                     <Label  TextColor="{StaticResource DarkBlueColor}"   Style="{StaticResource TitleLabelStyle}"    VerticalTextAlignment="Start" VerticalOptions="Start"  Text="{x:Static resx:AppRes.language}"   HorizontalTextAlignment="End"  HorizontalOptions="StartAndExpand" />
                     <Label    Style="{StaticResource SubtitleLabelStyle}"     VerticalTextAlignment="Start" VerticalOptions="Start"  Text="{x:Static resx:AppRes.default_interface_language}"  HorizontalTextAlignment="End"  HorizontalOptions="StartAndExpand" />
-                    <!--SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"-->
+
                     <telerikInput:RadComboBox
                         ItemsSource="{Binding Languages}" 
                           DisplayMemberPath="Name"

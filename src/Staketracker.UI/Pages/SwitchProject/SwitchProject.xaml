@@ -37,10 +37,8 @@
                                                      ItemsSource="{Binding BusinessUnit,Mode=TwoWay}"
                                                      SearchTextPath="name"
                                                      IsDropDownClosedOnSelection="True"
-                                                     DisplayMemberPath="name" 
-                                         SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
-
-                                                     SelectedItem="{Binding SelectedBusinessUnit, Mode=TwoWay}"
+                                                     DisplayMemberPath="name"  
+                                                     SelectedItem="{Binding Source={RelativeSource AncestorType={x:Type viewModels:SwitchProjectViewModel}}, Path=SelectedBusinessUnit, Mode=TwoWay}" 
                                                      DropDownHeight="200"
                                                      IsEditable="False"
                                                      SelectionMode="Single" >
@@ -60,7 +58,8 @@
                                                      SearchTextPath="name"
                                                     ItemsSource="{Binding Project}"
                                                     DisplayMemberPath="name"
-                                                    SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
+                                                    SelectedItem="{Binding Source={RelativeSource AncestorType={x:Type viewModels:SwitchProjectViewModel}}, Path=SelectedProject, Mode=TwoWay}" 
+                                                  
                                                     IsDropDownClosedOnSelection="True"
                                                      DropDownHeight="200"
                                                      IsEditable="False"
