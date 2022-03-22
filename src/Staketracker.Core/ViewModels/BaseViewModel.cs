@@ -417,13 +417,15 @@ namespace Staketracker.Core.ViewModels
 
             }
         }
+        Dictionary<string, ValidatableObject<string>> _formContent = new Dictionary<string, ValidatableObject<string>>();
+
         public async Task GetFormUIControls(AuthReply authReply, string type)
         {
 
             FormFieldBody formFieldBody = new FormFieldBody(authReply, type);
+            _formContent = new Dictionary<string, ValidatableObject<string>>();
 
             HttpResponseMessage events = await ApiManager.GetFormAndDropDownFieldValues(formFieldBody, authReply.d.sessionId);
-            Dictionary<string, ValidatableObject<string>> _formContent = new Dictionary<string, ValidatableObject<string>>();
 
             if (events.IsSuccessStatusCode)
             {
@@ -531,13 +533,10 @@ namespace Staketracker.Core.ViewModels
                             }
                         }
 
-
-
                     }
 
 
-                FormContent = _formContent;
-
+                MovveConfidentialRecordToTop();
 
             }
             else
@@ -547,6 +546,15 @@ namespace Staketracker.Core.ViewModels
             }
         }
 
+        private async Task MovveConfidentialRecordToTop()
+        {
+            KeyValuePair<string, ValidatableObject<string>> confidentialRecord = _formContent.Where(x => x.Key.StartsWith("32948")).FirstOrDefault();
+            _formContent.Remove(confidentialRecord.Key);
+            List<KeyValuePair<string, ValidatableObject<string>>> lst = _formContent.ToList<KeyValuePair<string, ValidatableObject<string>>>();
+            lst.Insert(0, confidentialRecord);
+            FormContent = lst.ToDictionary(x => x.Key, x => x.Value);
+
+        }
         private void AddLinkToControls(Dictionary<string, ValidatableObject<string>> _formContent, ref bool linkedToLabel, KeyValuePair<string, Models.LinkedTo.LinkedTo> linked, ref ValidatableObject<string> validatableObj)
         {
             AddLinkToLabel(_formContent, ref linkedToLabel, ref validatableObj);

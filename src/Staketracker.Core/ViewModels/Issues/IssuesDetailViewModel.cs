@@ -13,6 +13,9 @@ using Staketracker.Core.ViewModels;
 using Staketracker.Core.ViewModels.Issues;
 using Staketracker.Core.Res;
 using Staketracker.Core.Models.Issues;
+using System.Linq;
+using System.Collections.Generic;
+using Staketracker.Core.Validators;
 
 namespace Staketracker.Core.ViewModels.Issues
 {
@@ -56,6 +59,8 @@ namespace Staketracker.Core.ViewModels.Issues
             RunSafe(GetFormUIControls(authReply, FormType.Issuess), true, "Building Form Controls");
             UpdateTitle();
         }
+
+
 
         private async Task NavigateToList()
         {
