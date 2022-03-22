@@ -32,14 +32,26 @@ namespace Staketracker.Core.ViewModels.Language
         private AuthReply authReply;
         internal readonly IMvxNavigationService _navigationService;
 
+        public Language selectedLanguage;
+        public Language SelectedLanguage
+        {
+            get { return selectedLanguage; }
+            set
+            {
+                if (this.selectedLanguage != value)
+                {
+                    SetField(ref selectedLanguage, value);
 
+                }
+            }
+        }
         public ValidatableObject<string> Email { get; set; } = new ValidatableObject<string>();
 
         public ICommand ChangeLanguage { get; set; }
 
         public ICommand SubmitForgetPasswordCommand { get; set; }
         public ObservableCollection<Language> Languages { get; set; }
-        public Language SelectedLanguage { get; set; }
+
 
 
         public LanguageViewModel(IMvxNavigationService navigationService)
@@ -57,7 +69,7 @@ namespace Staketracker.Core.ViewModels.Language
             new Language { Name = "Amharic", Abr = "am"}
 
             };
-            string savedDefaultLang = CrossSettings.Current.GetValueOrDefault("DefaultLanguage", "");
+            string savedDefaultLang = CrossSettings.Current.GetValueOrDefault("DefaultLanguage", "en");
 
             foreach (Language lang in Languages)
             {
