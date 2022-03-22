@@ -549,10 +549,17 @@ namespace Staketracker.Core.ViewModels
         private async Task MovveConfidentialRecordToTop()
         {
             KeyValuePair<string, ValidatableObject<string>> confidentialRecord = _formContent.Where(x => x.Key.StartsWith("32948")).FirstOrDefault();
-            _formContent.Remove(confidentialRecord.Key);
-            List<KeyValuePair<string, ValidatableObject<string>>> lst = _formContent.ToList<KeyValuePair<string, ValidatableObject<string>>>();
-            lst.Insert(0, confidentialRecord);
-            FormContent = lst.ToDictionary(x => x.Key, x => x.Value);
+            if (confidentialRecord.Key != null)
+            {
+                _formContent.Remove(confidentialRecord.Key);
+                List<KeyValuePair<string, ValidatableObject<string>>> lst = _formContent.ToList<KeyValuePair<string, ValidatableObject<string>>>();
+                lst.Insert(0, confidentialRecord);
+                FormContent = lst.ToDictionary(x => x.Key, x => x.Value);
+            }
+            else
+            {
+                FormContent = _formContent;
+            }
 
         }
         private void AddLinkToControls(Dictionary<string, ValidatableObject<string>> _formContent, ref bool linkedToLabel, KeyValuePair<string, Models.LinkedTo.LinkedTo> linked, ref ValidatableObject<string> validatableObj)
