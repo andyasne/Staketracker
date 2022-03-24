@@ -225,20 +225,20 @@
                 <ViewCell >
 
                     <StackLayout   Margin="0,2,0,2">
-                        <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"   HorizontalTextAlignment="Start"  Margin="{StaticResource itemSpacing}" />
-                        <Frame BorderColor="LightGray" HasShadow="False" Padding="3">
+
+                        <Frame BorderColor="LightGray" HasShadow="False" Padding="3" CornerRadius="5">
 
 
-
-                            <Editor  Keyboard="Plain"    IsReadOnly="True" Text="{Binding  Value.Value, Mode=TwoWay }" AutoSize="TextChanges" MaxLength="180" 
-                                 TextColor="{StaticResource DarkTextColor}" PlaceholderColor="{StaticResource LightBlueColor}"
-                                 BackgroundColor="{StaticResource EntryBackgroundColor}" 
-                                 Margin="0,0,0,4" 
+                            <Label  Text="{Binding  Value.Value, Mode=TwoWay }"   LineBreakMode="WordWrap" 
+                                 TextColor="LightSlateGray"  HeightRequest="40"  MaxLines="4" LineHeight="140"
+                                 BackgroundColor="{StaticResource EntryBackgroundColor}"  VerticalOptions="Center" VerticalTextAlignment="Center"
+                                 FontSize="Subtitle"
+ 
                                  >
 
-                            </Editor>
-                        </Frame>
 
+                            </Label>
+                        </Frame>
 
                         <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
@@ -325,12 +325,18 @@
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"    
                                 Margin="{StaticResource itemSpacing}" />
 
-
-                        <DatePicker  Format="MMMM dd yyyy" IsEnabled="False" Date = "{Binding  Value.SelectedDate}"
-                                   
-                                    />
+                        <Frame BorderColor="LightGray" HasShadow="False" Padding="3" CornerRadius="5">
 
 
+                            <Label  Text="{Binding  Value.SelectedDateToString, Mode=TwoWay }"  LineBreakMode="WordWrap" 
+                                 TextColor="LightSlateGray"  HeightRequest="40" MaxLines="4" LineHeight="40"
+                                 BackgroundColor="{StaticResource EntryBackgroundColor}"  VerticalOptions="Center" VerticalTextAlignment="Center"
+                                 FontSize="Subtitle" 
+                                 >
+
+
+                            </Label>
+                        </Frame>
                         <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
                          Style="{StaticResource ErrorTextStyle}" />
@@ -344,7 +350,7 @@
                         <StackLayout Orientation="Horizontal">
 
                             <telerikPrimitives:RadCheckBox Style="{StaticResource checkBoxButtonStyle}" IsChecked="{Binding  Value.Value, Mode=TwoWay }"  IsEnabled="False"  />
-                            <Label Text="{Binding  Key, Mode=TwoWay }"/>
+
                         </StackLayout>
                         <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
