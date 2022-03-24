@@ -112,9 +112,24 @@ namespace Staketracker.Core.Validators
                     SetField(ref selectedDate, value);
 
                     OnPropertyChanged("selectedDate");
+                    OnPropertyChanged("SelectedDateToString");
 
 
                 }
+            }
+        }
+
+        public String SelectedDateToString
+        {
+            set { }
+            get
+            {
+                if (selectedDate != null)
+                {
+                    return selectedDate.Value.ToString("MMMM dd yyyy");
+                }
+                else
+                    return "";
             }
         }
 
