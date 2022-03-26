@@ -156,7 +156,7 @@
 
 
                         <telerikInput:RadComboBox      DisplayMemberPath="Label" 
-                                                       SelectedItems="{Binding Value.SelectedItems , Mode=TwoWay}"
+                                                      SelectedItems="{Binding Source={RelativeSource AncestorType={x:Type viewModels:BaseViewModel}}, Path=SelectedItems, Mode=TwoWay}" 
                                                        ItemsSource="{ Binding Value.DropdownValues , Mode=TwoWay}"  
                                                        Style="{StaticResource ComboEntryStyle}" 
                                                        SearchMode="Contains"
@@ -213,8 +213,9 @@
 
                     <StackLayout  Margin="0,2,0,2">
                         <telerikInput:RadButton Text="{Binding Key}"  HorizontalContentAlignment="Start" Padding="10"
-                                                  Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:BaseViewModel}}, Path=OpenLinkPage}" CommandParameter="{Binding Value.Attachment}"    Margin="0,2,0,5"     WidthRequest="200"   HorizontalOptions="StartAndExpand" 
-                                            Style="{StaticResource ActionButtonStyle}" />
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:BaseViewModel}}, Path=OpenLinkPage}" CommandParameter="{Binding Value.Attachment}"    Margin="0,2,0,5"     WidthRequest="200"   HorizontalOptions="StartAndExpand" 
+              
+                                                Style="{StaticResource ActionButtonStyle}" />
                     </StackLayout>
                 </ViewCell>
 
@@ -366,7 +367,7 @@
 
 
                         <telerikInput:RadComboBox      DisplayMemberPath="Label"  IsEditable="False"
-                                                       SelectedItems="{Binding Value.SelectedItems , Mode=TwoWay}"
+                                                       SelectedItems="{Binding Source={RelativeSource AncestorType={x:Type viewModels:BaseViewModel}}, Path=SelectedItems, Mode=TwoWay}" 
                                                        ItemsSource="{ Binding Value.DropdownValues }"  
                                                        Style="{StaticResource ComboEntryStyle}" 
                                                        SearchMode="Contains"
@@ -434,7 +435,7 @@
                 DropDownListTemplate="{StaticResource DropDownListTemplate}"
                 MultiLineTemplate="{StaticResource MultiLineTemplate}" 
                 DateTimeTemplate="{StaticResource DateTimeTemplate}" 
-                ListBoxMultiTemplate="{StaticResource DropDownListTemplate}" 
+                ListBoxMultiTemplate="{StaticResource ListBoxMultiTemplate}" 
                 CheckBoxTemplate="{StaticResource CheckBoxTemplate}"
                 LinkedToLabelTemplate="{StaticResource LinkedToLabelTemplate}"
                 LinkedToTemplate="{StaticResource LinkedToTemplate}"
