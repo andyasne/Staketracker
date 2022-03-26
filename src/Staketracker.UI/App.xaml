@@ -156,7 +156,7 @@
 
 
                         <telerikInput:RadComboBox      DisplayMemberPath="Label" 
-                                                       SelectedItems="{Binding Value.SelectedItems , Mode=TwoWay}"
+                                                      SelectedItems="{Binding Source={RelativeSource AncestorType={x:Type viewModels:BaseViewModel}}, Path=SelectedItems, Mode=TwoWay}" 
                                                        ItemsSource="{ Binding Value.DropdownValues , Mode=TwoWay}"  
                                                        Style="{StaticResource ComboEntryStyle}" 
                                                        SearchMode="Contains"
@@ -213,8 +213,9 @@
 
                     <StackLayout  Margin="0,2,0,2">
                         <telerikInput:RadButton Text="{Binding Key}"  HorizontalContentAlignment="Start" Padding="10"
-                                                  Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:BaseViewModel}}, Path=OpenLinkPage}" CommandParameter="{Binding Value.Attachment}"    Margin="0,2,0,5"     WidthRequest="200"   HorizontalOptions="StartAndExpand" 
-                                            Style="{StaticResource ActionButtonStyle}" />
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:BaseViewModel}}, Path=OpenLinkPage}" CommandParameter="{Binding Value.Attachment}"    Margin="0,2,0,5"     WidthRequest="200"   HorizontalOptions="StartAndExpand" 
+              
+                                                Style="{StaticResource ActionButtonStyle}" />
                     </StackLayout>
                 </ViewCell>
 
@@ -225,17 +226,13 @@
                 <ViewCell >
 
                     <StackLayout   Margin="0,2,0,2">
+                        <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"     Margin="{StaticResource itemSpacing}" />
 
                         <Frame BorderColor="LightGray" HasShadow="False" Padding="3" CornerRadius="5">
-
-
                             <Label  Text="{Binding  Value.Value, Mode=TwoWay }"   LineBreakMode="WordWrap" 
                                  TextColor="LightSlateGray"  HeightRequest="40"  MaxLines="4" LineHeight="140"
                                  BackgroundColor="{StaticResource EntryBackgroundColor}"  VerticalOptions="Center" VerticalTextAlignment="Center"
-                                 FontSize="Subtitle"
- 
-                                 >
-
+                                 FontSize="Subtitle"   >
 
                             </Label>
                         </Frame>
@@ -260,7 +257,7 @@
                                                        SearchMode="Contains"
                                                        SearchTextPath="Label"
                                                        IsDropDownClosedOnSelection="True"
-                                                      IsEnabled="False"
+                                                       IsEnabled="False"
                                                         
                                                        SelectionMode="Single" >
                             <telerikInput:RadComboBox.DropDownHeight>
@@ -350,7 +347,7 @@
                         <StackLayout Orientation="Horizontal">
 
                             <telerikPrimitives:RadCheckBox Style="{StaticResource checkBoxButtonStyle}" IsChecked="{Binding  Value.Value, Mode=TwoWay }"  IsEnabled="False"  />
-
+                            <Label Text="{Binding  Key, Mode=TwoWay }"/>
                         </StackLayout>
                         <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
@@ -366,7 +363,7 @@
 
 
                         <telerikInput:RadComboBox      DisplayMemberPath="Label"  IsEditable="False"
-                                                       SelectedItems="{Binding Value.SelectedItems , Mode=TwoWay}"
+                                                       SelectedItems="{Binding Source={RelativeSource AncestorType={x:Type viewModels:BaseViewModel}}, Path=SelectedItems, Mode=TwoWay}" 
                                                        ItemsSource="{ Binding Value.DropdownValues }"  
                                                        Style="{StaticResource ComboEntryStyle}" 
                                                        SearchMode="Contains"
@@ -434,25 +431,21 @@
                 DropDownListTemplate="{StaticResource DropDownListTemplate}"
                 MultiLineTemplate="{StaticResource MultiLineTemplate}" 
                 DateTimeTemplate="{StaticResource DateTimeTemplate}" 
-                ListBoxMultiTemplate="{StaticResource DropDownListTemplate}" 
+                ListBoxMultiTemplate="{StaticResource ListBoxMultiTemplate}" 
                 CheckBoxTemplate="{StaticResource CheckBoxTemplate}"
                 LinkedToLabelTemplate="{StaticResource LinkedToLabelTemplate}"
-                LinkedToTemplate="{StaticResource LinkedToTemplate}"
-                                         
-                                         />
+                LinkedToTemplate="{StaticResource LinkedToTemplate}" />
+
 
             <ui:formDataTemplateSelectorView x:Key="formDataTemplateSelectorView"
                 TextBoxTemplate="{StaticResource TextBoxTemplateRO}"
                 DropDownListTemplate="{StaticResource DropDownListTemplateRO}"
                 MultiLineTemplate="{StaticResource MultiLineTemplateRO}" 
                 DateTimeTemplate="{StaticResource DateTimeTemplateRO}" 
-                ListBoxMultiTemplate="{StaticResource DropDownListTemplateRO}" 
+                ListBoxMultiTemplate="{StaticResource ListBoxMultiTemplateRO}" 
                 CheckBoxTemplate="{StaticResource CheckBoxTemplateRO}" 
                 LinkedToLabelTemplate="{StaticResource LinkedToLabelTemplateRO}"
-                                             
-                LinkedToTemplate="{StaticResource LinkedToTemplateRO}"
-                                             
-                                             />
+                LinkedToTemplate="{StaticResource LinkedToTemplateRO}" />
 
 
         </ResourceDictionary>

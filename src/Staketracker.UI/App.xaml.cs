@@ -40,8 +40,10 @@ namespace Staketracker.UI
                     return CheckBoxTemplate;
                 else if (k == "ListBoxMulti")
                     return ListBoxMultiTemplate;
-                else
+                else if (k == "DropDownList")
                     return DropDownListTemplate;
+                else
+                    return null;
             }
             else if (s.Value.LinkedControlType == "button")
                 return LinkedToTemplate;
@@ -84,8 +86,10 @@ namespace Staketracker.UI
                     return CheckBoxTemplate;
                 else if (k == "ListBoxMulti")
                     return ListBoxMultiTemplate;
-                else
+                else if (k == "DropDownList")
                     return DropDownListTemplate;
+                else
+                    return null;
             }
             else if (s.Value.LinkedControlType == "button")
                 return LinkedToTemplate;
