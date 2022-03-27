@@ -126,7 +126,7 @@
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"    
                                 Margin="{StaticResource itemSpacing}" />
 
-                        <DatePicker  Format="MMMM dd yyyy" Date = "{Binding  Value.SelectedDate, Mode=TwoWay }"  />
+                        <DatePicker  Format="MMMM dd yyyy" Date = "{Binding  Value.SelectedDate, Mode=TwoWay }" />
                         <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
                          Style="{StaticResource ErrorTextStyle}" />
@@ -347,6 +347,7 @@
                         <StackLayout Orientation="Horizontal">
 
                             <telerikPrimitives:RadCheckBox Style="{StaticResource checkBoxButtonStyle}" IsChecked="{Binding  Value.Value, Mode=TwoWay }"  IsEnabled="False"  />
+
                             <Label Text="{Binding  Key, Mode=TwoWay }"/>
                         </StackLayout>
                         <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
@@ -363,13 +364,13 @@
 
 
                         <telerikInput:RadComboBox      DisplayMemberPath="Label"  IsEditable="False"
-                                                       SelectedItems="{Binding Source={RelativeSource AncestorType={x:Type viewModels:BaseViewModel}}, Path=SelectedItems, Mode=TwoWay}" 
+                                                       SelectedItems="{Binding Source={RelativeSource AncestorType={x:Type viewModels:BaseViewModel}}, Path=Value.SelectedItems, Mode=TwoWay}" 
                                                        ItemsSource="{ Binding Value.DropdownValues }"  
                                                        Style="{StaticResource ComboEntryStyle}" 
                                                        SearchMode="Contains"
                                                        SearchTextPath="Label"
                                                        IsDropDownClosedOnSelection="True" 
-                                                        IsEnabled="False"
+                                                       IsEnabled="False"
                                                        SelectionMode="Multiple" >
 
 
