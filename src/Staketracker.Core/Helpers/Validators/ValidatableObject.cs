@@ -26,7 +26,7 @@ namespace Staketracker.Core.Validators
             IsValid = true;
             Errors = new List<string>();
             DefaultHighlightedDate = DateTime.Today;
-            //SelectedDate = DateTime.Today;
+            SelectedDate = null;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
