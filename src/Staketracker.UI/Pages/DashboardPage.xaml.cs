@@ -42,6 +42,11 @@ namespace Staketracker.UI.Pages
             //    return new MvxTabbedPagePresentationAttribute(TabbedPosition.Tab) { WrapInNavigationPage = false };
             //}
         }
+
+        private void Button_Clicked(object sender, System.EventArgs e)
+        {
+
+        }
     }
 
 

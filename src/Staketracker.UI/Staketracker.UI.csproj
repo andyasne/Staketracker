@@ -116,6 +116,9 @@
     <Compile Update="Pages\Communication\CommunicationEditView.xaml.cs">
       <DependentUpon>CommunicationEditView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\CustomMultiselect\CustomMultiselectPage.xaml.cs">
+      <DependentUpon>CustomMultiselectPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\Dashboard\IssuesStatusCard.xaml.cs">
       <DependentUpon>IssuesStatusCard.xaml</DependentUpon>
     </Compile>

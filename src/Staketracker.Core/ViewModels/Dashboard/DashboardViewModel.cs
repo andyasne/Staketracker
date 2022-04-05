@@ -15,8 +15,11 @@ using MvvmCross.ViewModels;
 using Staketracker.Core.ViewModels.Menu;
 using Xamarin.Forms;
 using Staketracker.Core.Res;
+using PresentationMode = Staketracker.Core.Models.PresentationMode;
+
 using Staketracker.Core.ViewModels.ForgetPassword;
 using Staketracker.Core.ViewModels.Linked.Communication;
+using Staketracker.Core.ViewModels.Linked.CustomMultiselect;
 
 namespace Staketracker.Core.ViewModels.Dashboard
 {
@@ -32,6 +35,7 @@ namespace Staketracker.Core.ViewModels.Dashboard
             await this.FetchData();
         }
 
+        public ICommand OpenCustomMultiselect { get; set; }
 
         public DashboardViewModel(IMvxNavigationService navigationService)
         {
@@ -41,10 +45,14 @@ namespace Staketracker.Core.ViewModels.Dashboard
 
             this.PageTitle = AppRes.dashboard;
 
+            OpenCustomMultiselect = new MvxCommand(OnOpenCustomMultiselect);
+
 
 
         }
 
+        private void OnOpenCustomMultiselect() => _navigationService.Navigate<CustomMultiselectViewModel, AuthReply>(
+               authReply);
 
 
         private async Task SignOut()
