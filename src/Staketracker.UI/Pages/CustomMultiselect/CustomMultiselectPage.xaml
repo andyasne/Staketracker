@@ -26,11 +26,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid.Padding>
-                <OnIdiom x:TypeArguments="Thickness">
-                    <OnIdiom.Tablet>20,20,0,20</OnIdiom.Tablet>
-                </OnIdiom>
-            </Grid.Padding>
+   
             <BoxView BackgroundColor="White" Grid.RowSpan="2">
                 <BoxView.CornerRadius>
                     <OnIdiom x:TypeArguments="CornerRadius" Default="4,0,4,0">
@@ -67,12 +63,9 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                                     <StackLayout  Grid.Column="1" Spacing="1" >
 
                                         <Label Text="{Binding Name}" TextColor="Black" MaxLines="2" VerticalOptions="Start" />
-                                        <!--<Label Text="{Binding GetDateString}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>-->
-
+                                      
                                     </StackLayout>
-
-
-
+ 
                                     <BoxView Grid.ColumnSpan="3" HeightRequest="1" VerticalOptions="End" BackgroundColor="#d7d7d7" />
                                 </Grid>
                             </telerikListView:ListViewTemplateCell.View>
