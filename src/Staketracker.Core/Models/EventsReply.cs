@@ -35,7 +35,7 @@ namespace Staketracker.Core.Models.Events
 
     public class EventsReply
     {
-        public IList<D> d { get; set; }
+        public List<D> d { get; set; }
     }
 
 

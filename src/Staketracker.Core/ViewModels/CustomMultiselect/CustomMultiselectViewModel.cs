@@ -36,23 +36,7 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
     public class CustomMultiselectViewModel : BaseViewModel<AuthReply>
 
     {
-        public IMvxCommand AddCommunicationCommand { get; }
-        public ICommand OpenCustomMultiselect { get; set; }
 
-        private string linkName;
-
-        public string LinkName
-        {
-
-            get { return linkName; }
-            set
-            {
-                SetField(ref linkName, value);
-
-                linkName = value;
-
-            }
-        }
 
         private readonly IMvxNavigationService _navigationService;
         public IMvxCommand SearchCommand { get; }
@@ -74,38 +58,24 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
         public override async void Prepare(AuthReply parameter)
         {
 
-            this.IsBusy = true;
             this.authReply = parameter;
-            //      KeyValuePair<String, LinkedTo> _linkedTo = (KeyValuePair<String, LinkedTo>)authReply.attachment;
-            // linkedObj = _linkedTo.Value;
-
-
-            CommunicationDetailReq body = new CommunicationDetailReq()
-            {
-                projectId = authReply.d.projectId,
-                userId = authReply.d.userId,
-                ID = primaryKey
-            };
-
-            HttpResponseMessage communications = await ApiManager.GetCommunicationDetails(new jsonTextObj(body), authReply.d.sessionId);
-            if (communications.IsSuccessStatusCode)
-            {
-                var response = await communications.Content.ReadAsStringAsync();
-                communicationReply_ = await Task.Run(() => JsonConvert.DeserializeObject<CommunicationReply>(response));
-
-            }
-            //  RunSafe(GetCommunication(authReply), true, "Loading ");
-            this.IsBusy = false;
             base.Prepare();
 
 
         }
+
+        private List<MulltiSelectModel> mulltiSelectModels = new List<MulltiSelectModel>();
+
+        public List<MulltiSelectModel> MulltiSelectModels { get => mulltiSelectModels; set => SetField(ref mulltiSelectModels, value); }
+
+
         private EventsReply eventsReply;
         public EventsReply EventsReply_
         {
             get => eventsReply;
-            private set => SetField(ref eventsReply, value);
+            set => SetField(ref eventsReply, value);
         }
+
         internal async Task GetEvents(AuthReply authReply)
         {
 
@@ -116,6 +86,16 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
             {
                 var response = await events.Content.ReadAsStringAsync();
                 EventsReply_ = await Task.Run(() => JsonConvert.DeserializeObject<EventsReply>(response));
+                int index = 0;
+                foreach (Staketracker.Core.Models.Events.D eventReply in EventsReply_.d)
+                {
+                    MulltiSelectModel multiSelectObj = new MulltiSelectModel(index, eventReply.Name, false, eventsReply);
+                    MulltiSelectModels.Add(multiSelectObj);
+                    index++;
+
+                }
+
+
             }
             else
                 await PageDialog.AlertAsync("API Error While retrieving Events", "API Response Error", "Ok");
@@ -125,37 +105,13 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
         public override async void ViewAppearing()
         {
             base.ViewAppearing();
-            this.PageTitle = linkedObj.buttonLabel;
-            this.LinkName = "Link to " + this.PageTitle;
+            // this.PageTitle = linkedObj.buttonLabel;
+            //  this.LinkName = "Link to " + this.PageTitle;
             RunSafe(GetEvents(authReply), true, "Loading Events");
 
 
 
         }
 
-        private CommunicationReply communicationReply;
-
-        public CommunicationReply communicationReply_
-        {
-            get => communicationReply;
-            private set => SetField(ref communicationReply, value);
-        }
-
-        internal async Task GetCommunication(AuthReply authReply)
-        {
-
-            var apiReq = new APIRequestBody(authReply);
-            HttpResponseMessage communications = await ApiManager.GetAllCommunications(apiReq, authReply.d.sessionId);
-
-            if (communications.IsSuccessStatusCode)
-            {
-                var response = await communications.Content.ReadAsStringAsync();
-                communicationReply_ = await Task.Run(() => JsonConvert.DeserializeObject<CommunicationReply>(response));
-
-            }
-            else
-                await PageDialog.AlertAsync("API Error While retrieving Communication", "API Response Error", "Ok");
-
-        }
     }
 }
