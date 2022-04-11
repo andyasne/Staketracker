@@ -34,5 +34,17 @@ namespace Staketracker.UI.Pages.Linked.CustomMultiselect
         {
             Navigation.PopAsync();
         }
+
+        private void RadListView_SelectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+
+        {
+
+            if (e.NewItems != null && e.NewItems.Count != 0)
+                ((Staketracker.Core.Models.MultiSelectModel)e.NewItems[0]).IsSelected = true;
+
+            if (e.OldItems != null && e.OldItems.Count != 0)
+                ((Staketracker.Core.Models.MultiSelectModel)e.OldItems[0]).IsSelected = false;
+
+        }
     }
 }

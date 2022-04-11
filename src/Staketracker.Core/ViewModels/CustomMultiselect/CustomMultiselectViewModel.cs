@@ -40,22 +40,12 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
 
 
         private readonly IMvxNavigationService _navigationService;
-        public IMvxCommand SearchCommand { get; }
-        Staketracker.Core.Models.LinkedTo.LinkedTo linkedObj;
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public CustomMultiselectViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
-
-            //   OpenCustomMultiselect = new MvxCommand(OpenCustomMultiselect);
-
         }
-        protected void OnPropertyChanged(string propertyName)
-            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        private void OnOpenCustomMultiselect() =>
-            _navigationService.Navigate<CommunicationDetailViewModel, PresentationContext<AuthReply>>(
-                new PresentationContext<AuthReply>(authReply, PresentationMode.Create));
+
 
 
         public override async void Prepare(AuthReply parameter)
@@ -68,7 +58,7 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
         }
 
         private ObservableCollection<MultiSelectModel> multiSelectModels = new ObservableCollection<MultiSelectModel>();
-        public ObservableCollection<MultiSelectModel> MultiSelectModels
+        public ObservableCollection<MultiSelectModel> CustomMultiselectRecordList
         {
             get => multiSelectModels;
             set
@@ -80,27 +70,12 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
 
 
 
-        private ObservableCollection<MultiSelectModel> selectedRecords = new ObservableCollection<MultiSelectModel>();
-        public ObservableCollection<MultiSelectModel> SelectedRecords
-        {
-            get => selectedRecords;
-            set
-            {
-                SetField(ref selectedRecords, value);
-
-            }
-        }
 
 
-        private EventsReply eventsReply;
-        public EventsReply EventsReply_
-        {
-            get => eventsReply;
-            set => SetField(ref eventsReply, value);
-        }
 
         internal async Task GetEvents(AuthReply authReply)
         {
+            EventsReply EventsReply_;
 
             var apiReq = new APIRequestBody(authReply);
             HttpResponseMessage events = await ApiManager.GetEvents(apiReq, authReply.d.sessionId);
@@ -109,14 +84,8 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
             {
                 var response = await events.Content.ReadAsStringAsync();
                 EventsReply_ = await Task.Run(() => JsonConvert.DeserializeObject<EventsReply>(response));
-                int index = 0;
-                foreach (Staketracker.Core.Models.Events.D eventReply in EventsReply_.d)
-                {
-                    MultiSelectModel multiSelectObj = new MultiSelectModel(index, eventReply.Name, false, eventsReply);
-                    MultiSelectModels.Add(multiSelectObj);
-                    index++;
-                }
 
+                CreateControlModels(EventsReply_);
 
             }
             else
@@ -124,11 +93,23 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
 
         }
 
+        private void CreateControlModels(EventsReply EventsReply_)
+        {
+            int index = 0;
+
+            foreach (Staketracker.Core.Models.Events.D eventReply in EventsReply_.d)
+            {
+                MultiSelectModel multiSelectObj = new MultiSelectModel(index, eventReply.Name, false, EventsReply_);
+                CustomMultiselectRecordList.Add(multiSelectObj);
+                index++;
+            }
+        }
+
         public override async void ViewAppearing()
         {
             base.ViewAppearing();
 
-            RunSafe(GetEvents(authReply), true, "Loading Events");
+            RunSafe(GetEvents(authReply), true, "Loading");
 
 
 

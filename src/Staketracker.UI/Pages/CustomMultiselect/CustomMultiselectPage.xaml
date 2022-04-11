@@ -35,8 +35,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                 </BoxView.CornerRadius>
             </BoxView>
 
-            <telerikDataControls:RadListView ItemsSource="{Binding MultiSelectModels, Mode=TwoWay}"   SelectionMode="None"
-                                           Grid.Row="1"    >
+            <telerikDataControls:RadListView ItemsSource="{Binding  CustomMultiselectRecordList, Mode=TwoWay}"  SelectionChanged="RadListView_SelectionChanged"  SelectionMode="Multiple"  Grid.Row="1"    >
 
 
                 <telerikDataControls:RadListView.ItemTemplate>
@@ -51,7 +50,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <StackLayout  Grid.Column="0" Padding="2"  VerticalOptions="Center"  HorizontalOptions="CenterAndExpand" >
-                                        <telerikPrimitives:RadCheckBox IsChecked="{Binding  IsSelected, Mode=TwoWay }" x:Name="IsSelected"  />
+                                        <telerikPrimitives:RadCheckBox IsChecked="{Binding  IsSelected, Mode=TwoWay }"  />
 
                                     </StackLayout>
                                     <StackLayout  Grid.Column="1" Padding="2"  VerticalOptions="Center"  HorizontalOptions="StartAndExpand" >
