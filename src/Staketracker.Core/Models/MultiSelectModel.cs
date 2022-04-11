@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Staketracker.Core.Models
 {
-    public class MulltiSelectModel
+    public class MultiSelectModel
     {
-        public MulltiSelectModel(int id, string title, bool isSelected, object attach)
+        public MultiSelectModel(int id, string title, bool isSelected, object attach)
         {
             Id = id;
             Title = title;

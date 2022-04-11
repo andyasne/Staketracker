@@ -41,6 +41,7 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
         private readonly IMvxNavigationService _navigationService;
         public IMvxCommand SearchCommand { get; }
         Staketracker.Core.Models.LinkedTo.LinkedTo linkedObj;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public CustomMultiselectViewModel(IMvxNavigationService navigationService)
         {
@@ -49,7 +50,8 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
             //   OpenCustomMultiselect = new MvxCommand(OpenCustomMultiselect);
 
         }
-
+        protected void OnPropertyChanged(string propertyName)
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         private void OnOpenCustomMultiselect() =>
             _navigationService.Navigate<CommunicationDetailViewModel, PresentationContext<AuthReply>>(
                 new PresentationContext<AuthReply>(authReply, PresentationMode.Create));
@@ -64,9 +66,21 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
 
         }
 
-        private List<MulltiSelectModel> mulltiSelectModels = new List<MulltiSelectModel>();
+        private List<MultiSelectModel> multiSelectModels = new List<MultiSelectModel>();
+        private List<MultiSelectModel> _multiSelectModels = new List<MultiSelectModel>();
 
-        public List<MulltiSelectModel> MulltiSelectModels { get => mulltiSelectModels; set => SetField(ref mulltiSelectModels, value); }
+        public List<MultiSelectModel> MultiSelectModels
+        {
+            get => multiSelectModels;
+            set
+            {
+                SetField(ref multiSelectModels, value);
+               // this.multiSelectModels = value;
+                //OnPropertyChanged("MultiSelectModels");
+
+
+            }
+        }
 
 
         private EventsReply eventsReply;
@@ -89,11 +103,12 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
                 int index = 0;
                 foreach (Staketracker.Core.Models.Events.D eventReply in EventsReply_.d)
                 {
-                    MulltiSelectModel multiSelectObj = new MulltiSelectModel(index, eventReply.Name, false, eventsReply);
-                    MulltiSelectModels.Add(multiSelectObj);
+                    MultiSelectModel multiSelectObj = new MultiSelectModel(index, eventReply.Name, false, eventsReply);
+                    _multiSelectModels.Add(multiSelectObj);
                     index++;
 
                 }
+                MultiSelectModels = _multiSelectModels;
 
 
             }
