@@ -21,6 +21,7 @@ using System;
 using Staketracker.Core.Models.LinkedTo;
 using System.Windows.Input;
 using Staketracker.Core.Models.EventsFormValue;
+using System.Collections.ObjectModel;
 
 namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
 {
@@ -66,18 +67,26 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
 
         }
 
-        private List<MultiSelectModel> multiSelectModels = new List<MultiSelectModel>();
-        private List<MultiSelectModel> _multiSelectModels = new List<MultiSelectModel>();
-
-        public List<MultiSelectModel> MultiSelectModels
+        private ObservableCollection<MultiSelectModel> multiSelectModels = new ObservableCollection<MultiSelectModel>();
+        public ObservableCollection<MultiSelectModel> MultiSelectModels
         {
             get => multiSelectModels;
             set
             {
                 SetField(ref multiSelectModels, value);
-               // this.multiSelectModels = value;
-                //OnPropertyChanged("MultiSelectModels");
 
+            }
+        }
+
+
+
+        private ObservableCollection<MultiSelectModel> selectedRecords = new ObservableCollection<MultiSelectModel>();
+        public ObservableCollection<MultiSelectModel> SelectedRecords
+        {
+            get => selectedRecords;
+            set
+            {
+                SetField(ref selectedRecords, value);
 
             }
         }
@@ -104,11 +113,9 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
                 foreach (Staketracker.Core.Models.Events.D eventReply in EventsReply_.d)
                 {
                     MultiSelectModel multiSelectObj = new MultiSelectModel(index, eventReply.Name, false, eventsReply);
-                    _multiSelectModels.Add(multiSelectObj);
+                    MultiSelectModels.Add(multiSelectObj);
                     index++;
-
                 }
-                MultiSelectModels = _multiSelectModels;
 
 
             }
@@ -120,8 +127,7 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
         public override async void ViewAppearing()
         {
             base.ViewAppearing();
-            // this.PageTitle = linkedObj.buttonLabel;
-            //  this.LinkName = "Link to " + this.PageTitle;
+
             RunSafe(GetEvents(authReply), true, "Loading Events");
 
 
