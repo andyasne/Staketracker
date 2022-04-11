@@ -21,6 +21,7 @@ using System;
 using Staketracker.Core.Models.LinkedTo;
 using System.Windows.Input;
 using Staketracker.Core.Models.EventsFormValue;
+using System.Collections.ObjectModel;
 
 namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
 {
@@ -66,18 +67,13 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
 
         }
 
-        private List<MultiSelectModel> multiSelectModels = new List<MultiSelectModel>();
-        private List<MultiSelectModel> _multiSelectModels = new List<MultiSelectModel>();
-
-        public List<MultiSelectModel> MultiSelectModels
+        private ObservableCollection<MultiSelectModel> multiSelectModels = new ObservableCollection<MultiSelectModel>();
+        public ObservableCollection<MultiSelectModel> MultiSelectModels
         {
             get => multiSelectModels;
             set
             {
                 SetField(ref multiSelectModels, value);
-               // this.multiSelectModels = value;
-                //OnPropertyChanged("MultiSelectModels");
-
 
             }
         }
@@ -104,11 +100,10 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
                 foreach (Staketracker.Core.Models.Events.D eventReply in EventsReply_.d)
                 {
                     MultiSelectModel multiSelectObj = new MultiSelectModel(index, eventReply.Name, false, eventsReply);
-                    _multiSelectModels.Add(multiSelectObj);
+                    MultiSelectModels.Add(multiSelectObj);
                     index++;
 
                 }
-                MultiSelectModels = _multiSelectModels;
 
 
             }
