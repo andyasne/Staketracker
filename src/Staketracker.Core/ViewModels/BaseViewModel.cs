@@ -16,6 +16,7 @@ using Staketracker.Core.Services;
 using Staketracker.Core.Validators;
 using Staketracker.Core.Validators.Rules;
 using Staketracker.Core.ViewModels.Linked.Communication;
+using Staketracker.Core.ViewModels.Linked.CustomMultiselect;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -61,6 +62,7 @@ namespace Staketracker.Core.ViewModels
             changeView();
         }
         public ICommand OpenLinkPage { get; set; }
+        public ICommand OpenCustomMultiselect { get; set; }
 
         public BaseViewModel()
         {
@@ -71,6 +73,7 @@ namespace Staketracker.Core.ViewModels
                 OnDevelopment().Start();
             });
             OpenLinkPage = new Command(OpenLinkPage_);
+            OpenCustomMultiselect = new Command(_OpenCustomMultiselect);
 
         }
 
@@ -81,6 +84,15 @@ namespace Staketracker.Core.ViewModels
             await navigationService.Navigate<LinkedListViewModel, AuthReply>(
                  authReply);
         }
+
+        public async void _OpenCustomMultiselect(object _value)
+        {
+            authReply.attachment = _value;
+            OnOpenCustomMultiselect();
+        }
+        private void OnOpenCustomMultiselect() => navigationService.Navigate<CustomMultiselectViewModel, AuthReply>(authReply);
+
+
 
         public Task OnDevelopment()
         {
