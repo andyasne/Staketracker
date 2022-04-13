@@ -61,7 +61,7 @@
                                                        Style="{StaticResource ComboEntryStyle}" 
                                                        TextColor="{StaticResource DarkTextColor}"
                                                        SearchMode="Contains"
-                                                       HeightRequest="60"
+                                                       
                                                        SearchTextPath="Label"
                                                        IsDropDownClosedOnSelection="True"
                                                        IsEditable="False" 
@@ -263,7 +263,7 @@
                                                        SearchTextPath="Label"
                                                        IsDropDownClosedOnSelection="True"
                                                        IsEnabled="False"
-                                                        HeightRequest="60"
+                                                   
                                                        SelectionMode="Single" >
                             <telerikInput:RadComboBox.DropDownHeight>
                                 <OnPlatform x:TypeArguments="x:Double">
