@@ -117,5 +117,10 @@ namespace Staketracker.UI
         {
             // implement your logic here
         }
+
+        private void Editor_Focused(object sender, FocusEventArgs e)
+        {
+
+        }
     }
 }
