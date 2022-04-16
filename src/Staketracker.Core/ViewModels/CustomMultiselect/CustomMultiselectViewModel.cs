@@ -22,6 +22,7 @@ using Staketracker.Core.Models.LinkedTo;
 using System.Windows.Input;
 using Staketracker.Core.Models.EventsFormValue;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
 {
@@ -44,9 +45,14 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
         public CustomMultiselectViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
+            Open = new MvxCommand(open);
+
         }
 
+        private void open()
+        {
 
+        }
 
         public override async void Prepare(AuthReply parameter)
         {
@@ -70,7 +76,72 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
 
 
 
+        private ObservableCollection<object> selectedItems = new ObservableCollection<object>();
 
+        public ObservableCollection<object> SelectedItems
+        {
+            get
+            {
+                return this.selectedItems;
+            }
+            set
+            {
+                if (this.selectedItems != value)
+                {
+                    if (this.selectedItems != null)
+                    {
+                        //   this.selectedItems.CollectionChanged -= this.OnSelectedItemsCollectionChanged;
+                    }
+
+                    this.selectedItems = value;
+
+                    if (this.selectedItems != null)
+                    {
+                        //    this.selectedItems.CollectionChanged += this.OnSelectedItemsCollectionChanged;
+                    }
+
+                    OnPropertyChanged("selectedItems");
+                }
+            }
+        }
+
+        //private void OnSelectedItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        //{
+        //    var action = e.Action;
+        //    if (action == NotifyCollectionChangedAction.Add)
+        //    {
+        //        this.isInternalCheckChanged = true;
+        //        if (this.SelectedItems.Count == this.Items.Count)
+        //        {
+        //            this.SelectAllChecked = true;
+        //        }
+        //        else
+        //        {
+        //            this.SelectAllChecked = null;
+        //        }
+        //        this.isInternalCheckChanged = false;
+
+        //        return;
+        //    }
+
+        //    if (action == NotifyCollectionChangedAction.Remove)
+        //    {
+        //        this.isInternalCheckChanged = true;
+        //        if (this.SelectedItems.Count == 0)
+        //        {
+        //            this.SelectAllChecked = false;
+        //        }
+        //        else
+        //        {
+        //            this.SelectAllChecked = null;
+        //        }
+        //        this.isInternalCheckChanged = false;
+        //    }
+        //}
+
+
+
+        public ICommand Open { get; set; }
 
 
         internal async Task GetEvents(AuthReply authReply)
