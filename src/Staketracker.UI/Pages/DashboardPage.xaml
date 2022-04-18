@@ -54,9 +54,6 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                             </Setter>
                         </Style>
                     </StackLayout.Resources>
-                    <telerikInput:RadButton Text="Open Custom Multiselect"  Margin="0,0,0,20" Grid.ColumnSpan="4" WidthRequest="200" HorizontalContentAlignment="Center" HorizontalOptions="CenterAndExpand"
-                                            Command="{Binding OpenCustomMultiselect}"
-                                            Style="{StaticResource ActionButtonStyle}" />
 
 
                     <cards:Top10TopicsDiscussedCard HeightRequest="200" Margin="0,0,0,0" Style="{StaticResource cardStyle}" />

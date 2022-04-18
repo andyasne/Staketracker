@@ -409,6 +409,10 @@ namespace Staketracker.Core.ViewModels
                                                 dateval = field.Value.ToString();
                                                 valObj.SelectedDate = DateTime.Parse(dateval);
                                             }
+                                            else
+                                            {
+                                                valObj.selectedDate = DateTime.Now;
+                                            }
 
                                         }
                                         else
