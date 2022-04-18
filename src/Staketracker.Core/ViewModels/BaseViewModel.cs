@@ -19,6 +19,7 @@ using Staketracker.Core.ViewModels.Linked.Communication;
 using Staketracker.Core.ViewModels.Linked.CustomMultiselect;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -57,6 +58,8 @@ namespace Staketracker.Core.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         public IMvxCommand DeleteCommand { get; set; }
         public IMvxCommand SaveCommand { get; set; }
+
+
         public async Task OnBeginEdit()
         {
             changeView();

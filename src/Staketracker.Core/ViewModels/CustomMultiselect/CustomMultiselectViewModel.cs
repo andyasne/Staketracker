@@ -39,6 +39,8 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
 
     {
 
+        public ObservableCollection<MultiSelectModel> Items { get; set; }
+        public ICommand SelectAllCommand { get; set; }
 
         private readonly IMvxNavigationService _navigationService;
 
@@ -46,6 +48,7 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
         {
             _navigationService = navigationService;
             Open = new MvxCommand(open);
+            //   this.SelectAllCommand = new Command(this.OnSelectAllCommandExecute);
 
         }
 
@@ -104,6 +107,116 @@ namespace Staketracker.Core.ViewModels.Linked.CustomMultiselect
                 }
             }
         }
+        //private bool? selectAllChecked = false;
+        //private bool isInternalCheckChanged;
+        //public ObservableCollection<object> SelectedItems
+        //{
+        //    get
+        //    {
+        //        return this.selectedItems;
+        //    }
+        //    set
+        //    {
+        //        if (this.selectedItems != value)
+        //        {
+        //            if (this.selectedItems != null)
+        //            {
+        //                this.selectedItems.CollectionChanged -= this.OnSelectedItemsCollectionChanged;
+        //            }
+
+        //            this.selectedItems = value;
+
+        //            if (this.selectedItems != null)
+        //            {
+        //                this.selectedItems.CollectionChanged += this.OnSelectedItemsCollectionChanged;
+        //            }
+
+        //            this.OnPropertyChanged();
+        //        }
+        //    }
+        //}
+
+        //public bool? SelectAllChecked
+        //{
+        //    get
+        //    {
+        //        return this.selectAllChecked;
+        //    }
+        //    set
+        //    {
+        //        if (this.selectAllChecked != value)
+        //        {
+        //            this.selectAllChecked = value;
+
+        //            if (!this.isInternalCheckChanged && this.selectAllChecked.HasValue)
+        //            {
+        //                if (this.selectAllChecked.Value)
+        //                {
+        //                    foreach (var store in this.Items)
+        //                    {
+        //                        if (!this.SelectedItems.Contains(store))
+        //                        {
+        //                            this.SelectedItems.Add(store);
+        //                        }
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    this.SelectedItems.Clear();
+        //                }
+        //            }
+
+        //            this.OnPropertyChanged();
+        //        }
+        //    }
+        //}
+
+        //private void OnSelectAllCommandExecute(object obj)
+        //{
+        //    if (this.selectAllChecked == null)
+        //    {
+        //        this.SelectAllChecked = false;
+        //    }
+        //    else
+        //    {
+        //        this.SelectAllChecked = !this.selectAllChecked;
+        //    }
+        //}
+
+        //private void OnSelectedItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        //{
+        //    var action = e.Action;
+        //    if (action == NotifyCollectionChangedAction.Add)
+        //    {
+        //        this.isInternalCheckChanged = true;
+        //        if (this.SelectedItems.Count == this.Items.Count)
+        //        {
+        //            this.SelectAllChecked = true;
+        //        }
+        //        else
+        //        {
+        //            this.SelectAllChecked = null;
+        //        }
+        //        this.isInternalCheckChanged = false;
+
+        //        return;
+        //    }
+
+        //    if (action == NotifyCollectionChangedAction.Remove)
+        //    {
+        //        this.isInternalCheckChanged = true;
+        //        if (this.SelectedItems.Count == 0)
+        //        {
+        //            this.SelectAllChecked = false;
+        //        }
+        //        else
+        //        {
+        //            this.SelectAllChecked = null;
+        //        }
+        //        this.isInternalCheckChanged = false;
+        //    }
+        //}
+
 
         //private void OnSelectedItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         //{
