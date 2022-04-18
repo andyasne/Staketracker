@@ -308,6 +308,14 @@ namespace Staketracker.Core.Validators
             get => _IsValid;
             set => SetField(ref _IsValid, value);
         }
+
+        private bool _IsChecked;
+        public bool IsChecked
+        {
+            get => _IsChecked;
+            set => SetField(ref _IsChecked, value);
+        }
+
         public string PageTitle { get; set; }
 
         public virtual bool Validate()

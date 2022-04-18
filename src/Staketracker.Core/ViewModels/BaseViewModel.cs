@@ -397,9 +397,9 @@ namespace Staketracker.Core.ViewModels
                                         else if (valObj.FormAndDropDownField.InputType == "CheckBox")
                                         {
                                             if (field.Value != null && field.Value.ToString() == "on")
-                                                valObj.Value = true.ToString();
+                                                valObj.IsChecked = true;
                                             else
-                                                valObj.Value = false.ToString();
+                                                valObj.IsChecked = false;
                                         }
                                         else if (valObj.FormAndDropDownField.InputType == "DateTime")
                                         {

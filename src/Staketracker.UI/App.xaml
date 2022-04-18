@@ -143,7 +143,7 @@
 
                         <StackLayout Orientation="Horizontal">
 
-                            <telerikPrimitives:RadCheckBox Style="{StaticResource checkBoxButtonStyle}"  IsChecked="{Binding  Value.Value, Mode=TwoWay }"   />
+                            <telerikPrimitives:RadCheckBox Style="{StaticResource checkBoxButtonStyle}" IsThreeState="False"   IsChecked="{Binding  Value.IsChecked, Mode=TwoWay }"   />
                             <Label Text="{Binding  Key, Mode=TwoWay }"  TextColor="{StaticResource DarkTextColor}"/>
                         </StackLayout>
                         <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
@@ -254,8 +254,7 @@
                                                     <On Platform="UWP" Value="0"/>
                                                 </OnPlatform>
                                             </telerikPrimitives:RadBorder.BorderThickness>
-                                            <StackLayout Orientation="Horizontal"
-                         BackgroundColor="#F8F8F8">
+                                            <StackLayout Orientation="Horizontal"  BackgroundColor="#F8F8F8">
                                                 <StackLayout.Padding>
                                                     <OnPlatform x:TypeArguments="Thickness" Default="11, 12, 0, 12">
                                                         <On Platform="UWP" Value="6, 6, 0, 6"/>
