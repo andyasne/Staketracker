@@ -36,18 +36,18 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
             </BoxView>
             <StackLayout>
                 <telerikInput:RadComboBox ItemsSource="{Binding CustomMultiselectRecordList}"
+                      IsDropDownClosedOnSelection="False"
                           SelectionMode="Multiple"
-                          DisplayMemberPath="Title" 
+                          DisplayMemberPath="Title"
                                  
-                        SelectedItems="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CustomMultiselectViewModel}}, Path=SelectedItems, Mode=TwoWay}"
+                        SelectedItems="{Binding  SelectedItems}"
                                       >
 
 
                 </telerikInput:RadComboBox>
 
 
-                <telerikInput:RadComboBox Grid.Row="1"
-                          BackgroundColor="White"
+                <telerikInput:RadComboBox  
                           ItemsSource="{Binding CustomMultiselectRecordList}"
                           SelectedItems="{Binding SelectedItems}"
                           IsDropDownClosedOnSelection="False"
@@ -98,9 +98,9 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                                         </telerikPrimitives:RadCheckBox.Margin>
                                     </telerikPrimitives:RadCheckBox>
                                     <Label Text="{Binding Title}"
-                       VerticalTextAlignment="Center"
-                       TextColor="#8A000000"
-                       FontSize="14">
+                                           VerticalTextAlignment="Center"
+                                           TextColor="#8A000000"
+                                           FontSize="14">
                                         <Label.Padding>
                                             <OnPlatform x:TypeArguments="Thickness">
                                                 <On Platform="iOS" Value="3, 0, 0, 0"/>
