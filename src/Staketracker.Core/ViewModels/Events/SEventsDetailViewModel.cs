@@ -37,14 +37,8 @@ namespace Staketracker.Core.ViewModels.Events
             DeleteCommand = new MvxAsyncCommand(OnDeleteSEvent);
             SaveCommand = new MvxAsyncCommand(OnSave);
             BeginEditCommand = new MvxAsyncCommand(OnBeginEdit);
-            //  OpenLinkPage = new Command(OpenLinkPage_);
 
         }
-        //private async void OpenLinkPage_()
-        //{
-        //    await navigationService.Navigate<CommunicationLinkedListViewModel, AuthReply>(
-        //         authReply);
-        //}
         public override void Prepare(PresentationContext<AuthReply> parameter)
         {
             authReply = parameter.Model;
@@ -74,9 +68,6 @@ namespace Staketracker.Core.ViewModels.Events
             await base.Initialize();
 
             RunSafe(GetFormUIControls(authReply, FormType.Events), true, AppRes.building_form_controls);
-
-
-
 
             UpdateTitle();
         }

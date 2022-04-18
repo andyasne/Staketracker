@@ -127,10 +127,11 @@
 
                         <Label  Text="{Binding Key}" Style="{StaticResource FormSubtitleLabelStyle}"    
                                 Margin="{StaticResource itemSpacing}" />
+                        <Frame BorderColor="LightGray" HasShadow="False" Padding="3">
 
-                        <DatePicker  Format="MMMM dd yyyy"   Date = "{Binding  Value.SelectedDate, Mode=TwoWay }" />
+                            <DatePicker  Format="MMMM dd yyyy"   Date = "{Binding  Value.SelectedDate, Mode=TwoWay }"  />
 
-
+                        </Frame>
                         <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
                          Style="{StaticResource ErrorTextStyle}" />
