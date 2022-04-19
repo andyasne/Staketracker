@@ -313,16 +313,19 @@ namespace Staketracker.Core.ViewModels
                     {
                         List<string> selectedValues = new List<string>();
 
-                        if (_formContent.Value.SelectedItem == null)
-                        {
-                            inputValue.Value = "";
-                        }
-                        else
-                        {
-                            selectedValues.Add(_formContent.Value.SelectedItem.PrimaryKey.ToString());
-                        }
 
-                        inputValue.Value = "[" + string.Join(",", selectedValues) + "]";
+                        if (_formContent.Value.SelectedItems != null && _formContent.Value.SelectedItems.Count > 0)
+                        {
+                            foreach (object item in _formContent.Value.SelectedItems)
+                            {
+                                DropdownValue val = (DropdownValue)item;
+
+                                selectedValues.Add(val.PrimaryKey);
+
+                            }
+
+                            inputValue.Value = "[" + string.Join(",", selectedValues) + "]";
+                        }
 
                     }
                     else
