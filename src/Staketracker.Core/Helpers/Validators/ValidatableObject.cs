@@ -339,8 +339,8 @@ namespace Staketracker.Core.Validators
             else if (isDateType)
             {
 
-                errors = ValidationsDateTime.Where(v => !v.Check(SelectedDate))
-                    .Select(v => v.ValidationMessage);
+                //errors = ValidationsDateTime.Where(v => !v.Check(SelectedDate))
+                //    .Select(v => v.ValidationMessage);
 
             }
             else

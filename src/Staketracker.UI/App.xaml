@@ -151,6 +151,7 @@
                         IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
                          Style="{StaticResource ErrorTextStyle}" />
                     </StackLayout>
+                    
                 </ViewCell>
             </DataTemplate>
 
@@ -512,12 +513,14 @@
                 <ViewCell>
                     <StackLayout   Margin="0,5,0,10">
 
+                       
+
                         <StackLayout Orientation="Horizontal">
 
-                            <telerikPrimitives:RadCheckBox Style="{StaticResource checkBoxButtonStyle}" IsChecked="{Binding  Value.Value, Mode=TwoWay }"  IsEnabled="False"  />
-
-                            <Label Text="{Binding  Key, Mode=TwoWay }"/>
+                            <telerikPrimitives:RadCheckBox Style="{StaticResource checkBoxButtonStyle}" IsThreeState="False"  IsEnabled="False"  IsChecked="{Binding  Value.IsChecked, Mode=TwoWay }"   />
+                            <Label Text="{Binding  Key, Mode=TwoWay }"  TextColor="{StaticResource DarkTextColor}"/>
                         </StackLayout>
+                        
                         <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
                          Style="{StaticResource ErrorTextStyle}" />

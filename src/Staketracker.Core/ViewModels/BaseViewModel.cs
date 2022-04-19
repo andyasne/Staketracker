@@ -480,7 +480,7 @@ namespace Staketracker.Core.ViewModels
                     if (d.InputType == "DateTime")
                     {
                         validatableObj.isDateType = true;
-                        validatableObj.selectedDate = DateTime.Now;
+                        //    validatableObj.selectedDate = DateTime.Now;
                         validatableObj.ValidationsDateTime.Add(new IsDateSelectedRule { ValidationMessage = d.Label + " is Required" });
 
                     }
