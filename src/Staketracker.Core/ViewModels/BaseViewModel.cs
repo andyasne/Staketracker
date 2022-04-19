@@ -393,7 +393,8 @@ namespace Staketracker.Core.ViewModels
 
                                         else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
                                         {
-                                            valObj.SelectedItem = field.DropdownValues.FirstOrDefault();
+                                            foreach(DropdownValue dropd in field.DropdownValues)
+                                            valObj.SelectedItems.Add(dropd);
 
                                         }
 
