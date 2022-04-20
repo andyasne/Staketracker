@@ -328,8 +328,17 @@ namespace Staketracker.Core.ViewModels
                         }
 
                     }
+                    else if (_formContent.Value.FormAndDropDownField.InputType == "CheckBox")
+                    {
+                        if (_formContent.Value.IsChecked)
+                            inputValue.Value = "on";
+                        else
+                            inputValue.Value = "off";
+
+                    }
                     else
                     {
+
                         inputValue.Value = _formContent.Value.ToString();
                     }
 
