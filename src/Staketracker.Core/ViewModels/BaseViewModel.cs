@@ -547,7 +547,7 @@ namespace Staketracker.Core.ViewModels
 
                 bool linkedToLabel = false;
 
-                if (linkedPage != null)
+                if (linkedPage != null && false)
                     foreach (KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo> linked in linkedPage)
                     {
                         ValidatableObject<string> validatableObj = new ValidatableObject<string>();

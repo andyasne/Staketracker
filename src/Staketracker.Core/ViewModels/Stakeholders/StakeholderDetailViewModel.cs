@@ -126,12 +126,12 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(StakeholderListViewModel)));
             return;
         }
-        internal async Task AddStaketracker()
+        internal async Task<bool> AddStaketracker()
         {
             jsonTextObj jsonTextObj = new jsonTextObj(pageFormValue);
             HttpResponseMessage resp;
             resp = await ApiManager.AddStakeholder(jsonTextObj, authReply.d.sessionId);
-            await Add(resp);
+           return  await Add(resp);
         }
         private async Task OnSave()
         {
@@ -143,7 +143,7 @@ namespace Staketracker.Core.ViewModels.Stakeholder
                     FetchValuesFromFormControls("individual");
                 else
                     FetchValuesFromFormControls("landparcel");
-                AddStaketracker();
+              if(await  AddStaketracker())
                 changeView();
 
             }
