@@ -278,6 +278,9 @@ namespace Staketracker.Core.ViewModels
 
             foreach (KeyValuePair<string, ValidatableObject<string>> _formContent in FormContent)
             {
+                if (_formContent.Value.PrimaryKey == null)
+                    continue;
+
                 InputFieldValue inputValue = new InputFieldValue();
                 inputValue.PrimaryKey = _formContent.Value.PrimaryKey;
 
@@ -336,6 +339,7 @@ namespace Staketracker.Core.ViewModels
                             inputValue.Value = "off";
 
                     }
+
                     else
                     {
 
@@ -547,7 +551,7 @@ namespace Staketracker.Core.ViewModels
 
                 bool linkedToLabel = false;
 
-                if (linkedPage != null && false)
+                if (linkedPage != null)
                     foreach (KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo> linked in linkedPage)
                     {
                         ValidatableObject<string> validatableObj = new ValidatableObject<string>();
