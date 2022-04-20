@@ -345,7 +345,7 @@ namespace Staketracker.Core.ViewModels
         }
         public async Task<bool> ShowDeleteConfirmation() => await PageDialog.ConfirmAsync(AppRes.msg_delete_confirm,
                         AppRes.delete_event, AppRes.yes, AppRes.no);
-        public async Task Add(HttpResponseMessage events)
+        public async Task<bool> Add(HttpResponseMessage events)
         {
             AddEventsReply reply;
 
@@ -357,16 +357,21 @@ namespace Staketracker.Core.ViewModels
                 if (reply.d.successful == true)
                 {
                     await PageDialog.AlertAsync(AppRes.saved_successfully, AppRes.saved, AppRes.ok);
+                    return true;
                 }
                 else
                 {
                     await PageDialog.AlertAsync(reply.d.message, AppRes.error_saving, AppRes.ok);
+                    return false;
 
                 }
 
             }
             else
+            {
                 await PageDialog.AlertAsync(AppRes.msg_error_while_saving, AppRes.api_response_error, AppRes.ok);
+                return false;
+            }
         }
         public async Task PopulateControlsWithData(AuthReply authReply, int primaryKey, HttpResponseMessage resp)
         {
@@ -393,8 +398,8 @@ namespace Staketracker.Core.ViewModels
 
                                         else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
                                         {
-                                            foreach(DropdownValue dropd in field.DropdownValues)
-                                            valObj.SelectedItems.Add(dropd);
+                                            foreach (DropdownValue dropd in field.DropdownValues)
+                                                valObj.SelectedItems.Add(dropd);
 
                                         }
 

@@ -106,19 +106,19 @@ namespace Staketracker.Core.ViewModels.Events
             new MvvmCross.Presenters.Hints.MvxPopPresentationHint(typeof(SEventsListViewModel)));
             return;
         }
-        internal async Task AddEvent()
+        internal async Task<bool> AddEvent()
         {
             jsonTextObj jsonTextObj = new jsonTextObj(pageFormValue);
             HttpResponseMessage events = await ApiManager.AddEvent(jsonTextObj, authReply.d.sessionId);
-            await Add(events);
+            return await Add(events);
         }
         private async Task OnSave()
         {
             if (isFormValid())
             {
                 FetchValuesFromFormControls("Event");
-                AddEvent();
-                changeView();
+                if (await AddEvent())
+                    changeView();
 
             }
 

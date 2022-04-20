@@ -99,11 +99,11 @@ namespace Staketracker.Core.ViewModels.Communication
             return;
         }
 
-        internal async Task AddCommunication()
+        internal async Task<bool> AddCommunication()
         {
             jsonTextObj jsonTextObj = new jsonTextObj(pageFormValue);
             HttpResponseMessage communications = await ApiManager.AddCommunication(jsonTextObj, authReply.d.sessionId);
-            await Add(communications);
+          return  await Add(communications);
         }
 
         private async Task OnSave()
@@ -111,7 +111,7 @@ namespace Staketracker.Core.ViewModels.Communication
             if (isFormValid())
             {
                 FetchValuesFromFormControls("Communication");
-                AddCommunication();
+              if(await  AddCommunication())
                 changeView();
 
             }
