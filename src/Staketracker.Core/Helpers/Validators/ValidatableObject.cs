@@ -326,6 +326,7 @@ namespace Staketracker.Core.Validators
             if (isSelectMultiple)
             {
                 errors = null;
+                return true;
                 //= ValidationsList.Where(v => !v.Check(SelectedItems))
                 //    .Select(v => v.ValidationMessage);
             }
@@ -338,10 +339,9 @@ namespace Staketracker.Core.Validators
             }
             else if (isDateType)
             {
-                errors = null;
 
-                //errors = ValidationsDateTime.Where(v => !v.Check(SelectedDate))
-                //    .Select(v => v.ValidationMessage);
+                errors = ValidationsDateTime.Where(v => !v.Check(SelectedDate))
+                   .Select(v => v.ValidationMessage);
 
             }
             else
