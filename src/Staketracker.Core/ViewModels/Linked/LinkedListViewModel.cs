@@ -19,6 +19,10 @@ using PresentationMode = Staketracker.Core.Models.PresentationMode;
 using Staketracker.Core.Res;
 using System;
 using Staketracker.Core.Models.LinkedTo;
+using Staketracker.Core.ViewModels.CommunicationList;
+using Staketracker.Core.ViewModels.ProjectTeam;
+using Staketracker.Core.ViewModels.Issues;
+using Staketracker.Core.ViewModels.Stakeholders;
 
 namespace Staketracker.Core.ViewModels.Linked.Communication
 {
@@ -68,14 +72,62 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
                 new PresentationContext<AuthReply>(authReply, PresentationMode.Create));
 
 
-        public override void Prepare(AuthReply parameter)
+        public override async void Prepare(AuthReply parameter)
         {
 
             this.IsBusy = true;
             this.authReply = parameter;
             KeyValuePair<String, LinkedTo> _linkedTo = (KeyValuePair<String, LinkedTo>)authReply.attachment;
             linkedObj = _linkedTo.Value;
-            RunSafe(GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel);
+
+            CommunicationVisible = false;
+            EventVisible = false;
+
+            switch (linkedObj.buttonLabel)
+            {
+                case "Communication":
+                    CommunicationListViewModel communicationListViewModel = new CommunicationListViewModel(navigationService);
+                    await RunSafe(communicationListViewModel.GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel);
+                    communicationReply_ = communicationListViewModel.communicationReply_;
+                    CommunicationVisible = true;
+                    break;
+
+                case "Topics":
+                    SEventsListViewModel sEventsListViewModel = new SEventsListViewModel(navigationService);
+                    await RunSafe(sEventsListViewModel.GetEvents(authReply), true, "Loading " + linkedObj.buttonLabel);
+                    EventsReply_ = sEventsListViewModel.EventsReply_;
+                    EventVisible = true;
+                    break;
+
+                case "Project Team":
+                    ProjectTeam.ProjectTeamListViewModel projectTeamListViewModel = new ProjectTeamListViewModel(navigationService);
+                    RunSafe(projectTeamListViewModel.GetProjectList(authReply), true, "Loading " + linkedObj.buttonLabel);
+                    break;
+
+                case "Topichs":
+                    Issues.IssuesListViewModel issuesListViewModel = new IssuesListViewModel(navigationService);
+                    RunSafe(issuesListViewModel.GetProjectList(authReply), true, "Loading " + linkedObj.buttonLabel);
+                    break;
+
+                case "Individuals":
+                    StakeholderListViewModel stakeholderListViewModel = new StakeholderListViewModel(navigationService);
+                    RunSafe(stakeholderListViewModel.GetLandParcelStakeholderDetails(authReply), true, "Loading " + linkedObj.buttonLabel);
+                    break;
+
+                //case "Groups":
+                //    CommunicationListViewModel communicationListViewModel = new CommunicationListViewModel(navigationService);
+                //    RunSafe(communicationListViewModel.GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel);
+                //    break;
+
+                //case "Land Parcels":
+                //    CommunicationListViewModel communicationListViewModel = new CommunicationListViewModel(navigationService);
+                //    RunSafe(communicationListViewModel.GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel);
+                //    break;
+
+
+                default:
+                    break;
+            }
             this.IsBusy = false;
             base.Prepare();
 
@@ -90,12 +142,26 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
 
 
         }
+        private EventsReply eventsReply;
+        public EventsReply EventsReply_
+        {
+            get => eventsReply;
+            private set => SetField(ref eventsReply, value);
+        }
+
         private bool isSearchEmpty, isBusy;
         public bool IsBusy
         {
             get => isBusy;
             set => SetProperty(ref isBusy, value);
         }
+
+        public bool EventVisible
+        {
+            get => _EventVisible;
+            set => SetProperty(ref _EventVisible, value);
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -136,6 +202,8 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
             get => communicationReply;
             private set => SetField(ref communicationReply, value);
         }
+        public bool CommunicationVisible { get; set; }
+        private bool _EventVisible;
 
         internal async Task GetCommunication(AuthReply authReply)
         {
