@@ -19,6 +19,10 @@ using PresentationMode = Staketracker.Core.Models.PresentationMode;
 using Staketracker.Core.Res;
 using System;
 using Staketracker.Core.Models.LinkedTo;
+using Staketracker.Core.ViewModels.CommunicationList;
+using Staketracker.Core.ViewModels.ProjectTeam;
+using Staketracker.Core.ViewModels.Issues;
+using Staketracker.Core.ViewModels.Stakeholders;
 
 namespace Staketracker.Core.ViewModels.Linked.Communication
 {
@@ -75,7 +79,49 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
             this.authReply = parameter;
             KeyValuePair<String, LinkedTo> _linkedTo = (KeyValuePair<String, LinkedTo>)authReply.attachment;
             linkedObj = _linkedTo.Value;
-            RunSafe(GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel);
+
+            switch (linkedObj.buttonLabel)
+            {
+                case "Communication":
+                    CommunicationListViewModel communicationListViewModel = new CommunicationListViewModel(navigationService);
+                    RunSafe(communicationListViewModel.GetCommunication(authReply, communicationReply_), true, "Loading " + linkedObj.buttonLabel);
+                    ;
+                    break;
+
+                case "Event":
+                    SEventsListViewModel sEventsListViewModel = new SEventsListViewModel(navigationService);
+                    RunSafe(sEventsListViewModel.GetEvents(authReply), true, "Loading " + linkedObj.buttonLabel);
+                    break;
+
+                case "Project Team":
+                    ProjectTeam.ProjectTeamListViewModel projectTeamListViewModel = new ProjectTeamListViewModel(navigationService);
+                    RunSafe(projectTeamListViewModel.GetProjectList(authReply), true, "Loading " + linkedObj.buttonLabel);
+                    break;
+
+                case "Topics":
+                    Issues.IssuesListViewModel issuesListViewModel = new IssuesListViewModel(navigationService);
+                    RunSafe(issuesListViewModel.GetProjectList(authReply), true, "Loading " + linkedObj.buttonLabel);
+                    break;
+
+                case "Individuals":
+                    StakeholderListViewModel stakeholderListViewModel = new StakeholderListViewModel(navigationService);
+                    RunSafe(stakeholderListViewModel.GetLandParcelStakeholderDetails(authReply), true, "Loading " + linkedObj.buttonLabel);
+                    break;
+
+                //case "Groups":
+                //    CommunicationListViewModel communicationListViewModel = new CommunicationListViewModel(navigationService);
+                //    RunSafe(communicationListViewModel.GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel);
+                //    break;
+
+                //case "Land Parcels":
+                //    CommunicationListViewModel communicationListViewModel = new CommunicationListViewModel(navigationService);
+                //    RunSafe(communicationListViewModel.GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel);
+                //    break;
+
+
+                default:
+                    break;
+            }
             this.IsBusy = false;
             base.Prepare();
 

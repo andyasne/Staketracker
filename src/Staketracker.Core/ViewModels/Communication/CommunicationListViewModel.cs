@@ -67,7 +67,7 @@ namespace Staketracker.Core.ViewModels.CommunicationList
 
         public override void ViewAppearing()
         {
-            RunSafe(GetCommunication(authReply), true, "Loading Communication");
+            RunSafe(GetCommunication(authReply, communicationReply_), true, "Loading Communication");
         }
         private bool isSearchEmpty, isBusy;
         public bool IsBusy
@@ -115,7 +115,7 @@ namespace Staketracker.Core.ViewModels.CommunicationList
             private set => SetField(ref communicationReply, value);
         }
 
-        internal async Task GetCommunication(AuthReply authReply)
+        public async Task GetCommunication(AuthReply authReply, CommunicationReply communicationReply_)
         {
 
             var apiReq = new APIRequestBody(authReply);
@@ -128,7 +128,10 @@ namespace Staketracker.Core.ViewModels.CommunicationList
 
             }
             else
+            {
                 await PageDialog.AlertAsync("API Error While retrieving Communication", "API Response Error", "Ok");
+
+            }
 
         }
 

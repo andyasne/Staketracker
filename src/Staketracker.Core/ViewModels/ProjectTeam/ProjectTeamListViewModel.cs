@@ -82,7 +82,7 @@ namespace Staketracker.Core.ViewModels.ProjectTeam
             get => _projectTeamList;
             set => SetField(ref _projectTeamList, value);
         }
-        internal async Task GetProjectList(AuthReply authReply)
+        public async Task GetProjectList(AuthReply authReply)
         {
 
             StakeholderBody body = new StakeholderBody();
