@@ -169,7 +169,7 @@
                             <telerikInput:RadComboBox  
                         
                              ItemsSource="{ Binding Value.DropdownValues , Mode=TwoWay}"  
-                          SelectedItems="{Binding Value.SelectedItems}"
+                          SelectedItems="{Binding Value.SelectedItems}"  
                        
                           IsDropDownClosedOnSelection="False"
                           SelectionMode="Multiple"
@@ -544,8 +544,10 @@
 
                             <telerikInput:RadComboBox  
                         
-                             ItemsSource="{ Binding Value.DropdownValues , Mode=TwoWay}"  
-                          SelectedItems="{Binding Value.SelectedItems}"
+                          ItemsSource="{ Binding Value.DropdownValues , Mode=TwoWay}"  
+                          SelectedItems="{Binding Value.SelectedItems}"  
+                              
+                               
                           IsEnabled="False"
                           IsDropDownClosedOnSelection="False"
                           SelectionMode="Multiple"

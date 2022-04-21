@@ -48,7 +48,7 @@ namespace Staketracker.Core.ViewModels.Issues
                 };
 
                 HttpResponseMessage Issuess = await ApiManager.GetIssueDetails(new jsonTextObj(body), authReply.d.sessionId);
-                PopulateControlsWithData(authReply, primaryKey, Issuess);
+                PopulateForm(authReply, primaryKey, Issuess);
             }
         }
 
@@ -56,7 +56,7 @@ namespace Staketracker.Core.ViewModels.Issues
         {
             PageTitle = AppRes.issues;
             await base.Initialize();
-            RunSafe(GetFormUIControls(authReply, FormType.Issuess), true, "Building Form Controls");
+            RunSafe(BuildUIControls(authReply, FormType.Issuess), true, "Building Form Controls");
             UpdateTitle();
         }
 

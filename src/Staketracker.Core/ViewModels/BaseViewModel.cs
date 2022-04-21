@@ -3,6 +3,7 @@ using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Plugin.Settings;
 using Staketracker.Core.Models;
 using Staketracker.Core.Models.AddEventsReply;
@@ -54,6 +55,8 @@ namespace Staketracker.Core.ViewModels
         public string name;
         public int primaryKey;
         protected PresentationMode mode;
+
+        Dictionary<string, ValidatableObject<string>> _formContent = new Dictionary<string, ValidatableObject<string>>();
         public IMvxCommand BeginEditCommand { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         public IMvxCommand DeleteCommand { get; set; }
@@ -258,7 +261,215 @@ namespace Staketracker.Core.ViewModels
                 }
             }
         }
-        public void FetchValuesFromFormControls(string type)
+
+        public async Task PopulateForm(AuthReply authReply, int primaryKey, HttpResponseMessage resp)
+        {
+            try
+            {
+
+                FieldsValue fieldsValue;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    var response = await resp.Content.ReadAsStringAsync();
+                    fieldsValue = await Task.Run(() => JsonConvert.DeserializeObject<FieldsValue>(response));
+
+                    foreach (Field field in fieldsValue.d.Fields)
+                        foreach (ValidatableObject<string> valObj in FormContent.Values)
+                            if (valObj.FormAndDropDownField != null)
+                                if (valObj.FormAndDropDownField.PrimaryKey == field.PrimaryKey)
+                                    try
+                                    {
+                                        if (valObj.FormAndDropDownField.InputType == "DropDownList")
+                                        {
+                                            valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
+                                        }
+
+                                        else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
+                                        {
+                                            Newtonsoft.Json.Linq.JArray selected = (Newtonsoft.Json.Linq.JArray)field.SelectedKey;
+
+                                            foreach (var item in selected.Children())
+                                            {
+                                                DropdownValue dropdownValue = field.DropdownValues.Where(i => i.PrimaryKey == item.Value<string>()).FirstOrDefault();
+                                                //   valObj.SelectedItems.Add((object)dropdownValue);
+                                            }
+
+
+                                        }
+
+                                        else if (valObj.FormAndDropDownField.InputType == "CheckBox")
+                                        {
+                                            if (field.Value != null && field.Value.ToString() == "on")
+                                                valObj.IsChecked = true;
+                                            else
+                                                valObj.IsChecked = false;
+                                        }
+                                        else if (valObj.FormAndDropDownField.InputType == "DateTime")
+                                        {
+                                            string dateval;
+                                            if (field.Value != null)
+                                            {
+                                                dateval = field.Value.ToString();
+                                                valObj.SelectedDate = DateTime.Parse(dateval);
+                                            }
+                                            else
+                                            {
+                                                valObj.selectedDate = DateTime.Now;
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            if (field.Value != null)
+                                                valObj.Value = field.Value.ToString();
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                    }
+
+                }
+                else
+                    await PageDialog.AlertAsync(AppRes.msg_error_while_assigning_ui, AppRes.api_response_error, AppRes.ok);
+            }
+            catch (Exception ex)
+            {
+                await PageDialog.AlertAsync(ex.Message, AppRes.server_response_error + " " + AppRes.please_try_again, AppRes.ok);
+
+
+            }
+        }
+
+        public async Task BuildUIControls(AuthReply authReply, string type)
+        {
+
+            FormFieldBody formFieldBody = new FormFieldBody(authReply, type);
+            _formContent = new Dictionary<string, ValidatableObject<string>>();
+
+            HttpResponseMessage events = await ApiManager.GetFormAndDropDownFieldValues(formFieldBody, authReply.d.sessionId);
+
+            if (events.IsSuccessStatusCode)
+            {
+                var response = await events.Content.ReadAsStringAsync();
+                FormAndDropDownField formAndDropDownField = await Task.Run(() => JsonConvert.DeserializeObject<FormAndDropDownField>(response));
+                // return eventsReply;
+
+                foreach (Models.FormAndDropDownField.D d in formAndDropDownField.d)
+                {
+
+                    ValidatableObject<string> validatableObj = new ValidatableObject<string>();
+                    validatableObj.FormAndDropDownField = d;
+                    validatableObj.PrimaryKey = d.PrimaryKey.ToString();
+
+                    if (d.InputType == "DropDownList")
+                    {
+
+                        if (d.DropdownValues != null)
+                        {
+                            validatableObj.DropdownValues = new System.Collections.ObjectModel.ObservableCollection<Staketracker.Core.Models.FormAndDropDownField.DropdownValue>(d.DropdownValues);
+                        }
+                        validatableObj.isSelectOne = true;
+
+                    }
+                    else if (d.InputType == "ListBoxMulti")
+                    {
+                        if (d.DropdownValues != null)
+                        {
+                            validatableObj.DropdownValues = new System.Collections.ObjectModel.ObservableCollection<Staketracker.Core.Models.FormAndDropDownField.DropdownValue>(d.DropdownValues);
+                        }
+                        validatableObj.isSelectMultiple = true;
+                    }
+                    if (d.InputType == "DateTime")
+                    {
+                        validatableObj.isDateType = true;
+                        //    validatableObj.selectedDate = DateTime.Now;
+                        validatableObj.ValidationsDateTime.Add(new IsDateSelectedRule { ValidationMessage = d.Label + " is Required" });
+
+                    }
+                    if (d.MandatoryField == true)
+                    {
+                        if (d.InputType == "DropDownList")
+                        {
+                            validatableObj.ValidationsList.Add(new IsDropdownSelectedRule { ValidationMessage = d.Label + " is Required" });
+
+                        }
+                        else if (d.InputType == "ListBoxMulti")
+                        {
+                            validatableObj.ValidationsList.Add(new IsDropdownSelectedRule { ValidationMessage = d.Label + " is Required" });
+                        }
+                        else
+                        {
+                            validatableObj.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = d.Label + " is Required" });
+                        }
+                    }
+                    String label;
+
+                    if (isDevelopmentMode)
+                    {
+                        label = d.PrimaryKey.ToString() + "-" + d.Label;
+                    }
+                    else
+                    {
+                        label = d.Label;
+                    }
+
+                    _formContent.Add(label, validatableObj);
+
+                }
+                LinkedToConfig linkedToConfig = new LinkedToConfig();
+                List<KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo>> linkedPage = null;
+                if (PageTitle == "Event")
+                    linkedPage = linkedToConfig.EventsPage;
+                else if (PageTitle == "Communication")
+                    linkedPage = linkedToConfig.CommunicationsPage;
+                else if (PageTitle == "Stakeholder")
+                    linkedPage = linkedToConfig.StakeHolders_IndividualPage;
+                else if (PageTitle == "Project Team")
+                    linkedPage = linkedToConfig.ProjectTeamPage;
+                else if (PageTitle == "Topics")
+                    linkedPage = linkedToConfig.IssuesPage;
+
+                bool linkedToLabel = false;
+
+                if (linkedPage != null)
+                    foreach (KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo> linked in linkedPage)
+                    {
+                        ValidatableObject<string> validatableObj = new ValidatableObject<string>();
+                        Staketracker.Core.Models.LinkedTo.LinkedTo linkedTo = linked.Value;
+
+                        if (Mode == PresentationMode.Create || Mode == PresentationMode.Edit)
+                        {
+                            if (linkedTo.enableEditing == true)
+                            {
+                                AddLinkToControls(_formContent, ref linkedToLabel, linked, ref validatableObj);
+
+                            }
+                        }
+                        else
+                        {
+                            if (linkedTo.enableEditing == false)
+                            {
+                                AddLinkToControls(_formContent, ref linkedToLabel, linked, ref validatableObj);
+
+
+                            }
+                        }
+
+                    }
+
+
+                MovveConfidentialRecordToTop();
+
+            }
+            else
+            {
+                await PageDialog.AlertAsync(AppRes.msg_err_getting_form_fields, AppRes.api_response_error, AppRes.ok);
+                //  return null;
+            }
+        }
+
+        public void GetFormData(string type)
         {
             pageFormValue = new EventFormValue();
             pageFormValue.InputFieldValues = new List<InputFieldValue>(FormContent.Count);
@@ -384,207 +595,6 @@ namespace Staketracker.Core.ViewModels
             {
                 await PageDialog.AlertAsync(AppRes.msg_error_while_saving, AppRes.api_response_error, AppRes.ok);
                 return false;
-            }
-        }
-        public async Task PopulateControlsWithData(AuthReply authReply, int primaryKey, HttpResponseMessage resp)
-        {
-            try
-            {
-
-                FieldsValue fieldsValue;
-
-                if (resp.IsSuccessStatusCode)
-                {
-                    var response = await resp.Content.ReadAsStringAsync();
-                    fieldsValue = await Task.Run(() => JsonConvert.DeserializeObject<FieldsValue>(response));
-
-                    foreach (Field field in fieldsValue.d.Fields)
-                        foreach (ValidatableObject<string> valObj in FormContent.Values)
-                            if (valObj.FormAndDropDownField != null)
-                                if (valObj.FormAndDropDownField.PrimaryKey == field.PrimaryKey)
-                                    try
-                                    {
-                                        if (valObj.FormAndDropDownField.InputType == "DropDownList")
-                                        {
-                                            valObj.SelectedItem = valObj.DropdownValues.FirstOrDefault<DropdownValue>();
-                                        }
-
-                                        else if (valObj.FormAndDropDownField.InputType == "ListBoxMulti")
-                                        {
-                                            foreach (DropdownValue dropd in field.DropdownValues)
-                                                valObj.SelectedItems.Add(dropd);
-
-                                        }
-
-                                        else if (valObj.FormAndDropDownField.InputType == "CheckBox")
-                                        {
-                                            if (field.Value != null && field.Value.ToString() == "on")
-                                                valObj.IsChecked = true;
-                                            else
-                                                valObj.IsChecked = false;
-                                        }
-                                        else if (valObj.FormAndDropDownField.InputType == "DateTime")
-                                        {
-                                            string dateval;
-                                            if (field.Value != null)
-                                            {
-                                                dateval = field.Value.ToString();
-                                                valObj.SelectedDate = DateTime.Parse(dateval);
-                                            }
-                                            else
-                                            {
-                                                valObj.selectedDate = DateTime.Now;
-                                            }
-
-                                        }
-                                        else
-                                        {
-                                            if (field.Value != null)
-                                                valObj.Value = field.Value.ToString();
-                                        }
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                    }
-
-                }
-                else
-                    await PageDialog.AlertAsync(AppRes.msg_error_while_assigning_ui, AppRes.api_response_error, AppRes.ok);
-            }
-            catch (Exception ex)
-            {
-                await PageDialog.AlertAsync(ex.Message, AppRes.server_response_error + " " + AppRes.please_try_again, AppRes.ok);
-
-
-            }
-        }
-        Dictionary<string, ValidatableObject<string>> _formContent = new Dictionary<string, ValidatableObject<string>>();
-
-        public async Task GetFormUIControls(AuthReply authReply, string type)
-        {
-
-            FormFieldBody formFieldBody = new FormFieldBody(authReply, type);
-            _formContent = new Dictionary<string, ValidatableObject<string>>();
-
-            HttpResponseMessage events = await ApiManager.GetFormAndDropDownFieldValues(formFieldBody, authReply.d.sessionId);
-
-            if (events.IsSuccessStatusCode)
-            {
-                var response = await events.Content.ReadAsStringAsync();
-                FormAndDropDownField formAndDropDownField = await Task.Run(() => JsonConvert.DeserializeObject<FormAndDropDownField>(response));
-                // return eventsReply;
-
-                foreach (Models.FormAndDropDownField.D d in formAndDropDownField.d)
-                {
-
-                    ValidatableObject<string> validatableObj = new ValidatableObject<string>();
-                    validatableObj.FormAndDropDownField = d;
-                    validatableObj.PrimaryKey = d.PrimaryKey.ToString();
-
-                    if (d.InputType == "DropDownList")
-                    {
-
-                        if (d.DropdownValues != null)
-                        {
-                            validatableObj.DropdownValues = new System.Collections.ObjectModel.ObservableCollection<Staketracker.Core.Models.FormAndDropDownField.DropdownValue>(d.DropdownValues);
-                        }
-                        validatableObj.isSelectOne = true;
-
-                    }
-                    else if (d.InputType == "ListBoxMulti")
-                    {
-                        if (d.DropdownValues != null)
-                        {
-                            validatableObj.DropdownValues = new System.Collections.ObjectModel.ObservableCollection<Staketracker.Core.Models.FormAndDropDownField.DropdownValue>(d.DropdownValues);
-                        }
-                        validatableObj.isSelectMultiple = true;
-                    }
-                    if (d.InputType == "DateTime")
-                    {
-                        validatableObj.isDateType = true;
-                        //    validatableObj.selectedDate = DateTime.Now;
-                        validatableObj.ValidationsDateTime.Add(new IsDateSelectedRule { ValidationMessage = d.Label + " is Required" });
-
-                    }
-                    if (d.MandatoryField == true)
-                    {
-                        if (d.InputType == "DropDownList")
-                        {
-                            validatableObj.ValidationsList.Add(new IsDropdownSelectedRule { ValidationMessage = d.Label + " is Required" });
-
-                        }
-                        else if (d.InputType == "ListBoxMulti")
-                        {
-                            validatableObj.ValidationsList.Add(new IsDropdownSelectedRule { ValidationMessage = d.Label + " is Required" });
-                        }
-                        else
-                        {
-                            validatableObj.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = d.Label + " is Required" });
-                        }
-                    }
-                    String label;
-
-                    if (isDevelopmentMode)
-                    {
-                        label = d.PrimaryKey.ToString() + "-" + d.Label;
-                    }
-                    else
-                    {
-                        label = d.Label;
-                    }
-
-                    _formContent.Add(label, validatableObj);
-
-                }
-                LinkedToConfig linkedToConfig = new LinkedToConfig();
-                List<KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo>> linkedPage = null;
-                if (PageTitle == "Event")
-                    linkedPage = linkedToConfig.EventsPage;
-                else if (PageTitle == "Communication")
-                    linkedPage = linkedToConfig.CommunicationsPage;
-                else if (PageTitle == "Stakeholder")
-                    linkedPage = linkedToConfig.StakeHolders_IndividualPage;
-                else if (PageTitle == "Project Team")
-                    linkedPage = linkedToConfig.ProjectTeamPage;
-                else if (PageTitle == "Topics")
-                    linkedPage = linkedToConfig.IssuesPage;
-
-                bool linkedToLabel = false;
-
-                if (linkedPage != null)
-                    foreach (KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo> linked in linkedPage)
-                    {
-                        ValidatableObject<string> validatableObj = new ValidatableObject<string>();
-                        Staketracker.Core.Models.LinkedTo.LinkedTo linkedTo = linked.Value;
-
-                        if (Mode == PresentationMode.Create || Mode == PresentationMode.Edit)
-                        {
-                            if (linkedTo.enableEditing == true)
-                            {
-                                AddLinkToControls(_formContent, ref linkedToLabel, linked, ref validatableObj);
-
-                            }
-                        }
-                        else
-                        {
-                            if (linkedTo.enableEditing == false)
-                            {
-                                AddLinkToControls(_formContent, ref linkedToLabel, linked, ref validatableObj);
-
-
-                            }
-                        }
-
-                    }
-
-
-                MovveConfidentialRecordToTop();
-
-            }
-            else
-            {
-                await PageDialog.AlertAsync(AppRes.msg_err_getting_form_fields, AppRes.api_response_error, AppRes.ok);
-                //  return null;
             }
         }
 

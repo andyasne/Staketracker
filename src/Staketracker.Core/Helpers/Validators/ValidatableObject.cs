@@ -71,17 +71,10 @@ namespace Staketracker.Core.Validators
             {
                 if (this.selectedItems != value)
                 {
-                    if (this.selectedItems != null)
-                    {
-                        //   this.selectedItems.CollectionChanged -= this.OnSelectedItemsCollectionChanged;
-                    }
 
                     this.selectedItems = value;
 
-                    if (this.selectedItems != null)
-                    {
-                        //    this.selectedItems.CollectionChanged += this.OnSelectedItemsCollectionChanged;
-                    }
+
 
                     OnPropertyChanged("selectedItems");
                 }

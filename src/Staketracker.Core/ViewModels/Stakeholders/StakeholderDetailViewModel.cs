@@ -60,7 +60,7 @@ namespace Staketracker.Core.ViewModels.Stakeholder
                 else
                     responseMessage = await ApiManager.GetLandParcelStakeholderDetails(jto, authReply.d.sessionId);
 
-                PopulateControlsWithData(authReply, primaryKey, responseMessage);
+                PopulateForm(authReply, primaryKey, responseMessage);
 
             }
 
@@ -71,11 +71,11 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             await base.Initialize();
             SelectedIndex = 1;
             if (authReply.attachment.ToString() == "Groups")
-                RunSafe(GetFormUIControls(authReply, FormType.GroupedStakeholders), true, "Building Group Form Controls");
+                RunSafe(BuildUIControls(authReply, FormType.GroupedStakeholders), true, "Building Group Form Controls");
             else if (authReply.attachment.ToString() == "Individuals")
-                RunSafe(GetFormUIControls(authReply, FormType.IndividualStakeholders), true, "Building Individual Form Controls");
+                RunSafe(BuildUIControls(authReply, FormType.IndividualStakeholders), true, "Building Individual Form Controls");
             else
-                RunSafe(GetFormUIControls(authReply, FormType.LandParcelStakeholders), true, "Building Land Parcel Form Controls");
+                RunSafe(BuildUIControls(authReply, FormType.LandParcelStakeholders), true, "Building Land Parcel Form Controls");
 
             UpdateTitle();
         }
@@ -138,11 +138,11 @@ namespace Staketracker.Core.ViewModels.Stakeholder
             if (isFormValid())
             {
                 if (authReply.attachment.ToString() == "Groups")
-                    FetchValuesFromFormControls("group");
+                    GetFormData("group");
                 else if (authReply.attachment.ToString() == "Individuals")
-                    FetchValuesFromFormControls("individual");
+                    GetFormData("individual");
                 else
-                    FetchValuesFromFormControls("landparcel");
+                    GetFormData("landparcel");
               if(await  AddStaketracker())
                 changeView();
 
