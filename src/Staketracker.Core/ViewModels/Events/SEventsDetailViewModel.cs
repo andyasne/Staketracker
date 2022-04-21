@@ -57,7 +57,7 @@ namespace Staketracker.Core.ViewModels.Events
             {
                 var apiReqExtra = new APIRequestExtraBody(authReply, "PrimaryKey", primaryKey.ToString());
                 HttpResponseMessage events = await ApiManager.GetEventDetails(apiReqExtra, authReply.d.sessionId);
-                PopulateControlsWithData(authReply, primaryKey, events);
+                PopulateForm(authReply, primaryKey, events);
             }
 
         }
@@ -67,7 +67,7 @@ namespace Staketracker.Core.ViewModels.Events
 
             await base.Initialize();
 
-            RunSafe(GetFormUIControls(authReply, FormType.Events), true, AppRes.building_form_controls);
+            RunSafe(BuildUIControls(authReply, FormType.Events), true, AppRes.building_form_controls);
 
             UpdateTitle();
         }
@@ -116,7 +116,7 @@ namespace Staketracker.Core.ViewModels.Events
         {
             if (isFormValid())
             {
-                FetchValuesFromFormControls("Event");
+                GetFormData("Event");
                 if (await AddEvent())
                     changeView();
 

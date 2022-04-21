@@ -45,7 +45,7 @@ namespace Staketracker.Core.ViewModels.Communication
                 };
 
                 HttpResponseMessage communications = await ApiManager.GetCommunicationDetails(new jsonTextObj(body), authReply.d.sessionId);
-                PopulateControlsWithData(authReply, primaryKey, communications);
+                PopulateForm(authReply, primaryKey, communications);
             }
         }
 
@@ -53,7 +53,7 @@ namespace Staketracker.Core.ViewModels.Communication
         {
             PageTitle = "Communication";
             await base.Initialize();
-            RunSafe(GetFormUIControls(authReply, FormType.Communications), true, "Building Form Controls");
+            RunSafe(BuildUIControls(authReply, FormType.Communications), true, "Building Form Controls");
             UpdateTitle();
         }
 
@@ -110,7 +110,7 @@ namespace Staketracker.Core.ViewModels.Communication
         {
             if (isFormValid())
             {
-                FetchValuesFromFormControls("Communication");
+                GetFormData("Communication");
               if(await  AddCommunication())
                 changeView();
 

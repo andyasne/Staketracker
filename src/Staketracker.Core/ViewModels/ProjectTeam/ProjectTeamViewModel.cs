@@ -46,7 +46,7 @@ namespace Staketracker.Core.ViewModels.ProjectTeam
                 };
 
                 HttpResponseMessage ProjectTeams = await ApiManager.GetProjectTeamMemberDetails(new jsonTextObj(body), authReply.d.sessionId);
-                PopulateControlsWithData(authReply, primaryKey, ProjectTeams);
+                PopulateForm(authReply, primaryKey, ProjectTeams);
             }
         }
 
@@ -54,7 +54,7 @@ namespace Staketracker.Core.ViewModels.ProjectTeam
         {
             PageTitle = AppRes.project_team;
             await base.Initialize();
-            RunSafe(GetFormUIControls(authReply, FormType.TeamMembers), true, "Building Form Controls");
+            RunSafe(BuildUIControls(authReply, FormType.TeamMembers), true, "Building Form Controls");
             UpdateTitle();
         }
 

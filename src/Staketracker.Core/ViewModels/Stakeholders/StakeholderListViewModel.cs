@@ -145,7 +145,7 @@ namespace Staketracker.Core.ViewModels.Stakeholders
         {
             await base.Initialize();
 
-            GetFormUIControls(authReply, FormType.GroupedStakeholders);
+            BuildUIControls(authReply, FormType.GroupedStakeholders);
 
         }
 
