@@ -8,6 +8,8 @@ using Plugin.Settings;
 using Staketracker.Core.Models;
 using Staketracker.Core.Models.AddEventsReply;
 using Staketracker.Core.Models.ApiRequestBody;
+using Staketracker.Core.Models.Communication;
+using Staketracker.Core.Models.Events;
 using Staketracker.Core.Models.EventsFormValue;
 using Staketracker.Core.Models.FieldsValue;
 using Staketracker.Core.Models.FormAndDropDownField;
@@ -679,5 +681,87 @@ namespace Staketracker.Core.ViewModels
                     UserDialogs.Instance.HideLoading();
             }
         }
+
+        private CommunicationReply communicationReply;
+        public CommunicationReply communicationReply_
+        {
+            get => communicationReply;
+            private set => SetField(ref communicationReply, value);
+        }
+        private ObservableCollection<object> selectedCommunications = new ObservableCollection<object>();
+
+        public ObservableCollection<object> SelectedCommunications { 
+            get
+            {
+                return this.selectedCommunications;
+            }
+            set
+            {
+                if (this.selectedCommunications != value)
+                {
+
+                    this.selectedCommunications = value;
+
+                    OnPropertyChanged("selectedItems");
+                }
+            }
+        }
+
+        private Staketracker.Core.Models.Communication.D selectedCommunication;
+
+        public Staketracker.Core.Models.Communication.D SelectedCommunication
+        {
+            get => selectedCommunication;
+            set
+            {
+                SetProperty(ref selectedCommunication, value);
+
+            }
+        }
+
+        private EventsReply eventsReply;
+        public EventsReply EventsReply_
+        {
+            get => eventsReply;
+            private set => SetField(ref eventsReply, value);
+        }
+
+
+        public async Task GetCommunication(AuthReply authReply)
+        {
+
+            var apiReq = new APIRequestBody(authReply);
+            HttpResponseMessage communications = await ApiManager.GetAllCommunications(apiReq, authReply.d.sessionId);
+
+            if (communications.IsSuccessStatusCode)
+            {
+                var response = await communications.Content.ReadAsStringAsync();
+                communicationReply_ = await Task.Run(() => JsonConvert.DeserializeObject<CommunicationReply>(response));
+
+            }
+            else
+            {
+                await PageDialog.AlertAsync("API Error While retrieving Communication", "API Response Error", "Ok");
+
+            }
+
+        }
+        internal async Task GetEvents(AuthReply authReply)
+        {
+
+            var apiReq = new APIRequestBody(authReply);
+            HttpResponseMessage events = await ApiManager.GetEvents(apiReq, authReply.d.sessionId);
+
+            if (events.IsSuccessStatusCode)
+            {
+                var response = await events.Content.ReadAsStringAsync();
+                EventsReply_ = await Task.Run(() => JsonConvert.DeserializeObject<EventsReply>(response));
+            }
+            else
+                await PageDialog.AlertAsync("API Error While retrieving Events", "API Response Error", "Ok");
+
+        }
+
+
     }
 }

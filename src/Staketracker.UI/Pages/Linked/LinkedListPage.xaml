@@ -44,10 +44,14 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                    TextColor="{StaticResource DarkTextColor}"  WatermarkText="Search" FontAttributes="Bold"  />
 
             </StackLayout>
-            <telerikDataControls:RadListView ItemsSource="{Binding communicationReply_.d, Mode=OneWay}" SelectionMode="Single" IsVisible="{Binding CommunicationVisible}"
+
+            <telerikDataControls:RadListView ItemsSource="{Binding communicationReply_.d, Mode=OneWay}" 
+                                             SelectionMode="Multiple" IsVisible="{Binding CommunicationVisible, Mode=TwoWay}"
                                                 IsPullToRefreshEnabled="true" Grid.Row="1"
                                                 RefreshRequested="Handle_RefreshRequested"
-                                                SelectedItem="{Binding SelectedCommunication, Mode=TwoWay}">
+                                              SelectedItems="{Binding SelectedCommunications}"
+                                              
+                                             >
                 <telerikDataControls:RadListView.ItemTemplate>
                     <DataTemplate>
                         <telerikListView:ListViewTemplateCell>
@@ -85,11 +89,9 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                 </telerikDataControls:RadListView.LayoutDefinition>
             </telerikDataControls:RadListView>
 
-
-            <telerikDataControls:RadListView ItemsSource="{Binding EventsReply_.d, Mode=OneWay}" SelectionMode="Single" IsVisible="{Binding EventVisible}"
-                                                IsPullToRefreshEnabled="true" Grid.Row="1" 
-                                                RefreshRequested="Handle_RefreshRequested" 
-                                                SelectedItem="{Binding SelectedEvent, Mode=TwoWay}">
+            <telerikDataControls:RadListView ItemsSource="{Binding EventsReply_.d, Mode=OneWay}" 
+                                                SelectionMode="Single"  IsVisible="{Binding EventVisible, Mode=TwoWay}"
+                                                Grid.Row="1"  >
                 <telerikDataControls:RadListView.ItemTemplate>
                     <DataTemplate>
                         <telerikListView:ListViewTemplateCell>
@@ -100,10 +102,27 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition Width="60" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
+
+                                    <StackLayout  Grid.Column="0"  Grid.Row="0" Grid.RowSpan="2"  Padding="2"  VerticalOptions="Center"  HorizontalOptions="CenterAndExpand">
+
+                                        <telerikPrimitives:RadCheckBox Margin="0, 0, 6, 0"
+                                               CheckedColor="#0E88F2"
+                                               IndeterminateColor="#0E88F2"
+                                               InputTransparent="True"
+                                               VerticalOptions="Center">
+                                            <telerikPrimitives:RadCheckBox.Margin>
+                                                <OnPlatform x:TypeArguments="Thickness">
+                                                    <On Platform="iOS" Value="3, 0, 0, 0"/>
+                                                    <On Platform="Android" Value="8, 0, 0, 0"/>
+                                                    <On Platform="UWP" Value="10, 0, 0, 0"/>
+                                                </OnPlatform>
+                                            </telerikPrimitives:RadCheckBox.Margin>
+                                        </telerikPrimitives:RadCheckBox>
+                                    </StackLayout>
                                     <StackLayout  Grid.Column="1" Spacing="1"  Grid.Row="0">
 
                                         <Label Text="{Binding Name}" TextColor="Black"   />
@@ -112,14 +131,14 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
 
                                     </StackLayout>
 
-                                    <Label Grid.Column="2" Grid.Row="0"  VerticalOptions="Center" HorizontalOptions="Center" TextColor="Gray" Margin="0,0,40,0"
+                                    <!--<Label Grid.Column="2" Grid.Row="0"  VerticalOptions="Center" HorizontalOptions="Center" TextColor="Gray" Margin="0,0,40,0"
                                             FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-right-open-big}">
                                         <Label.IsVisible>
                                             <OnIdiom x:TypeArguments="x:Boolean" Default="False">
                                                 <OnIdiom.Phone>True</OnIdiom.Phone>
                                             </OnIdiom>
                                         </Label.IsVisible>
-                                    </Label>
+                                    </Label>-->
 
                                     <BoxView Grid.ColumnSpan="3"  Margin="0,5,0,2"  Grid.Row="1" HeightRequest="1" VerticalOptions="End" BackgroundColor="#d7d7d7" />
                                 </Grid>

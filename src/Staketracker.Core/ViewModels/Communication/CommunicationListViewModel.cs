@@ -78,62 +78,22 @@ namespace Staketracker.Core.ViewModels.CommunicationList
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private Staketracker.Core.Models.Communication.D selectedCommunication;
+      
 
-        public Staketracker.Core.Models.Communication.D SelectedCommunication
-        {
-            get => selectedCommunication;
-            set
-            {
-                if (SetProperty(ref selectedCommunication, value) && value != null)
-                {
+        //private void OnSelectedEventChanged(Staketracker.Core.Models.Communication.D communication)
+        //{
+        //    if (Device.Idiom != TargetIdiom.Phone)
+        //        return;
+        //    string communicationSubject = "";
+        //    if (communication.CommunicationSubject != null)
+        //    {
+        //        communicationSubject = communication.CommunicationSubject.ToString();
+        //    }
+        //    _navigationService.Navigate<CommunicationDetailViewModel, PresentationContext<AuthReply>>(
+        //        new PresentationContext<AuthReply>(authReply, PresentationMode.Read, int.Parse(communication.PrimaryKey), communicationSubject));
 
-                    OnSelectedEventChanged(selectedCommunication);
-                }
+        //}
 
-            }
-        }
-
-        private void OnSelectedEventChanged(Staketracker.Core.Models.Communication.D communication)
-        {
-            if (Device.Idiom != TargetIdiom.Phone)
-                return;
-            string communicationSubject = "";
-            if (communication.CommunicationSubject != null)
-            {
-                communicationSubject = communication.CommunicationSubject.ToString();
-            }
-            _navigationService.Navigate<CommunicationDetailViewModel, PresentationContext<AuthReply>>(
-                new PresentationContext<AuthReply>(authReply, PresentationMode.Read, int.Parse(communication.PrimaryKey), communicationSubject));
-
-        }
-
-        private CommunicationReply communicationReply;
-        public CommunicationReply communicationReply_
-        {
-            get => communicationReply;
-            private set => SetField(ref communicationReply, value);
-        }
-
-        public async Task GetCommunication(AuthReply authReply)
-        {
-
-            var apiReq = new APIRequestBody(authReply);
-            HttpResponseMessage communications = await ApiManager.GetAllCommunications(apiReq, authReply.d.sessionId);
-
-            if (communications.IsSuccessStatusCode)
-            {
-                var response = await communications.Content.ReadAsStringAsync();
-                communicationReply_ = await Task.Run(() => JsonConvert.DeserializeObject<CommunicationReply>(response));
-
-            }
-            else
-            {
-                await PageDialog.AlertAsync("API Error While retrieving Communication", "API Response Error", "Ok");
-
-            }
-
-        }
 
         public async Task Refresh()
         {

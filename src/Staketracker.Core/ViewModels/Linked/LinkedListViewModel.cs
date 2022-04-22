@@ -75,27 +75,29 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
         public override async void Prepare(AuthReply parameter)
         {
 
-            this.IsBusy = true;
             this.authReply = parameter;
             KeyValuePair<String, LinkedTo> _linkedTo = (KeyValuePair<String, LinkedTo>)authReply.attachment;
             linkedObj = _linkedTo.Value;
+            PopulateAsync();
+            base.Prepare();
 
+
+        }
+
+        private async Task PopulateAsync()
+        {
             CommunicationVisible = false;
             EventVisible = false;
 
             switch (linkedObj.buttonLabel)
             {
-                case "Communication":
-                    CommunicationListViewModel communicationListViewModel = new CommunicationListViewModel(navigationService);
-                    await RunSafe(communicationListViewModel.GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel);
-                    communicationReply_ = communicationListViewModel.communicationReply_;
+                case "Stakeholders":
+                    RunSafe(GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel);
                     CommunicationVisible = true;
                     break;
 
                 case "Topics":
-                    SEventsListViewModel sEventsListViewModel = new SEventsListViewModel(navigationService);
-                    await RunSafe(sEventsListViewModel.GetEvents(authReply), true, "Loading " + linkedObj.buttonLabel);
-                    EventsReply_ = sEventsListViewModel.EventsReply_;
+                    RunSafe(GetEvents(authReply), true, "Loading " + linkedObj.buttonLabel);
                     EventVisible = true;
                     break;
 
@@ -128,10 +130,6 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
                 default:
                     break;
             }
-            this.IsBusy = false;
-            base.Prepare();
-
-
         }
 
         public override async void ViewAppearing()
@@ -140,14 +138,9 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
             this.PageTitle = linkedObj.buttonLabel;
             this.LinkName = "Link to " + this.PageTitle;
 
+            //Populate();
+        }
 
-        }
-        private EventsReply eventsReply;
-        public EventsReply EventsReply_
-        {
-            get => eventsReply;
-            private set => SetField(ref eventsReply, value);
-        }
 
         private bool isSearchEmpty, isBusy;
         public bool IsBusy
@@ -181,6 +174,7 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
             }
         }
 
+
         private void OnSelectedEventChanged(Staketracker.Core.Models.Communication.D communication)
         {
             if (Device.Idiom != TargetIdiom.Phone)
@@ -195,31 +189,10 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
 
         }
 
-        private CommunicationReply communicationReply;
 
-        public CommunicationReply communicationReply_
-        {
-            get => communicationReply;
-            private set => SetField(ref communicationReply, value);
-        }
         public bool CommunicationVisible { get; set; }
         private bool _EventVisible;
 
-        internal async Task GetCommunication(AuthReply authReply)
-        {
 
-            var apiReq = new APIRequestBody(authReply);
-            HttpResponseMessage communications = await ApiManager.GetAllCommunications(apiReq, authReply.d.sessionId);
-
-            if (communications.IsSuccessStatusCode)
-            {
-                var response = await communications.Content.ReadAsStringAsync();
-                communicationReply_ = await Task.Run(() => JsonConvert.DeserializeObject<CommunicationReply>(response));
-
-            }
-            else
-                await PageDialog.AlertAsync("API Error While retrieving Communication", "API Response Error", "Ok");
-
-        }
     }
 }
