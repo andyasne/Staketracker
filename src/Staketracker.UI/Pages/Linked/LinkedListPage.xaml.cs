@@ -22,8 +22,9 @@ namespace Staketracker.UI.Pages.Linked.Communication
             ToolbarItem doneToolbarItem = new ToolbarItem();
 
             doneToolbarItem.Text = "Done";
+            doneToolbarItem.SetBinding(ToolbarItem.CommandProperty, new Binding("NavigateBackCommand"));
 
-            doneToolbarItem.Clicked += this.doneToolbarItem_Clicked;
+
 
             this.ToolbarItems.Add(doneToolbarItem);
 
@@ -31,7 +32,8 @@ namespace Staketracker.UI.Pages.Linked.Communication
 
         private void doneToolbarItem_Clicked(object sender, EventArgs e)
         {
-            Navigation.PopAsync();
+            // Navigation.PopAsync();
+            //   ViewModel.NavigateBackCommand;
         }
     }
 }

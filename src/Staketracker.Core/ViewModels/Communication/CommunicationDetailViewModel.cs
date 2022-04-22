@@ -31,6 +31,7 @@ namespace Staketracker.Core.ViewModels.Communication
             Mode = parameter.Mode;
             primaryKey = parameter.PrimaryKey;
             name = parameter.Name;
+
         }
 
         public override async void ViewAppearing()
@@ -103,7 +104,7 @@ namespace Staketracker.Core.ViewModels.Communication
         {
             jsonTextObj jsonTextObj = new jsonTextObj(pageFormValue);
             HttpResponseMessage communications = await ApiManager.AddCommunication(jsonTextObj, authReply.d.sessionId);
-          return  await Add(communications);
+            return await Add(communications);
         }
 
         private async Task OnSave()
@@ -111,8 +112,8 @@ namespace Staketracker.Core.ViewModels.Communication
             if (isFormValid())
             {
                 GetFormData("Communication");
-              if(await  AddCommunication())
-                changeView();
+                if (await AddCommunication())
+                    changeView();
 
             }
         }

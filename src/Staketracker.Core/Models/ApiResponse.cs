@@ -25,5 +25,6 @@ namespace Staketracker.Core.Models
         public D d { get; set; }
         public LoginAPIBody loginAPIBody { get; set; }
         public Object attachment { get; set; }
+        public Type Sender { get; set; }
     }
 }

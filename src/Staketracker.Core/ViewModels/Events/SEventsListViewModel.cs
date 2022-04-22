@@ -162,28 +162,7 @@ namespace Staketracker.Core.ViewModels.Events
         public override void Prepare(AuthReply authReply) => this.authReply = authReply;
 
 
-        private EventsReply eventsReply;
-        public EventsReply EventsReply_
-        {
-            get => eventsReply;
-            private set => SetField(ref eventsReply, value);
-        }
 
-        internal async Task GetEvents(AuthReply authReply)
-        {
-
-            var apiReq = new APIRequestBody(authReply);
-            HttpResponseMessage events = await ApiManager.GetEvents(apiReq, authReply.d.sessionId);
-
-            if (events.IsSuccessStatusCode)
-            {
-                var response = await events.Content.ReadAsStringAsync();
-                EventsReply_ = await Task.Run(() => JsonConvert.DeserializeObject<EventsReply>(response));
-            }
-            else
-                await PageDialog.AlertAsync("API Error While retrieving Events", "API Response Error", "Ok");
-
-        }
 
         public async Task Refresh()
         {
