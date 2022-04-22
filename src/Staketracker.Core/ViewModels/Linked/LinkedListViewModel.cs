@@ -25,6 +25,7 @@ using Staketracker.Core.ViewModels.Issues;
 using Staketracker.Core.ViewModels.Stakeholders;
 using MvvmCross.Presenters.Hints;
 using Staketracker.Core.ViewModels.Root;
+using MvvmCross.ViewModels;
 
 namespace Staketracker.Core.ViewModels.Linked.Communication
 {
@@ -76,6 +77,18 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
 
         private void NavigateBack()
         {
+            List<string> selectedComm = new List<string>();
+
+            foreach (object communicationObject in SelectedCommunications)
+            {
+                Staketracker.Core.Models.Communication.D communication = (Staketracker.Core.Models.Communication.D)communicationObject;
+
+                selectedComm.Add(communication.PrimaryKey);
+            }
+
+            authReply.SelectedCommunications = "[" + string.Join(",", selectedComm) + "]";
+
+
             _navigationService.ChangePresentation(new MvxPopPresentationHint(typeof(CommunicationDetailViewModel), true));
         }
         private Type senderType;
@@ -87,7 +100,6 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
             KeyValuePair<String, LinkedTo> _linkedTo = (KeyValuePair<String, LinkedTo>)authReply.attachment;
             linkedObj = _linkedTo.Value;
             PopulateAsync();
-            this.senderType = parameter.Sender;
 
             base.Prepare();
 

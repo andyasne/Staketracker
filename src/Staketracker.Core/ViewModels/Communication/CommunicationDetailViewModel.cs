@@ -4,6 +4,7 @@ namespace Staketracker.Core.ViewModels.Communication
     using System.Threading.Tasks;
     using MvvmCross.Commands;
     using MvvmCross.Navigation;
+    using MvvmCross.ViewModels;
     using Newtonsoft.Json;
     using Staketracker.Core.Helpers;
     using Staketracker.Core.Models;
@@ -36,6 +37,7 @@ namespace Staketracker.Core.ViewModels.Communication
 
         public override async void ViewAppearing()
         {
+
             if (mode == PresentationMode.Edit || mode == PresentationMode.Read)
             {
                 CommunicationDetailReq body = new CommunicationDetailReq()
@@ -49,6 +51,20 @@ namespace Staketracker.Core.ViewModels.Communication
                 PopulateForm(authReply, primaryKey, communications);
             }
         }
+        protected override void InitFromBundle(IMvxBundle parameters)
+        {
+
+        }
+
+        protected override void ReloadFromBundle(IMvxBundle state)
+        {
+
+        }
+
+        //protected override void Sa(IMvxBundle state)
+        //{
+
+        //}
 
         public override async Task Initialize()
         {

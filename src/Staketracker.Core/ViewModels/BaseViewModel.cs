@@ -89,6 +89,7 @@ namespace Staketracker.Core.ViewModels
         public async void OpenLinkPage_(object _value)
         {
             authReply.attachment = _value;
+            //authReply.Count = 5;
             await navigationService.Navigate<LinkedListViewModel, AuthReply>(
                  authReply);
         }
@@ -690,7 +691,8 @@ namespace Staketracker.Core.ViewModels
         }
         private ObservableCollection<object> selectedCommunications = new ObservableCollection<object>();
 
-        public ObservableCollection<object> SelectedCommunications { 
+        public ObservableCollection<object> SelectedCommunications
+        {
             get
             {
                 return this.selectedCommunications;
@@ -705,6 +707,8 @@ namespace Staketracker.Core.ViewModels
                 }
             }
         }
+
+
 
         private Staketracker.Core.Models.Communication.D selectedCommunication;
 

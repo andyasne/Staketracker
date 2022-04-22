@@ -20,8 +20,10 @@ namespace Staketracker.Core
         {
             base.RegisterAttributeTypes();
 
+
             AttributeTypesToActionsDictionary.Register<MvxCustomMasterDetailPagePresentationAttribute>(ShowMasterDetailPage, CloseMasterDetailPage);
         }
+
 
         public override async Task<bool> ShowMasterDetailPage(Type view, MvvmCross.Forms.Presenters.Attributes.MvxMasterDetailPagePresentationAttribute attribute, MvxViewModelRequest request)
         {

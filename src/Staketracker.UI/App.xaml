@@ -157,7 +157,6 @@
 
                 </ViewCell>
             </DataTemplate>
-
             <DataTemplate x:Key="ListBoxMultiTemplate">
                 <ViewCell>
 
@@ -168,13 +167,11 @@
 
                             <telerikInput:RadComboBox  
                         
-                             ItemsSource="{ Binding Value.DropdownValues , Mode=TwoWay}"  
+                          ItemsSource="{ Binding Value.DropdownValues , Mode=TwoWay}"  
                           SelectedItems="{Binding Value.SelectedItems}"  
-                       
                           IsDropDownClosedOnSelection="False"
                           SelectionMode="Multiple"
                           DisplayMemberPath="Label"
-                        
                           Margin="10, 0, 10, 0">
 
                                 <telerikInput:RadComboBox.ItemTemplate>
@@ -376,7 +373,6 @@
 
                     <StackLayout  Margin="0,2,0,2">
                         <Label  Text="{Binding Value.PageTitle}" HorizontalOptions="StartAndExpand" Style="{StaticResource NormalLabelStyle}"  Margin="0" />
-
                     </StackLayout>
                 </ViewCell>
 
@@ -720,9 +716,9 @@
                                                     </telerikPrimitives:RadCheckBox.Margin>
                                                 </telerikPrimitives:RadCheckBox>
                                                 <Label Text="Select All " 
-                       TextColor="Black"
-                       FontAttributes="Bold"
-                       VerticalTextAlignment="Center">
+                                                           TextColor="Black"
+                                                           FontAttributes="Bold"
+                                                           VerticalTextAlignment="Center">
                                                     <Label.Padding>
                                                         <OnPlatform x:TypeArguments="Thickness">
                                                             <On Platform="iOS" Value="3, 0, 0, 0"/>
