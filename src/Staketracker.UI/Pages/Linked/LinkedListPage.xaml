@@ -46,27 +46,44 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
             </StackLayout>-->
 
             <telerikDataControls:RadListView ItemsSource="{Binding communicationReply_.d, Mode=OneWay}" 
-                                             SelectionMode="Multiple" IsVisible="{Binding CommunicationVisible, Mode=TwoWay}"
-                                                IsPullToRefreshEnabled="true" Grid.Row="1"
-                                                RefreshRequested="Handle_RefreshRequested"
-                                              SelectedItems="{Binding SelectedCommunications}"
+                                             SelectionMode="Multiple" 
+                                             IsVisible="{Binding CommunicationVisible, Mode=TwoWay}"
+                                             Grid.Row="1"
+                                             SelectedItems="{Binding SelectedCommunications}"
                                               
                                              >
                 <telerikDataControls:RadListView.ItemTemplate>
                     <DataTemplate>
                         <telerikListView:ListViewTemplateCell>
                             <telerikListView:ListViewTemplateCell.View>
-                                <Grid >
+                                <Grid VerticalOptions="CenterAndExpand"  >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30" />
-
+                                        <ColumnDefinition Width="60" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <StackLayout  Grid.Column="0" Padding="2"  VerticalOptions="Center"  HorizontalOptions="CenterAndExpand" >
-                                        <telerikPrimitives:RadCheckBox x:Name="checkbox"  />
+                                    <StackLayout  Grid.Column="0"  Grid.Row="0" Grid.RowSpan="2"  Padding="2"  VerticalOptions="Center"  HorizontalOptions="CenterAndExpand">
+
+                                        <telerikPrimitives:RadCheckBox Margin="0, 0, 6, 0"
+                                               CheckedColor="#0E88F2"
+                                               IndeterminateColor="#0E88F2"
+                                               InputTransparent="True"
+                                               VerticalOptions="Center">
+                                            <telerikPrimitives:RadCheckBox.Margin>
+                                                <OnPlatform x:TypeArguments="Thickness">
+                                                    <On Platform="iOS" Value="3, 0, 0, 0"/>
+                                                    <On Platform="Android" Value="8, 0, 0, 0"/>
+                                                    <On Platform="UWP" Value="10, 0, 0, 0"/>
+                                                </OnPlatform>
+                                            </telerikPrimitives:RadCheckBox.Margin>
+                                        </telerikPrimitives:RadCheckBox>
                                     </StackLayout>
-                                    <StackLayout  Grid.Column="1" Spacing="1" >
+                                    <StackLayout  Grid.Column="1" Spacing="1"  Grid.Row="0">
+
 
                                         <Label Text="{Binding CommunicationSubject}" TextColor="Black" MaxLines="2" VerticalOptions="Start" />
                                         <Label Text="{Binding GetDateString}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
@@ -131,14 +148,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
 
                                     </StackLayout>
 
-                                    <!--<Label Grid.Column="2" Grid.Row="0"  VerticalOptions="Center" HorizontalOptions="Center" TextColor="Gray" Margin="0,0,40,0"
-                                            FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-right-open-big}">
-                                        <Label.IsVisible>
-                                            <OnIdiom x:TypeArguments="x:Boolean" Default="False">
-                                                <OnIdiom.Phone>True</OnIdiom.Phone>
-                                            </OnIdiom>
-                                        </Label.IsVisible>
-                                    </Label>-->
+
 
                                     <BoxView Grid.ColumnSpan="3"  Margin="0,5,0,2"  Grid.Row="1" HeightRequest="1" VerticalOptions="End" BackgroundColor="#d7d7d7" />
                                 </Grid>
@@ -155,6 +165,190 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
 
             </telerikDataControls:RadListView>
 
+            <telerikDataControls:RadListView   ItemsSource="{Binding projectTeamList.d, Mode=OneWay}" 
+                                                SelectionMode="Multiple"
+                                               Grid.Row="1" 
+                                               SelectedItems="{Binding SelectedProjectTeams}"
+                                               IsVisible="{Binding ProjectTeamsVisible, Mode=TwoWay}"
+                                             >
+                <telerikDataControls:RadListView.ItemTemplate>
+                    <DataTemplate>
+                        <telerikListView:ListViewTemplateCell>
+                            <telerikListView:ListViewTemplateCell.View>
+
+                                <Grid VerticalOptions="CenterAndExpand"  >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout  Grid.Column="0"  Grid.Row="0" Grid.RowSpan="2"  Padding="2"  VerticalOptions="Center"  HorizontalOptions="CenterAndExpand">
+
+                                        <telerikPrimitives:RadCheckBox Margin="0, 0, 6, 0"
+                                               CheckedColor="#0E88F2"
+                                               IndeterminateColor="#0E88F2"
+                                               InputTransparent="True"
+                                               VerticalOptions="Center">
+                                            <telerikPrimitives:RadCheckBox.Margin>
+                                                <OnPlatform x:TypeArguments="Thickness">
+                                                    <On Platform="iOS" Value="3, 0, 0, 0"/>
+                                                    <On Platform="Android" Value="8, 0, 0, 0"/>
+                                                    <On Platform="UWP" Value="10, 0, 0, 0"/>
+                                                </OnPlatform>
+                                            </telerikPrimitives:RadCheckBox.Margin>
+                                        </telerikPrimitives:RadCheckBox>
+                                    </StackLayout>
+                                    <StackLayout  Grid.Column="1" Spacing="1"  Grid.Row="0">
+
+                                        <Label Text="{Binding FullName}"  TextColor="Black" MaxLines="2" VerticalOptions="Start" />
+                                        <Label Text="{Binding Email}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+
+                                    </StackLayout>
+
+                                    <BoxView Grid.ColumnSpan="3" Grid.Row="1" HeightRequest="1" VerticalOptions="End" BackgroundColor="#d7d7d7"  />
+                                </Grid>
+                            </telerikListView:ListViewTemplateCell.View>
+                        </telerikListView:ListViewTemplateCell>
+                    </DataTemplate>
+                </telerikDataControls:RadListView.ItemTemplate>
+                <telerikDataControls:RadListView.ItemStyle>
+                    <telerikListView:ListViewItemStyle BorderLocation="None"  BorderWidth="0" />
+                </telerikDataControls:RadListView.ItemStyle>
+                <telerikDataControls:RadListView.LayoutDefinition>
+                    <telerikListView:ListViewLinearLayout ItemLength="60" />
+                </telerikDataControls:RadListView.LayoutDefinition>
+            </telerikDataControls:RadListView>
+
+            <telerikDataControls:RadListView   ItemsSource="{Binding IssuesList.d, Mode=OneWay}"  SelectionMode="Multiple"
+                                               Grid.Row="1" SelectedItems="{Binding SelectedTopics, Mode=TwoWay}" 
+                                               IsVisible="{Binding TopicsVisible, Mode=TwoWay}"
+                                             >
+                <telerikDataControls:RadListView.ItemTemplate>
+                    <DataTemplate>
+                        <telerikListView:ListViewTemplateCell>
+                            <telerikListView:ListViewTemplateCell.View>
+                                <Grid VerticalOptions="CenterAndExpand"  >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackLayout  Grid.Column="0"  Grid.Row="0" Grid.RowSpan="2"  Padding="2"  VerticalOptions="Center"  HorizontalOptions="CenterAndExpand">
+
+                                        <telerikPrimitives:RadCheckBox Margin="0, 0, 6, 0"
+                                               CheckedColor="#0E88F2"
+                                               IndeterminateColor="#0E88F2"
+                                               InputTransparent="True"
+                                               VerticalOptions="Center">
+                                            <telerikPrimitives:RadCheckBox.Margin>
+                                                <OnPlatform x:TypeArguments="Thickness">
+                                                    <On Platform="iOS" Value="3, 0, 0, 0"/>
+                                                    <On Platform="Android" Value="8, 0, 0, 0"/>
+                                                    <On Platform="UWP" Value="10, 0, 0, 0"/>
+                                                </OnPlatform>
+                                            </telerikPrimitives:RadCheckBox.Margin>
+                                        </telerikPrimitives:RadCheckBox>
+                                    </StackLayout>
+                                    <StackLayout  Grid.Column="1" Spacing="1"  Grid.Row="0">
+
+
+                                        <Label Text="{Binding Name}"  TextColor="Black" MaxLines="2" VerticalOptions="Start" />
+                                        <Label Text="{Binding Details[0].SubCategory}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+                                        <Label Text="{Binding Details[0].Category}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+
+                                    </StackLayout>
+
+
+                                    <BoxView Grid.ColumnSpan="3" HeightRequest="1" VerticalOptions="End" BackgroundColor="#d7d7d7" />
+                                </Grid>
+                            </telerikListView:ListViewTemplateCell.View>
+                        </telerikListView:ListViewTemplateCell>
+                    </DataTemplate>
+                </telerikDataControls:RadListView.ItemTemplate>
+                <telerikDataControls:RadListView.ItemStyle>
+                    <telerikListView:ListViewItemStyle BorderLocation="None"  BorderWidth="0" />
+                </telerikDataControls:RadListView.ItemStyle>
+                <telerikDataControls:RadListView.LayoutDefinition>
+                    <telerikListView:ListViewLinearLayout ItemLength="60" />
+                </telerikDataControls:RadListView.LayoutDefinition>
+            </telerikDataControls:RadListView>
+
+            <telerikDataControls:RadListView ItemsSource="{Binding allStakeholders.d.GroupedStakeholders, Mode=OneWay}"
+                                                SelectionMode="Multiple"  Grid.Row="1"
+                                                 SelectedItems="{Binding SelectedStakeholders}"
+                                                IsVisible="{Binding StakeholdersVisible, Mode=TwoWay}"
+                                             
+                                             >
+                <telerikDataControls:RadListView.ItemTemplate>
+                    <DataTemplate>
+                        <telerikListView:ListViewTemplateCell>
+                            <telerikListView:ListViewTemplateCell.View>
+                                <Grid VerticalOptions="CenterAndExpand"  >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackLayout  Grid.Column="0"  Grid.Row="0" Grid.RowSpan="2"  Padding="2"  VerticalOptions="Center"  HorizontalOptions="CenterAndExpand">
+
+                                        <telerikPrimitives:RadCheckBox Margin="0, 0, 6, 0"
+                                               CheckedColor="#0E88F2"
+                                               IndeterminateColor="#0E88F2"
+                                               InputTransparent="True"
+                                               VerticalOptions="Center">
+                                            <telerikPrimitives:RadCheckBox.Margin>
+                                                <OnPlatform x:TypeArguments="Thickness">
+                                                    <On Platform="iOS" Value="3, 0, 0, 0"/>
+                                                    <On Platform="Android" Value="8, 0, 0, 0"/>
+                                                    <On Platform="UWP" Value="10, 0, 0, 0"/>
+                                                </OnPlatform>
+                                            </telerikPrimitives:RadCheckBox.Margin>
+                                        </telerikPrimitives:RadCheckBox>
+                                    </StackLayout>
+                                    <StackLayout  Grid.Column="1" Spacing="1" >
+
+                                        <Label Text="{Binding GroupName}" TextColor="Black" MaxLines="2" VerticalOptions="Start" />
+                                        <Label Text="{Binding MainPhone}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+                                        <Label Text="{Binding Email}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+
+                                    </StackLayout>
+
+                                    <Label Grid.Column="2"   VerticalOptions="Center" HorizontalOptions="Center" TextColor="Gray" Margin="0,0,40,0"
+                                            FontFamily="{StaticResource IconsFont}" Text="{StaticResource icon-right-open-big}">
+                                        <Label.IsVisible>
+                                            <OnIdiom x:TypeArguments="x:Boolean" Default="False">
+                                                <OnIdiom.Phone>True</OnIdiom.Phone>
+                                            </OnIdiom>
+                                        </Label.IsVisible>
+                                    </Label>
+
+                                    <BoxView Grid.ColumnSpan="3" HeightRequest="1" VerticalOptions="End" BackgroundColor="#d7d7d7" />
+                                </Grid>
+                            </telerikListView:ListViewTemplateCell.View>
+                        </telerikListView:ListViewTemplateCell>
+                    </DataTemplate>
+                </telerikDataControls:RadListView.ItemTemplate>
+                <telerikDataControls:RadListView.ItemStyle>
+                    <telerikListView:ListViewItemStyle BorderLocation="None"  BorderWidth="0" />
+                </telerikDataControls:RadListView.ItemStyle>
+                <telerikDataControls:RadListView.LayoutDefinition>
+                    <telerikListView:ListViewLinearLayout ItemLength="60" />
+                </telerikDataControls:RadListView.LayoutDefinition>
+            </telerikDataControls:RadListView>
 
             <Label Grid.Row="1" Text="No Events." IsVisible="False" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                 <Label.Triggers>

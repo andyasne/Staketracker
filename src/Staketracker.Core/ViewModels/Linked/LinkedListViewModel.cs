@@ -62,7 +62,14 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
         public IMvxCommand SearchCommand { get; }
         Staketracker.Core.Models.LinkedTo.LinkedTo linkedObj;
         public IMvxCommand NavigateBackCommand { get; }
+        public bool CommunicationVisible { get; set; }
+        public bool ProjectTeamsVisible { get; set; }
+        public bool TopicsVisible { get; set; }
+        public bool StakeholdersVisible { get; set; }
 
+
+
+        private bool _EventVisible;
         public LinkedListViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
@@ -77,16 +84,18 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
 
         private void NavigateBack()
         {
-            List<string> selectedComm = new List<string>();
+            List<Staketracker.Core.Models.Communication.Team> selectedComm = new List<Staketracker.Core.Models.Communication.Team>();
 
             foreach (object communicationObject in SelectedCommunications)
             {
                 Staketracker.Core.Models.Communication.D communication = (Staketracker.Core.Models.Communication.D)communicationObject;
-
-                selectedComm.Add(communication.PrimaryKey);
+                Staketracker.Core.Models.Communication.Team team = new Team();
+                team.PrimaryKey = communication.PrimaryKey;
+                selectedComm.Add(team);
             }
 
-            authReply.SelectedCommunications = "[" + string.Join(",", selectedComm) + "]";
+            ////  authReply.CommunicationReply.d.Team = selectedComm;
+            //  authReply.SelectedCommunications = "[" + string.Join("{\"PrimaryKey\":\"", selectedComm) + "]";
 
 
             _navigationService.ChangePresentation(new MvxPopPresentationHint(typeof(CommunicationDetailViewModel), true));
@@ -102,51 +111,46 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
             PopulateAsync();
 
             base.Prepare();
-
-
         }
 
         private async Task PopulateAsync()
         {
             CommunicationVisible = false;
             EventVisible = false;
-
+            ProjectTeamsVisible = false;
+            TopicsVisible = false;
+            StakeholdersVisible = false;
             switch (linkedObj.buttonLabel)
             {
-                case "Stakeholders":
+                case "Communications":
                     RunSafe(GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel);
                     CommunicationVisible = true;
                     break;
 
-                case "Topics":
-                    RunSafe(GetEvents(authReply), true, "Loading " + linkedObj.buttonLabel);
+                case "Events":
                     EventVisible = true;
+                    RunSafe(GetEvents(authReply), true, "Loading " + linkedObj.buttonLabel);
                     break;
 
-                case "Project Team":
-                    ProjectTeam.ProjectTeamListViewModel projectTeamListViewModel = new ProjectTeamListViewModel(navigationService);
-                    RunSafe(projectTeamListViewModel.GetProjectList(authReply), true, "Loading " + linkedObj.buttonLabel);
+                case "Team members":
+                    ProjectTeamsVisible = true;
+                    RunSafe(GetProjectList(authReply), true, "Loading " + linkedObj.buttonLabel);
                     break;
 
-                case "Topichs":
-                    Issues.IssuesListViewModel issuesListViewModel = new IssuesListViewModel(navigationService);
-                    RunSafe(issuesListViewModel.GetProjectList(authReply), true, "Loading " + linkedObj.buttonLabel);
+                case "Topics":
+                    TopicsVisible = true;
+                    RunSafe(GetIssuesList(authReply), true, "Loading " + linkedObj.buttonLabel);
                     break;
 
+                case "Stakeholders":
+                case "Groups":
+                case "Land Parcels":
                 case "Individuals":
-                    StakeholderListViewModel stakeholderListViewModel = new StakeholderListViewModel(navigationService);
-                    RunSafe(stakeholderListViewModel.GetLandParcelStakeholderDetails(authReply), true, "Loading " + linkedObj.buttonLabel);
+
+                    StakeholdersVisible = true;
+                    RunSafe(GetLandParcelStakeholderDetails(authReply), true, "Loading " + linkedObj.buttonLabel);
                     break;
 
-                //case "Groups":
-                //    CommunicationListViewModel communicationListViewModel = new CommunicationListViewModel(navigationService);
-                //    RunSafe(communicationListViewModel.GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel);
-                //    break;
-
-                //case "Land Parcels":
-                //    CommunicationListViewModel communicationListViewModel = new CommunicationListViewModel(navigationService);
-                //    RunSafe(communicationListViewModel.GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel);
-                //    break;
 
 
                 default:
@@ -212,8 +216,7 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
         }
 
 
-        public bool CommunicationVisible { get; set; }
-        private bool _EventVisible;
+
 
 
     }
