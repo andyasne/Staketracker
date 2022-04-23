@@ -144,7 +144,7 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
 
                 case "Stakeholders":
                 case "Groups":
-                case "Land Parcels":
+                case "Land parcels":
                 case "Individuals":
 
                     StakeholdersVisible = true;
