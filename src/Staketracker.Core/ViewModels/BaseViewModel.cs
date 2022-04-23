@@ -439,7 +439,7 @@ namespace Staketracker.Core.ViewModels
         {
             LinkedToConfig linkedToConfig = new LinkedToConfig();
             List<KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo>> linkedPage = null;
-            if (PageTitle == "Event")
+            if (PageTitle == "Events")
                 linkedPage = linkedToConfig.EventsPage;
             else if (PageTitle == "Communication")
                 linkedPage = linkedToConfig.CommunicationsPage;
