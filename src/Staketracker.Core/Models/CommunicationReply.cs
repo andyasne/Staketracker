@@ -24,22 +24,41 @@ namespace Staketracker.Core.Models.Communication
         public object ContactTypeKey { get; set; }
         public object ContactTypeName { get; set; }
     }
-
+    public class LandParcelStakeholder
+    {
+        public string RelationshipKey { get; set; }
+        public string LandInterestKey { get; set; }
+        public string StakeHolderKey { get; set; }
+        public string LandParcelKey { get; set; }
+    }
     public class Stakeholders
     {
         public List<GroupedStakeholder> GroupedStakeholders { get; set; }
+    }
+
+    public class LinkTo
+    {
+        public List<LandParcelStakeholder> LandParcelStakeholders { get; set; }
+        public List<Team> Team { get; set; }
+        public List<Team> Issue { get; set; }
+    }
+    public class Team
+    {
+        public string PrimaryKey { get; set; }
     }
 
     public class D
     {
         public string ID { get; set; }
         public object Title { get; set; }
+
         public string Summary { get; set; }
         public DateTime Date { get; set; }
         public string CommunicationSubject { get; set; }
         public Stakeholders Stakeholders { get; set; }
         public string IssueSubject { get; set; }
         public string PrimaryKey { get; set; }
+        public LinkTo LinkTo { get; set; }
 
         public string GetDateString
         {

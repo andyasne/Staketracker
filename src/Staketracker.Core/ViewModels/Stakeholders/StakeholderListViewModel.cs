@@ -149,34 +149,6 @@ namespace Staketracker.Core.ViewModels.Stakeholders
 
         }
 
-        private Models.Stakeholders.Stakeholders _allStakeholders;
-        public Models.Stakeholders.Stakeholders allStakeholders
-        {
-            get => _allStakeholders;
-            private set => SetField(ref _allStakeholders, value);
-        }
-
-
-
-        private Models.Stakeholders.Stakeholders stakeholders;
-        internal async Task GetLandParcelStakeholderDetails(AuthReply authReply)
-        {
-            StakeholderBody body = new StakeholderBody();
-            body.projectId = authReply.d.projectId;
-            body.userId = authReply.d.userId;
-
-            var apiReq = new jsonTextObj(body);
-            HttpResponseMessage stakeholders = await ApiManager.GetAllStakeholders(apiReq, authReply.d.sessionId);
-
-            if (stakeholders.IsSuccessStatusCode)
-            {
-                var response = await stakeholders.Content.ReadAsStringAsync();
-                allStakeholders = await Task.Run(() => JsonConvert.DeserializeObject<Models.Stakeholders.Stakeholders>(response));
-            }
-            else
-                await PageDialog.AlertAsync("API Error While retrieving", "API Response Error", "Ok");
-
-        }
 
 
         public async Task Refresh()

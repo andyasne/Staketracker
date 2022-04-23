@@ -42,7 +42,7 @@ namespace Staketracker.Core.ViewModels.Issues
         {
             base.Prepare();
             this.authReply = authReply;
-            RunSafe(GetProjectList(authReply), true, "Loading Issues");
+            RunSafe(GetIssuesList(authReply), true, "Loading Issues");
 
         }
         private Staketracker.Core.Models.Issues.D selectedIssues;
@@ -76,31 +76,7 @@ namespace Staketracker.Core.ViewModels.Issues
         }
 
 
-        private IssuesModel issuesList;
-        public IssuesModel IssuesList
-        {
-            get => issuesList;
-            private set => SetField(ref issuesList, value);
-        }
-        internal async Task GetProjectList(AuthReply authReply)
-        {
 
-            StakeholderBody body = new StakeholderBody();
-            body.projectId = authReply.d.projectId;
-            body.userId = authReply.d.userId;
-
-            var apiReq = new jsonTextObj(body);
-            HttpResponseMessage stakeholders = await ApiManager.GetIssues(apiReq, authReply.d.sessionId);
-
-            if (stakeholders.IsSuccessStatusCode)
-            {
-                var response = await stakeholders.Content.ReadAsStringAsync();
-                IssuesList = await Task.Run(() => JsonConvert.DeserializeObject<IssuesModel>(response));
-            }
-            else
-                await PageDialog.AlertAsync("API Error While retrieving", "API Response Error", "Ok");
-
-        }
 
 
     }

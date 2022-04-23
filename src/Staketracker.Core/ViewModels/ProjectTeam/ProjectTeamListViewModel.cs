@@ -76,34 +76,6 @@ namespace Staketracker.Core.ViewModels.ProjectTeam
 
         }
 
-        private ProjectTeamReply _projectTeamList;
-        public ProjectTeamReply projectTeamList
-        {
-            get => _projectTeamList;
-            set => SetField(ref _projectTeamList, value);
-        }
-        public async Task GetProjectList(AuthReply authReply)
-        {
-
-            StakeholderBody body = new StakeholderBody();
-            body.projectId = authReply.d.projectId;
-            body.userId = authReply.d.userId;
-
-            var apiReq = new jsonTextObj(body);
-            HttpResponseMessage projectTeamListRespMessage = await ApiManager.GetProjectTeam(apiReq, authReply.d.sessionId);
-
-            if (projectTeamListRespMessage.IsSuccessStatusCode)
-            {
-                var response = await projectTeamListRespMessage.Content.ReadAsStringAsync();
-                ProjectTeamReply _projectTeamList = await Task.Run(() => JsonConvert.DeserializeObject<ProjectTeamReply>(response));
-                _projectTeamList.d.Sort((x, y) => { return string.Compare(x.FullName, y.FullName); });
-                projectTeamList = _projectTeamList;
-            }
-            else
-                await PageDialog.AlertAsync("API Error While retrieving", "API Response Error", "Ok");
-
-        }
-
 
     }
 }

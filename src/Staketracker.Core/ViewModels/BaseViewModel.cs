@@ -13,7 +13,10 @@ using Staketracker.Core.Models.Events;
 using Staketracker.Core.Models.EventsFormValue;
 using Staketracker.Core.Models.FieldsValue;
 using Staketracker.Core.Models.FormAndDropDownField;
+using Staketracker.Core.Models.Issues;
 using Staketracker.Core.Models.LinkedTo;
+using Staketracker.Core.Models.ProjectTeam;
+using Staketracker.Core.Models.Stakeholders;
 using Staketracker.Core.Res;
 using Staketracker.Core.Services;
 using Staketracker.Core.Validators;
@@ -420,47 +423,7 @@ namespace Staketracker.Core.ViewModels
                     _formContent.Add(label, validatableObj);
 
                 }
-                LinkedToConfig linkedToConfig = new LinkedToConfig();
-                List<KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo>> linkedPage = null;
-                if (PageTitle == "Event")
-                    linkedPage = linkedToConfig.EventsPage;
-                else if (PageTitle == "Communication")
-                    linkedPage = linkedToConfig.CommunicationsPage;
-                else if (PageTitle == "Stakeholder")
-                    linkedPage = linkedToConfig.StakeHolders_IndividualPage;
-                else if (PageTitle == "Project Team")
-                    linkedPage = linkedToConfig.ProjectTeamPage;
-                else if (PageTitle == "Topics")
-                    linkedPage = linkedToConfig.IssuesPage;
-
-                bool linkedToLabel = false;
-
-                if (linkedPage != null)
-                    foreach (KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo> linked in linkedPage)
-                    {
-                        ValidatableObject<string> validatableObj = new ValidatableObject<string>();
-                        Staketracker.Core.Models.LinkedTo.LinkedTo linkedTo = linked.Value;
-
-                        if (Mode == PresentationMode.Create || Mode == PresentationMode.Edit)
-                        {
-                            if (linkedTo.enableEditing == true)
-                            {
-                                AddLinkToControls(_formContent, ref linkedToLabel, linked, ref validatableObj);
-
-                            }
-                        }
-                        else
-                        {
-                            if (linkedTo.enableEditing == false)
-                            {
-                                AddLinkToControls(_formContent, ref linkedToLabel, linked, ref validatableObj);
-
-
-                            }
-                        }
-
-                    }
-
+                LinkedPageFeature();
 
                 MovveConfidentialRecordToTop();
 
@@ -470,6 +433,50 @@ namespace Staketracker.Core.ViewModels
                 await PageDialog.AlertAsync(AppRes.msg_err_getting_form_fields, AppRes.api_response_error, AppRes.ok);
                 //  return null;
             }
+        }
+
+        private void LinkedPageFeature()
+        {
+            LinkedToConfig linkedToConfig = new LinkedToConfig();
+            List<KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo>> linkedPage = null;
+            if (PageTitle == "Event")
+                linkedPage = linkedToConfig.EventsPage;
+            else if (PageTitle == "Communication")
+                linkedPage = linkedToConfig.CommunicationsPage;
+            else if (PageTitle == "Stakeholder")
+                linkedPage = linkedToConfig.StakeHolders_IndividualPage;
+            else if (PageTitle == "Project Team")
+                linkedPage = linkedToConfig.ProjectTeamPage;
+            else if (PageTitle == "Topics")
+                linkedPage = linkedToConfig.IssuesPage;
+
+            bool linkedToLabel = false;
+
+            if (linkedPage != null)
+                foreach (KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo> linked in linkedPage)
+                {
+                    ValidatableObject<string> validatableObj = new ValidatableObject<string>();
+                    Staketracker.Core.Models.LinkedTo.LinkedTo linkedTo = linked.Value;
+
+                    if (Mode == PresentationMode.Create || Mode == PresentationMode.Edit)
+                    {
+                        if (linkedTo.enableEditing == true)
+                        {
+                            AddLinkToControls(_formContent, ref linkedToLabel, linked, ref validatableObj);
+
+                        }
+                    }
+                    else
+                    {
+                        if (linkedTo.enableEditing == false)
+                        {
+                            AddLinkToControls(_formContent, ref linkedToLabel, linked, ref validatableObj);
+
+
+                        }
+                    }
+
+                }
         }
 
         public void GetFormData(string type)
@@ -690,7 +697,67 @@ namespace Staketracker.Core.ViewModels
             private set => SetField(ref communicationReply, value);
         }
         private ObservableCollection<object> selectedCommunications = new ObservableCollection<object>();
+        private ObservableCollection<object> selectedEvents = new ObservableCollection<object>();
+        private ObservableCollection<object> selectedProjectTeams = new ObservableCollection<object>();
+        private ObservableCollection<object> selectedTopics = new ObservableCollection<object>();
+        private ObservableCollection<object> selectedStakeholders = new ObservableCollection<object>();
+        private ProjectTeamReply _projectTeamList;
+        public ProjectTeamReply projectTeamList
+        {
+            get => _projectTeamList;
+            set => SetField(ref _projectTeamList, value);
+        }
+        public ObservableCollection<object> SelectedEvents
+        {
+            get
+            {
+                return this.selectedEvents;
+            }
+            set
+            {
+                if (this.selectedEvents != value)
+                {
+                    this.selectedEvents = value;
 
+                    OnPropertyChanged("SelectedEvents");
+                }
+            }
+        }
+
+
+        public ObservableCollection<object> SelectedStakeholders
+        {
+            get
+            {
+                return this.selectedStakeholders;
+            }
+            set
+            {
+                if (this.selectedStakeholders != value)
+                {
+                    this.selectedStakeholders = value;
+
+                    OnPropertyChanged("SelectedStakeholders");
+                }
+            }
+        }
+
+        public ObservableCollection<object> SelectedTopics
+        {
+            get
+            {
+                return this.selectedTopics;
+            }
+            set
+            {
+                if (this.selectedTopics != value)
+                {
+                    this.selectedTopics = value;
+
+                    OnPropertyChanged("SelectedTopics");
+                }
+            }
+        }
         public ObservableCollection<object> SelectedCommunications
         {
             get
@@ -704,6 +771,22 @@ namespace Staketracker.Core.ViewModels
                     this.selectedCommunications = value;
 
                     OnPropertyChanged("SelectedCommunications");
+                }
+            }
+        }
+        public ObservableCollection<object> SelectedProjectTeams
+        {
+            get
+            {
+                return this.selectedProjectTeams;
+            }
+            set
+            {
+                if (this.selectedProjectTeams != value)
+                {
+                    this.selectedProjectTeams = value;
+
+                    OnPropertyChanged("SelectedProjectTeams");
                 }
             }
         }
@@ -764,6 +847,85 @@ namespace Staketracker.Core.ViewModels
                 await PageDialog.AlertAsync("API Error While retrieving Events", "API Response Error", "Ok");
 
         }
+
+
+
+        public async Task GetProjectList(AuthReply authReply)
+        {
+
+            StakeholderBody body = new StakeholderBody();
+            body.projectId = authReply.d.projectId;
+            body.userId = authReply.d.userId;
+
+            var apiReq = new jsonTextObj(body);
+            HttpResponseMessage projectTeamListRespMessage = await ApiManager.GetProjectTeam(apiReq, authReply.d.sessionId);
+
+            if (projectTeamListRespMessage.IsSuccessStatusCode)
+            {
+                var response = await projectTeamListRespMessage.Content.ReadAsStringAsync();
+                ProjectTeamReply _projectTeamList = await Task.Run(() => JsonConvert.DeserializeObject<ProjectTeamReply>(response));
+                _projectTeamList.d.Sort((x, y) => { return string.Compare(x.FullName, y.FullName); });
+                projectTeamList = _projectTeamList;
+            }
+            else
+                await PageDialog.AlertAsync("API Error While retrieving", "API Response Error", "Ok");
+
+        }
+
+        private IssuesModel issuesList;
+        public IssuesModel IssuesList
+        {
+            get => issuesList;
+            private set => SetField(ref issuesList, value);
+        }
+        internal async Task GetIssuesList(AuthReply authReply)
+        {
+
+            StakeholderBody body = new StakeholderBody();
+            body.projectId = authReply.d.projectId;
+            body.userId = authReply.d.userId;
+
+            var apiReq = new jsonTextObj(body);
+            HttpResponseMessage stakeholders = await ApiManager.GetIssues(apiReq, authReply.d.sessionId);
+
+            if (stakeholders.IsSuccessStatusCode)
+            {
+                var response = await stakeholders.Content.ReadAsStringAsync();
+                IssuesList = await Task.Run(() => JsonConvert.DeserializeObject<IssuesModel>(response));
+            }
+            else
+                await PageDialog.AlertAsync("API Error While retrieving", "API Response Error", "Ok");
+
+        }
+
+        private Models.Stakeholders.Stakeholders _allStakeholders;
+        public Models.Stakeholders.Stakeholders allStakeholders
+        {
+            get => _allStakeholders;
+            private set => SetField(ref _allStakeholders, value);
+        }
+
+
+
+        internal async Task GetLandParcelStakeholderDetails(AuthReply authReply)
+        {
+            StakeholderBody body = new StakeholderBody();
+            body.projectId = authReply.d.projectId;
+            body.userId = authReply.d.userId;
+
+            var apiReq = new jsonTextObj(body);
+            HttpResponseMessage stakeholders = await ApiManager.GetAllStakeholders(apiReq, authReply.d.sessionId);
+
+            if (stakeholders.IsSuccessStatusCode)
+            {
+                var response = await stakeholders.Content.ReadAsStringAsync();
+                allStakeholders = await Task.Run(() => JsonConvert.DeserializeObject<Models.Stakeholders.Stakeholders>(response));
+            }
+            else
+                await PageDialog.AlertAsync("API Error While retrieving", "API Response Error", "Ok");
+
+        }
+
 
 
     }

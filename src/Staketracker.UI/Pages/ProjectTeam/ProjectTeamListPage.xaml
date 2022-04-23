@@ -85,6 +85,8 @@
                 </telerikDataControls:RadListView.LayoutDefinition>
             </telerikDataControls:RadListView>
 
+
+
             <Label Grid.Row="1" Text="No Events." IsVisible="False" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                 <Label.Triggers>
                     <DataTrigger TargetType="Label" Binding="{Binding Path=projectTeamList.d.Count}" Value="0">

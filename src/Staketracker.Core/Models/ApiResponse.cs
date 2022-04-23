@@ -1,4 +1,6 @@
 using System;
+using Staketracker.Core.Models.Communication;
+using Staketracker.Core.Models.EventsFormValue;
 
 namespace Staketracker.Core.Models
 {
@@ -26,6 +28,9 @@ namespace Staketracker.Core.Models
         public LoginAPIBody loginAPIBody { get; set; }
         public Object attachment { get; set; }
         public Type Sender { get; set; }
-        public string SelectedCommunications{ get; set; }
+        public string SelectedCommunications { get; set; }
+
+        public EventFormValue EventFormValue { get; set; }
+        public CommunicationReply CommunicationReply { get; set; }
     }
 }
