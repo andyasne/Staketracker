@@ -123,16 +123,20 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
             switch (linkedObj.buttonLabel)
             {
                 case "Communications":
+                case "Communication":
                     RunSafe(GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel);
                     CommunicationVisible = true;
                     break;
 
                 case "Events":
+                case "Event":
                     EventVisible = true;
                     RunSafe(GetEvents(authReply), true, "Loading " + linkedObj.buttonLabel);
                     break;
 
                 case "Team members":
+                case "Project Team":
+
                     ProjectTeamsVisible = true;
                     RunSafe(GetProjectList(authReply), true, "Loading " + linkedObj.buttonLabel);
                     break;

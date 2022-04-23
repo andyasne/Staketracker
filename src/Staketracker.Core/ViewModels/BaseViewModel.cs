@@ -295,11 +295,12 @@ namespace Staketracker.Core.ViewModels
                                         {
                                             Newtonsoft.Json.Linq.JArray selected = (Newtonsoft.Json.Linq.JArray)field.SelectedKey;
 
-                                            foreach (var item in selected.Children())
-                                            {
-                                                DropdownValue dropdownValue = field.DropdownValues.Where(i => i.PrimaryKey == item.Value<string>()).FirstOrDefault();
-                                                //   valObj.SelectedItems.Add((object)dropdownValue);
-                                            }
+                                            if (selected != null)
+                                                foreach (var item in selected.Children())
+                                                {
+                                                    DropdownValue dropdownValue = field.DropdownValues.Where(i => i.PrimaryKey == item.Value<string>()).FirstOrDefault();
+                                                    //   valObj.SelectedItems.Add((object)dropdownValue);
+                                                }
 
 
                                         }
@@ -439,7 +440,7 @@ namespace Staketracker.Core.ViewModels
         {
             LinkedToConfig linkedToConfig = new LinkedToConfig();
             List<KeyValuePair<String, Staketracker.Core.Models.LinkedTo.LinkedTo>> linkedPage = null;
-            if (PageTitle == "Event")
+            if (PageTitle == "Events")
                 linkedPage = linkedToConfig.EventsPage;
             else if (PageTitle == "Communication")
                 linkedPage = linkedToConfig.CommunicationsPage;
