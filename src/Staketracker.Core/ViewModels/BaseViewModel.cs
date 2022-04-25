@@ -459,23 +459,23 @@ namespace Staketracker.Core.ViewModels
                     ValidatableObject<string> validatableObj = new ValidatableObject<string>();
                     Staketracker.Core.Models.LinkedTo.LinkedTo linkedTo = linked.Value;
 
-                    if (Mode == PresentationMode.Create || Mode == PresentationMode.Edit)
+                    // if (Mode == PresentationMode.Create || Mode == PresentationMode.Edit)
                     {
-                        if (linkedTo.enableEditing == true)
+                        // if (linkedTo.enableEditing == true)
                         {
                             AddLinkToControls(_formContent, ref linkedToLabel, linked, ref validatableObj);
 
                         }
                     }
-                    else
-                    {
-                        if (linkedTo.enableEditing == false)
-                        {
-                            AddLinkToControls(_formContent, ref linkedToLabel, linked, ref validatableObj);
+                    //else
+                    //{
+                    //    if (linkedTo.enableEditing == false)
+                    //    {
+                    //        AddLinkToControls(_formContent, ref linkedToLabel, linked, ref validatableObj);
 
 
-                        }
-                    }
+                    //    }
+                    //}
 
                 }
         }
