@@ -296,7 +296,7 @@
                                 </telerikInput:RadComboBox.SelectedItemTemplate>
 
 
-                                <telerikInput:RadComboBox.HeaderTemplate>
+                                <!--<telerikInput:RadComboBox.HeaderTemplate>
 
                                     <DataTemplate >
                                         <telerikPrimitives:RadBorder>
@@ -356,7 +356,7 @@
                                             </StackLayout>
                                         </telerikPrimitives:RadBorder>
                                     </DataTemplate>
-                                </telerikInput:RadComboBox.HeaderTemplate>
+                                </telerikInput:RadComboBox.HeaderTemplate>-->
                             </telerikInput:RadComboBox>
                         </Frame>
 
