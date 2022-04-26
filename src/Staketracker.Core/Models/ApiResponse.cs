@@ -32,5 +32,6 @@ namespace Staketracker.Core.Models
 
         public EventFormValue EventFormValue { get; set; }
         public CommunicationReply CommunicationReply { get; set; }
+        public string fromPage { get; set; }
     }
 }

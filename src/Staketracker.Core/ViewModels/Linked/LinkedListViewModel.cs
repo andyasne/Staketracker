@@ -26,6 +26,7 @@ using Staketracker.Core.ViewModels.Stakeholders;
 using MvvmCross.Presenters.Hints;
 using Staketracker.Core.ViewModels.Root;
 using MvvmCross.ViewModels;
+using Staketracker.Core.ViewModels.Stakeholder;
 
 namespace Staketracker.Core.ViewModels.Linked.Communication
 {
@@ -97,8 +98,21 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
             ////  authReply.CommunicationReply.d.Team = selectedComm;
             //  authReply.SelectedCommunications = "[" + string.Join("{\"PrimaryKey\":\"", selectedComm) + "]";
 
+            switch (authReply.fromPage)
+            {
+                case "Events":
+                    _navigationService.ChangePresentation(new MvxPopPresentationHint(typeof(SEventDetailViewModel), true));
+                    break;
 
-            _navigationService.ChangePresentation(new MvxPopPresentationHint(typeof(CommunicationDetailViewModel), true));
+                case "Communication":
+                    _navigationService.ChangePresentation(new MvxPopPresentationHint(typeof(CommunicationDetailViewModel), true));
+                    break;
+
+                case "Stakeholder":
+                    _navigationService.ChangePresentation(new MvxPopPresentationHint(typeof(StakeholderDetailViewModel), true));
+                    break;
+
+            }
         }
         private Type senderType;
 

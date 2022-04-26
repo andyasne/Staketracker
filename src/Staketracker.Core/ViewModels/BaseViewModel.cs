@@ -92,7 +92,9 @@ namespace Staketracker.Core.ViewModels
         public async void OpenLinkPage_(object _value)
         {
             authReply.attachment = _value;
-            //authReply.Count = 5;
+            authReply.fromPage = pageTitle;
+
+
             await navigationService.Navigate<LinkedListViewModel, AuthReply>(
                  authReply);
         }
