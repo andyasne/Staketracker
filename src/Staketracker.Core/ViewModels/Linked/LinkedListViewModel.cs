@@ -140,7 +140,7 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
                 selectedStakeholder.Add(key);
             }
             if (selectedStakeholder.Any())
-                authReply.Linked_SelectedStakeholder = selectedStakeholder;
+                authReply.Linked_SelectedStakeholder .Add( selectedStakeholder[0]);
 
 
             switch (authReply.fromPage)
