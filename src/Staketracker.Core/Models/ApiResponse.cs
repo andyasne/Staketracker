@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Staketracker.Core.Models.Communication;
 using Staketracker.Core.Models.EventsFormValue;
 
@@ -33,5 +34,9 @@ namespace Staketracker.Core.Models
         public EventFormValue EventFormValue { get; set; }
         public CommunicationReply CommunicationReply { get; set; }
         public string fromPage { get; set; }
+        public List<Communication.Team> Linked_SelectedCommunications { get; set; }
+        public List<Communication.Team> Linked_SelectedEvents { get; set; }
+        public List<Communication.LandParcelStakeholder> Linked_SelectedStakeholder { get; set; }
+        public List<Communication.Team> Linked_SelectedTopics { get; set; }
     }
 }
