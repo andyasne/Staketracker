@@ -538,17 +538,13 @@
 
                         <Frame BorderColor="LightGray" HasShadow="False"  Padding="3"  BackgroundColor="White"   CornerRadius="4"  >
 
-                            <telerikInput:RadComboBox  
+                            <telerikInput:RadComboBox  IsEnabled="False" 
                         
                           ItemsSource="{ Binding Value.DropdownValues , Mode=TwoWay}"  
                           SelectedItems="{Binding Value.SelectedItems}"  
-                              
-                               
-                          IsEnabled="False"
                           IsDropDownClosedOnSelection="False"
                           SelectionMode="Multiple"
                           DisplayMemberPath="Label"
-                        
                           Margin="10, 0, 10, 0">
 
                                 <telerikInput:RadComboBox.ItemTemplate>
@@ -673,7 +669,7 @@
                                 </telerikInput:RadComboBox.SelectedItemTemplate>
 
 
-                                <telerikInput:RadComboBox.HeaderTemplate>
+                                <!--<telerikInput:RadComboBox.HeaderTemplate>
 
                                     <DataTemplate >
                                         <telerikPrimitives:RadBorder>
@@ -716,9 +712,9 @@
                                                     </telerikPrimitives:RadCheckBox.Margin>
                                                 </telerikPrimitives:RadCheckBox>
                                                 <Label Text="Select All " 
-                                                           TextColor="Black"
-                                                           FontAttributes="Bold"
-                                                           VerticalTextAlignment="Center">
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       VerticalTextAlignment="Center">
                                                     <Label.Padding>
                                                         <OnPlatform x:TypeArguments="Thickness">
                                                             <On Platform="iOS" Value="3, 0, 0, 0"/>
@@ -733,9 +729,10 @@
                                             </StackLayout>
                                         </telerikPrimitives:RadBorder>
                                     </DataTemplate>
-                                </telerikInput:RadComboBox.HeaderTemplate>
+                                </telerikInput:RadComboBox.HeaderTemplate>-->
                             </telerikInput:RadComboBox>
                         </Frame>
+
 
                         <Label Text="{Binding Value.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                         IsVisible="{Binding Value.IsValid, Converter={StaticResource InverseBoolConverter}}"
