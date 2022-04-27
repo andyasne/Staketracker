@@ -26,6 +26,17 @@ namespace Staketracker.Core.Models.Communication
     }
     public class LandParcelStakeholder
     {
+        public LandParcelStakeholder()
+        {
+            RelationshipKey = "";
+            LandInterestKey = "";
+            StakeHolderKey = "";
+            LandParcelKey = "";
+
+
+
+
+        }
         public string RelationshipKey { get; set; }
         public string LandInterestKey { get; set; }
         public string StakeHolderKey { get; set; }
@@ -44,6 +55,14 @@ namespace Staketracker.Core.Models.Communication
     }
     public class Team
     {
+        public Team()
+        {
+            PrimaryKey = "";
+
+
+
+            ;
+        }
         public string PrimaryKey { get; set; }
     }
 

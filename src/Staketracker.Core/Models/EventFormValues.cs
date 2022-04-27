@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using System.Text;
 using Newtonsoft.Json;
+using Staketracker.Core.Models.Communication;
 
 namespace Staketracker.Core.Models.EventsFormValue
 {
@@ -12,23 +13,15 @@ namespace Staketracker.Core.Models.EventsFormValue
         public object Value { get; set; }
     }
 
-    public class LandParcelStakeholder
-    {
-        public string RelationshipKey { get; set; }
-        public string LandInterestKey { get; set; }
-        public string StakeHolderKey { get; set; }
-        public string LandParcelKey { get; set; }
-    }
 
-    public class Team
-    {
-        public string PrimaryKey { get; set; }
-    }
+
 
     public class LinkTo
     {
         public List<LandParcelStakeholder> LandParcelStakeholders { get; set; }
         public List<Team> Team { get; set; }
+        public List<Team> Issue { get; set; }
+        public List<Team> Communication { get; set; }
     }
 
     public class EventFormValue

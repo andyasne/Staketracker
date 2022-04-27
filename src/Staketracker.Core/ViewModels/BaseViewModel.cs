@@ -928,6 +928,14 @@ namespace Staketracker.Core.ViewModels
                 await PageDialog.AlertAsync("API Error While retrieving", "API Response Error", "Ok");
 
         }
+        public void GetLinkedToData()
+        {
+            pageFormValue.LinkTo.LandParcelStakeholders = authReply.Linked_SelectedStakeholder;
+            pageFormValue.LinkTo.Team = authReply.Linked_SelectedTeam;
+            pageFormValue.LinkTo.Issue = authReply.Linked_SelectedTopics;
+            pageFormValue.LinkTo.Communication = authReply.Linked_SelectedCommunications;
+        }
+
 
 
 

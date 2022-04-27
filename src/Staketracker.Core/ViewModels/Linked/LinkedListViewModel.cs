@@ -88,6 +88,7 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
             List<Team> selectedEvents = new List<Staketracker.Core.Models.Communication.Team>();
             List<Staketracker.Core.Models.Communication.Team> selectedComms = new List<Staketracker.Core.Models.Communication.Team>();
             List<Staketracker.Core.Models.Communication.Team> selectedIssues = new List<Staketracker.Core.Models.Communication.Team>();
+            List<Staketracker.Core.Models.Communication.Team> selectedTeam = new List<Staketracker.Core.Models.Communication.Team>();
             List<LandParcelStakeholder> selectedStakeholder = new List<Staketracker.Core.Models.Communication.LandParcelStakeholder>();
 
             foreach (object communicationObject in SelectedCommunications)
@@ -97,7 +98,8 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
                 team.PrimaryKey = communication.PrimaryKey;
                 selectedComms.Add(team);
             }
-            authReply.Linked_SelectedCommunications = selectedComms;
+            if (selectedComms.Any())
+                authReply.Linked_SelectedCommunications = selectedComms;
 
             foreach (object topicsObj in SelectedTopics)
             {
@@ -106,7 +108,18 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
                 key.PrimaryKey = castedObj.PrimaryKey;
                 selectedIssues.Add(key);
             }
-            authReply.Linked_SelectedTopics = selectedIssues;
+            if (selectedIssues.Any())
+                authReply.Linked_SelectedTopics = selectedIssues;
+
+            foreach (object obj in SelectedProjectTeams)
+            {
+                Staketracker.Core.Models.ProjectTeam.D castedObj = (Staketracker.Core.Models.ProjectTeam.D)obj;
+                Staketracker.Core.Models.Communication.Team key = new Team();
+                key.PrimaryKey = castedObj.PrimaryKey;
+                selectedTeam.Add(key);
+            }
+            if (selectedTeam.Any())
+                authReply.Linked_SelectedTeam = selectedTeam;
 
             foreach (object obj in SelectedEvents)
             {
@@ -115,17 +128,19 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
                 key.PrimaryKey = castedObj.PrimaryKey;
                 selectedEvents.Add(key);
             }
-            authReply.Linked_SelectedEvents = selectedEvents;
+            if (selectedEvents.Any())
+                authReply.Linked_SelectedEvents = selectedEvents;
 
 
             foreach (object Obj in SelectedStakeholders)
             {
-                Staketracker.Core.Models.Stakeholders.D castedObj = (Staketracker.Core.Models.Stakeholders.D)Obj;
+                Staketracker.Core.Models.Stakeholders.GroupedStakeholder castedObj = (Staketracker.Core.Models.Stakeholders.GroupedStakeholder)Obj;
                 Staketracker.Core.Models.Communication.LandParcelStakeholder key = new LandParcelStakeholder();
-                key.StakeHolderKey = castedObj.IndividualStakeholders[0].PrimaryKey;
+                key.StakeHolderKey = castedObj.PrimaryKey;
                 selectedStakeholder.Add(key);
             }
-            authReply.Linked_SelectedStakeholder = selectedStakeholder;
+            if (selectedStakeholder.Any())
+                authReply.Linked_SelectedStakeholder = selectedStakeholder;
 
 
             switch (authReply.fromPage)

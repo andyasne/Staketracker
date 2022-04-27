@@ -23,6 +23,11 @@ namespace Staketracker.Core.Models
         public AuthReply()
         {
             this.d = new D();
+            Linked_SelectedCommunications = new List<Team>();
+            Linked_SelectedEvents = new List<Team>();
+            Linked_SelectedStakeholder = new List<LandParcelStakeholder>();
+            Linked_SelectedTopics = new List<Team>();
+            Linked_SelectedTeam = new List<Team>();
         }
 
         public D d { get; set; }
@@ -38,5 +43,6 @@ namespace Staketracker.Core.Models
         public List<Communication.Team> Linked_SelectedEvents { get; set; }
         public List<Communication.LandParcelStakeholder> Linked_SelectedStakeholder { get; set; }
         public List<Communication.Team> Linked_SelectedTopics { get; set; }
+        public List<Team> Linked_SelectedTeam { get; set; }
     }
 }

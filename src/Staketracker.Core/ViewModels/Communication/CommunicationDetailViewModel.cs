@@ -118,6 +118,8 @@ namespace Staketracker.Core.ViewModels.Communication
 
         internal async Task<bool> AddCommunication()
         {
+            GetLinkedToData();
+
             jsonTextObj jsonTextObj = new jsonTextObj(pageFormValue);
             HttpResponseMessage communications = await ApiManager.AddCommunication(jsonTextObj, authReply.d.sessionId);
             return await Add(communications);

@@ -108,10 +108,14 @@ namespace Staketracker.Core.ViewModels.Events
         }
         internal async Task<bool> AddEvent()
         {
+            GetLinkedToData();
+
             jsonTextObj jsonTextObj = new jsonTextObj(pageFormValue);
             HttpResponseMessage events = await ApiManager.AddEvent(jsonTextObj, authReply.d.sessionId);
             return await Add(events);
         }
+
+
         private async Task OnSave()
         {
             if (isFormValid())
