@@ -77,6 +77,7 @@ namespace Staketracker.Core.Models.Communication
         public Stakeholders Stakeholders { get; set; }
         public string IssueSubject { get; set; }
         public string PrimaryKey { get; set; }
+        public bool IsChecked { get; set; }
         public LinkTo LinkTo { get; set; }
 
         public string GetDateString

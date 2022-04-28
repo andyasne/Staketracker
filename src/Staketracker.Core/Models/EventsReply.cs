@@ -31,6 +31,7 @@ namespace Staketracker.Core.Models.Events
             }
         }
 
+        public bool IsChecked { get; internal set; }
     }
 
     public class EventsReply

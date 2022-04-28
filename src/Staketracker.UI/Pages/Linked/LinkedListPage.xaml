@@ -38,15 +38,10 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                     </OnIdiom>
                 </BoxView.CornerRadius>
             </BoxView>
-            <!--<StackLayout Grid.Row="0">
 
-                <telerikInput:RadEntry x:Name="search" FontSize="16"    VerticalOptions="Start" BackgroundColor="{StaticResource EntryBackgroundColor}" 
-                   TextColor="{StaticResource DarkTextColor}"  WatermarkText="Search" FontAttributes="Bold"  />
-
-            </StackLayout>-->
 
             <telerikDataControls:RadListView ItemsSource="{Binding communicationReply_.d, Mode=OneWay}" 
-                                             SelectionMode="Multiple" 
+                                             SelectionMode="None" 
                                              IsVisible="{Binding CommunicationVisible, Mode=TwoWay}"
                                              Grid.Row="1"
                                              SelectedItems="{Binding SelectedCommunications}"
@@ -70,6 +65,8 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
 
                                         <telerikPrimitives:RadCheckBox Margin="0, 0, 6, 0"
                                                CheckedColor="#0E88F2"
+                                             IsChecked="{Binding  IsChecked, Mode=TwoWay }" 
+                                                                       
                                                IndeterminateColor="#0E88F2"
                                                VerticalOptions="Center">
                                             <telerikPrimitives:RadCheckBox.Margin>
@@ -100,7 +97,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
             </telerikDataControls:RadListView>
 
             <telerikDataControls:RadListView ItemsSource="{Binding EventsReply_.d, Mode=OneWay}" 
-                                                SelectionMode="Single"  IsVisible="{Binding EventVisible, Mode=TwoWay}"
+                                                SelectionMode="None"  IsVisible="{Binding EventVisible, Mode=TwoWay}"
                                                 Grid.Row="1"  >
                 <telerikDataControls:RadListView.ItemTemplate>
                     <DataTemplate>
@@ -121,6 +118,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
 
                                         <telerikPrimitives:RadCheckBox Margin="0, 0, 6, 0"
                                                CheckedColor="#0E88F2"
+                                             IsChecked="{Binding  IsChecked, Mode=TwoWay }" 
                                                IndeterminateColor="#0E88F2"
                                                VerticalOptions="Center">
                                             <telerikPrimitives:RadCheckBox.Margin>
@@ -156,7 +154,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
             </telerikDataControls:RadListView>
 
             <telerikDataControls:RadListView   ItemsSource="{Binding projectTeamList.d, Mode=OneWay}" 
-                                               SelectionMode="Multiple"
+                                               SelectionMode="None"
                                                Grid.Row="1" 
                                                SelectedItems="{Binding SelectedProjectTeams}"
                                                IsVisible="{Binding ProjectTeamsVisible, Mode=TwoWay}"
@@ -180,6 +178,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
 
                                         <telerikPrimitives:RadCheckBox Margin="0, 0, 6, 0"
                                                CheckedColor="#0E88F2"
+                                             IsChecked="{Binding  IsChecked, Mode=TwoWay }" 
                                                IndeterminateColor="#0E88F2"
                                                VerticalOptions="Center">
                                             <telerikPrimitives:RadCheckBox.Margin>
@@ -212,7 +211,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                 </telerikDataControls:RadListView.LayoutDefinition>
             </telerikDataControls:RadListView>
 
-            <telerikDataControls:RadListView   ItemsSource="{Binding IssuesList.d, Mode=OneWay}"  SelectionMode="Multiple"
+            <telerikDataControls:RadListView   ItemsSource="{Binding IssuesList.d, Mode=OneWay}"  SelectionMode="None"
                                                Grid.Row="1" SelectedItems="{Binding SelectedTopics, Mode=TwoWay}" 
                                                IsVisible="{Binding TopicsVisible, Mode=TwoWay}"
                                              >
@@ -235,6 +234,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
 
                                         <telerikPrimitives:RadCheckBox Margin="0, 0, 6, 0"
                                                CheckedColor="#0E88F2"
+                                             IsChecked="{Binding  IsChecked, Mode=TwoWay }" 
                                                IndeterminateColor="#0E88F2"
                                                VerticalOptions="Center">
                                             <telerikPrimitives:RadCheckBox.Margin>
@@ -266,7 +266,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
             </telerikDataControls:RadListView>
 
             <telerikDataControls:RadListView ItemsSource="{Binding allStakeholders.d.GroupedStakeholders, Mode=OneWay}"
-                                                SelectionMode="Multiple"  Grid.Row="1"
+                                                SelectionMode="None"  Grid.Row="1"
                                                  SelectedItems="{Binding SelectedStakeholders}"
                                                 IsVisible="{Binding StakeholdersVisible, Mode=TwoWay}"
                                              
@@ -290,6 +290,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
 
                                         <telerikPrimitives:RadCheckBox Margin="0, 0, 6, 0"
                                                CheckedColor="#0E88F2"
+                                             IsChecked="{Binding  IsChecked, Mode=TwoWay }" 
                                                IndeterminateColor="#0E88F2"
                                                VerticalOptions="Center">
                                             <telerikPrimitives:RadCheckBox.Margin>

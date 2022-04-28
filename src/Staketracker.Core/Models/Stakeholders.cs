@@ -30,6 +30,7 @@ namespace Staketracker.Core.Models.Stakeholders
 
         //   public Contact { get; set; }
         public string PrimaryKey { get; set; }
+        public bool IsChecked { get; internal set; }
     }
 
     public class LandParcelStakeholder
@@ -41,6 +42,7 @@ namespace Staketracker.Core.Models.Stakeholders
 
         // public Contact { get; set; }
         public string PrimaryKey { get; set; }
+        public bool IsChecked { get; internal set; }
     }
 
     public class D

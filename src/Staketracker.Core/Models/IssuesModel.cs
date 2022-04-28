@@ -26,6 +26,7 @@ namespace Staketracker.Core.Models.Issues
         public IList<Detail> Details { get; set; }
         public string Name { get; set; }
         public string PrimaryKey { get; set; }
+        public bool IsChecked { get; internal set; }
     }
 
     public class IssuesModel

@@ -91,56 +91,70 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
             List<Staketracker.Core.Models.Communication.Team> selectedTeam = new List<Staketracker.Core.Models.Communication.Team>();
             List<LandParcelStakeholder> selectedStakeholder = new List<Staketracker.Core.Models.Communication.LandParcelStakeholder>();
 
-            foreach (object communicationObject in SelectedCommunications)
-            {
-                Staketracker.Core.Models.Communication.D communication = (Staketracker.Core.Models.Communication.D)communicationObject;
-                Staketracker.Core.Models.Communication.Team team = new Team();
-                team.PrimaryKey = communication.PrimaryKey;
-                selectedComms.Add(team);
-            }
+            if (communicationReply_ != null)
+                foreach (Staketracker.Core.Models.Communication.D dCommunicationObject in communicationReply_.d)
+                {
+                    if (dCommunicationObject.IsChecked)
+                    {
+                        Staketracker.Core.Models.Communication.Team team = new Team();
+                        team.PrimaryKey = dCommunicationObject.PrimaryKey;
+                        selectedComms.Add(team);
+                    }
+                }
             if (selectedComms.Any())
                 authReply.Linked_SelectedCommunications = selectedComms;
 
-            foreach (object topicsObj in SelectedTopics)
-            {
-                Staketracker.Core.Models.Issues.D castedObj = (Staketracker.Core.Models.Issues.D)topicsObj;
-                Staketracker.Core.Models.Communication.Team key = new Team();
-                key.PrimaryKey = castedObj.PrimaryKey;
-                selectedIssues.Add(key);
-            }
+            if (IssuesList != null)
+                foreach (Models.Issues.D topicsObj in IssuesList.d)
+                {
+                    if (topicsObj.IsChecked)
+                    {
+                        Staketracker.Core.Models.Communication.Team key = new Team();
+                        key.PrimaryKey = topicsObj.PrimaryKey;
+                        selectedIssues.Add(key);
+                    }
+                }
             if (selectedIssues.Any())
                 authReply.Linked_SelectedTopics = selectedIssues;
 
-            foreach (object obj in SelectedProjectTeams)
-            {
-                Staketracker.Core.Models.ProjectTeam.D castedObj = (Staketracker.Core.Models.ProjectTeam.D)obj;
-                Staketracker.Core.Models.Communication.Team key = new Team();
-                key.PrimaryKey = castedObj.PrimaryKey;
-                selectedTeam.Add(key);
-            }
+            if (projectTeamList != null)
+                foreach (Staketracker.Core.Models.ProjectTeam.D obj in projectTeamList.d)
+                {
+                    if (obj.IsChecked)
+                    {
+                        Staketracker.Core.Models.Communication.Team key = new Team();
+                        key.PrimaryKey = obj.PrimaryKey;
+                        selectedTeam.Add(key);
+                    }
+                }
             if (selectedTeam.Any())
                 authReply.Linked_SelectedTeam = selectedTeam;
 
-            foreach (object obj in SelectedEvents)
-            {
-                Staketracker.Core.Models.Events.D castedObj = (Staketracker.Core.Models.Events.D)obj;
-                Staketracker.Core.Models.Communication.Team key = new Team();
-                key.PrimaryKey = castedObj.PrimaryKey;
-                selectedEvents.Add(key);
-            }
+            if (EventsReply_ != null)
+                foreach (Staketracker.Core.Models.Events.D obj in EventsReply_.d)
+                {
+                    if (obj.IsChecked)
+                    {
+                        Staketracker.Core.Models.Communication.Team key = new Team();
+                        key.PrimaryKey = obj.PrimaryKey;
+                        selectedEvents.Add(key);
+                    }
+                }
             if (selectedEvents.Any())
                 authReply.Linked_SelectedEvents = selectedEvents;
 
-
-            foreach (object Obj in SelectedStakeholders)
-            {
-                Staketracker.Core.Models.Stakeholders.GroupedStakeholder castedObj = (Staketracker.Core.Models.Stakeholders.GroupedStakeholder)Obj;
-                Staketracker.Core.Models.Communication.LandParcelStakeholder key = new LandParcelStakeholder();
-                key.StakeHolderKey = castedObj.PrimaryKey;
-                selectedStakeholder.Add(key);
-            }
+            if (allStakeholders != null)
+                foreach (Staketracker.Core.Models.Stakeholders.LandParcelStakeholder obj in allStakeholders.d.LandParcelStakeholders)
+                {
+                    if (obj.IsChecked)
+                    {
+                        Staketracker.Core.Models.Communication.LandParcelStakeholder key = new LandParcelStakeholder();
+                        key.StakeHolderKey = obj.PrimaryKey;
+                        selectedStakeholder.Add(key);
+                    }
+                }
             if (selectedStakeholder.Any())
-                authReply.Linked_SelectedStakeholder .Add( selectedStakeholder[0]);
+                authReply.Linked_SelectedStakeholder.Add(selectedStakeholder[0]);
 
 
             switch (authReply.fromPage)
@@ -155,6 +169,14 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
 
                 case "Stakeholder":
                     _navigationService.ChangePresentation(new MvxPopPresentationHint(typeof(StakeholderDetailViewModel), true));
+                    break;
+
+                case "Issue":
+                    _navigationService.ChangePresentation(new MvxPopPresentationHint(typeof(IssuesDetailViewModel), true));
+                    break;
+
+                case "Project Teams":
+                    _navigationService.ChangePresentation(new MvxPopPresentationHint(typeof(ProjectTeamDetailViewModel), true));
                     break;
 
             }
@@ -183,26 +205,72 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
             {
                 case "Communications":
                 case "Communication":
-                    RunSafe(GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel);
                     CommunicationVisible = true;
+                    RunSafe(GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel).
+
+                       ContinueWith((a) =>
+                       {
+
+                           foreach (Team selected in authReply.Linked_SelectedCommunications)
+                           {
+                               communicationReply_.d.Where(a => a.PrimaryKey == selected.PrimaryKey).FirstOrDefault().IsChecked = true;
+                           }
+                           OnPropertyChanged("communicationReply_");
+
+
+
+                       }
+                       );
+
                     break;
 
                 case "Events":
                 case "Event":
                     EventVisible = true;
-                    RunSafe(GetEvents(authReply), true, "Loading " + linkedObj.buttonLabel);
+                    RunSafe(GetEvents(authReply), true, "Loading " + linkedObj.buttonLabel).
+
+                       ContinueWith((a) =>
+                       {
+                           foreach (Team selected in authReply.Linked_SelectedEvents)
+                           {
+                               EventsReply_.d.Where(a => a.PrimaryKey == selected.PrimaryKey).FirstOrDefault().IsChecked = true;
+                           }
+                           OnPropertyChanged("EventsReply_");
+
+                       }
+                       );
                     break;
 
                 case "Team members":
                 case "Project Team":
 
                     ProjectTeamsVisible = true;
-                    RunSafe(GetProjectList(authReply), true, "Loading " + linkedObj.buttonLabel);
+                    RunSafe(GetProjectList(authReply), true, "Loading " + linkedObj.buttonLabel).
+                       ContinueWith((a) =>
+                       {
+                           foreach (Team selected in authReply.Linked_SelectedTeam)
+                           {
+                               projectTeamList.d.Where(a => a.PrimaryKey == selected.PrimaryKey).FirstOrDefault().IsChecked = true;
+                           }
+                           OnPropertyChanged("projectTeamList");
+
+                       }
+                       );
                     break;
 
                 case "Topics":
                     TopicsVisible = true;
-                    RunSafe(GetIssuesList(authReply), true, "Loading " + linkedObj.buttonLabel);
+                    RunSafe(GetIssuesList(authReply), true, "Loading " + linkedObj.buttonLabel).
+                       ContinueWith((a) =>
+                       {
+                           foreach (Team selected in authReply.Linked_SelectedTopics)
+                           {
+                               IssuesList.d.Where(a => a.PrimaryKey == selected.PrimaryKey).FirstOrDefault().IsChecked = true;
+                           }
+                           OnPropertyChanged("IssuesList");
+
+                       }
+                       );
                     break;
 
                 case "Stakeholders":
@@ -211,7 +279,17 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
                 case "Individuals":
 
                     StakeholdersVisible = true;
-                    RunSafe(GetLandParcelStakeholderDetails(authReply), true, "Loading " + linkedObj.buttonLabel);
+                    RunSafe(GetLandParcelStakeholderDetails(authReply), true, "Loading " + linkedObj.buttonLabel).
+                       ContinueWith((a) =>
+                       {
+                           foreach (Staketracker.Core.Models.Communication.LandParcelStakeholder selected in authReply.Linked_SelectedStakeholder)
+                           {
+                               allStakeholders.d.LandParcelStakeholders.Where(a => a.PrimaryKey == selected.StakeHolderKey).FirstOrDefault().IsChecked = true;
+                           }
+                           OnPropertyChanged("IssuesList");
+
+                       }
+                       );
                     break;
 
 
