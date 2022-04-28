@@ -154,7 +154,7 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
                     }
                 }
             if (selectedStakeholder.Any())
-                authReply.Linked_SelectedStakeholder.Add(selectedStakeholder[0]);
+                authReply.Linked_SelectedStakeholder = selectedStakeholder;
 
 
             switch (authReply.fromPage)
@@ -282,11 +282,13 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
                     RunSafe(GetLandParcelStakeholderDetails(authReply), true, "Loading " + linkedObj.buttonLabel).
                        ContinueWith((a) =>
                        {
+                           //  allStakeholders.d.LandParcelStakeholders = (List<Models.Stakeholders.LandParcelStakeholder>)allStakeholders.d.LandParcelStakeholders.OrderByDescending(a => a.PrimaryKey);//.ToList<LandParcelStakeholder>();
+
                            foreach (Staketracker.Core.Models.Communication.LandParcelStakeholder selected in authReply.Linked_SelectedStakeholder)
                            {
                                allStakeholders.d.LandParcelStakeholders.Where(a => a.PrimaryKey == selected.StakeHolderKey).FirstOrDefault().IsChecked = true;
                            }
-                           OnPropertyChanged("IssuesList");
+                           //  OnPropertyChanged("allStakeholders");
 
                        }
                        );

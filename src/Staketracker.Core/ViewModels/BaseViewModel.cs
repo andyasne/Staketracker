@@ -586,6 +586,7 @@ namespace Staketracker.Core.ViewModels
         {
             AddEventsReply reply;
 
+
             if (events.IsSuccessStatusCode)
             {
                 var response = await events.Content.ReadAsStringAsync();
@@ -923,6 +924,7 @@ namespace Staketracker.Core.ViewModels
             {
                 var response = await stakeholders.Content.ReadAsStringAsync();
                 allStakeholders = await Task.Run(() => JsonConvert.DeserializeObject<Models.Stakeholders.Stakeholders>(response));
+                allStakeholders.d.LandParcelStakeholders.OrderBy(o => o.PrimaryKey);
             }
             else
                 await PageDialog.AlertAsync("API Error While retrieving", "API Response Error", "Ok");
@@ -930,7 +932,10 @@ namespace Staketracker.Core.ViewModels
         }
         public void GetLinkedToData()
         {
-            pageFormValue.LinkTo.LandParcelStakeholders = authReply.Linked_SelectedStakeholder;
+            pageFormValue.LinkTo.LandParcelStakeholders = new List<Models.Communication.LandParcelStakeholder>();
+            if (authReply.Linked_SelectedStakeholder.Any())
+                pageFormValue.LinkTo.LandParcelStakeholders.Add(authReply.Linked_SelectedStakeholder[0]);
+
             pageFormValue.LinkTo.Team = authReply.Linked_SelectedTeam;
             pageFormValue.LinkTo.Issue = authReply.Linked_SelectedTopics;
             pageFormValue.LinkTo.Communication = authReply.Linked_SelectedCommunications;
