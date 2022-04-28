@@ -265,7 +265,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                 </telerikDataControls:RadListView.LayoutDefinition>
             </telerikDataControls:RadListView>
 
-            <telerikDataControls:RadListView ItemsSource="{Binding allStakeholders.d.GroupedStakeholders, Mode=OneWay}"
+            <telerikDataControls:RadListView ItemsSource="{Binding allStakeholders.d.LandParcelStakeholders, Mode=OneWay}"
                                                 SelectionMode="None"  Grid.Row="1"
                                                  SelectedItems="{Binding SelectedStakeholders}"
                                                 IsVisible="{Binding StakeholdersVisible, Mode=TwoWay}"
@@ -304,9 +304,10 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                                     </StackLayout>
                                     <StackLayout  Grid.Column="1" Spacing="1" >
 
-                                        <Label Text="{Binding GroupName}" TextColor="Black" MaxLines="2" VerticalOptions="Start" />
-                                        <Label Text="{Binding MainPhone}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
-                                        <Label Text="{Binding Email}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+
+                                        <Label Text="{Binding LegalDescription}" TextColor="Black" MaxLines="2" VerticalOptions="Start" />
+                                        <Label Text="{Binding LandCategory}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
+                                        <Label Text="{Binding AddressLine1}"  VerticalOptions="Start"    TextColor="#757575" FontSize="Micro"/>
 
                                     </StackLayout>
 
