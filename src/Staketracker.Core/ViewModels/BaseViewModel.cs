@@ -528,7 +528,7 @@ namespace Staketracker.Core.ViewModels
                     {
                         if (_formContent.Value.SelectedDate != null)
                         {
-
+                            _formContent.Value.SelectedDate = _formContent.Value.SelectedDate.Value.AddDays(1);
                             DateTime utc = _formContent.Value.SelectedDate.Value.Date.ToUniversalTime();
                             DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
                             TimeSpan diff = utc - origin;

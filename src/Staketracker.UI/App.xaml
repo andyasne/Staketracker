@@ -62,7 +62,7 @@
                                                        Style="{StaticResource ComboEntryStyle}" 
                                                        TextColor="{StaticResource DarkTextColor}"
                                                        SearchMode="Contains"
-                                                       
+                                                       HeightRequest="60"
                                                        SearchTextPath="Label"
                                                        IsDropDownClosedOnSelection="True"
                                                        IsEditable="False" 
@@ -81,7 +81,7 @@
                                          CornerRadius="4" BorderColor="White" BorderThickness=".5" Padding="1"
                                          >
                                         <StackLayout BackgroundColor="White" VerticalOptions="Center">
-                                            <Label Text="{Binding Label}"  Style="{StaticResource FormSubtitleLabelStyle}"   TextColor="{StaticResource DarkTextColor}"   Margin="2"    Padding="5"                   />
+                                            <Label Text="{Binding Label}"  Style="{StaticResource FormSubtitleLabelStyle}"   TextColor="{StaticResource DarkTextColor}"   Margin="2"    Padding="1"                   />
                                         </StackLayout>
                                     </telerikPrimitives:RadBorder>
                                 </DataTemplate>
@@ -91,7 +91,7 @@
                                     <telerikPrimitives:RadBorder BackgroundColor="LightBlue" >
 
                                         <StackLayout BackgroundColor="WhiteSmoke">
-                                            <Label Text="{Binding Label}"  Style="{StaticResource FormSubtitleLabelStyle}"    Margin="2"    Padding="5"                      />
+                                            <Label Text="{Binding Label}"  Style="{StaticResource FormSubtitleLabelStyle}"    Margin="2"    Padding="1"                      />
                                         </StackLayout>
                                     </telerikPrimitives:RadBorder>
                                 </DataTemplate>
@@ -444,7 +444,7 @@
                                          CornerRadius="4" BorderColor="WhiteSmoke" BorderThickness="1"
                                          >
                                         <StackLayout BackgroundColor="White" VerticalOptions="Center">
-                                            <Label Text="{Binding Label}"  Style="{StaticResource FormSubtitleLabelStyle}"     Margin="2"    Padding="5"                   />
+                                            <Label Text="{Binding Label}"  Style="{StaticResource FormSubtitleLabelStyle}"     Margin="2"    Padding="1"                   />
                                         </StackLayout>
                                     </telerikPrimitives:RadBorder>
                                 </DataTemplate>
@@ -454,7 +454,7 @@
                                     <telerikPrimitives:RadBorder BackgroundColor="LightBlue" >
 
                                         <StackLayout BackgroundColor="WhiteSmoke">
-                                            <Label Text="{Binding Label}"  Style="{StaticResource FormSubtitleLabelStyle}"    Margin="2"    Padding="5"                      />
+                                            <Label Text="{Binding Label}"  Style="{StaticResource FormSubtitleLabelStyle}"    Margin="2"    Padding="2"                      />
                                         </StackLayout>
                                     </telerikPrimitives:RadBorder>
                                 </DataTemplate>
