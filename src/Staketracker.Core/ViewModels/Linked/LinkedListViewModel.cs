@@ -154,7 +154,7 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
                     }
                 }
             if (selectedStakeholder.Any())
-                authReply.Linked_SelectedStakeholder.Add(selectedStakeholder[0]);
+                authReply.Linked_SelectedStakeholder = (selectedStakeholder);
 
 
             switch (authReply.fromPage)
