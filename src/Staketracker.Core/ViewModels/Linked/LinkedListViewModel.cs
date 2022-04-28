@@ -91,12 +91,14 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
             List<Staketracker.Core.Models.Communication.Team> selectedTeam = new List<Staketracker.Core.Models.Communication.Team>();
             List<LandParcelStakeholder> selectedStakeholder = new List<Staketracker.Core.Models.Communication.LandParcelStakeholder>();
 
-            foreach (object communicationObject in SelectedCommunications)
+            foreach (Staketracker.Core.Models.Communication.D dCommunicationObject in communicationReply_.d)
             {
-                Staketracker.Core.Models.Communication.D communication = (Staketracker.Core.Models.Communication.D)communicationObject;
-                Staketracker.Core.Models.Communication.Team team = new Team();
-                team.PrimaryKey = communication.PrimaryKey;
-                selectedComms.Add(team);
+                if (dCommunicationObject.IsChecked)
+                {
+                    Staketracker.Core.Models.Communication.Team team = new Team();
+                    team.PrimaryKey = dCommunicationObject.PrimaryKey;
+                    selectedComms.Add(team);
+                }
             }
             if (selectedComms.Any())
                 authReply.Linked_SelectedCommunications = selectedComms;
@@ -140,7 +142,7 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
                 selectedStakeholder.Add(key);
             }
             if (selectedStakeholder.Any())
-                authReply.Linked_SelectedStakeholder .Add( selectedStakeholder[0]);
+                authReply.Linked_SelectedStakeholder.Add(selectedStakeholder[0]);
 
 
             switch (authReply.fromPage)
@@ -183,8 +185,23 @@ namespace Staketracker.Core.ViewModels.Linked.Communication
             {
                 case "Communications":
                 case "Communication":
-                    RunSafe(GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel);
                     CommunicationVisible = true;
+                    RunSafe(GetCommunication(authReply), true, "Loading " + linkedObj.buttonLabel).
+
+                       ContinueWith((a) =>
+                       {
+
+                           foreach (Team selected in authReply.Linked_SelectedCommunications)
+                           {
+                               communicationReply_.d.Where(a => a.PrimaryKey == selected.PrimaryKey).FirstOrDefault().IsChecked = true;
+                           }
+                           OnPropertyChanged("communicationReply_");
+
+
+
+                       }
+                       );
+
                     break;
 
                 case "Events":
