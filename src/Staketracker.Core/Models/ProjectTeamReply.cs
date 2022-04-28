@@ -23,7 +23,7 @@ namespace Staketracker.Core.Models.ProjectTeam
 
         public string FullName => $"{LastName}, {LastName} ({Details[0].Department})";
 
-        public bool IsChecked { get; internal set; }
+        public bool IsChecked { get; set; }
     }
 
     public class ProjectTeamReply

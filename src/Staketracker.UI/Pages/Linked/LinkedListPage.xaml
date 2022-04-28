@@ -265,7 +265,7 @@ xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=
                 </telerikDataControls:RadListView.LayoutDefinition>
             </telerikDataControls:RadListView>
 
-            <telerikDataControls:RadListView ItemsSource="{Binding allStakeholders.d.GroupedStakeholders, Mode=OneWay}"
+            <telerikDataControls:RadListView ItemsSource="{Binding allStakeholders.d.LandParcelStakeholders, Mode=OneWay}"
                                                 SelectionMode="None"  Grid.Row="1"
                                                  SelectedItems="{Binding SelectedStakeholders}"
                                                 IsVisible="{Binding StakeholdersVisible, Mode=TwoWay}"
