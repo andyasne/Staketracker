@@ -20,6 +20,7 @@ namespace Staketracker.Core.Models.EventsFormValue
     {
         public List<LandParcelStakeholder> LandParcelStakeholders { get; set; }
         public List<Team> Team { get; set; }
+        public List<Team> IndividualStakeholders { get; set; }
         public List<Team> Issue { get; set; }
         public List<Team> Communication { get; set; }
     }

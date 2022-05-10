@@ -934,7 +934,18 @@ namespace Staketracker.Core.ViewModels
         {
             pageFormValue.LinkTo.LandParcelStakeholders = new List<Models.Communication.LandParcelStakeholder>();
             if (authReply.Linked_SelectedStakeholder.Any())
+            {
                 pageFormValue.LinkTo.LandParcelStakeholders.Add(authReply.Linked_SelectedStakeholder[0]);
+
+                foreach (var ss in authReply.Linked_SelectedStakeholder)
+                {
+                    Team iss = new Team();
+                    iss.PrimaryKey = ss.StakeHolderKey;
+                    pageFormValue.LinkTo.IndividualStakeholders.Add(iss);
+
+                }
+
+            }
 
             pageFormValue.LinkTo.Team = authReply.Linked_SelectedTeam;
             pageFormValue.LinkTo.Issue = authReply.Linked_SelectedTopics;
